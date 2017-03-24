@@ -1,3 +1,4 @@
+package prop.functionality;
 import java.util.ArrayList;
 
 public class Tipo_3 extends Pregunta {

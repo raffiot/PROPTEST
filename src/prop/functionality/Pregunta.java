@@ -1,3 +1,5 @@
+package prop.functionality;
+
 
 public class Pregunta {
 	int id;

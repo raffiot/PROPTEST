@@ -1,3 +1,5 @@
+package prop.functionality;
+
 
 public class Respuesta_2 extends RespuestaPregunta{
 
