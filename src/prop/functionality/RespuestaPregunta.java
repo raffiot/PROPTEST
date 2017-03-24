@@ -1,3 +1,4 @@
+package prop.functionality;
 
 public class RespuestaPregunta {
 	private Pregunta pregunta;

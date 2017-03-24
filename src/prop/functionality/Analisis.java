@@ -82,7 +82,7 @@ public class Analisis {
 				if(rp1.getString().equals(rp2.getString())) return 0; else return 1;					
 			break;	
 			case 4 :
-				
+				for(int i =0; i < rp1.getPregunta().)
 			break;	
 			case 5 :
 				
