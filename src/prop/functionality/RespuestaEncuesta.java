@@ -15,6 +15,15 @@ public class RespuestaEncuesta {
 		}
 	}
 	
+	//Particular constructor for centroids RespuestaEncuesta
+	public RespuestaEncuesta(Encuesta e, List<RespuestaPregunta> rp){
+		encuesta = e;
+		respPreguntas = new ArrayList<RespuestaPregunta>();
+		for(RespuestaPregunta r : rp){
+			respPreguntas.add(r);
+		}
+	}
+	
 	public Encuesta getEncuesta(){
 		return encuesta;		
 	}
