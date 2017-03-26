@@ -6,10 +6,10 @@ import javax.xml.crypto.Data;
 
 public class Encuesta {
 	
-	int id;
-	int n_preguntas;
-	String genero;
-	Data fecha;
+	private int id;
+	private int n_preguntas;
+	private String genero;
+	private Data fecha;
 	
 	ArrayList<Pregunta> preguntas;
 	public int getId() {
