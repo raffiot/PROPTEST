@@ -10,8 +10,9 @@ public class Encuesta {
 	private int n_preguntas;
 	private String genero;
 	private Data fecha;
+	private ArrayList<Pregunta> preguntas;
 	
-	ArrayList<Pregunta> preguntas;
+	
 	public int getId() {
 		return id;
 	}
