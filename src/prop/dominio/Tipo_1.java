@@ -1,9 +1,23 @@
-package prop.functionality;
+package prop.dominio;
 public class Tipo_1 extends Pregunta {
 	
-	private int opciones;
-	private int max;
-	private int min;
+	private Integer opciones;
+	private Integer max;
+	private Integer min;
+	
+	public Tipo_1(){
+		super();
+		tipo = 1;
+	}
+	
+	public Tipo_1(Integer id, String enunciado, Integer opciones, Integer max, Integer min){
+		super(id,enunciado);
+		tipo = 1;
+		this.opciones = opciones;
+		this.max = max;
+		this.min = min;
+	}
+	
 	public int getOpciones() {
 		return opciones;
 	}

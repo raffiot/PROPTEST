@@ -1,4 +1,4 @@
-package prop.functionality;
+package prop.dominio;
 
 
 public class Respuesta_2 extends RespuestaPregunta{

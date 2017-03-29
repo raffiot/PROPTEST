@@ -1,7 +1,7 @@
-package prop.functionality;
+package prop.dominio;
 import java.util.ArrayList;
 
-public class Tipo_4 extends Pregunta {
+public class Tipo_2 extends Pregunta {
 	
 	int opciones;
 	ArrayList <String>lista_opciones;
@@ -18,4 +18,5 @@ public class Tipo_4 extends Pregunta {
 	public void setLista_opciones(ArrayList<String> lista_opciones) {
 		this.lista_opciones = lista_opciones;
 	}
+
 }

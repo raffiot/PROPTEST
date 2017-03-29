@@ -1,4 +1,4 @@
-package prop.functionality;
+package prop.dominio;
 
 import java.util.ArrayList;
 
@@ -13,6 +13,7 @@ public class Cjt_encuestas {
 	public void setEncuestas(ArrayList<Encuesta> encuestas) {
 		this.encuestas = encuestas;
 	}
+	
 	
 
 }

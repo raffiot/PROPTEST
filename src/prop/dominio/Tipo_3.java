@@ -1,4 +1,4 @@
-package prop.functionality;
+package prop.dominio;
 import java.util.ArrayList;
 
 public class Tipo_3 extends Pregunta {

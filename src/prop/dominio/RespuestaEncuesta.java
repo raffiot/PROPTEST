@@ -1,4 +1,4 @@
-package prop.functionality;
+package prop.dominio;
 
 import java.util.ArrayList;
 import java.util.List;

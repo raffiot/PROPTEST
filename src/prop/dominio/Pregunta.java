@@ -1,11 +1,21 @@
-package prop.functionality;
+package prop.dominio;
 
 
-public class Pregunta {
-	int id;
+public abstract class  Pregunta {
+	Integer id;
 	String enunciado;
-	int tipo;
+	Integer tipo;
 	
+	public Pregunta(){
+		this.id = null;
+		this.enunciado = null;
+		this.tipo = null;
+	}
+	
+	public Pregunta(Integer id, String enunciado) {
+		this.id = id;
+		this.enunciado = enunciado;
+	}
 	
 	public int getId() {
 		return id;
@@ -25,6 +35,8 @@ public class Pregunta {
 	public void setTipo(int tipo) {
 		this.tipo = tipo;
 	}
+	public abstract int getMin();
+	public abstract int getMax();
 	
 
 }
