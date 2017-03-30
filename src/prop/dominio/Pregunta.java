@@ -35,8 +35,8 @@ public abstract class  Pregunta {
 	public void setTipo(int tipo) {
 		this.tipo = tipo;
 	}
-	public abstract int getMin();
-	public abstract int getMax();
+	
+	public abstract void imprimir_pregunta();
 	
 
 }

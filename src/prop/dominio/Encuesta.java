@@ -1,15 +1,16 @@
 package prop.dominio;
 
 import java.util.ArrayList;
+import java.util.Date;
 
-import javax.xml.crypto.Data;
+
 
 public class Encuesta {
 	
 	private Integer id;
 	private Integer n_preguntas;
 	private String genero;
-	private Data fecha;
+	private Date fecha;
 	private ArrayList<Pregunta> preguntas;
 	
 	
@@ -21,7 +22,7 @@ public class Encuesta {
 		preguntas = new ArrayList<>();
 	}
 				
-	public Encuesta(Integer id, Integer n_preguntas, String genero, Data fecha,ArrayList<Pregunta>preguntas ){
+	public Encuesta(Integer id, Integer n_preguntas, String genero, Date fecha,ArrayList<Pregunta>preguntas ){
 		this.id = id;
 		this.n_preguntas = n_preguntas;
 		this.genero = genero;
@@ -44,10 +45,10 @@ public class Encuesta {
 	public void setGenero(String genero) {
 		this.genero = genero;
 	}
-	public Data getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
-	public void setFecha(Data fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 	public ArrayList<Pregunta> getPreguntas() {
@@ -63,11 +64,13 @@ public class Encuesta {
 	}
 	
 	public void imprimir(){
+		System.out.println("id de la encuesta: "+ id);
+		System.out.println("Genero encuesta: " +genero);
+		System.out.println("Fecha: " + fecha);
+		System.out.println("Nº de preguntas: " +n_preguntas);;
 		for(int i = 0; i < preguntas.size();++i){
-			System.out.println(preguntas.get(i).getEnunciado());
-			for(int j = preguntas.get(i).getMin(); j < preguntas.get(i).getMax(); ++j){
-				System.out.println("-"+j);
-			}
+			preguntas.get(i).imprimir_pregunta();
+			
 		}
 	}
 
