@@ -29,4 +29,9 @@ public class RespuestaEncuesta {
 	public Encuesta getEncuesta(){
 		return encuesta;		
 	}
+
+	public List<RespuestaPregunta> getRespPreguntas() {
+		return respPreguntas;
+	}
+	
 }

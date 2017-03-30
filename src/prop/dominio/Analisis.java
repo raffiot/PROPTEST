@@ -9,19 +9,16 @@ public class Analisis {
 	private int k;
 	private double threshold;
 	private Administrador admin;
-	private List<RespuestaEncuesta> respEncuesta;
+	private Respuesta_Analisis respEncuestas;
 	private Encuesta encuesta;
 	
-	public Analisis(int id, int k, double threshold, Administrador admin, List<RespuestaEncuesta> respEncuesta){
+	public Analisis(int id, int k, double threshold, Administrador admin, Respuesta_Analisis respEncuesta){
 		this.id = id;
 		this.k = k;
 		this.threshold = threshold;
 		this.admin = admin;
-		this.respEncuesta = new ArrayList<RespuestaEncuesta>();
-		for(RespuestaEncuesta r : respEncuesta){
-			this.respEncuesta.add(r);
-		}
-		encuesta = respEncuesta.get(0).getEncuesta();
+		this.respEncuestas = respEncuesta;
+		encuesta = respEncuesta.getListRP().get(0).getEncuesta();
 	}
 	
 	public Resultado k_means(){
@@ -33,23 +30,27 @@ public class Analisis {
 		
 		//CREATION OF SEEDS
 		//generar los seeds random?
-		RespuestaEncuesta seed = new RespuestaEncuesta();
+		List<RespuestaPregunta> listRP = new ArrayList<RespuestaPregunta>();
+		RespuestaEncuesta seed;
 		for(int i = 0; i < k; i++){
 			for(int j = 0; j < encuesta.getN_preguntas() ; j++){
 				//generate random answer "random" to the question ecuesta.get(j).type()
+				//Generate particular respuestas!!!!
 				RespuestaPregunta rp = new RespuestaPregunta(random);
-				seed.add(rp);
+				listRP.add(rp);
 			}			
 		}
+		seed = new RespuestaEncuesta(encuesta,listRP);
 		
 		//ASSIG EACH RESPUESTA_ENCUESTA TO CLUSTER
-		for(Respuesta_encuesta ra: listToAnalyse){
+		for(RespuestaEncuesta ra: respEncuestas.getListRP()){
 			double distance_min = Double.POSITIVE_INFINITY;
 			int index_centroid = 0;
 			
 			for(int i = 0; i < k; i++){
 				double distance = 0;
-				for(int index = 0; index < encuesta.size(); index++){
+				for(int index = 0; index < encuesta.getN_preguntas(); index++){
+					distance = ra.getRespPreguntas().get(index)//...
 					//Switch encuesta.get(index).type case ...
 					//Compute distance between ra.get(index) and seeds.get(index)
 					//Increment distance
