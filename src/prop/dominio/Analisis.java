@@ -1,6 +1,7 @@
 package prop.dominio;
 
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 public class Analisis {
@@ -12,12 +13,12 @@ public class Analisis {
 	private Respuesta_Analisis respEncuestas;
 	private Encuesta encuesta;
 	
-	public Analisis(int id, int k, double threshold, Administrador admin, Respuesta_Analisis respEncuesta){
+	public Analisis(int id, int k, double threshold, Administrador admin, Respuesta_Analisis respEncuestas){
 		this.id = id;
 		this.k = k;
 		this.threshold = threshold;
 		this.admin = admin;
-		this.respEncuestas = respEncuesta;
+		this.respEncuestas = respEncuestas;
 		encuesta = respEncuesta.getListRP().get(0).getEncuesta();
 	}
 	
@@ -30,6 +31,46 @@ public class Analisis {
 		
 		//CREATION OF SEEDS
 		//generar los seeds random?
+		List<Cluster> centroids = createCluster();
+		
+		
+		
+		HashMap<Integer,MinMax> mapMinMax = minMax_Respuesta_1();
+		
+		
+		//ASSIG EACH RESPUESTA_ENCUESTA TO CLUSTER
+		for(RespuestaEncuesta ra: respEncuestas.getListRP()){
+			double distance_min = 1.;
+			int index_centroid;
+			
+			for(int i = 0; i < k; i++){
+				double distance = 0;
+				for(int index = 0; index < encuesta.getN_preguntas(); index++){
+					distance += ra.getRespPreguntas().get(index)//...
+					//Switch encuesta.get(index).type case ...
+					//Compute distance between ra.get(index) and seeds.get(index)
+					//Increment distance
+				}
+				distance /= encuesta.getN_preguntas(); 
+				if(distance < distance_min){
+					distance_min = distance;
+					index_centroid = i;
+				}
+			}
+			
+			centroids.get(index_centroid).getUsuarios().add(ra);
+			if(centroids.get(index_centroid).getDistanceMax() > distance_min){
+				centroids.get(index_centroid).setDistanceMax(distance_min);
+			}		
+			
+		}
+		
+		
+		
+	}
+	
+	public List<Cluster> createCluster(){
+		List<Cluster> centroids = new ArrayList<Cluster>();
 		List<RespuestaPregunta> listRP = new ArrayList<RespuestaPregunta>();
 		RespuestaEncuesta seed;
 		for(int i = 0; i < k; i++){
@@ -38,38 +79,63 @@ public class Analisis {
 				//Generate particular respuestas!!!!
 				RespuestaPregunta rp = new RespuestaPregunta(random);
 				listRP.add(rp);
-			}			
+			}
+			seed = new RespuestaEncuesta(encuesta,listRP);
+			centroids.add(new Cluster(i,seed));
 		}
-		seed = new RespuestaEncuesta(encuesta,listRP);
-		
-		//ASSIG EACH RESPUESTA_ENCUESTA TO CLUSTER
-		for(RespuestaEncuesta ra: respEncuestas.getListRP()){
-			double distance_min = Double.POSITIVE_INFINITY;
-			int index_centroid = 0;
-			
-			for(int i = 0; i < k; i++){
-				double distance = 0;
-				for(int index = 0; index < encuesta.getN_preguntas(); index++){
-					distance = ra.getRespPreguntas().get(index)//...
-					//Switch encuesta.get(index).type case ...
-					//Compute distance between ra.get(index) and seeds.get(index)
-					//Increment distance
-				}
-				if(distance < distance_min){
-					distance_min = distance;
-					index_centroid = k;
+		return centroids;
+	}
+	
+	
+	public HashMap<Integer,MinMax> minMax_Respuesta_1(){
+		//MIN MAX FOR EACH TYPE 1 QUESTION
+		HashMap<Integer,MinMax> map = new HashMap<Integer,MinMax>();
+		for(int i =0; i< encuesta.getN_preguntas(); i++){
+			MinMax minmax = new MinMax();
+			if(encuesta.getPreguntas().get(i).tipo == 1){
+				for(RespuestaEncuesta re : respEncuestas.getListRP()){
+					double res = re.getRespPreguntas().get(i);//We want value of the answer
+					if(res < minmax.getMin()){
+						minmax.setMin(res);
+					}
+					if(res > minmax.getMax()){
+						minmax.setMax(res);
+					}
 				}
 			}
-			
-			//Store the result of assignation
-			
-			
+			map.put(encuesta.getPreguntas().get(i).getId(), minmax);
 		}
+		return map;
+	}
+	
+	public class MinMax{
+		private double min;
+		private double max;
 		
-		
+		public MinMax(){
+			min = Double.MAX_VALUE;
+			max = Double.MIN_VALUE;
+		}
+
+		public double getMin() {
+			return min;
+		}
+
+		public void setMin(double min) {
+			this.min = min;
+		}
+
+		public double getMax() {
+			return max;
+		}
+
+		public void setMax(double max) {
+			this.max = max;
+		}
 		
 	}
 	
+	/*
 	public static double distance(RespuestaPregunta rp1, RespuestaPregunta rp2, int tipo){
 		switch (tipo){
 			case 1 :
@@ -90,7 +156,7 @@ public class Analisis {
 			break;	
 		}
 				
-	}
+	}*/
 	
 	
 	
