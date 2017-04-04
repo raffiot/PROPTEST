@@ -94,12 +94,17 @@ public class Analisis {
 					for(int i = 0; i < encuesta.getN_preguntas() ; i++){
 						double mediana1 = 0;
 						int mediana2 = 0;
+						Map<String,Integer> mediana3 = new 
 						for(int j = 0; j < cluster.getUsuarios().size() ; j++){
 							switch (encuesta.getPreguntas().get(i).tipo){
 							case 1 :
 								mediana1 += cluster.getUsuarios().get(j).getRespPreguntas().get(i).getValueR1();
 								break;
 							case 2 :
+								mediana2 += cluster.getUsuarios().get(j).getRespPreguntas().get(i).getValueR2();
+								break;
+							case 3 :
+								
 								
 								
 							}
