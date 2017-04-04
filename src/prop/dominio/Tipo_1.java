@@ -37,10 +37,12 @@ public class Tipo_1 extends Pregunta {
 		this.min = min;
 	}
 	
-	public void imprimir_pregunta(){
-		System.out.println(id+"."+enunciado);
-		for (int i = min; i < max+1; ++i) System.out.println("- "+ i);
-		
+	@Override
+	public String toString(){
+		String s = "";
+		s += id+"."+enunciado +"\n";
+		for (int i = min; i < max+1; ++i) s += "- "+ i + "\n";
+		return s;
 	}
-
+	
 }
