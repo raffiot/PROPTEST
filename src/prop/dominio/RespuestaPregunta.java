@@ -25,7 +25,7 @@ public abstract class RespuestaPregunta {
 		this.pregunta = pregunta;
 	}
 	
-	public abstract double distance(RespuestaPregunta r, double minR1, double maxR1, int sizeR2, String valueR3, Set<String> valueR4);
+	public abstract double distance(RespuestaPregunta r, double minR1, double maxR1, int sizeR2);
 
 	public double getValueR1() {
 		return valueR1;

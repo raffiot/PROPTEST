@@ -19,7 +19,7 @@ public class Analisis {
 		this.threshold = threshold;
 		this.admin = admin;
 		this.respEncuestas = respEncuestas;
-		encuesta = respEncuesta.getListRP().get(0).getEncuesta();
+		encuesta = respEncuestas.getListRP().get(0).getEncuesta();
 	}
 	
 	public Resultado k_means(){
@@ -37,38 +37,81 @@ public class Analisis {
 		
 		HashMap<Integer,MinMax> mapMinMax = minMax_Respuesta_1();
 		
-		
-		//ASSIG EACH RESPUESTA_ENCUESTA TO CLUSTER
-		for(RespuestaEncuesta ra: respEncuestas.getListRP()){
-			double distance_min = 1.;
-			int index_centroid;
-			
-			for(int i = 0; i < k; i++){
-				double distance = 0;
-				for(int index = 0; index < encuesta.getN_preguntas(); index++){
-					distance += ra.getRespPreguntas().get(index)//...
-					//Switch encuesta.get(index).type case ...
-					//Compute distance between ra.get(index) and seeds.get(index)
-					//Increment distance
+		boolean underThreshold = true;
+		do{
+			//ASSIG EACH RESPUESTA_ENCUESTA TO CLUSTER
+			for(RespuestaEncuesta ra: respEncuestas.getListRP()){
+				double distance_min = 1.;
+				int index_centroid;
+				
+				for(int i = 0; i < k; i++){
+					double distance = 0;
+					for(int index = 0; index < encuesta.getN_preguntas(); index++){
+						switch (encuesta.getPreguntas().get(index).tipo){
+							case 1 :
+								MinMax m = mapMinMax.get(encuesta.getPreguntas().get(index).id); 
+								distance += ra.getRespPreguntas().get(index).distance(centroids.get(i).getCentroid().getRespPreguntas().get(index), m.min, m.max, 0);
+								break;
+							case 2 :
+								int size = ((Tipo_2) encuesta.getPreguntas().get(index)).getOpciones(); //SALE !!!!
+								distance +=  ra.getRespPreguntas().get(index).distance(centroids.get(i).getCentroid().getRespPreguntas().get(index), 0, 0, size);
+								break;
+							case 3 :
+								distance += ra.getRespPreguntas().get(index).distance(centroids.get(i).getCentroid().getRespPreguntas().get(index), 0, 0, 0);
+								break;
+							case 4 :
+								distance += ra.getRespPreguntas().get(index).distance(centroids.get(i).getCentroid().getRespPreguntas().get(index), 0, 0, 0);
+								break;					
+								
+						}
+						
+					}
+					distance /= encuesta.getN_preguntas(); 
+					if(distance < distance_min){
+						distance_min = distance;
+						index_centroid = i;
+					}
 				}
-				distance /= encuesta.getN_preguntas(); 
-				if(distance < distance_min){
-					distance_min = distance;
-					index_centroid = i;
+				
+				centroids.get(index_centroid).getUsuarios().add(ra);
+				if(centroids.get(index_centroid).getDistanceMax() > distance_min){
+					centroids.get(index_centroid).setDistanceMax(distance_min);
+				}		
+				
+			}
+			
+			underThreshold = true;
+			for(Cluster cluster: centroids){
+				if(cluster.getDistanceMax() > threshold){
+					underThreshold = false;
 				}
 			}
 			
-			centroids.get(index_centroid).getUsuarios().add(ra);
-			if(centroids.get(index_centroid).getDistanceMax() > distance_min){
-				centroids.get(index_centroid).setDistanceMax(distance_min);
-			}		
 			
-		}
-		
-		
-		
+			if(!underThreshold){
+				//RECOMPUTE CENTROIDS
+				for(Cluster cluster: centroids){
+					for(int i = 0; i < encuesta.getN_preguntas() ; i++){
+						double mediana1 = 0;
+						int mediana2 = 0;
+						for(int j = 0; j < cluster.getUsuarios().size() ; j++){
+							switch (encuesta.getPreguntas().get(i).tipo){
+							case 1 :
+								mediana1 += cluster.getUsuarios().get(j).getRespPreguntas().get(i).getValueR1();
+								break;
+							case 2 :
+								
+								
+							}
+							
+						}
+					}					
+				}
+			}
+		}while(!underThreshold);
 	}
 	
+
 	public List<Cluster> createCluster(){
 		List<Cluster> centroids = new ArrayList<Cluster>();
 		List<RespuestaPregunta> listRP = new ArrayList<RespuestaPregunta>();
@@ -94,7 +137,7 @@ public class Analisis {
 			MinMax minmax = new MinMax();
 			if(encuesta.getPreguntas().get(i).tipo == 1){
 				for(RespuestaEncuesta re : respEncuestas.getListRP()){
-					double res = re.getRespPreguntas().get(i);//We want value of the answer
+					double res = re.getRespPreguntas().get(i).getValueR1();//We want value of the answer
 					if(res < minmax.getMin()){
 						minmax.setMin(res);
 					}
@@ -134,29 +177,6 @@ public class Analisis {
 		}
 		
 	}
-	
-	/*
-	public static double distance(RespuestaPregunta rp1, RespuestaPregunta rp2, int tipo){
-		switch (tipo){
-			case 1 :
-				
-			break;	
-			case 2 :
-			
-			break;	
-			case 3 :
-				//Change getString methode by the getter implemented in Respuesta_2
-				if(rp1.getString().equals(rp2.getString())) return 0; else return 1;					
-			break;	
-			case 4 :
-				for(int i =0; i < rp1.getPregunta().)
-			break;	
-			case 5 :
-				
-			break;	
-		}
-				
-	}*/
 	
 	
 	

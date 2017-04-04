@@ -10,7 +10,7 @@ public class Respuesta_4 extends RespuestaPregunta{
 	}
 
 	
-	public double distance(RespuestaPregunta r, double minR1, double maxR1, int sizeR2, String valueR3, Set<String> valueR4){
+	public double distance(RespuestaPregunta r, double minR1, double maxR1, int sizeR2){
 		Set<String> respuesta1 = this.getValueR4();
 		Set<String> respuesta2 = r.getValueR4();
 		double icounter = respuesta1.size();
