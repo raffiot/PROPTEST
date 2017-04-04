@@ -4,6 +4,7 @@ package prop.dominio;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
 public class Analisis {
 	
 	private int id;
@@ -61,8 +62,9 @@ public class Analisis {
 								break;
 							case 4 :
 								distance += ra.getRespPreguntas().get(index).distance(centroids.get(i).getCentroid().getRespPreguntas().get(index), 0, 0, 0);
-								break;					
-								
+								break;
+							case 5 :
+								break;								
 						}
 						
 					}
@@ -92,11 +94,17 @@ public class Analisis {
 				//RECOMPUTE CENTROIDS
 				for(Cluster cluster: centroids){
 					for(int i = 0; i < encuesta.getN_preguntas() ; i++){
+						int tipoP = encuesta.getPreguntas().get(i).tipo;
 						double mediana1 = 0;
-						int mediana2 = 0;
-						Map<String,Integer> mediana3 = new 
+						double mediana2 = 0;
+						Map<String,Integer> mediana3 = new HashMap<String,Integer>();
+						if(tipoP == 3){
+							for(String s :((Tipo_3)encuesta.getPreguntas().get(i)).lista_opciones){
+								mediana3.put(s, 0);
+							}
+						}
 						for(int j = 0; j < cluster.getUsuarios().size() ; j++){
-							switch (encuesta.getPreguntas().get(i).tipo){
+							switch (tipoP){
 							case 1 :
 								mediana1 += cluster.getUsuarios().get(j).getRespPreguntas().get(i).getValueR1();
 								break;
@@ -104,16 +112,51 @@ public class Analisis {
 								mediana2 += cluster.getUsuarios().get(j).getRespPreguntas().get(i).getValueR2();
 								break;
 							case 3 :
-								
-								
-								
+								String s = cluster.getUsuarios().get(j).getRespPreguntas().get(i).getValueR3();
+								int value = mediana3.get(s);
+								mediana3.put(s, value+1);
+								break;
+							case 4 :
+								break;
+							case 5 :
+								break;																						
 							}
 							
 						}
+						
+						switch(tipoP){
+							case 1 :
+								double result = mediana1/cluster.getUsuarios().size();
+								cluster.getCentroid().getRespPreguntas().get(i).setValueR1(result);
+								break;
+							case 2 :
+								int result2 = (int) ((double)(mediana2)/cluster.getUsuarios().size());
+								cluster.getCentroid().getRespPreguntas().get(i).setValueR2(result2);
+								break;
+							case 3 :
+								String resultS = "";
+								int freqMax = 0;
+								for(String s : mediana3.keySet()){
+									int freq = mediana3.get(s);
+									if(freq > freqMax){
+										resultS = s;
+									}
+								}
+								cluster.getCentroid().getRespPreguntas().get(i).setValueR3(resultS);
+								break;
+								
+							case 4:
+								break;
+							case 5:
+								break;					
+						}
+						
 					}					
 				}
 			}
 		}while(!underThreshold);
+		
+		return new Resultado(centroids);
 	}
 	
 
@@ -155,6 +198,7 @@ public class Analisis {
 		}
 		return map;
 	}
+	
 	
 	public class MinMax{
 		private double min;
