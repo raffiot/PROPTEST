@@ -36,7 +36,8 @@ public abstract class  Pregunta {
 		this.tipo = tipo;
 	}
 	
-	public abstract void imprimir_pregunta();
+	@Override
+	public abstract String toString();
 	
 
 }

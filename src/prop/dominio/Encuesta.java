@@ -1,5 +1,7 @@
 package prop.dominio;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -58,20 +60,49 @@ public class Encuesta {
 		this.preguntas = preguntas;
 		this.n_preguntas = preguntas.size();
 	}
-	public void añadir_pregunta(Pregunta p){
+	public void anadir_pregunta(Pregunta p){
 		preguntas.add(p);
 		++n_preguntas;
 	}
 	
-	public void imprimir(){
-		System.out.println("id de la encuesta: "+ id);
-		System.out.println("Genero encuesta: " +genero);
-		System.out.println("Fecha: " + fecha);
-		System.out.println("Nº de preguntas: " +n_preguntas);;
+	@Override
+	public String toString(){
+		String s = "";
+		s += "id de la encuesta: "+ id +"\n";
+		s += "Genero encuesta: " +genero +"\n";
+		s += "Fecha: " + fecha + "\n";
+		s += "NÂº de preguntas: " +n_preguntas +"\n";
 		for(int i = 0; i < preguntas.size();++i){
-			preguntas.get(i).imprimir_pregunta();
-			
-		}
+			s += preguntas.get(i).toString();
+			}
+		return s;
 	}
+	
+	public void guardar() {
+		 FileWriter fichero = null;
+	        PrintWriter pw = null;
+	        try
+	        {
+	            fichero = new FileWriter("C:/Users/1192790/git/PROPTEST/Enquestas/prueba.txt");
+	            pw = new PrintWriter(fichero);
+	            pw.println(this.toString());
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	           try {
+	           // Nuevamente aprovechamos el finally para 
+	           // asegurarnos que se cierra el fichero.
+	           if (null != fichero)
+	              fichero.close();
+	           } catch (Exception e2) {
+	              e2.printStackTrace();
+	           }
+	        }
+		
+		
+	}
+	
+	
 
 }
