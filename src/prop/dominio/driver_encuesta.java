@@ -8,9 +8,9 @@ public class driver_encuesta {
 	private static Scanner opcion;
 	public static void main (String [ ] args) {
 		 
-        //Aquí las instrucciones de inicio y control del programa
+        //AquÃ­ las instrucciones de inicio y control del programa
  
-        System.out.println ("Empezamos la ejecución del programa");
+        System.out.println ("Empezamos la ejecuciÃ³n del programa");
         
         Integer id = 0;
         Encuesta e = new Encuesta(++id);
@@ -27,7 +27,7 @@ public class driver_encuesta {
         
         
        do{
-    	    System.out.println("1. Añadir Pregunta.");
+    	    System.out.println("1. AÃ±adir Pregunta.");
 			System.out.println("2. Guardar y salir.");
 			System.out.println("3. Imprimir encuesta");
 			System.out.println("0. Salir del driver.");
@@ -36,8 +36,8 @@ public class driver_encuesta {
     		switch(var){
     		
     		case 1:
-    			System.out.println("Qué tipo de pregunta desea añadir?");
-    			System.out.println("1. Variables cuantitatives o numéricas,");
+    			System.out.println("QuÃ© tipo de pregunta desea aÃ±adir?");
+    			System.out.println("1. Variables cuantitatives o numÃ©ricas,");
     			System.out.println("2. Variables cualitativas ordenadas,");
     			System.out.println("3. Variables cualitativas no ordenadas,");
     			System.out.println("4. Variables cualitativas no ordenadas donde la respuesta es un conjunto,");
@@ -53,12 +53,12 @@ public class driver_encuesta {
     					p.setEnunciado(texto.nextLine());
     					System.out.println("Inserte la opcion numerica minima");
     					p.setMin(opcion.nextInt());
-    					System.out.println("Inserte la opcion numerica máxima");
+    					System.out.println("Inserte la opcion numerica mÃ¡xima");
     					p.setMax(opcion.nextInt());
     					p.setOpciones(p.getMax()-p.getMin());
     					 p.setId(++id_p); 
-    					e.añadir_pregunta(p);
-    					System.out.println("Pregunta añadida");
+    					e.anadir_pregunta(p);
+    					System.out.println("Pregunta aÃ±adida");
     					break;
     					
     				case 2:
@@ -69,11 +69,11 @@ public class driver_encuesta {
     					p1.setOpciones(opcion.nextInt());
     					for (int i = 0; i < p1.getOpciones(); ++i) {
     						System.out.println("Inserte opcion");
-    						p1.añadir_opcion(texto.nextLine());
+    						p1.anadir_opcion(texto.nextLine());
     					}
     					p1.setId(++id_p);
-    					e.añadir_pregunta(p1);
-    					System.out.println("Pregunta añadida");
+    					e.anadir_pregunta(p1);
+    					System.out.println("Pregunta aÃ±adida");
     					break;
     					
     				case 3:
@@ -86,11 +86,11 @@ public class driver_encuesta {
     						System.out.println("Inserte opcion");
     						String s = null; 
     						s = texto.nextLine();
-    						p11.añadir_opcion(s);
+    						p11.anadir_opcion(s);
     					}
     					p11.setId(++id_p);
-    					e.añadir_pregunta(p11);
-    					System.out.println("Pregunta añadida");
+    					e.anadir_pregunta(p11);
+    					System.out.println("Pregunta aÃ±adida");
     					break;
     					
     				case 4:
@@ -101,11 +101,11 @@ public class driver_encuesta {
     					p111.setOpciones(opcion.nextInt());
     					for (int i = 0; i < p111.getOpciones(); ++i) {
     						System.out.println("Inserte opcion");
-    						p111.añadir_opcion(texto.nextLine());
+    						p111.anadir_opcion(texto.nextLine());
     					}
     					p111.setId(++id_p);
-    					e.añadir_pregunta(p111);
-    					System.out.println("Pregunta añadida");
+    					e.anadir_pregunta(p111);
+    					System.out.println("Pregunta aÃ±adida");
     					break;
     					
     				case 5:
@@ -113,15 +113,24 @@ public class driver_encuesta {
     					System.out.println("Inserte enunciado");
     					p1111.setEnunciado(texto.nextLine());
     					p1111.setId(++id_p);
-    					e.añadir_pregunta(p1111);
-    					System.out.println("Pregunta añadida");
+    					e.anadir_pregunta(p1111);
+    					System.out.println("Pregunta aÃ±adida");
     					break;
     					
     			}
     			break;
+    		
+    		case 2:
+    			
+    		e.guardar();
+    		break;
+    		
+    		
     		case 3: 
-    			e.imprimir();
+    			System.out.println(e.toString());
     			break;
+    			
+    		
     		
     	}
         
