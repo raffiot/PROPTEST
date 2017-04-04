@@ -31,14 +31,16 @@ public class Tipo_2 extends Pregunta {
 		this.lista_opciones = lista_opciones;
 	}
 	
-	public void añadir_opcion(String s){
+	public void anadir_opcion(String s){
 		lista_opciones.add(s);
 	
 	}
-	
-	public void imprimir_pregunta(){
-		System.out.println(id+"."+enunciado);
-		for (int i = 0; i < opciones; ++i) System.out.println("- "+ lista_opciones.get(i));
+	@Override
+	public String toString(){
+		String s = "";
+		s += id+"."+enunciado +"\n";
+		for (int i = 0; i < opciones; ++i) s +="- "+ lista_opciones.get(i)+"\n";
+		return s;
 	}
 
 }
