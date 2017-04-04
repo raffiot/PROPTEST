@@ -6,10 +6,14 @@ public class Tipo_5 extends Pregunta {
 		tipo = 5;
 	}
 	
-	public void imprimir_pregunta() {
-		System.out.println(id+"."+enunciado);
+	@Override
+	public String toString(){
+		String s = "";
+		s += id+"."+enunciado + "\n";
+		return s;
 	}
 	
 	
 }
+
 
