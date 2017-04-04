@@ -1,5 +1,6 @@
 package prop.dominio;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Tipo_2 extends Pregunta {
 	
@@ -42,5 +43,12 @@ public class Tipo_2 extends Pregunta {
 		for (int i = 0; i < opciones; ++i) s +="- "+ lista_opciones.get(i)+"\n";
 		return s;
 	}
-
+	
+	public RespuestaPregunta generateAnswer(){
+		Random randomGenerator = new Random();
+		int value = randomGenerator.nextInt(opciones-1);
+		RespuestaPregunta r = new Respuesta_2(this,value);
+		return r;
+	}
+	
 }

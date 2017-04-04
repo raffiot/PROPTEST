@@ -168,7 +168,7 @@ public class Analisis {
 			for(int j = 0; j < encuesta.getN_preguntas() ; j++){
 				//generate random answer "random" to the question ecuesta.get(j).type()
 				//Generate particular respuestas!!!!
-				RespuestaPregunta rp = new RespuestaPregunta(random);
+				RespuestaPregunta rp = encuesta.getPreguntas().get(i).generateAnswer();
 				listRP.add(rp);
 			}
 			seed = new RespuestaEncuesta(encuesta,listRP);

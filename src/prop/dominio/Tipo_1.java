@@ -45,4 +45,10 @@ public class Tipo_1 extends Pregunta {
 		return s;
 	}
 	
+	public RespuestaPregunta generateAnswer(){
+		double value = min + (max - min)*Math.random();
+		RespuestaPregunta r = new Respuesta_1(this,value);
+		return r;
+	}
+	
 }

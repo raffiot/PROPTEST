@@ -1,5 +1,8 @@
 package prop.dominio;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 
 public class Tipo_4 extends Pregunta {
 	
@@ -41,5 +44,17 @@ public class Tipo_4 extends Pregunta {
 		s += id+"."+enunciado +"\n";
 		for (int i = 0; i < opciones; ++i) s +="- "+ lista_opciones.get(i)+"\n";
 		return s;
+	}
+	
+	public RespuestaPregunta generateAnswer(){
+		Random randomGenerator = new Random();
+		int value = randomGenerator.nextInt(opciones-1);
+		Set<String> s = new HashSet<String>();
+		for(int i = 0; i < value; i++){
+			int toPut =randomGenerator.nextInt(opciones-1);
+			s.add(lista_opciones.get(toPut));
+		}
+		RespuestaPregunta r = new Respuesta_4(this,s);
+		return r;
 	}
 }
