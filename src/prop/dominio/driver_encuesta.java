@@ -8,9 +8,9 @@ public class driver_encuesta {
 	private static Scanner opcion;
 	public static void main (String [ ] args) {
 		 
-        //Aqu� las instrucciones de inicio y control del programa
+        //Aquí las instrucciones de inicio y control del programa
  
-        System.out.println ("Empezamos la ejecuci�n del programa");
+        System.out.println ("Empezamos la ejecución del programa");
         
         Integer id = 0;
         Encuesta e = new Encuesta(++id);
@@ -27,7 +27,7 @@ public class driver_encuesta {
         
         
        do{
-    	    System.out.println("1. A�adir Pregunta.");
+    	    System.out.println("1. Añadir Pregunta.");
 			System.out.println("2. Guardar y salir.");
 			System.out.println("3. Imprimir encuesta");
 			System.out.println("0. Salir del driver.");
@@ -36,8 +36,8 @@ public class driver_encuesta {
     		switch(var){
     		
     		case 1:
-    			System.out.println("Qu� tipo de pregunta desea a�adir?");
-    			System.out.println("1. Variables cuantitatives o num�ricas,");
+    			System.out.println("Qué tipo de pregunta desea añadir?");
+    			System.out.println("1. Variables cuantitatives o numéricas,");
     			System.out.println("2. Variables cualitativas ordenadas,");
     			System.out.println("3. Variables cualitativas no ordenadas,");
     			System.out.println("4. Variables cualitativas no ordenadas donde la respuesta es un conjunto,");
@@ -53,12 +53,68 @@ public class driver_encuesta {
     					p.setEnunciado(texto.nextLine());
     					System.out.println("Inserte la opcion numerica minima");
     					p.setMin(opcion.nextInt());
-    					System.out.println("Inserte la opcion numerica m�xima");
+    					System.out.println("Inserte la opcion numerica máxima");
     					p.setMax(opcion.nextInt());
     					p.setOpciones(p.getMax()-p.getMin());
     					 p.setId(++id_p); 
-    					e.a�adir_pregunta(p);
-    					System.out.println("Pregunta a�adida");
+    					e.añadir_pregunta(p);
+    					System.out.println("Pregunta añadida");
+    					break;
+    					
+    				case 2:
+    					Tipo_2 p1 = new Tipo_2();
+    					System.out.println("Inserte enunciado");
+    					p1.setEnunciado(texto.nextLine());
+    					System.out.println("Inserte el numero de opciones");
+    					p1.setOpciones(opcion.nextInt());
+    					for (int i = 0; i < p1.getOpciones(); ++i) {
+    						System.out.println("Inserte opcion");
+    						p1.añadir_opcion(texto.nextLine());
+    					}
+    					p1.setId(++id_p);
+    					e.añadir_pregunta(p1);
+    					System.out.println("Pregunta añadida");
+    					break;
+    					
+    				case 3:
+    					Tipo_3 p11 = new Tipo_3();
+    					System.out.println("Inserte enunciado");
+    					p11.setEnunciado(texto.nextLine());
+    					System.out.println("Inserte el numero de opciones");
+    					p11.setOpciones(opcion.nextInt());
+    					for (int i = 0; i < p11.getOpciones(); ++i) {
+    						System.out.println("Inserte opcion");
+    						String s = null; 
+    						s = texto.nextLine();
+    						p11.añadir_opcion(s);
+    					}
+    					p11.setId(++id_p);
+    					e.añadir_pregunta(p11);
+    					System.out.println("Pregunta añadida");
+    					break;
+    					
+    				case 4:
+    					Tipo_4 p111 = new Tipo_4();
+    					System.out.println("Inserte enunciado");
+    					p111.setEnunciado(texto.nextLine());
+    					System.out.println("Inserte el numero de opciones");
+    					p111.setOpciones(opcion.nextInt());
+    					for (int i = 0; i < p111.getOpciones(); ++i) {
+    						System.out.println("Inserte opcion");
+    						p111.añadir_opcion(texto.nextLine());
+    					}
+    					p111.setId(++id_p);
+    					e.añadir_pregunta(p111);
+    					System.out.println("Pregunta añadida");
+    					break;
+    					
+    				case 5:
+    					Tipo_5 p1111 = new Tipo_5();
+    					System.out.println("Inserte enunciado");
+    					p1111.setEnunciado(texto.nextLine());
+    					p1111.setId(++id_p);
+    					e.añadir_pregunta(p1111);
+    					System.out.println("Pregunta añadida");
     					break;
     					
     			}
