@@ -1,25 +1,16 @@
 package prop.dominio;
 
+import java.util.Set;
+
 public class Respuesta_1 extends RespuestaPregunta{
-
 	
-	private double value;
-	
-	public Respuesta_1(Pregunta p, int value) {
-		super(p);
-		this.value = value;
+	public Respuesta_1(Pregunta p, double value) {
+		super(p,value,0,null,null);
 	}
 	
-	public double getValue() {
-		return value;
-	}
-
-	public void setValue(int value) {
-		this.value = value;
-	}
-	
-	public double distance(Respuesta_1 r, double min, double max){
-		return Math.abs(this.value-r.getValue())/(max-min);
+	@Override
+	public double distance(RespuestaPregunta r, double minR1, double maxR1, int sizeR2, String valueR3, Set<String> valueR4){
+		return Math.abs(this.getValueR1()-r.getValueR1())/(maxR1-minR1);
 	}
 	
 
