@@ -8,23 +8,21 @@ import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 public class Participant extends Persona{
 	private Encuesta e;
-	private HashMap<Integer,RespuestaEncuesta> EncuestaParticipant;
+	private HashMap<Integer,List<RespuestaPregunta>> EncuestaParticipant;
 	
 	
 	public Participant(){
 		EncuestaParticipant = new HashMap<Integer,RespuestaEncuesta>();
 	}
 	
-	public void contestarEncuesta(){
+	/*public void contestarEncuesta(){
 		Integer idEncuesta = e.getId();
 		EncuestaParticipant.put(idEncuesta,new RespuestaEncuesta());
-		
-		
-	}
+	}*/
 	
 	public void rellenarInformacion(RespuestaEncuesta re){
 		Integer idEncuesta = e.getId();
-		EncuestaParticipant.put(idEncuesta,re);
+		EncuestaParticipant.put(idEncuesta,re.getRespPreguntas());
 	}
 	
 }

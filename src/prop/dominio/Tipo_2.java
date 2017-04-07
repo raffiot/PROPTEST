@@ -59,4 +59,12 @@ public class Tipo_2 extends Pregunta {
 
 	}
 >>>>>>> Stashed changes
+
+	public int getPosicion(String pos){
+		for (int i = 0; i < opciones; ++i){
+			if (lista_opciones.get(i) == pos) return i;
+			else return -1;
+		}
+	
+	}
 }
