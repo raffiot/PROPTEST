@@ -60,11 +60,16 @@ public class Encuesta {
 		this.preguntas = preguntas;
 		this.n_preguntas = preguntas.size();
 	}
+<<<<<<< Updated upstream
 	public void anadir_pregunta(Pregunta p){
+=======
+	public void añadir_pregunta(Pregunta p){
+>>>>>>> Stashed changes
 		preguntas.add(p);
 		++n_preguntas;
 	}
 	
+<<<<<<< Updated upstream
 	@Override
 	public String toString(){
 		String s = "";
@@ -72,6 +77,13 @@ public class Encuesta {
 		s += "Genero encuesta: " +genero +"\n";
 		s += "Fecha: " + fecha + "\n";
 		s += "Nº de preguntas: " +n_preguntas +"\n";
+=======
+	public void imprimir(){
+		System.out.println("id de la encuesta: "+ id);
+		System.out.println("Genero encuesta: " +genero);
+		System.out.println("Fecha: " + fecha);
+		System.out.println("N� de preguntas: " +n_preguntas);;
+>>>>>>> Stashed changes
 		for(int i = 0; i < preguntas.size();++i){
 			s += preguntas.get(i).toString();
 			}

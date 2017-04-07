@@ -11,6 +11,11 @@ public class driver_encuesta {
         //AquÃ­ las instrucciones de inicio y control del programa
  
         System.out.println ("Empezamos la ejecuciÃ³n del programa");
+
+        //Aqu� las instrucciones de inicio y control del programa
+ 
+        System.out.println ("Empezamos la ejecuci�n del programa");
+
         
         Integer id = 0;
         Encuesta e = new Encuesta(++id);
@@ -27,7 +32,11 @@ public class driver_encuesta {
         
         
        do{
+
     	    System.out.println("1. AÃ±adir Pregunta.");
+
+    	    System.out.println("1. A�adir Pregunta.");
+
 			System.out.println("2. Guardar y salir.");
 			System.out.println("3. Imprimir encuesta");
 			System.out.println("0. Salir del driver.");
@@ -36,8 +45,11 @@ public class driver_encuesta {
     		switch(var){
     		
     		case 1:
+
     			System.out.println("QuÃ© tipo de pregunta desea aÃ±adir?");
     			System.out.println("1. Variables cuantitatives o numÃ©ricas,");
+    			System.out.println("Qu� tipo de pregunta desea a�adir?");
+    			System.out.println("1. Variables cuantitatives o num�ricas,");
     			System.out.println("2. Variables cualitativas ordenadas,");
     			System.out.println("3. Variables cualitativas no ordenadas,");
     			System.out.println("4. Variables cualitativas no ordenadas donde la respuesta es un conjunto,");
@@ -115,6 +127,12 @@ public class driver_encuesta {
     					p1111.setId(++id_p);
     					e.anadir_pregunta(p1111);
     					System.out.println("Pregunta aÃ±adida");
+    					System.out.println("Inserte la opcion numerica m�xima");
+    					p.setMax(opcion.nextInt());
+    					p.setOpciones(p.getMax()-p.getMin());
+    					 p.setId(++id_p); 
+    					e.añadir_pregunta(p);
+    					System.out.println("Pregunta a�adida");
     					break;
     					
     			}

@@ -17,6 +17,10 @@ public class RespuestaEncuesta {
 		}
 	}
 	
+	public RespuestaEncuesta(){
+		
+	}
+	
 	//Particular constructor for centroids RespuestaEncuesta
 	public RespuestaEncuesta(Encuesta e, List<RespuestaPregunta> rp){
 		encuesta = e;
