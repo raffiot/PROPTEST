@@ -17,5 +17,3 @@ public class Tipo_5 extends Pregunta {
 		//TO BE COMPLETE
 	}
 }
-
-

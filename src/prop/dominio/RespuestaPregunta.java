@@ -25,7 +25,6 @@ public abstract class RespuestaPregunta {
 		this.pregunta = pregunta;
 	}
 	
-	
 	public abstract double distance(RespuestaPregunta r, double minR1, double maxR1, int sizeR2);
 
 	public double getValueR1() {
@@ -59,6 +58,4 @@ public abstract class RespuestaPregunta {
 	public void setValueR4(Set<String> valueR4) {
 		this.valueR4 = valueR4;
 	}
-=======
->>>>>>> Stashed changes
 }

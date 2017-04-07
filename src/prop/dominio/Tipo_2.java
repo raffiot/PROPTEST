@@ -43,7 +43,6 @@ public class Tipo_2 extends Pregunta {
 		for (int i = 0; i < opciones; ++i) s +="- "+ lista_opciones.get(i)+"\n";
 		return s;
 	}
-<<<<<<< Updated upstream
 	
 	public RespuestaPregunta generateAnswer(){
 		Random randomGenerator = new Random();
@@ -52,19 +51,12 @@ public class Tipo_2 extends Pregunta {
 		return r;
 	}
 	
-=======
-
-	public void traducir(){
-		//pasamos de string a numero para poder hacer analisis
-
-	}
->>>>>>> Stashed changes
-
 	public int getPosicion(String pos){
 		for (int i = 0; i < opciones; ++i){
 			if (lista_opciones.get(i) == pos) return i;
-			else return -1;
+			
 		}
-	
+		return -1;
 	}
+	
 }

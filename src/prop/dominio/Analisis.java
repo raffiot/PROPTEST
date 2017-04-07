@@ -38,7 +38,6 @@ public class Analisis {
 		
 		HashMap<Integer,MinMax> mapMinMax = minMax_Respuesta_1();
 		
-<<<<<<< Updated upstream
 		boolean underThreshold = true;
 		do{
 			//ASSIG EACH RESPUESTA_ENCUESTA TO CLUSTER
@@ -74,21 +73,6 @@ public class Analisis {
 						distance_min = distance;
 						index_centroid = i;
 					}
-=======
-		
-		//ASSIG EACH RESPUESTA_ENCUESTA TO CLUSTER
-		for(RespuestaEncuesta ra: respEncuestas.getListRP()){
-			double distance_min = 1.;
-			int index_centroid;
-			
-			for(int i = 0; i < k; i++){
-				double distance = 0;
-				for(int index = 0; index < encuesta.getN_preguntas(); index++){
-					distance += ra.getRespPreguntas().get(index);//...
-					//Switch encuesta.get(index).type case ...
-					//Compute distance between ra.get(index) and seeds.get(index)
-					//Increment distance
->>>>>>> Stashed changes
 				}
 				
 				centroids.get(index_centroid).getUsuarios().add(ra);
