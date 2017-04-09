@@ -51,6 +51,7 @@ public class Tipo_2 extends Pregunta {
 		return r;
 	}
 	
+
 	public int getPosicion(String pos){
 		for (int i = 0; i < opciones; ++i){
 			if (lista_opciones.get(i) == pos) return i;
@@ -58,5 +59,6 @@ public class Tipo_2 extends Pregunta {
 		}
 		return -1;
 	}
-	
 }
+	
+

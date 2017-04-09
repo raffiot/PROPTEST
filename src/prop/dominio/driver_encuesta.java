@@ -10,12 +10,7 @@ public class driver_encuesta {
 		 
         //AquÃ­ las instrucciones de inicio y control del programa
  
-        System.out.println ("Empezamos la ejecuciÃ³n del programa");
-
-        //Aqu� las instrucciones de inicio y control del programa
- 
-        System.out.println ("Empezamos la ejecuci�n del programa");
-
+        System.out.println ("Empezamos la ejecucion del programa");
         
         Integer id = 0;
         Encuesta e = new Encuesta(++id);
@@ -32,11 +27,7 @@ public class driver_encuesta {
         
         
        do{
-
-    	    System.out.println("1. AÃ±adir Pregunta.");
-
-    	    System.out.println("1. A�adir Pregunta.");
-
+    	    System.out.println("1. Insertar Pregunta.");
 			System.out.println("2. Guardar y salir.");
 			System.out.println("3. Imprimir encuesta");
 			System.out.println("0. Salir del driver.");
@@ -45,11 +36,8 @@ public class driver_encuesta {
     		switch(var){
     		
     		case 1:
-
-    			System.out.println("QuÃ© tipo de pregunta desea aÃ±adir?");
-    			System.out.println("1. Variables cuantitatives o numÃ©ricas,");
-    			System.out.println("Qu� tipo de pregunta desea a�adir?");
-    			System.out.println("1. Variables cuantitatives o num�ricas,");
+    			System.out.println("Que tipo de pregunta desea insertar?");
+    			System.out.println("1. Variables cuantitatives o numericas,");
     			System.out.println("2. Variables cualitativas ordenadas,");
     			System.out.println("3. Variables cualitativas no ordenadas,");
     			System.out.println("4. Variables cualitativas no ordenadas donde la respuesta es un conjunto,");
@@ -65,12 +53,12 @@ public class driver_encuesta {
     					p.setEnunciado(texto.nextLine());
     					System.out.println("Inserte la opcion numerica minima");
     					p.setMin(opcion.nextInt());
-    					System.out.println("Inserte la opcion numerica mÃ¡xima");
+    					System.out.println("Inserte la opcion numerica maxima");
     					p.setMax(opcion.nextInt());
     					p.setOpciones(p.getMax()-p.getMin());
     					 p.setId(++id_p); 
     					e.anadir_pregunta(p);
-    					System.out.println("Pregunta aÃ±adida");
+    					System.out.println("Pregunta insertada");
     					break;
     					
     				case 2:
@@ -85,7 +73,7 @@ public class driver_encuesta {
     					}
     					p1.setId(++id_p);
     					e.anadir_pregunta(p1);
-    					System.out.println("Pregunta aÃ±adida");
+    					System.out.println("Pregunta insertada");
     					break;
     					
     				case 3:
@@ -102,7 +90,7 @@ public class driver_encuesta {
     					}
     					p11.setId(++id_p);
     					e.anadir_pregunta(p11);
-    					System.out.println("Pregunta aÃ±adida");
+    					System.out.println("Pregunta insertada");
     					break;
     					
     				case 4:
@@ -117,7 +105,7 @@ public class driver_encuesta {
     					}
     					p111.setId(++id_p);
     					e.anadir_pregunta(p111);
-    					System.out.println("Pregunta aÃ±adida");
+    					System.out.println("Pregunta insertada");
     					break;
     					
     				case 5:
@@ -126,13 +114,7 @@ public class driver_encuesta {
     					p1111.setEnunciado(texto.nextLine());
     					p1111.setId(++id_p);
     					e.anadir_pregunta(p1111);
-    					System.out.println("Pregunta aÃ±adida");
-    					System.out.println("Inserte la opcion numerica m�xima");
-    					p.setMax(opcion.nextInt());
-    					p.setOpciones(p.getMax()-p.getMin());
-    					 p.setId(++id_p); 
-    					e.añadir_pregunta(p);
-    					System.out.println("Pregunta a�adida");
+    					System.out.println("Pregunta insertada");
     					break;
     					
     			}
