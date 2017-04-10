@@ -17,6 +17,10 @@ public abstract class RespuestaPregunta {
 		valueR4 = v4;
 	}
 
+	public RespuestaPregunta(){
+		
+	}
+	
 	public Pregunta getPregunta() {
 		return pregunta;
 	}

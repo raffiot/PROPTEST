@@ -15,18 +15,17 @@ public class driver_contestar {
 		
         texto = new Scanner(System.in);
         respuesta = new Scanner(System.in);
-        Participant a;
-		Encuesta e;
-		List<RespuestaPregunta> rp;
+        Participant a = null;
+		Encuesta e = null;
+		List<RespuestaPregunta> rp = new ArrayList<RespuestaPregunta>();
         RespuestaEncuesta re = new RespuestaEncuesta(e,a,rp);
         
-		e.imprimir();
 		System.out.println("Responde la encuesta:");
 		for(int i = 1; i <= e.getN_preguntas(); ++i){
 			System.out.println("Responde la pregunta"+ i);
 			Pregunta p = e.getPreguntas().get(i);
 			Integer tipo = p.getTipo();
-			RespuestaPregunta r;
+			RespuestaPregunta r = new RespuestaPregunta();
 			
 			if (tipo == 1){
 				int valor = respuesta.nextInt();
@@ -41,16 +40,16 @@ public class driver_contestar {
 				String valor = texto.nextLine();
 				r = new Respuesta_3(p,valor);
 			}
-			else if(tipo== 4){
+			/*else if(tipo== 4){
 				Set<String> valor = new Set<String>(); //coger valor 
 				r = new Respuesta_4(p,valor);
-			}
+			}*/
 			else if(tipo== 5){
 				String valor = texto.nextLine();
 				r = new Respuesta_5(p,valor);
 			}
 			rp.add(r);
-			a.rellenarInformacion(re);
+			//a.rellenarInformacion(re);
 			escribir_en_fichero();
 		}
 		

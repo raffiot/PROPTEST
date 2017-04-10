@@ -5,7 +5,7 @@ import java.util.List;
 
 public class RespuestaEncuesta {
 	private Encuesta encuesta;
-	private Participant participant;
+	private Participant participant;//identificador de participante solo
 	private List<RespuestaPregunta> respPreguntas;
 	
 	public RespuestaEncuesta(Encuesta e, Participant p, List<RespuestaPregunta> rp){
