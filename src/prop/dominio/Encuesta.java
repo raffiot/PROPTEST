@@ -1,7 +1,13 @@
 package prop.dominio;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -12,7 +18,7 @@ public class Encuesta {
 	private Integer id;
 	private Integer n_preguntas;
 	private String genero;
-	private Date fecha;
+	private String fecha;
 	private ArrayList<Pregunta> preguntas;
 	
 	
@@ -24,7 +30,7 @@ public class Encuesta {
 		preguntas = new ArrayList<>();
 	}
 				
-	public Encuesta(Integer id, Integer n_preguntas, String genero, Date fecha,ArrayList<Pregunta>preguntas ){
+	public Encuesta(Integer id, Integer n_preguntas, String genero, String fecha,ArrayList<Pregunta>preguntas ){
 		this.id = id;
 		this.n_preguntas = n_preguntas;
 		this.genero = genero;
@@ -47,10 +53,10 @@ public class Encuesta {
 	public void setGenero(String genero) {
 		this.genero = genero;
 	}
-	public Date getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 	public ArrayList<Pregunta> getPreguntas() {
@@ -72,10 +78,10 @@ public class Encuesta {
 	@Override
 	public String toString(){
 		String s = "";
-		s += "id de la encuesta: "+ id +"\n";
-		s += "Genero encuesta: " +genero +"\n";
-		s += "Fecha: " + fecha + "\n";
-		s += "Numero de preguntas: " +n_preguntas +"\n";
+		s += "id de la encuesta: "+ id +"\r\n";
+		s += "Genero encuesta: " +genero +"\r\n";
+		s += "Fecha: " + fecha + "\r\n";
+		s += "Numero de preguntas: " +n_preguntas +"\r\n";
 		for(int i = 0; i < preguntas.size();++i){
 			s += preguntas.get(i).toString();
 			}
@@ -83,13 +89,22 @@ public class Encuesta {
 	}
 	
 	public void guardar() {
-		 FileWriter fichero = null;
+		String s = "";
+		s += id +"\r\n";
+		s += genero +"\r\n";
+		s += fecha + "\r\n";
+		s += n_preguntas +"\r\n";
+		for(int i = 0; i < preguntas.size();++i){
+			s += preguntas.get(i).guardar();
+			}
+		
+		FileWriter fichero = null;
 	        PrintWriter pw = null;
 	        try
 	        {
-	            fichero = new FileWriter("C:/Users/1192790/git/PROPTEST/Enquestas/prueba.txt");
-	            pw = new PrintWriter(fichero);
-	            pw.println(this.toString());
+	            fichero = new FileWriter("Encuestas/Encuesta_"+this.id+".txt");
+	           // pw = new PrintWriter(fichero);
+	            fichero.write(s);
 
 	        } catch (Exception e) {
 	            e.printStackTrace();
@@ -104,6 +119,50 @@ public class Encuesta {
 	           }
 	        }
 		
+		
+	}
+	
+	public void leer(String s) {
+		try {
+			BufferedReader in = new BufferedReader(new FileReader("Encuestas/Encuesta_"+s+".txt"));
+			try {
+				this.id = Integer.valueOf(in.readLine());
+				this.genero = in.readLine();
+				this.fecha = in.readLine();
+				this.n_preguntas = Integer.valueOf(in.readLine());
+				for(int i = 0; i < this.n_preguntas; ++i){
+					String aux = "";
+					aux = in.readLine();
+					System.out.println(aux);
+					//String aux2 = aux.substring(0,2);
+					//System.out.println(aux2);
+					//Integer tip = Integer.parseInt(aux2);
+					Integer tip = 1;
+					
+					aux = aux.substring(3,aux.length()-1);
+					switch(tip){
+						case 1: 
+							
+							Integer min = Integer.valueOf(in.readLine());
+							Integer max = Integer.valueOf(in.readLine());
+							Tipo_1 p = new Tipo_1(i,aux,(max-min+1),max,min);
+							this.anadir_pregunta(p);
+							
+							
+						
+					}
+				}
+				
+				in.close();
+				
+			} catch (NumberFormatException | IOException e) {
+				// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	

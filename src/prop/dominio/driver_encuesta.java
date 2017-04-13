@@ -19,7 +19,7 @@ public class driver_encuesta {
         Integer id_p = 0;
         int var;
         Date fecha = new Date();
-        e.setFecha(fecha);
+        e.setFecha(fecha.toString());
         
         System.out.println("Introduzaca genero de la encuesta");
         e.setGenero(texto.nextLine());
@@ -31,6 +31,7 @@ public class driver_encuesta {
 			System.out.println("2. Guardar y salir.");
 			System.out.println("3. Imprimir encuesta");
 			System.out.println("4. Modificar encuesta");
+			System.out.println("5. Leer encuesta");
 			System.out.println("0. Salir del driver.");
 			
 			var = opcion.nextInt();
@@ -206,9 +207,18 @@ public class driver_encuesta {
     					
     				}
     				
+    				
+    			
+    				
     			}
-    				
-    				
+    			
+    		break;
+    		
+    		
+    		case 5:
+    			e.leer(String.valueOf(1));
+    			break;
+    			
     			
     		
     	}

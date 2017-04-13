@@ -40,9 +40,18 @@ public class Tipo_1 extends Pregunta {
 	@Override
 	public String toString(){
 		String s = "";
-		s += id+"."+enunciado +"\n";
-		for (int i = min; i < max+1; ++i) s += "- "+ i + "\n";
+		s += id+"."+enunciado +"\r\n";
+		for (int i = min; i < max+1; ++i) s += "- "+ i + "\r\n";
 		return s;
+	}
+	
+	public String guardar() {
+		String s = "";
+		s += tipo+"."+enunciado +"\r\n";
+		s += this.min + "\r\n";
+		s += this.max + "\r\n";
+		return s;
+		
 	}
 	
 	public RespuestaPregunta generateAnswer(){

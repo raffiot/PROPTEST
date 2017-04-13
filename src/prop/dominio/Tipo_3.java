@@ -43,8 +43,14 @@ public class Tipo_3 extends Pregunta {
 	@Override
 	public String toString(){
 		String s = "";
-		s += id+"."+enunciado +"\n";
-		for (int i = 0; i < opciones; ++i) s +="- "+ lista_opciones.get(i)+"\n";
+		s += id+"."+enunciado +"\r\n";
+		for (int i = 0; i < opciones; ++i) s +="- "+ lista_opciones.get(i)+"\r\n";
+		return s;
+	}
+	public String guardar(){
+		String s = "";
+		s += tipo+"."+enunciado +"\r\n";
+		for (int i = 0; i < opciones; ++i) s +="- "+ lista_opciones.get(i)+"\r\n";
 		return s;
 	}
 	

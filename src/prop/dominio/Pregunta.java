@@ -39,6 +39,8 @@ public abstract class  Pregunta {
 	@Override
 	public abstract String toString();
 	
+	public abstract String guardar();
+	
 	public abstract RespuestaPregunta generateAnswer();
 	
 
