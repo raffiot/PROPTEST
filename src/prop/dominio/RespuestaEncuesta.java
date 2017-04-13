@@ -38,4 +38,13 @@ public class RespuestaEncuesta {
 		return respPreguntas;
 	}
 	
+	//It doesn't clone encuesta neither participant
+	@Override 
+	public RespuestaEncuesta clone(){
+		List<RespuestaPregunta> newList = new ArrayList<RespuestaPregunta>();
+		for(RespuestaPregunta rp : respPreguntas){
+			newList.add(rp.clone());
+		}
+		return new RespuestaEncuesta(encuesta,participant,newList);
+	}
 }

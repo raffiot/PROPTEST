@@ -3,7 +3,7 @@ package prop.dominio;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cluster {
+public class Cluster{
 
 	private int index;
 	private double distanceMax;
