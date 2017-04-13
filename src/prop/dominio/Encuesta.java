@@ -65,6 +65,10 @@ public class Encuesta {
 		++n_preguntas;
 	}
 	
+	public Pregunta get_pre(int i){
+		return preguntas.get(--i);
+	}
+	
 	@Override
 	public String toString(){
 		String s = "";

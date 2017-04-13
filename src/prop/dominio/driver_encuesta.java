@@ -8,7 +8,7 @@ public class driver_encuesta {
 	private static Scanner opcion;
 	public static void main (String [ ] args) {
 		 
-        //AquÃ­ las instrucciones de inicio y control del programa
+        
  
         System.out.println ("Empezamos la ejecucion del programa");
         
@@ -30,6 +30,7 @@ public class driver_encuesta {
     	    System.out.println("1. Insertar Pregunta.");
 			System.out.println("2. Guardar y salir.");
 			System.out.println("3. Imprimir encuesta");
+			System.out.println("4. Modificar encuesta");
 			System.out.println("0. Salir del driver.");
 			
 			var = opcion.nextInt();
@@ -131,6 +132,84 @@ public class driver_encuesta {
     			break;
     			
     		
+    		case 4:
+    			System.out.println("Seleccione la pregunta a modificar");
+    			int aux2 = 0;
+    			aux2 = opcion.nextInt();
+    			int tipo = e.get_pre(aux2).getTipo();
+    			
+    			System.out.println("pulse 1 si desea modificar el enunciado");
+    			System.out.println("pulse 2 si desea modificar las opciones");
+    			System.out.println("pulse 0 si desea salir");
+    			
+    			int aux3 = 0;
+    			aux3 = opcion.nextInt();
+    			
+    			if (aux3 == 1) {
+    				System.out.println("Introduzca nuevo enunciado");
+    				String s = null;
+    				s = texto.nextLine();
+    				e.get_pre(aux2).setEnunciado(s);
+    				System.out.println("Enunciado modificado");
+    				}
+    			
+    			if (aux3 == 2){
+    				switch(tipo){
+    					case 1: 
+    						Tipo_1 p = new Tipo_1();
+    						p = (Tipo_1) e.get_pre(aux2);
+    						System.out.println("Inserte la opcion numerica minima");
+        					p.setMin(opcion.nextInt());
+        					System.out.println("Inserte la opcion numerica maxima");
+        					p.setMax(opcion.nextInt());
+        					p.setOpciones(p.getMax()-p.getMin());
+        					break;
+        					
+        				case 2:
+        					Tipo_2 p1 = new Tipo_2();
+    						p1 = (Tipo_2) e.get_pre(aux2);
+    						System.out.println("Inserte el numero de opciones");
+        					p1.setOpciones(opcion.nextInt());
+        					for (int i = 0; i < p1.getOpciones(); ++i) {
+        						System.out.println("Inserte opcion");
+        						p1.anadir_opcion(texto.nextLine());
+        					}	
+        					break;
+        				
+        				case 3: 	
+        					Tipo_3 p11 = new Tipo_3();
+    						p11 = (Tipo_3) e.get_pre(aux2);
+    						System.out.println("Inserte el numero de opciones");
+        					p11.setOpciones(opcion.nextInt());
+        					for (int i = 0; i < p11.getOpciones(); ++i) {
+        						System.out.println("Inserte opcion");
+        						String s = null; 
+        						s = texto.nextLine();
+        						p11.anadir_opcion(s);
+        					}
+        					break;
+        					
+        				case 4:
+        					Tipo_4 p111 = new Tipo_4();
+    						p111 = (Tipo_4) e.get_pre(aux2);
+    						System.out.println("Inserte el numero de opciones");
+        					p111.setOpciones(opcion.nextInt());
+        					for (int i = 0; i < p111.getOpciones(); ++i) {
+        						System.out.println("Inserte opcion");
+        						p111.anadir_opcion(texto.nextLine());
+        					}
+        					break;
+        					
+        				case 5:
+        					System.out.println("Este tipo de pregunta es de respuesta libre, no tiene opciones");
+        					break;
+    					
+    				}
+    				
+    			}
+    				
+    				
+    			
     		
     	}
         
