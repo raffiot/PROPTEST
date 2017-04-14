@@ -47,10 +47,12 @@ public class Tipo_3 extends Pregunta {
 		for (int i = 0; i < opciones; ++i) s +="- "+ lista_opciones.get(i)+"\r\n";
 		return s;
 	}
-	public String guardar(){
+	public String guardar() {
 		String s = "";
-		s += tipo+"."+enunciado +"\r\n";
-		for (int i = 0; i < opciones; ++i) s +="- "+ lista_opciones.get(i)+"\r\n";
+		s += tipo +"\r\n";
+		s+= enunciado +"\r\n";
+		s += opciones +"\r\n";
+		for (int i = 0; i < opciones; ++i) s += lista_opciones.get(i)+"\r\n";
 		return s;
 	}
 	

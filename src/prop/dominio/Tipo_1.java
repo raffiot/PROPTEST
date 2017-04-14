@@ -47,7 +47,8 @@ public class Tipo_1 extends Pregunta {
 	
 	public String guardar() {
 		String s = "";
-		s += tipo+"."+enunciado +"\r\n";
+		s += tipo+"\r\n";
+		s += enunciado +"\r\n";
 		s += this.min + "\r\n";
 		s += this.max + "\r\n";
 		return s;

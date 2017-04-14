@@ -6,10 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 
 
@@ -68,7 +65,7 @@ public class Encuesta {
 	}
 	public void anadir_pregunta(Pregunta p){
 		preguntas.add(p);
-		++n_preguntas;
+		if (preguntas.size() > n_preguntas) ++n_preguntas;
 	}
 	
 	public Pregunta get_pre(int i){
@@ -130,27 +127,66 @@ public class Encuesta {
 				this.genero = in.readLine();
 				this.fecha = in.readLine();
 				this.n_preguntas = Integer.valueOf(in.readLine());
+				
 				for(int i = 0; i < this.n_preguntas; ++i){
-					String aux = "";
-					aux = in.readLine();
-					System.out.println(aux);
-					//String aux2 = aux.substring(0,2);
-					//System.out.println(aux2);
-					//Integer tip = Integer.parseInt(aux2);
-					Integer tip = 1;
-					
-					aux = aux.substring(3,aux.length()-1);
-					switch(tip){
-						case 1: 
+					 String line = null;
+					    if((line = in.readLine()) != null){
+					        Integer tip = Integer.valueOf(line);
+					        String aux = "";
+					        aux = in.readLine();
+			
+					        switch(tip){
+					        	case 1: 
 							
-							Integer min = Integer.valueOf(in.readLine());
-							Integer max = Integer.valueOf(in.readLine());
-							Tipo_1 p = new Tipo_1(i,aux,(max-min+1),max,min);
-							this.anadir_pregunta(p);
-							
-							
+					        		Integer min = Integer.valueOf(in.readLine());
+					        		Integer max = Integer.valueOf(in.readLine());
+					        		Tipo_1 p = new Tipo_1(i+1,aux,(max-min+1),max,min);
+					        		this.anadir_pregunta(p);
+					        		break;
+					        		
+					        	case 2:
+					        		Integer opciones = Integer.valueOf(in.readLine());
+					        		ArrayList <String> l = new ArrayList<String>();
+					        		for (int j = 0; j < opciones; ++j){
+					        			l.add(in.readLine());
+					        			
+					        		}
+					        		Tipo_2 p1 = new Tipo_2(i+1,aux,opciones,l);
+					        		this.anadir_pregunta(p1);
+					        		break;
+					        		
+					        		
+					        	case 3:
+					        		Integer opciones1 = Integer.valueOf(in.readLine());
+					        		ArrayList <String> l1 = new ArrayList<String>();
+					        		for (int j = 0; j < opciones1; ++j){
+					        			l1.add(in.readLine());
+					        			
+					        		}
+					        		Tipo_3 p11 = new Tipo_3(i+1,aux,opciones1,l1);
+					        		this.anadir_pregunta(p11);
+					        		break;
+					        		
+					        		
+					        	case 4:
+					        		Integer opciones11 = Integer.valueOf(in.readLine());
+					        		ArrayList <String> l11 = new ArrayList<String>();
+					        		for (int j = 0; j < opciones11; ++j){
+					        			l11.add(in.readLine());
+					        			
+					        		}
+					        		Tipo_4 p111 = new Tipo_4(i+1,aux,opciones11,l11);
+					        		this.anadir_pregunta(p111);
+					        		break;
+					        		
+					        		
+					        	case 5: 
+					        		Tipo_5 p1111 = new Tipo_5(i+1,aux);
+					        		this.anadir_pregunta(p1111);
+					        		break;
 						
-					}
+					        }
+					 }
 				}
 				
 				in.close();

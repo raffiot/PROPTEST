@@ -6,6 +6,11 @@ public class Tipo_5 extends Pregunta {
 		tipo = 5;
 	}
 	
+	public Tipo_5(Integer id,String enunciado){
+		super(id,enunciado);
+		tipo = 5;
+	}
+	
 	@Override
 	public String toString(){
 		String s = "";
@@ -15,7 +20,8 @@ public class Tipo_5 extends Pregunta {
 	
 	public String guardar(){
 		String s = "";
-		s += tipo+"."+enunciado + "\r\n";
+		s += tipo +"\r\n";
+		s += enunciado + "\r\n";
 		return s;
 	}
 	
