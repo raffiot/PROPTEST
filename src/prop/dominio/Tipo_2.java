@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class Tipo_2 extends Pregunta {
 	
-	Integer opciones;
-	ArrayList <String>lista_opciones;
+	private Integer opciones;
+	private ArrayList <String>lista_opciones;
 	
 	public Tipo_2(){
 		super();
@@ -15,7 +15,7 @@ public class Tipo_2 extends Pregunta {
 	
 	public Tipo_2(Integer id, String enunciado, Integer opciones, ArrayList <String>lista_opciones){
 		super(id,enunciado);
-		tipo = 1;
+		tipo = 2;
 		this.opciones = opciones;
 		this.lista_opciones = lista_opciones;
 	}	
@@ -46,7 +46,7 @@ public class Tipo_2 extends Pregunta {
 	
 	public RespuestaPregunta generateAnswer(){
 		Random randomGenerator = new Random();
-		int value = randomGenerator.nextInt(opciones-1);
+		int value = randomGenerator.nextInt(opciones);
 		RespuestaPregunta r = new Respuesta_2(this,value);
 		return r;
 	}

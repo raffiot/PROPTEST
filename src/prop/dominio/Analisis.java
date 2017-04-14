@@ -31,8 +31,7 @@ public class Analisis {
 		//variable thresholdDist is the distance that will determine when k-mean will end
 		
 		//CREATION OF SEEDS
-		//generar los seeds random?
-		List<Cluster> centroids = createCluster();
+		List<Cluster> centroids = createCluster(k);
 		
 		
 		
@@ -69,15 +68,13 @@ public class Analisis {
 	}
 	
 
-	public List<Cluster> createCluster(){
+	public List<Cluster> createCluster(int k){
 		List<Cluster> centroids = new ArrayList<Cluster>();
-		List<RespuestaPregunta> listRP = new ArrayList<RespuestaPregunta>();
 		RespuestaEncuesta seed;
 		for(int i = 0; i < k; i++){
+			List<RespuestaPregunta> listRP = new ArrayList<RespuestaPregunta>();
 			for(int j = 0; j < encuesta.getN_preguntas() ; j++){
-				//generate random answer "random" to the question ecuesta.get(j).type()
-				//Generate particular respuestas!!!!
-				RespuestaPregunta rp = encuesta.getPreguntas().get(i).generateAnswer();
+				RespuestaPregunta rp = encuesta.getPreguntas().get(j).generateAnswer();
 				listRP.add(rp);
 			}
 			seed = new RespuestaEncuesta(encuesta,listRP);
@@ -123,10 +120,7 @@ public class Analisis {
 				}
 			}
 			
-			centroids.get(index_centroid).getUsuarios().add(ra);
-			if(centroids.get(index_centroid).getDistanceMax() > distance_min){
-				centroids.get(index_centroid).setDistanceMax(distance_min);
-			}		
+			centroids.get(index_centroid).getUsuarios().add(ra);	
 			
 		}
 		
@@ -257,6 +251,18 @@ public class Analisis {
 		}
 		
 	}
+
+
+	public Respuesta_Analisis getRespEncuestas() {
+		return respEncuestas;
+	}
+
+	public Encuesta getEncuesta() {
+		return encuesta;
+	}
+
+	
+	
 	
 	
 	

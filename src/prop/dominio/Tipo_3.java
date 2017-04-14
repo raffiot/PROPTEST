@@ -16,7 +16,7 @@ public class Tipo_3 extends Pregunta {
 	
 	public Tipo_3(Integer id, String enunciado, Integer opciones, ArrayList <String>lista_opciones){
 		super(id,enunciado);
-		tipo = 1;
+		tipo = 3;
 		this.opciones = opciones;
 		this.lista_opciones = lista_opciones;
 	}	
@@ -50,7 +50,7 @@ public class Tipo_3 extends Pregunta {
 	
 	public RespuestaPregunta generateAnswer(){
 		Random randomGenerator = new Random();
-		int value = randomGenerator.nextInt(opciones-1);
+		int value = randomGenerator.nextInt(opciones);//is it opciones-1?
 		RespuestaPregunta r = new Respuesta_3(this,lista_opciones.get(value));
 		return r;
 	}

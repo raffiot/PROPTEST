@@ -6,7 +6,6 @@ import java.util.List;
 public class Cluster{
 
 	private int index;
-	private double distanceMax;
 	private RespuestaEncuesta centroid;
 	private List<RespuestaEncuesta> usuarios;
 	
@@ -14,7 +13,6 @@ public class Cluster{
 		index = i;
 		centroid = c;
 		usuarios = new ArrayList<RespuestaEncuesta>();
-		distanceMax = 1.;
 	}
 
 	public int getIndex() {
@@ -39,14 +37,6 @@ public class Cluster{
 
 	public void setUsuarios(List<RespuestaEncuesta> usuarios) {
 		this.usuarios = usuarios;
-	}
-
-	public double getDistanceMax() {
-		return distanceMax;
-	}
-
-	public void setDistanceMax(double distanceMax) {
-		this.distanceMax = distanceMax;
 	}
 	
 }

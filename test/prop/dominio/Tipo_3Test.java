@@ -20,6 +20,8 @@ public class Tipo_3Test {
 		Tipo_3 t = new Tipo_3(0,"",5,array);
 		RespuestaPregunta rp = t.generateAnswer();
 		assertTrue(array.contains(rp.getValueR3()));
+		System.out.println(rp.getValueR3());
+		System.out.println(t.generateAnswer().getValueR3());
 	}
 
 }

@@ -19,6 +19,7 @@ public class Tipo_2Test {
 		Tipo_2 t = new Tipo_2(0,"",5,array);
 		RespuestaPregunta rp = t.generateAnswer();
 		assertTrue(rp.getValueR2() >= 0 && rp.getValueR2() < 5);
+		System.out.println(array.get(rp.getValueR2()));
 		
 		
 	}
