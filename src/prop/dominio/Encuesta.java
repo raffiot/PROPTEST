@@ -197,6 +197,7 @@ public class Encuesta {
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
+			System.out.println("Documento no encontrado");
 			e.printStackTrace();
 		}
 		
