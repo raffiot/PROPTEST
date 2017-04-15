@@ -5,8 +5,10 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -120,6 +122,7 @@ public class AnalisisTest {
 	
 	}
 
+	
 	@Test
 	public void createClusterTest(){
 		Analisis an = createAnalisis();		
@@ -403,4 +406,5 @@ public class AnalisisTest {
 		assertTrue(d1<=d1old);
 		assertTrue(d2<=d2old);
 	}
+	
 }
