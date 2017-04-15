@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 
@@ -54,7 +55,8 @@ public class AnalisisTest {
 		Pregunta p5 = new Tipo_5(4,"Que tal las vacaciones?",1);
 		preguntas.add(p5);*/
 		preguntas.add(p13);
-		Date d = new Date(2017,4,14);
+		//Date d = new Date(2017,4,14);
+		String d = "";
 		Encuesta e = new Encuesta(0,5,"",d,preguntas);
 		
 		//We cannot create participant, to change when it will be available
@@ -181,5 +183,224 @@ public class AnalisisTest {
 		assertEquals(m.get(an.getEncuesta().getPreguntas().get(0).getId()).getMin(),min1,0);
 		assertEquals(m.get(an.getEncuesta().getPreguntas().get(1).getId()).getMin(),min2,0);
 		assertEquals(m.get(an.getEncuesta().getPreguntas().get(4).getId()).getMin(),min5,0);
+	}
+	/*
+	@Test
+	public void assignacioRespuestaEncuestaTest(){
+		Analisis an = createAnalisis();
+		List<Cluster> list = an.createCluster(2);
+		HashMap<Integer,MinMax> m = an.minMax_Respuesta_1();
+		an.assignacioRespuestaEncuesta(an.getEncuesta(), m, an.getRespEncuestas(), list);
+		RespuestaEncuesta re1 = an.getRespEncuestas().getListRP().get(0);
+		double v11 = re1.getRespPreguntas().get(0).getValueR1();
+		double v112 = re1.getRespPreguntas().get(1).getValueR1();
+		String v12 = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(re1.getRespPreguntas().get(2).getValueR2());
+		String v13 = re1.getRespPreguntas().get(3).getValueR3();
+		double v113 = re1.getRespPreguntas().get(4).getValueR1();
+		
+		RespuestaEncuesta re2 = an.getRespEncuestas().getListRP().get(1);
+		double v21 = re2.getRespPreguntas().get(0).getValueR1();
+		double v212 = re2.getRespPreguntas().get(1).getValueR1();
+		String v22 = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(re2.getRespPreguntas().get(2).getValueR2());
+		String v23 = re2.getRespPreguntas().get(3).getValueR3();
+		double v213 = re2.getRespPreguntas().get(4).getValueR1();
+		
+		RespuestaEncuesta re3 = an.getRespEncuestas().getListRP().get(2);
+		double v31 = re3.getRespPreguntas().get(0).getValueR1();
+		double v312 = re3.getRespPreguntas().get(1).getValueR1();
+		String v32 = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(re3.getRespPreguntas().get(2).getValueR2());
+		String v33 = re3.getRespPreguntas().get(3).getValueR3();
+		double v313 = re3.getRespPreguntas().get(4).getValueR1();
+		
+		RespuestaEncuesta rec1 = list.get(0).getCentroid();
+		double v11c = rec1.getRespPreguntas().get(0).getValueR1();
+		double v112c = rec1.getRespPreguntas().get(1).getValueR1();
+		String v12c = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(rec1.getRespPreguntas().get(2).getValueR2());
+		String v13c = rec1.getRespPreguntas().get(3).getValueR3();
+		double v113c = rec1.getRespPreguntas().get(4).getValueR1();
+		
+		RespuestaEncuesta rec2 = list.get(1).getCentroid();
+		double v21c = rec2.getRespPreguntas().get(0).getValueR1();
+		double v212c = rec2.getRespPreguntas().get(1).getValueR1();
+		String v22c = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(rec2.getRespPreguntas().get(2).getValueR2());
+		String v23c = rec2.getRespPreguntas().get(3).getValueR3();
+		double v213c = rec2.getRespPreguntas().get(4).getValueR1();
+		System.out.println("              Usuario 1 :   Usuario 2 :        Usuario 3 :                Centroid 1 :                 Centroid 2 :");
+		System.out.println("Respuesta 1 : " +v11+"             "+v21+"           "+v31+"           "+v11c+"         "+v21c);
+		System.out.println("Respuesta 2 : " +v112+"            "+v212+"          "+v312+"          "+v112c+"          "+v212c);
+		System.out.println("Respuesta 3 : " +v12+"           "+v22+"         "+v32+"                         "+v12c+"                    "+v22c);
+		System.out.println("Respuesta 4 : " +v13+"            "+v23+"           "+v33+"                       "+v13c+"                     "+v23c);
+		System.out.println("Respuesta 5 : " +v113+"           "+v213+"          "+v313+"           "+v113c+"         "+v213c);
+		System.out.println("Size: " +list.get(0).getUsuarios().size()+" "+list.get(1).getUsuarios().size());
+		//Check if only the 3 users are assigned
+		assertEquals(3,list.get(0).getUsuarios().size()+list.get(1).getUsuarios().size());
+		
+		double d1 = an.distanceRespEncuesta(re1, rec1, an.getEncuesta(), m);
+		double d2 = an.distanceRespEncuesta(re2, rec1, an.getEncuesta(), m);
+		double d3 = an.distanceRespEncuesta(re3, rec1, an.getEncuesta(), m);
+		double d4 = an.distanceRespEncuesta(re1, rec2, an.getEncuesta(), m);
+		double d5 = an.distanceRespEncuesta(re2, rec2, an.getEncuesta(), m);
+		double d6 = an.distanceRespEncuesta(re3, rec2, an.getEncuesta(), m);
+		if(d1 < d4){
+			assertTrue(list.get(0).getUsuarios().contains(re1));
+		}
+		else{
+			assertTrue(list.get(1).getUsuarios().contains(re1));
+		}
+		
+		if(d2 < d5){
+			assertTrue(list.get(0).getUsuarios().contains(re2));
+		}
+		else{
+			assertTrue(list.get(1).getUsuarios().contains(re2));
+		}
+		
+		if(d3 < d6){
+			assertTrue(list.get(0).getUsuarios().contains(re3));
+		}
+		else{
+			assertTrue(list.get(1).getUsuarios().contains(re3));
+		}
+		System.out.println(d1+" "+d2+" "+d3+" "+d4+" "+d5+" "+d6);
+		//Not sure
+		//assertTrue(d1 <= 1 && d2 <= 1 && d3 <= 1 && d4 <= 1 && d5 <= 1 && d6 <= 1);
+
+	}*/
+	
+	@Test
+	public void recomputeCentroidsTest(){
+		Analisis an = createAnalisis();
+		List<Cluster> list = an.createCluster(2);
+		HashMap<Integer,MinMax> m = an.minMax_Respuesta_1();
+		an.assignacioRespuestaEncuesta(an.getEncuesta(), m, an.getRespEncuestas(), list);
+		
+		RespuestaEncuesta re1 = an.getRespEncuestas().getListRP().get(0);
+		double v11 = re1.getRespPreguntas().get(0).getValueR1();
+		double v112 = re1.getRespPreguntas().get(1).getValueR1();
+		String v12 = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(re1.getRespPreguntas().get(2).getValueR2());
+		String v13 = re1.getRespPreguntas().get(3).getValueR3();
+		double v113 = re1.getRespPreguntas().get(4).getValueR1();
+		
+		RespuestaEncuesta re2 = an.getRespEncuestas().getListRP().get(1);
+		double v21 = re2.getRespPreguntas().get(0).getValueR1();
+		double v212 = re2.getRespPreguntas().get(1).getValueR1();
+		String v22 = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(re2.getRespPreguntas().get(2).getValueR2());
+		String v23 = re2.getRespPreguntas().get(3).getValueR3();
+		double v213 = re2.getRespPreguntas().get(4).getValueR1();
+		
+		RespuestaEncuesta re3 = an.getRespEncuestas().getListRP().get(2);
+		double v31 = re3.getRespPreguntas().get(0).getValueR1();
+		double v312 = re3.getRespPreguntas().get(1).getValueR1();
+		String v32 = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(re3.getRespPreguntas().get(2).getValueR2());
+		String v33 = re3.getRespPreguntas().get(3).getValueR3();
+		double v313 = re3.getRespPreguntas().get(4).getValueR1();
+		
+		RespuestaEncuesta rec1 = list.get(0).getCentroid();
+		double v11c = rec1.getRespPreguntas().get(0).getValueR1();
+		double v112c = rec1.getRespPreguntas().get(1).getValueR1();
+		String v12c = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(rec1.getRespPreguntas().get(2).getValueR2());
+		String v13c = rec1.getRespPreguntas().get(3).getValueR3();
+		double v113c = rec1.getRespPreguntas().get(4).getValueR1();
+		
+		RespuestaEncuesta rec2 = list.get(1).getCentroid();
+		double v21c = rec2.getRespPreguntas().get(0).getValueR1();
+		double v212c = rec2.getRespPreguntas().get(1).getValueR1();
+		String v22c = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(rec2.getRespPreguntas().get(2).getValueR2());
+		String v23c = rec2.getRespPreguntas().get(3).getValueR3();
+		double v213c = rec2.getRespPreguntas().get(4).getValueR1();
+		System.out.println("              Usuario 1 :   Usuario 2 :        Usuario 3 :                Centroid 1 :                 Centroid 2 :");
+		System.out.println("Respuesta 1 : " +v11+"             "+v21+"           "+v31+"           "+v11c+"         "+v21c);
+		System.out.println("Respuesta 2 : " +v112+"            "+v212+"          "+v312+"          "+v112c+"          "+v212c);
+		System.out.println("Respuesta 3 : " +v12+"           "+v22+"         "+v32+"                         "+v12c+"                    "+v22c);
+		System.out.println("Respuesta 4 : " +v13+"            "+v23+"           "+v33+"                       "+v13c+"                     "+v23c);
+		System.out.println("Respuesta 5 : " +v113+"           "+v213+"          "+v313+"           "+v113c+"         "+v213c);
+		
+		System.out.println("");
+		System.out.println("c1 contains u1 : "+list.get(0).getUsuarios().contains(re1));
+		System.out.println("c1 contains u2 : "+list.get(0).getUsuarios().contains(re2));
+		System.out.println("c1 contains u3 : "+list.get(0).getUsuarios().contains(re3));
+		System.out.println("");
+		
+		Map<Integer,RespuestaEncuesta> oldCentroids = new HashMap<Integer,RespuestaEncuesta>();
+		for(Cluster c : list){
+			oldCentroids.put(c.getIndex(),c.getCentroid().clone());
+		}
+		
+		an.recomputeCentroids(list, an.getEncuesta());
+		rec1 = list.get(0).getCentroid();
+		rec2 = list.get(1).getCentroid();
+		
+		v11 = re1.getRespPreguntas().get(0).getValueR1();
+		v112 = re1.getRespPreguntas().get(1).getValueR1();
+		v12 = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(re1.getRespPreguntas().get(2).getValueR2());
+		v13 = re1.getRespPreguntas().get(3).getValueR3();
+		v113 = re1.getRespPreguntas().get(4).getValueR1();
+		
+		
+		v21 = re2.getRespPreguntas().get(0).getValueR1();
+		v212 = re2.getRespPreguntas().get(1).getValueR1();
+		v22 = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(re2.getRespPreguntas().get(2).getValueR2());
+		v23 = re2.getRespPreguntas().get(3).getValueR3();
+		v213 = re2.getRespPreguntas().get(4).getValueR1();
+		
+		
+		v31 = re3.getRespPreguntas().get(0).getValueR1();
+		v312 = re3.getRespPreguntas().get(1).getValueR1();
+		v32 = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(re3.getRespPreguntas().get(2).getValueR2());
+		v33 = re3.getRespPreguntas().get(3).getValueR3();
+		v313 = re3.getRespPreguntas().get(4).getValueR1();
+		
+		
+		v11c = rec1.getRespPreguntas().get(0).getValueR1();
+		v112c = rec1.getRespPreguntas().get(1).getValueR1();
+		v12c = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(rec1.getRespPreguntas().get(2).getValueR2());
+		v13c = rec1.getRespPreguntas().get(3).getValueR3();
+		v113c = rec1.getRespPreguntas().get(4).getValueR1();
+		
+		
+		v21c = rec2.getRespPreguntas().get(0).getValueR1();
+		v212c = rec2.getRespPreguntas().get(1).getValueR1();
+		v22c = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(rec2.getRespPreguntas().get(2).getValueR2());
+		v23c = rec2.getRespPreguntas().get(3).getValueR3();
+		v213c = rec2.getRespPreguntas().get(4).getValueR1();
+		System.out.println("              Usuario 1 :   Usuario 2 :        Usuario 3 :                Centroid 1 :                 Centroid 2 :");
+		System.out.println("Respuesta 1 : " +v11+"             "+v21+"           "+v31+"           "+v11c+"         "+v21c);
+		System.out.println("Respuesta 2 : " +v112+"            "+v212+"          "+v312+"          "+v112c+"          "+v212c);
+		System.out.println("Respuesta 3 : " +v12+"           "+v22+"         "+v32+"                         "+v12c+"                    "+v22c);
+		System.out.println("Respuesta 4 : " +v13+"            "+v23+"           "+v33+"                       "+v13c+"                     "+v23c);
+		System.out.println("Respuesta 5 : " +v113+"           "+v213+"          "+v313+"           "+v113c+"         "+v213c);
+		
+		
+		
+		double d1 = 0;
+		double d1old =0;
+		double d2 = 0;
+		double d2old =0;
+		if(list.get(0).getUsuarios().contains(re1)){
+			d1 += an.distanceRespEncuesta(re1, rec1, an.getEncuesta(), m);
+			d1old += an.distanceRespEncuesta(re1, oldCentroids.get(list.get(0).getIndex()), an.getEncuesta(), m);
+		}
+		else{
+			d2 += an.distanceRespEncuesta(re1, rec2, an.getEncuesta(), m);
+			d2old += an.distanceRespEncuesta(re1, oldCentroids.get(list.get(1).getIndex()), an.getEncuesta(), m);
+		}
+		if(list.get(0).getUsuarios().contains(re2)){
+			d1 += an.distanceRespEncuesta(re2, rec1, an.getEncuesta(), m);
+			d1old += an.distanceRespEncuesta(re2, oldCentroids.get(list.get(0).getIndex()), an.getEncuesta(), m);
+		}
+		else{
+			d2 += an.distanceRespEncuesta(re2, rec2, an.getEncuesta(), m);
+			d2old += an.distanceRespEncuesta(re2, oldCentroids.get(list.get(1).getIndex()), an.getEncuesta(), m);
+		}
+		if(list.get(0).getUsuarios().contains(re3)){
+			d1 += an.distanceRespEncuesta(re3, rec1, an.getEncuesta(), m);
+			d1old += an.distanceRespEncuesta(re3, oldCentroids.get(list.get(0).getIndex()), an.getEncuesta(), m);
+		}
+		else{
+			d2 += an.distanceRespEncuesta(re3, rec2, an.getEncuesta(), m);
+			d2old += an.distanceRespEncuesta(re3, oldCentroids.get(list.get(1).getIndex()), an.getEncuesta(), m);
+		}
+		assertTrue(d1<=d1old);
+		assertTrue(d2<=d2old);
 	}
 }
