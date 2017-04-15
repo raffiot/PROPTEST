@@ -2,9 +2,11 @@ package prop.dominio;
 
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Set;
 public class Analisis {
 	
 	private int id;
@@ -136,6 +138,7 @@ public class Analisis {
 				double mediana1 = 0;
 				double mediana2 = 0;
 				Map<String,Integer> mediana3 = new HashMap<String,Integer>();
+				Map<Set<String>,Integer> mediana4 = new HashMap<Set<String>,Integer>();
 				if(tipoP == 3){
 					for(String s :((Tipo_3)encuesta.getPreguntas().get(i)).lista_opciones){
 						mediana3.put(s, 0);
@@ -155,6 +158,11 @@ public class Analisis {
 						mediana3.put(s, value+1);
 						break;
 					case 4 :
+						Set<String> set = cluster.getUsuarios().get(j).getRespPreguntas().get(i).getValueR4();
+						int value2 = mediana4.get(set);
+						if(mediana4.containsKey(set)){
+							mediana4.put(set,value2+1);
+						}
 						break;
 					case 5 :
 						break;																						
@@ -178,12 +186,23 @@ public class Analisis {
 							int freq = mediana3.get(s);
 							if(freq > freqMax){
 								resultS = s;
+								freqMax = freq;
 							}
 						}
 						cluster.getCentroid().getRespPreguntas().get(i).setValueR3(resultS);
 						break;
 						
 					case 4:
+						Set<String> result4 = new HashSet<String>();
+						int freqMax4 = 0;
+						for(Set<String> set : mediana4.keySet()){
+							int f = mediana4.get(set);
+							if(f > freqMax4){
+								result4 = set;
+								freqMax4=f;
+							}
+						}
+						cluster.getCentroid().getRespPreguntas().get(i).setValueR4(result4);
 						break;
 					case 5:
 						break;					
