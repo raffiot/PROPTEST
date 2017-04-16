@@ -37,10 +37,12 @@ public class Analisis {
 		
 		
 		
-		HashMap<Integer,MinMax> mapMinMax = minMax_Respuesta_1();
+		
 		
 		boolean underThreshold = true;
 		do{
+			HashMap<Integer,MinMax> mapMinMax = minMax_Respuesta_1(encuesta,centroids,respEncuestas);
+			
 			//ASSIG EACH RESPUESTA_ENCUESTA TO CLUSTER
 			centroids = assignacioRespuestaEncuesta(encuesta, mapMinMax, respEncuestas, centroids);
 			
@@ -86,7 +88,7 @@ public class Analisis {
 	}
 	
 	
-	public HashMap<Integer,MinMax> minMax_Respuesta_1(){
+	public HashMap<Integer,MinMax> minMax_Respuesta_1(Encuesta encuesta,List<Cluster> centroids,Respuesta_Analisis respEncuestas){
 		//MIN MAX FOR EACH TYPE 1 QUESTION
 		HashMap<Integer,MinMax> map = new HashMap<Integer,MinMax>();
 		for(int i =0; i< encuesta.getN_preguntas(); i++){
@@ -94,6 +96,15 @@ public class Analisis {
 			if(encuesta.getPreguntas().get(i).tipo == 1){
 				for(RespuestaEncuesta re : respEncuestas.getListRP()){
 					double res = re.getRespPreguntas().get(i).getValueR1();//We want value of the answer
+					if(res < minmax.getMin()){
+						minmax.setMin(res);
+					}
+					if(res > minmax.getMax()){
+						minmax.setMax(res);
+					}
+				}
+				for(Cluster c : centroids){
+					double res = c.getCentroid().getRespPreguntas().get(i).getValueR1();
 					if(res < minmax.getMin()){
 						minmax.setMin(res);
 					}

@@ -159,26 +159,33 @@ public class AnalisisTest {
 	
 	@Test
 	public void minMax_Respuesta_1Test(){
-		Analisis an = createAnalisis();		
-		HashMap<Integer,MinMax> m = an.minMax_Respuesta_1();
+		Analisis an = createAnalisis();
+		List<Cluster> list = an.createCluster(2);
+		HashMap<Integer,MinMax> m = an.minMax_Respuesta_1(an.getEncuesta(),list,an.getRespEncuestas());
 		double value11 = an.getRespEncuestas().getListRP().get(0).getRespPreguntas().get(0).getValueR1();
 		double value21 = an.getRespEncuestas().getListRP().get(1).getRespPreguntas().get(0).getValueR1();
 		double value31 = an.getRespEncuestas().getListRP().get(2).getRespPreguntas().get(0).getValueR1();
-		double max1 = Math.max(value11, Math.max(value21, value31));
-		double min1 = Math.min(value11, Math.min(value21, value31));
-		System.out.println("my max : "+max1);
+		double value4c1 = list.get(0).getCentroid().getRespPreguntas().get(0).getValueR1();
+		double value5c1 = list.get(1).getCentroid().getRespPreguntas().get(0).getValueR1();
+		double max1 = Math.max(value11, Math.max(Math.max(value21, value31),Math.max(value4c1,value5c1)));
+		double min1 = Math.min(value11, Math.min(Math.min(value21, value31),Math.min(value4c1,value5c1)));
+		
 		
 		double value12 = an.getRespEncuestas().getListRP().get(0).getRespPreguntas().get(1).getValueR1();
 		double value22 = an.getRespEncuestas().getListRP().get(1).getRespPreguntas().get(1).getValueR1();
 		double value32 = an.getRespEncuestas().getListRP().get(2).getRespPreguntas().get(1).getValueR1();
-		double max2 = Math.max(value12, Math.max(value22, value32));
-		double min2 = Math.min(value12, Math.min(value22, value32));
+		double value4c2 = list.get(0).getCentroid().getRespPreguntas().get(1).getValueR1();
+		double value5c2 = list.get(1).getCentroid().getRespPreguntas().get(1).getValueR1();
+		double max2 = Math.max(value12, Math.max(Math.max(value22, value32),Math.max(value4c2,value5c2)));
+		double min2 = Math.min(value12, Math.min(Math.min(value22, value32),Math.min(value4c2,value5c2)));
 		
 		double value15 = an.getRespEncuestas().getListRP().get(0).getRespPreguntas().get(4).getValueR1();
 		double value25 = an.getRespEncuestas().getListRP().get(1).getRespPreguntas().get(4).getValueR1();
 		double value35 = an.getRespEncuestas().getListRP().get(2).getRespPreguntas().get(4).getValueR1();
-		double max5 = Math.max(value15, Math.max(value25, value35));
-		double min5 = Math.min(value15, Math.min(value25, value35));
+		double value4c5 = list.get(0).getCentroid().getRespPreguntas().get(4).getValueR1();
+		double value5c5 = list.get(1).getCentroid().getRespPreguntas().get(4).getValueR1();
+		double max5 = Math.max(value15, Math.max(Math.max(value25, value35),Math.max(value4c5,value5c5)));
+		double min5 = Math.min(value15, Math.min(Math.min(value25, value35),Math.min(value4c5,value5c5)));
 		
 		assertEquals(m.get(an.getEncuesta().getPreguntas().get(0).getId()).getMax(),max1,0);
 		assertEquals(m.get(an.getEncuesta().getPreguntas().get(1).getId()).getMax(),max2,0);
@@ -187,12 +194,12 @@ public class AnalisisTest {
 		assertEquals(m.get(an.getEncuesta().getPreguntas().get(1).getId()).getMin(),min2,0);
 		assertEquals(m.get(an.getEncuesta().getPreguntas().get(4).getId()).getMin(),min5,0);
 	}
-	/*
+	
 	@Test
 	public void assignacioRespuestaEncuestaTest(){
 		Analisis an = createAnalisis();
 		List<Cluster> list = an.createCluster(2);
-		HashMap<Integer,MinMax> m = an.minMax_Respuesta_1();
+		HashMap<Integer,MinMax> m = an.minMax_Respuesta_1(an.getEncuesta(),list,an.getRespEncuestas());
 		an.assignacioRespuestaEncuesta(an.getEncuesta(), m, an.getRespEncuestas(), list);
 		RespuestaEncuesta re1 = an.getRespEncuestas().getListRP().get(0);
 		double v11 = re1.getRespPreguntas().get(0).getValueR1();
@@ -268,13 +275,13 @@ public class AnalisisTest {
 		//Not sure
 		//assertTrue(d1 <= 1 && d2 <= 1 && d3 <= 1 && d4 <= 1 && d5 <= 1 && d6 <= 1);
 
-	}*/
+	}
 	
 	@Test
 	public void recomputeCentroidsTest(){
 		Analisis an = createAnalisis();
 		List<Cluster> list = an.createCluster(2);
-		HashMap<Integer,MinMax> m = an.minMax_Respuesta_1();
+		HashMap<Integer,MinMax> m = an.minMax_Respuesta_1(an.getEncuesta(),list,an.getRespEncuestas());
 		an.assignacioRespuestaEncuesta(an.getEncuesta(), m, an.getRespEncuestas(), list);
 		
 		RespuestaEncuesta re1 = an.getRespEncuestas().getListRP().get(0);
@@ -403,8 +410,8 @@ public class AnalisisTest {
 			d2 += an.distanceRespEncuesta(re3, rec2, an.getEncuesta(), m);
 			d2old += an.distanceRespEncuesta(re3, oldCentroids.get(list.get(1).getIndex()), an.getEncuesta(), m);
 		}
-		assertTrue(d1<=d1old);
-		assertTrue(d2<=d2old);
+		assertTrue("d1 : "+d1+" d1old : "+d1old,d1<=d1old);
+		assertTrue("d2 : "+d2+" d2old : "+d2old,d2<=d2old);
 	}
 	
 }
