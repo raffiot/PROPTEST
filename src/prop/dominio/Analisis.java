@@ -246,6 +246,7 @@ public class Analisis {
 					distance += r1.getRespPreguntas().get(index).distance(r2.getRespPreguntas().get(index), 0, 0, 0);
 					break;
 				case 5 :
+					distance += r1.getRespPreguntas().get(index).distance(r2.getRespPreguntas().get(index), 0, 0, 0);
 					break;								
 			}
 			

@@ -3,7 +3,7 @@ package prop.dominio;
 public class Respuesta_1 extends RespuestaPregunta{
 	
 	public Respuesta_1(Pregunta p, double value) {
-		super(p,value,0,null,null);
+		super(p,value,0,null,null,null);
 	}
 	
 	@Override

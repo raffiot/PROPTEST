@@ -26,7 +26,6 @@ public class Tipo_5 extends Pregunta {
 	}
 	
 	public RespuestaPregunta generateAnswer(){
-		//TO BE COMPLETE
-		return null;
+		return new Respuesta_5(this,"");
 	}
 }

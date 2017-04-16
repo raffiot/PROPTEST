@@ -9,13 +9,15 @@ public abstract class RespuestaPregunta {
 	private int valueR2;
 	private String valueR3;
 	private Set<String> valueR4;
+	private String valueR5;
 	
-	public RespuestaPregunta(Pregunta p, double v1, int v2, String v3, Set<String> v4){
+	public RespuestaPregunta(Pregunta p, double v1, int v2, String v3, Set<String> v4, String v5){
 		this.pregunta = p;
 		valueR1 = v1;
 		valueR2 = v2;
 		valueR3 = v3;
 		valueR4 = v4;
+		valueR5 = v5;
 	}
 
 	public Pregunta getPregunta() {
@@ -60,6 +62,14 @@ public abstract class RespuestaPregunta {
 		this.valueR4 = valueR4;
 	}
 	
+	public String getValueR5() {
+		return valueR5;
+	}
+
+	public void setValueR5(String valueR5) {
+		this.valueR5 = valueR5;
+	}
+
 	//The default is a type_1 answer, it only cone the answer not the pregunta
 	@Override
 	public RespuestaPregunta clone(){

@@ -6,7 +6,7 @@ public class Respuesta_4 extends RespuestaPregunta{
 	
 	
 	public Respuesta_4(Pregunta p, Set<String> value) {
-		super(p,0,0,null,value);
+		super(p,0,0,null,value,null);
 	}
 
 	

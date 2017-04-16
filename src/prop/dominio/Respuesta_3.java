@@ -6,7 +6,7 @@ public class Respuesta_3 extends RespuestaPregunta{
 	
 	
 	public Respuesta_3(Pregunta p, String value) {
-		super(p,0,0,value,null);
+		super(p,0,0,value,null,null);
 	}
 	
 	public double distance(RespuestaPregunta r, double minR1, double maxR1, int sizeR2){

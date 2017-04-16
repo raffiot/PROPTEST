@@ -19,5 +19,4 @@ public class Tipo_1Test {
 		assertTrue(b2);
 	}
 	
-	
 }
