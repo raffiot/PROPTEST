@@ -25,7 +25,7 @@ public class Respuesta_5 extends RespuestaPregunta{
                         distance[i][j - 1] + 1,                                  
                         distance[i - 1][j - 1] + ((lhs.charAt(i - 1) == rhs.charAt(j - 1)) ? 0 : 1));
                                                                                  
-        return distance[lhs.length()][rhs.length()]; 
+        return ((double)distance[lhs.length()][rhs.length()])/Math.max(this.getValueR5().length(),r.getValueR5().length()); 
 	}
 	
 	private static int minimum(int a, int b, int c) {                            
