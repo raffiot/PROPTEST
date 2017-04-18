@@ -2,6 +2,7 @@ package prop.dominio;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -334,7 +335,16 @@ public class AnalisisTest {
 			oldCentroids.put(c.getIndex(),c.getCentroid().clone());
 		}
 		
-		an.recomputeCentroids(list, an.getEncuesta());
+		String funWord="";
+		try {
+			funWord = an.funcionnalString("empty.cat");
+		} catch (IOException e) {
+			System.out.println("-------------------------");
+			e.printStackTrace();
+			System.out.println("-------------------------");
+		}
+		
+		an.recomputeCentroids(list, an.getEncuesta(),funWord);
 		rec1 = list.get(0).getCentroid();
 		rec2 = list.get(1).getCentroid();
 		
@@ -408,8 +418,9 @@ public class AnalisisTest {
 			d2 += an.distanceRespEncuesta(re3, rec2, an.getEncuesta(), m);
 			d2old += an.distanceRespEncuesta(re3, oldCentroids.get(list.get(1).getIndex()), an.getEncuesta(), m);
 		}
-		//assertTrue("d1 : "+d1+" d1old : "+d1old,d1<=d1old);
-		//assertTrue("d2 : "+d2+" d2old : "+d2old,d2<=d2old);
+		//NO FUNCIONNA !!!!!
+		assertTrue("d1 : "+d1+" d1old : "+d1old,d1<=d1old);
+		assertTrue("d2 : "+d2+" d2old : "+d2old,d2<=d2old);
 	}
 	
 }

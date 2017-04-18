@@ -1,6 +1,11 @@
 package prop.dominio;
 
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -8,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 public class Analisis {
+	
 	
 	private int id;
 	private int k;
@@ -25,12 +31,15 @@ public class Analisis {
 		encuesta = respEncuestas.getListRP().get(0).getEncuesta();
 	}
 	
-	public Resultado k_means(){
+	public Resultado k_means() throws IOException{
 		
 		//variable listToAnalyse is an array containing the results we want to analyse
 		//variable k is the number of centroids we want
 		//variable sizeVector is the number of question of the questionnary
 		//variable thresholdDist is the distance that will determine when k-mean will end
+		
+		String funcWord = funcionnalString("empty.cat");
+
 		
 		//CREATION OF SEEDS
 		List<Cluster> centroids = createCluster(k);
@@ -54,7 +63,7 @@ public class Analisis {
 			}
 			
 			//recompute centroids
-			centroids = recomputeCentroids(centroids,encuesta);
+			centroids = recomputeCentroids(centroids,encuesta,funcWord);
 			
 			//check if we are under threshold
 			underThreshold = true;
@@ -140,7 +149,7 @@ public class Analisis {
 		return centroids;
 	}
 	
-	public List<Cluster> recomputeCentroids(List<Cluster> centroids, Encuesta encuesta){
+	public List<Cluster> recomputeCentroids(List<Cluster> centroids, Encuesta encuesta, String funcWord){
 		
 		
 		for(Cluster cluster: centroids){
@@ -150,6 +159,7 @@ public class Analisis {
 				double mediana2 = 0;
 				Map<String,Integer> mediana3 = new HashMap<String,Integer>();
 				Map<Set<String>,Integer> mediana4 = new HashMap<Set<String>,Integer>();
+				Map<String,Integer> mediana5 = new HashMap<String,Integer>();
 				if(tipoP == 3){
 					for(String s :((Tipo_3)encuesta.getPreguntas().get(i)).lista_opciones){
 						mediana3.put(s, 0);
@@ -170,12 +180,17 @@ public class Analisis {
 						break;
 					case 4 :
 						Set<String> set = cluster.getUsuarios().get(j).getRespPreguntas().get(i).getValueR4();
-						int value2 = mediana4.get(set);
-						if(mediana4.containsKey(set)){
-							mediana4.put(set,value2+1);
-						}
+						int value2 = mediana4.getOrDefault(set, 0);
+						mediana4.put(set,value2+1);
 						break;
 					case 5 :
+						String respString = cluster.getUsuarios().get(j).getRespPreguntas().get(i).getValueR5();
+						Set<String> set2 = new HashSet<String>(Arrays.asList(respString.split(" ")));
+						set2.removeIf(word -> funcWord.contains(word));
+						for(String word : set2){
+							int value3 = mediana5.getOrDefault(word, 0);
+							mediana5.put(word, value3+1);
+						}
 						break;																						
 					}
 					
@@ -216,6 +231,14 @@ public class Analisis {
 						cluster.getCentroid().getRespPreguntas().get(i).setValueR4(result4);
 						break;
 					case 5:
+						String result5 = "";
+						int max = Collections.max(mediana5.values());
+						for(String word : mediana5.keySet()){
+							if(mediana5.get(word) == max){
+								result5 += word + " ";
+							}
+						}
+						cluster.getCentroid().getRespPreguntas().get(i).setValueR5(result5);
 						break;					
 				}
 				
@@ -282,7 +305,8 @@ public class Analisis {
 		}
 		
 	}
-
+	
+	
 
 	public Respuesta_Analisis getRespEncuestas() {
 		return respEncuestas;
@@ -293,8 +317,21 @@ public class Analisis {
 	}
 
 	
-	
-	
-	
+	public String funcionnalString(String filename) throws IOException{
+		BufferedReader br = new BufferedReader(new FileReader(filename));
+		try {
+	        StringBuilder sb = new StringBuilder();
+	        String line = br.readLine();
+
+	        while (line != null) {
+	            sb.append(line);
+	            sb.append("\n");
+	            line = br.readLine();
+	        }
+	        return sb.toString();
+	    } finally {
+	        br.close();
+	    }
+	}	
 	
 }
