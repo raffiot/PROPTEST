@@ -160,11 +160,7 @@ public class Analisis {
 				Map<String,Integer> mediana3 = new HashMap<String,Integer>();
 				Map<Set<String>,Integer> mediana4 = new HashMap<Set<String>,Integer>();
 				Map<String,Integer> mediana5 = new HashMap<String,Integer>();
-				if(tipoP == 3){
-					for(String s :((Tipo_3)encuesta.getPreguntas().get(i)).lista_opciones){
-						mediana3.put(s, 0);
-					}
-				}
+
 				for(int j = 0; j < cluster.getUsuarios().size() ; j++){
 					switch (tipoP){
 					case 1 :
@@ -175,7 +171,7 @@ public class Analisis {
 						break;
 					case 3 :
 						String s = cluster.getUsuarios().get(j).getRespPreguntas().get(i).getValueR3();
-						int value = mediana3.get(s);
+						int value = mediana3.getOrDefault(s,0);
 						mediana3.put(s, value+1);
 						break;
 					case 4 :
@@ -202,7 +198,7 @@ public class Analisis {
 						cluster.getCentroid().getRespPreguntas().get(i).setValueR1(result);
 						break;
 					case 2 :
-						int result2 = (int) ((double)(mediana2)/cluster.getUsuarios().size());
+						int result2 = (int) (mediana2/cluster.getUsuarios().size());
 						cluster.getCentroid().getRespPreguntas().get(i).setValueR2(result2);
 						break;
 					case 3 :

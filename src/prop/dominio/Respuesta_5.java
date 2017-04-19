@@ -4,7 +4,7 @@ public class Respuesta_5 extends RespuestaPregunta{
 	
 	
 	public Respuesta_5(Pregunta p, String value) {
-		super(p,0,0,null,null,value);
+		super(p,0,0,null,null,value.toLowerCase());
 	}
 
 	@Override

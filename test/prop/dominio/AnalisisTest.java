@@ -74,15 +74,6 @@ public class AnalisisTest {
 		list1.add(rp13);
 		RespuestaPregunta rp113 = new Respuesta_1(p13,15);
 		list1.add(rp113);
-		/*
-		 * Set<String> set14 = new HashSet<String>();
-		 * set14.put("jueves");
-		 * set14.put("sabado"); 
-		 * RespuestaPregunta rp14 = new Respuesta_4(p4,set14);
-		 * list1.add(rp14);
-		 * RespuestaPregunta rp15 = new Respuesta_5(p5,"genial");
-		 * list1.add(rp15);
-		 */
 		RespuestaEncuesta re1 = new RespuestaEncuesta(e,null,list1);
 		
 		List<RespuestaPregunta> list2 = new ArrayList<RespuestaPregunta>();
@@ -277,150 +268,446 @@ public class AnalisisTest {
 	}
 	
 	@Test
-	public void recomputeCentroidsTest(){
-		Analisis an = createAnalisis();
-		List<Cluster> list = an.createCluster(2);
-		HashMap<Integer,MinMax> m = an.minMax_Respuesta_1(an.getEncuesta(),list,an.getRespEncuestas());
-		an.assignacioRespuestaEncuesta(an.getEncuesta(), m, an.getRespEncuestas(), list);
+	public void recomputeCentroidsTest_Tipo1(){
 		
-		RespuestaEncuesta re1 = an.getRespEncuestas().getListRP().get(0);
-		double v11 = re1.getRespPreguntas().get(0).getValueR1();
-		double v112 = re1.getRespPreguntas().get(1).getValueR1();
-		String v12 = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(re1.getRespPreguntas().get(2).getValueR2());
-		String v13 = re1.getRespPreguntas().get(3).getValueR3();
-		double v113 = re1.getRespPreguntas().get(4).getValueR1();
+		double expectedValue = 5;
 		
-		RespuestaEncuesta re2 = an.getRespEncuestas().getListRP().get(1);
-		double v21 = re2.getRespPreguntas().get(0).getValueR1();
-		double v212 = re2.getRespPreguntas().get(1).getValueR1();
-		String v22 = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(re2.getRespPreguntas().get(2).getValueR2());
-		String v23 = re2.getRespPreguntas().get(3).getValueR3();
-		double v213 = re2.getRespPreguntas().get(4).getValueR1();
 		
-		RespuestaEncuesta re3 = an.getRespEncuestas().getListRP().get(2);
-		double v31 = re3.getRespPreguntas().get(0).getValueR1();
-		double v312 = re3.getRespPreguntas().get(1).getValueR1();
-		String v32 = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(re3.getRespPreguntas().get(2).getValueR2());
-		String v33 = re3.getRespPreguntas().get(3).getValueR3();
-		double v313 = re3.getRespPreguntas().get(4).getValueR1();
 		
-		RespuestaEncuesta rec1 = list.get(0).getCentroid();
-		double v11c = rec1.getRespPreguntas().get(0).getValueR1();
-		double v112c = rec1.getRespPreguntas().get(1).getValueR1();
-		String v12c = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(rec1.getRespPreguntas().get(2).getValueR2());
-		String v13c = rec1.getRespPreguntas().get(3).getValueR3();
-		double v113c = rec1.getRespPreguntas().get(4).getValueR1();
+		Pregunta tipo_1P = new Tipo_1(0,"",1,0,20);
+		ArrayList<Pregunta> listP = new ArrayList<>();
+		listP.add(tipo_1P);
+		Encuesta tipo_1E = new Encuesta(0,1,null,null,listP);
 		
-		RespuestaEncuesta rec2 = list.get(1).getCentroid();
-		double v21c = rec2.getRespPreguntas().get(0).getValueR1();
-		double v212c = rec2.getRespPreguntas().get(1).getValueR1();
-		String v22c = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(rec2.getRespPreguntas().get(2).getValueR2());
-		String v23c = rec2.getRespPreguntas().get(3).getValueR3();
-		double v213c = rec2.getRespPreguntas().get(4).getValueR1();
-		System.out.println("              Usuario 1 :   Usuario 2 :        Usuario 3 :                Centroid 1 :                 Centroid 2 :");
-		System.out.println("Respuesta 1 : " +v11+"             "+v21+"           "+v31+"           "+v11c+"         "+v21c);
-		System.out.println("Respuesta 2 : " +v112+"            "+v212+"          "+v312+"          "+v112c+"          "+v212c);
-		System.out.println("Respuesta 3 : " +v12+"           "+v22+"         "+v32+"                         "+v12c+"                    "+v22c);
-		System.out.println("Respuesta 4 : " +v13+"            "+v23+"           "+v33+"                       "+v13c+"                     "+v23c);
-		System.out.println("Respuesta 5 : " +v113+"           "+v213+"          "+v313+"           "+v113c+"         "+v213c);
+		RespuestaPregunta tipo_1R = new Respuesta_1(tipo_1P, expectedValue);
+		ArrayList<RespuestaPregunta> listR = new ArrayList<>();
+		listR.add(tipo_1R);
+		RespuestaEncuesta tipo_1RE = new RespuestaEncuesta(tipo_1E,listR);
+		ArrayList<RespuestaEncuesta> listRE = new ArrayList<>();
+		listRE.add(tipo_1RE);
+		Respuesta_Analisis tipo_1RA = new Respuesta_Analisis(listRE);
 		
-		System.out.println("");
-		System.out.println("c1 contains u1 : "+list.get(0).getUsuarios().contains(re1));
-		System.out.println("c1 contains u2 : "+list.get(0).getUsuarios().contains(re2));
-		System.out.println("c1 contains u3 : "+list.get(0).getUsuarios().contains(re3));
-		System.out.println("");
+		Analisis tipo_1A = new Analisis(0, 1, 1, tipo_1RA);
+		List<Cluster> tipo_1C = tipo_1A.createCluster(1);
 		
-		Map<Integer,RespuestaEncuesta> oldCentroids = new HashMap<Integer,RespuestaEncuesta>();
-		for(Cluster c : list){
-			oldCentroids.put(c.getIndex(),c.getCentroid().clone());
-		}
+		double generatedValue = tipo_1C.get(0).getCentroid().getRespPreguntas().get(0).getValueR1();
+		assertTrue("Method createCluster failled",generatedValue <= 20 && generatedValue >= 0);
 		
-		String funWord="";
+		HashMap<Integer,MinMax> tipo_1M = tipo_1A.minMax_Respuesta_1(tipo_1E,tipo_1C,tipo_1RA);
+		tipo_1A.assignacioRespuestaEncuesta(tipo_1E, tipo_1M, tipo_1RA, tipo_1C);
+		String funcWord;
+		funcWord ="";
 		try {
-			funWord = an.funcionnalString("empty.cat");
+			funcWord = tipo_1A.funcionnalString("empty.eng");
 		} catch (IOException e) {
-			System.out.println("-------------------------");
 			e.printStackTrace();
-			System.out.println("-------------------------");
 		}
 		
-		an.recomputeCentroids(list, an.getEncuesta(),funWord);
-		rec1 = list.get(0).getCentroid();
-		rec2 = list.get(1).getCentroid();
-		
-		v11 = re1.getRespPreguntas().get(0).getValueR1();
-		v112 = re1.getRespPreguntas().get(1).getValueR1();
-		v12 = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(re1.getRespPreguntas().get(2).getValueR2());
-		v13 = re1.getRespPreguntas().get(3).getValueR3();
-		v113 = re1.getRespPreguntas().get(4).getValueR1();
-		
-		
-		v21 = re2.getRespPreguntas().get(0).getValueR1();
-		v212 = re2.getRespPreguntas().get(1).getValueR1();
-		v22 = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(re2.getRespPreguntas().get(2).getValueR2());
-		v23 = re2.getRespPreguntas().get(3).getValueR3();
-		v213 = re2.getRespPreguntas().get(4).getValueR1();
-		
-		
-		v31 = re3.getRespPreguntas().get(0).getValueR1();
-		v312 = re3.getRespPreguntas().get(1).getValueR1();
-		v32 = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(re3.getRespPreguntas().get(2).getValueR2());
-		v33 = re3.getRespPreguntas().get(3).getValueR3();
-		v313 = re3.getRespPreguntas().get(4).getValueR1();
-		
-		
-		v11c = rec1.getRespPreguntas().get(0).getValueR1();
-		v112c = rec1.getRespPreguntas().get(1).getValueR1();
-		v12c = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(rec1.getRespPreguntas().get(2).getValueR2());
-		v13c = rec1.getRespPreguntas().get(3).getValueR3();
-		v113c = rec1.getRespPreguntas().get(4).getValueR1();
-		
-		
-		v21c = rec2.getRespPreguntas().get(0).getValueR1();
-		v212c = rec2.getRespPreguntas().get(1).getValueR1();
-		v22c = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(rec2.getRespPreguntas().get(2).getValueR2());
-		v23c = rec2.getRespPreguntas().get(3).getValueR3();
-		v213c = rec2.getRespPreguntas().get(4).getValueR1();
-		System.out.println("              Usuario 1 :   Usuario 2 :        Usuario 3 :                Centroid 1 :                 Centroid 2 :");
-		System.out.println("Respuesta 1 : " +v11+"             "+v21+"           "+v31+"           "+v11c+"         "+v21c);
-		System.out.println("Respuesta 2 : " +v112+"            "+v212+"          "+v312+"          "+v112c+"          "+v212c);
-		System.out.println("Respuesta 3 : " +v12+"           "+v22+"         "+v32+"                         "+v12c+"                    "+v22c);
-		System.out.println("Respuesta 4 : " +v13+"            "+v23+"           "+v33+"                       "+v13c+"                     "+v23c);
-		System.out.println("Respuesta 5 : " +v113+"           "+v213+"          "+v313+"           "+v113c+"         "+v213c);
-		
-		
-		
-		double d1 = 0;
-		double d1old =0;
-		double d2 = 0;
-		double d2old =0;
-		if(list.get(0).getUsuarios().contains(re1)){
-			d1 += an.distanceRespEncuesta(re1, rec1, an.getEncuesta(), m);
-			d1old += an.distanceRespEncuesta(re1, oldCentroids.get(list.get(0).getIndex()), an.getEncuesta(), m);
-		}
-		else{
-			d2 += an.distanceRespEncuesta(re1, rec2, an.getEncuesta(), m);
-			d2old += an.distanceRespEncuesta(re1, oldCentroids.get(list.get(1).getIndex()), an.getEncuesta(), m);
-		}
-		if(list.get(0).getUsuarios().contains(re2)){
-			d1 += an.distanceRespEncuesta(re2, rec1, an.getEncuesta(), m);
-			d1old += an.distanceRespEncuesta(re2, oldCentroids.get(list.get(0).getIndex()), an.getEncuesta(), m);
-		}
-		else{
-			d2 += an.distanceRespEncuesta(re2, rec2, an.getEncuesta(), m);
-			d2old += an.distanceRespEncuesta(re2, oldCentroids.get(list.get(1).getIndex()), an.getEncuesta(), m);
-		}
-		if(list.get(0).getUsuarios().contains(re3)){
-			d1 += an.distanceRespEncuesta(re3, rec1, an.getEncuesta(), m);
-			d1old += an.distanceRespEncuesta(re3, oldCentroids.get(list.get(0).getIndex()), an.getEncuesta(), m);
-		}
-		else{
-			d2 += an.distanceRespEncuesta(re3, rec2, an.getEncuesta(), m);
-			d2old += an.distanceRespEncuesta(re3, oldCentroids.get(list.get(1).getIndex()), an.getEncuesta(), m);
-		}
-		//NO FUNCIONNA !!!!!
-		assertTrue("d1 : "+d1+" d1old : "+d1old,d1<=d1old);
-		assertTrue("d2 : "+d2+" d2old : "+d2old,d2<=d2old);
+		tipo_1A.recomputeCentroids(tipo_1C, tipo_1E, funcWord);
+		double recomputedValue = tipo_1C.get(0).getCentroid().getRespPreguntas().get(0).getValueR1();
+		assertEquals("recomputeCentroids failled on type 1 question",expectedValue,recomputedValue,0);
 	}
 	
+	@Test
+	public void recomputeCentroidsTest_Tipo1bis(){
+		
+		double expectedValue = 5;
+		
+		
+		
+		Pregunta tipo_1P = new Tipo_1(0,"",1,0,20);
+		ArrayList<Pregunta> listP = new ArrayList<>();
+		listP.add(tipo_1P);
+		Encuesta tipo_1E = new Encuesta(0,1,null,null,listP);
+		
+		RespuestaPregunta tipo_1R1 = new Respuesta_1(tipo_1P, expectedValue-2);
+		RespuestaPregunta tipo_1R2 = new Respuesta_1(tipo_1P, expectedValue+2);
+		ArrayList<RespuestaPregunta> listR1 = new ArrayList<>();
+		listR1.add(tipo_1R1);
+		ArrayList<RespuestaPregunta> listR2 = new ArrayList<>();
+		listR2.add(tipo_1R2);
+		RespuestaEncuesta tipo_1RE1 = new RespuestaEncuesta(tipo_1E,listR1);
+		RespuestaEncuesta tipo_1RE2 = new RespuestaEncuesta(tipo_1E,listR2);
+		ArrayList<RespuestaEncuesta> listRE = new ArrayList<>();
+		listRE.add(tipo_1RE1);
+		listRE.add(tipo_1RE2);
+		Respuesta_Analisis tipo_1RA = new Respuesta_Analisis(listRE);
+		
+		Analisis tipo_1A = new Analisis(0, 1, 1, tipo_1RA);
+		List<Cluster> tipo_1C = tipo_1A.createCluster(1);
+		
+		double generatedValue = tipo_1C.get(0).getCentroid().getRespPreguntas().get(0).getValueR1();
+		assertTrue("Method createCluster failled",generatedValue <= 20 && generatedValue >= 0);
+		
+		HashMap<Integer,MinMax> tipo_1M = tipo_1A.minMax_Respuesta_1(tipo_1E,tipo_1C,tipo_1RA);
+		tipo_1A.assignacioRespuestaEncuesta(tipo_1E, tipo_1M, tipo_1RA, tipo_1C);
+		String funcWord;
+		funcWord ="";
+		try {
+			funcWord = tipo_1A.funcionnalString("empty.eng");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		tipo_1A.recomputeCentroids(tipo_1C, tipo_1E, funcWord);
+		double recomputedValue = tipo_1C.get(0).getCentroid().getRespPreguntas().get(0).getValueR1();
+		assertEquals("recomputeCentroids failled on type 1 question",expectedValue,recomputedValue,0);
+	}
+	
+	@Test
+	public void recomputeCentroidsTest_Tipo2(){
+		
+		int expectedValue = 3;
+		
+		
+		ArrayList<String> lista_opciones = new ArrayList<>();
+		lista_opciones.add("op1");
+		lista_opciones.add("op2");
+		lista_opciones.add("op3");
+		lista_opciones.add("op4");
+		lista_opciones.add("op5");
+		
+		Pregunta tipo_2P = new Tipo_2(0, "", 5, lista_opciones);
+		ArrayList<Pregunta> listP = new ArrayList<>();
+		listP.add(tipo_2P);
+		Encuesta tipo_2E = new Encuesta(0,1,null,null,listP);
+		
+		RespuestaPregunta tipo_2R = new Respuesta_2(tipo_2P, expectedValue);
+		ArrayList<RespuestaPregunta> listR = new ArrayList<>();
+		listR.add(tipo_2R);
+		RespuestaEncuesta tipo_2RE = new RespuestaEncuesta(tipo_2E,listR);
+		ArrayList<RespuestaEncuesta> listRE = new ArrayList<>();
+		listRE.add(tipo_2RE);
+		Respuesta_Analisis tipo_2RA = new Respuesta_Analisis(listRE);
+		
+		Analisis tipo_2A = new Analisis(0, 1, 1, tipo_2RA);
+		List<Cluster> tipo_2C = tipo_2A.createCluster(1);
+		
+		double generatedValue = tipo_2C.get(0).getCentroid().getRespPreguntas().get(0).getValueR2();
+		assertTrue("Method createCluster failled",generatedValue <= 4 && generatedValue >= 0);
+		
+		HashMap<Integer,MinMax> tipo_2M = tipo_2A.minMax_Respuesta_1(tipo_2E,tipo_2C,tipo_2RA);
+		tipo_2A.assignacioRespuestaEncuesta(tipo_2E, tipo_2M, tipo_2RA, tipo_2C);
+		String funcWord;
+		funcWord ="";
+		try {
+			funcWord = tipo_2A.funcionnalString("empty.eng");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		tipo_2A.recomputeCentroids(tipo_2C, tipo_2E, funcWord);
+		int recomputedValue = tipo_2C.get(0).getCentroid().getRespPreguntas().get(0).getValueR2();
+		assertEquals("recomputeCentroids failled on type 2 question",expectedValue,recomputedValue,0);
+	}
+	
+	@Test
+	public void recomputeCentroidsTest_Tipo2bis(){
+		
+		int expectedValue = 3;
+		
+		
+		ArrayList<String> lista_opciones = new ArrayList<>();
+		lista_opciones.add("op1");
+		lista_opciones.add("op2");
+		lista_opciones.add("op3");
+		lista_opciones.add("op4");
+		lista_opciones.add("op5");
+		
+		Pregunta tipo_2P = new Tipo_2(0, "", 5, lista_opciones);
+		ArrayList<Pregunta> listP = new ArrayList<>();
+		listP.add(tipo_2P);
+		Encuesta tipo_2E = new Encuesta(0,1,null,null,listP);
+		
+		//respuesta1
+		RespuestaPregunta tipo_2R1 = new Respuesta_2(tipo_2P, expectedValue-2);
+		ArrayList<RespuestaPregunta> listR1 = new ArrayList<>();
+		listR1.add(tipo_2R1);
+		RespuestaEncuesta tipo_2RE1 = new RespuestaEncuesta(tipo_2E,listR1);
+		//respuesta2
+		RespuestaPregunta tipo_2R2 = new Respuesta_2(tipo_2P, expectedValue+2);
+		ArrayList<RespuestaPregunta> listR2 = new ArrayList<>();
+		listR2.add(tipo_2R2);
+		RespuestaEncuesta tipo_2RE2 = new RespuestaEncuesta(tipo_2E,listR2);
+		
+		ArrayList<RespuestaEncuesta> listRE = new ArrayList<>();
+		listRE.add(tipo_2RE1);
+		listRE.add(tipo_2RE2);
+		Respuesta_Analisis tipo_2RA = new Respuesta_Analisis(listRE);
+		
+		Analisis tipo_2A = new Analisis(0, 1, 1, tipo_2RA);
+		List<Cluster> tipo_2C = tipo_2A.createCluster(1);
+		
+		HashMap<Integer,MinMax> tipo_2M = tipo_2A.minMax_Respuesta_1(tipo_2E,tipo_2C,tipo_2RA);
+		tipo_2A.assignacioRespuestaEncuesta(tipo_2E, tipo_2M, tipo_2RA, tipo_2C);
+		String funcWord;
+		funcWord ="";
+		try {
+			funcWord = tipo_2A.funcionnalString("empty.eng");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		tipo_2A.recomputeCentroids(tipo_2C, tipo_2E, funcWord);
+		int recomputedValue = tipo_2C.get(0).getCentroid().getRespPreguntas().get(0).getValueR2();
+		assertEquals("recomputeCentroids failled on type 2 question",expectedValue,recomputedValue,0);
+	}
+	
+	@Test
+	public void recomputeCentroidsTest_Tipo3(){
+		
+		String expectedValue = "op2"; 
+		
+		ArrayList<String> lista_opciones = new ArrayList<>();
+		lista_opciones.add("op1");
+		lista_opciones.add("op2");
+		lista_opciones.add("op3");
+		lista_opciones.add("op4");
+		lista_opciones.add("op5");
+		
+		Pregunta tipo_3P = new Tipo_3(0, "", 5, lista_opciones);
+		ArrayList<Pregunta> listP = new ArrayList<>();
+		listP.add(tipo_3P);
+		Encuesta tipo_3E = new Encuesta(0,1,null,null,listP);
+		
+		RespuestaPregunta tipo_3R = new Respuesta_3(tipo_3P, expectedValue);
+		ArrayList<RespuestaPregunta> listR = new ArrayList<>();
+		listR.add(tipo_3R);
+		RespuestaEncuesta tipo_3RE = new RespuestaEncuesta(tipo_3E,listR);
+		
+		ArrayList<RespuestaEncuesta> listRE = new ArrayList<>();
+		listRE.add(tipo_3RE);
+		Respuesta_Analisis tipo_3RA = new Respuesta_Analisis(listRE);
+		
+		Analisis tipo_3A = new Analisis(0, 1, 1, tipo_3RA);
+		List<Cluster> tipo_3C = tipo_3A.createCluster(1);
+		
+		String generatedValue = tipo_3C.get(0).getCentroid().getRespPreguntas().get(0).getValueR3();
+		assertTrue("Method createCluster failled",lista_opciones.contains(generatedValue));
+		
+		HashMap<Integer,MinMax> tipo_3M = tipo_3A.minMax_Respuesta_1(tipo_3E,tipo_3C,tipo_3RA);
+		tipo_3A.assignacioRespuestaEncuesta(tipo_3E, tipo_3M, tipo_3RA, tipo_3C);
+		String funcWord;
+		funcWord ="";
+		try {
+			funcWord = tipo_3A.funcionnalString("empty.eng");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		tipo_3A.recomputeCentroids(tipo_3C, tipo_3E, funcWord);
+		String recomputedValue = tipo_3C.get(0).getCentroid().getRespPreguntas().get(0).getValueR3();
+		assertTrue("recomputeCentroids failled on type 3 question",expectedValue.equals(recomputedValue));
+	}
+	
+	@Test
+	public void recomputeCentroidsTest_Tipo3bis(){
+		
+		String expectedValue = "op2"; 
+		
+		ArrayList<String> lista_opciones = new ArrayList<>();
+		lista_opciones.add("op1");
+		lista_opciones.add("op2");
+		lista_opciones.add("op3");
+		lista_opciones.add("op4");
+		lista_opciones.add("op5");
+		
+		Pregunta tipo_3P = new Tipo_3(0, "", 5, lista_opciones);
+		ArrayList<Pregunta> listP = new ArrayList<>();
+		listP.add(tipo_3P);
+		Encuesta tipo_3E = new Encuesta(0,1,null,null,listP);
+		
+		//respuesta1
+		RespuestaPregunta tipo_3R1 = new Respuesta_3(tipo_3P, expectedValue);
+		ArrayList<RespuestaPregunta> listR1 = new ArrayList<>();
+		listR1.add(tipo_3R1);
+		RespuestaEncuesta tipo_3RE1 = new RespuestaEncuesta(tipo_3E,listR1);
+		//respuesta2
+		RespuestaPregunta tipo_3R2 = new Respuesta_3(tipo_3P, "op4");
+		ArrayList<RespuestaPregunta> listR2 = new ArrayList<>();
+		listR2.add(tipo_3R2);
+		RespuestaEncuesta tipo_3RE2 = new RespuestaEncuesta(tipo_3E,listR2);
+		//respuesta3
+		RespuestaPregunta tipo_3R3 = new Respuesta_3(tipo_3P, expectedValue);
+		ArrayList<RespuestaPregunta> listR3 = new ArrayList<>();
+		listR3.add(tipo_3R3);
+		RespuestaEncuesta tipo_3RE3 = new RespuestaEncuesta(tipo_3E,listR3);
+		
+		ArrayList<RespuestaEncuesta> listRE = new ArrayList<>();
+		listRE.add(tipo_3RE1);
+		listRE.add(tipo_3RE2);
+		listRE.add(tipo_3RE3);
+		Respuesta_Analisis tipo_3RA = new Respuesta_Analisis(listRE);
+		
+		Analisis tipo_3A = new Analisis(0, 1, 1, tipo_3RA);
+		List<Cluster> tipo_3C = tipo_3A.createCluster(1);
+		
+		HashMap<Integer,MinMax> tipo_3M = tipo_3A.minMax_Respuesta_1(tipo_3E,tipo_3C,tipo_3RA);
+		tipo_3A.assignacioRespuestaEncuesta(tipo_3E, tipo_3M, tipo_3RA, tipo_3C);
+		String funcWord;
+		funcWord ="";
+		try {
+			funcWord = tipo_3A.funcionnalString("empty.eng");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		tipo_3A.recomputeCentroids(tipo_3C, tipo_3E, funcWord);
+		String recomputedValue = tipo_3C.get(0).getCentroid().getRespPreguntas().get(0).getValueR3();
+		assertTrue("recomputeCentroids failled on type 3 question",expectedValue.equals(recomputedValue));
+	}
+	
+	@Test
+	public void recomputeCentroidsTest_Tipo4(){
+		
+		Set<String> expectedValue = new HashSet<>();
+		expectedValue.add("op2");
+		expectedValue.add("op3");
+		expectedValue.add("op4");
+		
+		ArrayList<String> lista_opciones = new ArrayList<>();
+		lista_opciones.add("op1");
+		lista_opciones.add("op2");
+		lista_opciones.add("op3");
+		lista_opciones.add("op4");
+		lista_opciones.add("op5");
+		
+		Pregunta tipo_4P = new Tipo_4(0, "", 5, lista_opciones);
+		ArrayList<Pregunta> listP = new ArrayList<>();
+		listP.add(tipo_4P);
+		Encuesta tipo_4E = new Encuesta(0,1,null,null,listP);
+		
+		RespuestaPregunta tipo_4R = new Respuesta_4(tipo_4P, expectedValue);
+		ArrayList<RespuestaPregunta> listR = new ArrayList<>();
+		listR.add(tipo_4R);
+		RespuestaEncuesta tipo_4RE = new RespuestaEncuesta(tipo_4E,listR);
+		
+		ArrayList<RespuestaEncuesta> listRE = new ArrayList<>();
+		listRE.add(tipo_4RE);
+		Respuesta_Analisis tipo_4RA = new Respuesta_Analisis(listRE);
+		
+		Analisis tipo_4A = new Analisis(0, 1, 1, tipo_4RA);
+		List<Cluster> tipo_4C = tipo_4A.createCluster(1);
+		
+		Set<String> generatedValue = tipo_4C.get(0).getCentroid().getRespPreguntas().get(0).getValueR4();
+		assertTrue("Method createCluster failled",lista_opciones.containsAll(generatedValue));
+		
+		HashMap<Integer,MinMax> tipo_4M = tipo_4A.minMax_Respuesta_1(tipo_4E,tipo_4C,tipo_4RA);
+		tipo_4A.assignacioRespuestaEncuesta(tipo_4E, tipo_4M, tipo_4RA, tipo_4C);
+		
+		String funcWord ="";
+		try {
+			funcWord = tipo_4A.funcionnalString("empty.eng");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		tipo_4A.recomputeCentroids(tipo_4C, tipo_4E, funcWord);
+		Set<String> recomputedValue = tipo_4C.get(0).getCentroid().getRespPreguntas().get(0).getValueR4();
+
+		assertTrue("recomputeCentroids failled on type 4 question",expectedValue.containsAll(recomputedValue) && recomputedValue.containsAll(expectedValue));
+	}
+	
+	@Test
+	public void recomputeCentroidsTest_Tipo4bis(){
+		
+		Set<String> expectedValue = new HashSet<>();
+		expectedValue.add("op2");
+		expectedValue.add("op3");
+		expectedValue.add("op4");
+		
+		Set<String> otherset = new HashSet<>();
+		otherset.add("op2");
+		
+		ArrayList<String> lista_opciones = new ArrayList<>();
+		lista_opciones.add("op1");
+		lista_opciones.add("op2");
+		lista_opciones.add("op3");
+		lista_opciones.add("op4");
+		lista_opciones.add("op5");
+		
+		Pregunta tipo_4P = new Tipo_4(0, "", 5, lista_opciones);
+		ArrayList<Pregunta> listP = new ArrayList<>();
+		listP.add(tipo_4P);
+		Encuesta tipo_4E = new Encuesta(0,1,null,null,listP);
+		
+		//respuesta1
+		RespuestaPregunta tipo_4R1 = new Respuesta_4(tipo_4P, expectedValue);
+		ArrayList<RespuestaPregunta> listR1 = new ArrayList<>();
+		listR1.add(tipo_4R1);
+		RespuestaEncuesta tipo_4RE1 = new RespuestaEncuesta(tipo_4E,listR1);
+		
+		//respuesta2
+		RespuestaPregunta tipo_4R2 = new Respuesta_4(tipo_4P, otherset);
+		ArrayList<RespuestaPregunta> listR2 = new ArrayList<>();
+		listR2.add(tipo_4R2);
+		RespuestaEncuesta tipo_4RE2 = new RespuestaEncuesta(tipo_4E,listR2);
+		
+		//respuesta3
+		RespuestaPregunta tipo_4R3 = new Respuesta_4(tipo_4P, expectedValue);
+		ArrayList<RespuestaPregunta> listR3 = new ArrayList<>();
+		listR3.add(tipo_4R3);
+		RespuestaEncuesta tipo_4RE3 = new RespuestaEncuesta(tipo_4E,listR3);
+		
+		ArrayList<RespuestaEncuesta> listRE = new ArrayList<>();
+		listRE.add(tipo_4RE1);
+		listRE.add(tipo_4RE2);
+		listRE.add(tipo_4RE3);
+		Respuesta_Analisis tipo_4RA = new Respuesta_Analisis(listRE);
+		
+		Analisis tipo_4A = new Analisis(0, 1, 1, tipo_4RA);
+		List<Cluster> tipo_4C = tipo_4A.createCluster(1);
+		
+		HashMap<Integer,MinMax> tipo_4M = tipo_4A.minMax_Respuesta_1(tipo_4E,tipo_4C,tipo_4RA);
+		tipo_4A.assignacioRespuestaEncuesta(tipo_4E, tipo_4M, tipo_4RA, tipo_4C);
+		
+		String funcWord ="";
+		try {
+			funcWord = tipo_4A.funcionnalString("empty.eng");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		tipo_4A.recomputeCentroids(tipo_4C, tipo_4E, funcWord);
+		Set<String> recomputedValue = tipo_4C.get(0).getCentroid().getRespPreguntas().get(0).getValueR4();
+
+		assertTrue("recomputeCentroids failled on type 4 question",expectedValue.containsAll(recomputedValue) && recomputedValue.containsAll(expectedValue));
+	}
+	
+	@Test
+	public void recomputeCentroidsTest_Tipo5(){
+		String expectedValue = "cookies";
+		
+		Pregunta tipo_5P = new Tipo_5(0, "");
+		ArrayList<Pregunta> listP = new ArrayList<>();
+		listP.add(tipo_5P);
+		Encuesta tipo_5E = new Encuesta(0,1,null,null,listP);
+		
+		RespuestaPregunta tipo_5R = new Respuesta_5(tipo_5P,"I love cookies");
+		ArrayList<RespuestaPregunta> listR = new ArrayList<>();
+		listR.add(tipo_5R);
+		RespuestaEncuesta tipo_5RE = new RespuestaEncuesta(tipo_5E,listR);
+		
+		ArrayList<RespuestaEncuesta> listRE = new ArrayList<>();
+		listRE.add(tipo_5RE);
+		Respuesta_Analisis tipo_5RA = new Respuesta_Analisis(listRE);
+		
+		Analisis tipo_5A = new Analisis(0, 1, 1, tipo_5RA);
+		List<Cluster> tipo_5C = tipo_5A.createCluster(1);
+		
+		HashMap<Integer,MinMax> tipo_5M = tipo_5A.minMax_Respuesta_1(tipo_5E,tipo_5C,tipo_5RA);
+		tipo_5A.assignacioRespuestaEncuesta(tipo_5E, tipo_5M, tipo_5RA, tipo_5C);
+		
+		String funcWord ="";
+		try {
+			funcWord = tipo_5A.funcionnalString("empty.eng");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		tipo_5A.recomputeCentroids(tipo_5C, tipo_5E, funcWord);
+		String recomputedValue = tipo_5C.get(0).getCentroid().getRespPreguntas().get(0).getValueR5();
+		
+		assertTrue("recomputeCentroids failled on type 5 question",recomputedValue.contains("love") && recomputedValue.contains("cookies"));
+	}
 }
