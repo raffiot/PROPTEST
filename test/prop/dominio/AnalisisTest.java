@@ -17,6 +17,14 @@ import prop.dominio.Analisis.MinMax;
 
 public class AnalisisTest {
 	
+	/**
+	 * Este metodo crea un objeto Analisis con 
+	 * Una encuesta que contiene 4 preguntas, las 2 primeras de tipo 1, la tercera de tipo 2, la cuarta de tipo 3 y la quinta de tipo 1.
+	 * 3 respuestas a este encuesta.
+	 * 
+	 * @return
+	 * 		la analisis creada
+	 */
 	private Analisis createAnalisis(){
 		
 		ArrayList<Pregunta> preguntas = new ArrayList<>();
@@ -43,26 +51,12 @@ public class AnalisisTest {
 		respp3.add("sol");
 		Pregunta p3 = new Tipo_3(2,"Que tiempo hace hoy",3,respp3);
 		preguntas.add(p3);
-		/*
-		ArrayList<String> respp4 = new ArrayList<String>();
-		respp4.add("lunes");
-		respp4.add("martes");
-		respp4.add("miercoles");
-		respp4.add("jueves");
-		respp4.add("viernes");
-		respp4.add("sabado");
-		respp4.add("domingo");
-		Pregunta p4 = new Tipo_4(3,"Que dia de la semana Miki se sale de fiesta?",7,respp4);
-		preguntas.add(p4);
-		
-		Pregunta p5 = new Tipo_5(4,"Que tal las vacaciones?",1);
-		preguntas.add(p5);*/
+
 		preguntas.add(p13);
-		//Date d = new Date(2017,4,14);
+
 		String d = "";
 		Encuesta e = new Encuesta(0,5,"",d,preguntas);
 		
-		//We cannot create participant, to change when it will be available
 		List<RespuestaPregunta> list1 = new ArrayList<RespuestaPregunta>();
 		RespuestaPregunta rp11 = new Respuesta_1(p11,10);
 		list1.add(rp11);
@@ -108,12 +102,15 @@ public class AnalisisTest {
 		listRE.add(re3);
 		Respuesta_Analisis ra = new Respuesta_Analisis(listRE);
 		
-		//add administrator when it will be available
 		double threshold = 0.2;
 		return new Analisis(0,2,threshold,ra);
 	
 	}
 
+	/**
+	 * Este metodo prueba que se han creado los clusters con el metodo createCluster
+	 * y muestra por pantalla las respuestas.
+	 */
 	
 	@Test
 	public void createClusterTest(){
@@ -149,6 +146,10 @@ public class AnalisisTest {
 		
 	}
 	
+	/**
+	 * Este metodo prueba la creacion del objeto MinMax sobre las respuestas que se han creado en createAnalisis.
+	 * Es decir que este metodo proba que el minimum y el maximum para cada pregunta de tipo 1 estan en el objeto MinMax.
+	 */
 	@Test
 	public void minMax_Respuesta_1Test(){
 		Analisis an = createAnalisis();
@@ -187,54 +188,24 @@ public class AnalisisTest {
 		assertEquals(m.get(an.getEncuesta().getPreguntas().get(4).getId()).getMin(),min5,0);
 	}
 	
+	/**
+	 * Este metodo prueba que cada usuario (su RespuestaEncuesta) a sido assignado al cluster con lo cual tiene minima distancia.
+	 * Prueba tambien que todos los usuarios an sido assignado y que las distancias son inferior a 1.
+	 */
+	
 	@Test
 	public void assignacioRespuestaEncuestaTest(){
 		Analisis an = createAnalisis();
 		List<Cluster> list = an.createCluster(2);
 		HashMap<Integer,MinMax> m = an.minMax_Respuesta_1(an.getEncuesta(),list,an.getRespEncuestas());
 		an.assignacioRespuestaEncuesta(an.getEncuesta(), m, an.getRespEncuestas(), list);
-		RespuestaEncuesta re1 = an.getRespEncuestas().getListRP().get(0);
-		double v11 = re1.getRespPreguntas().get(0).getValueR1();
-		double v112 = re1.getRespPreguntas().get(1).getValueR1();
-		String v12 = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(re1.getRespPreguntas().get(2).getValueR2());
-		String v13 = re1.getRespPreguntas().get(3).getValueR3();
-		double v113 = re1.getRespPreguntas().get(4).getValueR1();
 		
-		RespuestaEncuesta re2 = an.getRespEncuestas().getListRP().get(1);
-		double v21 = re2.getRespPreguntas().get(0).getValueR1();
-		double v212 = re2.getRespPreguntas().get(1).getValueR1();
-		String v22 = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(re2.getRespPreguntas().get(2).getValueR2());
-		String v23 = re2.getRespPreguntas().get(3).getValueR3();
-		double v213 = re2.getRespPreguntas().get(4).getValueR1();
-		
-		RespuestaEncuesta re3 = an.getRespEncuestas().getListRP().get(2);
-		double v31 = re3.getRespPreguntas().get(0).getValueR1();
-		double v312 = re3.getRespPreguntas().get(1).getValueR1();
-		String v32 = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(re3.getRespPreguntas().get(2).getValueR2());
-		String v33 = re3.getRespPreguntas().get(3).getValueR3();
-		double v313 = re3.getRespPreguntas().get(4).getValueR1();
-		
+		RespuestaEncuesta re1 = an.getRespEncuestas().getListRP().get(0);	
+		RespuestaEncuesta re2 = an.getRespEncuestas().getListRP().get(1);	
+		RespuestaEncuesta re3 = an.getRespEncuestas().getListRP().get(2);	
 		RespuestaEncuesta rec1 = list.get(0).getCentroid();
-		double v11c = rec1.getRespPreguntas().get(0).getValueR1();
-		double v112c = rec1.getRespPreguntas().get(1).getValueR1();
-		String v12c = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(rec1.getRespPreguntas().get(2).getValueR2());
-		String v13c = rec1.getRespPreguntas().get(3).getValueR3();
-		double v113c = rec1.getRespPreguntas().get(4).getValueR1();
-		
 		RespuestaEncuesta rec2 = list.get(1).getCentroid();
-		double v21c = rec2.getRespPreguntas().get(0).getValueR1();
-		double v212c = rec2.getRespPreguntas().get(1).getValueR1();
-		String v22c = ((Tipo_2)an.getEncuesta().getPreguntas().get(2)).getLista_opciones().get(rec2.getRespPreguntas().get(2).getValueR2());
-		String v23c = rec2.getRespPreguntas().get(3).getValueR3();
-		double v213c = rec2.getRespPreguntas().get(4).getValueR1();
-		System.out.println("              Usuario 1 :   Usuario 2 :        Usuario 3 :                Centroid 1 :                 Centroid 2 :");
-		System.out.println("Respuesta 1 : " +v11+"             "+v21+"           "+v31+"           "+v11c+"         "+v21c);
-		System.out.println("Respuesta 2 : " +v112+"            "+v212+"          "+v312+"          "+v112c+"          "+v212c);
-		System.out.println("Respuesta 3 : " +v12+"           "+v22+"         "+v32+"                         "+v12c+"                    "+v22c);
-		System.out.println("Respuesta 4 : " +v13+"            "+v23+"           "+v33+"                       "+v13c+"                     "+v23c);
-		System.out.println("Respuesta 5 : " +v113+"           "+v213+"          "+v313+"           "+v113c+"         "+v213c);
-		System.out.println("Size: " +list.get(0).getUsuarios().size()+" "+list.get(1).getUsuarios().size());
-		//Check if only the 3 users are assigned
+		
 		assertEquals(3,list.get(0).getUsuarios().size()+list.get(1).getUsuarios().size());
 		
 		double d1 = an.distanceRespEncuesta(re1, rec1, an.getEncuesta(), m);
@@ -267,6 +238,11 @@ public class AnalisisTest {
 
 	}
 	
+	/**
+	 * Este metodo prueba que cuando la encuesta tiene una unica pregunta de tipo 1
+	 * y que hay un unico usuario que ha respondido, el centroid del cluster cuando se recalcula
+	 * tiene la misma respuesta que el usuario.
+	 */
 	@Test
 	public void recomputeCentroidsTest_Tipo1(){
 		
@@ -307,6 +283,13 @@ public class AnalisisTest {
 		double recomputedValue = tipo_1C.get(0).getCentroid().getRespPreguntas().get(0).getValueR1();
 		assertEquals("recomputeCentroids failled on type 1 question",expectedValue,recomputedValue,0);
 	}
+	
+	/**
+	 * Este metodo prueba que cuando la encuesta tiene una unica pregunta de tipo 1
+	 * y que hay dos usuario que han respondido, el centroid del cluster cuando se recalcula
+	 * tiene la mediana entre las respuestas de los usuarios.
+	 */
+	
 	
 	@Test
 	public void recomputeCentroidsTest_Tipo1bis(){
@@ -354,6 +337,12 @@ public class AnalisisTest {
 		assertEquals("recomputeCentroids failled on type 1 question",expectedValue,recomputedValue,0);
 	}
 	
+	/**
+	 * Este metodo prueba que cuando la encuesta tiene una unica pregunta de tipo 2
+	 * y que hay un unico usuario que ha respondido, el centroid del cluster cuando se recalcula
+	 * tiene la misma respuesta que el usuario.
+	 */
+	
 	@Test
 	public void recomputeCentroidsTest_Tipo2(){
 		
@@ -400,6 +389,12 @@ public class AnalisisTest {
 		int recomputedValue = tipo_2C.get(0).getCentroid().getRespPreguntas().get(0).getValueR2();
 		assertEquals("recomputeCentroids failled on type 2 question",expectedValue,recomputedValue,0);
 	}
+	
+	/**
+	 * Este metodo prueba que cuando la encuesta tiene una unica pregunta de tipo 2
+	 * y que hay dos usuario que han respondido, el centroid del cluster cuando se recalcula
+	 * tiene la mediana entre las respuestas de los usuarios.
+	 */
 	
 	@Test
 	public void recomputeCentroidsTest_Tipo2bis(){
@@ -453,6 +448,12 @@ public class AnalisisTest {
 		assertEquals("recomputeCentroids failled on type 2 question",expectedValue,recomputedValue,0);
 	}
 	
+	/**
+	 * Este metodo prueba que cuando la encuesta tiene una unica pregunta de tipo 3
+	 * y que hay un unico usuario que ha respondido, el centroid del cluster cuando se recalcula
+	 * tiene la misma respuesta que el usuario.
+	 */
+	
 	@Test
 	public void recomputeCentroidsTest_Tipo3(){
 		
@@ -499,6 +500,12 @@ public class AnalisisTest {
 		String recomputedValue = tipo_3C.get(0).getCentroid().getRespPreguntas().get(0).getValueR3();
 		assertTrue("recomputeCentroids failled on type 3 question",expectedValue.equals(recomputedValue));
 	}
+	
+	/**
+	 * Este metodo prueba que cuando la encuesta tiene una unica pregunta de tipo 3
+	 * y que hay dos usuario que han respondido, el centroid del cluster cuando se recalcula
+	 * tiene la mediana entre las respuestas de los usuarios.
+	 */
 	
 	@Test
 	public void recomputeCentroidsTest_Tipo3bis(){
@@ -557,6 +564,12 @@ public class AnalisisTest {
 		assertTrue("recomputeCentroids failled on type 3 question",expectedValue.equals(recomputedValue));
 	}
 	
+	/**
+	 * Este metodo prueba que cuando la encuesta tiene una unica pregunta de tipo 4
+	 * y que hay un unico usuario que ha respondido, el centroid del cluster cuando se recalcula
+	 * tiene la misma respuesta que el usuario.
+	 */
+	
 	@Test
 	public void recomputeCentroidsTest_Tipo4(){
 		
@@ -607,6 +620,12 @@ public class AnalisisTest {
 
 		assertTrue("recomputeCentroids failled on type 4 question",expectedValue.containsAll(recomputedValue) && recomputedValue.containsAll(expectedValue));
 	}
+	
+	/**
+	 * Este metodo prueba que cuando la encuesta tiene una unica pregunta de tipo 4
+	 * y que hay tres usuario que han respondido, el centroid del cluster cuando se recalcula
+	 * tiene la respuesta con mas frequencia de los usuarios.
+	 */
 	
 	@Test
 	public void recomputeCentroidsTest_Tipo4bis(){
@@ -674,9 +693,16 @@ public class AnalisisTest {
 		assertTrue("recomputeCentroids failled on type 4 question",expectedValue.containsAll(recomputedValue) && recomputedValue.containsAll(expectedValue));
 	}
 	
+	
+	/**
+	 * Este metodo prueba que cuando la encuesta tiene una unica pregunta de tipo 5
+	 * y que hay un unico usuario que ha respondido, el centroid del cluster cuando se recalcula
+	 * tiene la misma respuesta que el usuario.
+	 */
+	
+	
 	@Test
 	public void recomputeCentroidsTest_Tipo5(){
-		String expectedValue = "cookies";
 		
 		Pregunta tipo_5P = new Tipo_5(0, "");
 		ArrayList<Pregunta> listP = new ArrayList<>();
@@ -709,5 +735,62 @@ public class AnalisisTest {
 		String recomputedValue = tipo_5C.get(0).getCentroid().getRespPreguntas().get(0).getValueR5();
 		
 		assertTrue("recomputeCentroids failled on type 5 question",recomputedValue.contains("love") && recomputedValue.contains("cookies"));
+	}
+	
+	/**
+	 * Este metodo prueba que cuando la encuesta tiene una unica pregunta de tipo 5
+	 * y que hay tres usuario que han respondido, el centroid del cluster cuando se recalcula
+	 * tiene las palabras con mas frequencia en las respuestas de los usuarios.
+	 */
+	
+	@Test
+	public void recomputeCentroidsTest_Tipo5bis(){
+		
+		Pregunta tipo_5P = new Tipo_5(0, "");
+		ArrayList<Pregunta> listP = new ArrayList<>();
+		listP.add(tipo_5P);
+		Encuesta tipo_5E = new Encuesta(0,1,null,null,listP);
+		
+		//respuesta1
+		RespuestaPregunta tipo_5R1 = new Respuesta_5(tipo_5P,"I love cookies");
+		ArrayList<RespuestaPregunta> listR1 = new ArrayList<>();
+		listR1.add(tipo_5R1);
+		RespuestaEncuesta tipo_5RE1 = new RespuestaEncuesta(tipo_5E,listR1);
+		
+		//respuesta2
+		RespuestaPregunta tipo_5R2 = new Respuesta_5(tipo_5P,"I dislike cookies");
+		ArrayList<RespuestaPregunta> listR2 = new ArrayList<>();
+		listR2.add(tipo_5R2);
+		RespuestaEncuesta tipo_5RE2 = new RespuestaEncuesta(tipo_5E,listR2);
+		
+		//respuesta3
+		RespuestaPregunta tipo_5R3 = new Respuesta_5(tipo_5P,"I dislike milk");
+		ArrayList<RespuestaPregunta> listR3 = new ArrayList<>();
+		listR3.add(tipo_5R3);
+		RespuestaEncuesta tipo_5RE3 = new RespuestaEncuesta(tipo_5E,listR3);
+		
+		ArrayList<RespuestaEncuesta> listRE = new ArrayList<>();
+		listRE.add(tipo_5RE1);
+		listRE.add(tipo_5RE2);
+		listRE.add(tipo_5RE3);
+		Respuesta_Analisis tipo_5RA = new Respuesta_Analisis(listRE);
+		
+		Analisis tipo_5A = new Analisis(0, 1, 1, tipo_5RA);
+		List<Cluster> tipo_5C = tipo_5A.createCluster(1);
+		
+		HashMap<Integer,MinMax> tipo_5M = tipo_5A.minMax_Respuesta_1(tipo_5E,tipo_5C,tipo_5RA);
+		tipo_5A.assignacioRespuestaEncuesta(tipo_5E, tipo_5M, tipo_5RA, tipo_5C);
+		
+		String funcWord ="";
+		try {
+			funcWord = tipo_5A.funcionnalString("empty.eng");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		tipo_5A.recomputeCentroids(tipo_5C, tipo_5E, funcWord);
+		String recomputedValue = tipo_5C.get(0).getCentroid().getRespPreguntas().get(0).getValueR5();
+		
+		assertTrue("recomputeCentroids failled on type 5 question",recomputedValue.contains("cookies") && recomputedValue.contains("dislike"));
 	}
 }
