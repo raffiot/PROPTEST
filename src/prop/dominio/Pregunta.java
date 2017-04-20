@@ -1,5 +1,10 @@
 package prop.dominio;
 
+/**
+ * La classe Pregunta representa una pregunta.
+ * 
+ * @author Miguel					
+ */
 
 public abstract class  Pregunta {
 	Integer id;

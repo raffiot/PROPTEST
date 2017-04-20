@@ -1,5 +1,13 @@
 package prop.dominio;
 
+/**
+ * La classe Pregunta representa una pregunta.
+ * 
+ * @author Marina
+ * @author Miguel
+ * @author Raphael					
+ */
+
 import java.util.HashSet;
 import java.util.Set;
 

@@ -1,5 +1,11 @@
 package prop.dominio;
 
+/**
+ * El driver contestar sirve para probar que se almacenan y tratan las respuestas de forma correcta
+ * 
+ * @author Marina				
+ */
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

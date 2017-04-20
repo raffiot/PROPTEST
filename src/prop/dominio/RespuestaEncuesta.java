@@ -58,7 +58,7 @@ public class RespuestaEncuesta {
 		int exist = 1;
     	Integer id = 1;
     	do{	
-    		String sFichero = "Encuestas/Respuesta_"+id.toString()+".txt";
+    		String sFichero = "Respuestas/Respuesta_"+id.toString()+".txt";
     		File fichero = new File(sFichero);
     		if (fichero.exists()) ++id;
     		else exist = 0;
@@ -96,7 +96,7 @@ public class RespuestaEncuesta {
 		FileWriter fichero = null;
 	        PrintWriter pw = null;
 	        try{
-	            fichero = new FileWriter("Encuestas/Respuesta_"+id+".txt");
+	            fichero = new FileWriter("Respuestas/Respuesta_"+id+".txt");
 	            fichero.write(s);
 
 	        } 
