@@ -45,7 +45,7 @@ public class Tipo_4 extends Pregunta {
 	
 	public Tipo_4(Integer id, String enunciado, Integer opciones, ArrayList <String>lista_opciones){
 		super(id,enunciado);
-		tipo = 1;
+		tipo = 4;
 		this.opciones = opciones;
 		this.lista_opciones = lista_opciones;
 	}	
