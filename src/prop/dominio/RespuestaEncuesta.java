@@ -1,7 +1,11 @@
 package prop.dominio;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class RespuestaEncuesta {
 	private Encuesta encuesta;
@@ -46,5 +50,66 @@ public class RespuestaEncuesta {
 			newList.add(rp.clone());
 		}
 		return new RespuestaEncuesta(encuesta,participant,newList);
+	}
+	
+	public void guardarRespuesta(){
+		
+		/*creem el document*/
+		int exist = 1;
+    	Integer id = 1;
+    	do{	
+    		String sFichero = "Encuestas/Respuesta_"+id.toString()+".txt";
+    		File fichero = new File(sFichero);
+    		if (fichero.exists()) ++id;
+    		else exist = 0;
+    	}
+    	while(exist != 0);
+		
+    	/*plenem el document*/
+    	String s = "";
+		s += id +"\r\n";
+		for(int i = 0; i < respPreguntas.size();++i){
+			int tipo = respPreguntas.get(i).getPregunta().getTipo();
+			s += tipo +"\r\n";
+			if ( tipo == 1){
+				double valor = respPreguntas.get(i).getValueR1();
+				s += valor + "\r\n";
+			}
+			else if ( tipo == 2){
+				int valor = respPreguntas.get(i).getValueR2();
+				s += valor + "\r\n";
+			}
+			else if ( tipo == 3){
+				String valor = respPreguntas.get(i).getValueR3();
+				s += valor + "\r\n";
+			}
+			else if ( tipo == 4){
+				Set<String> valor = respPreguntas.get(i).getValueR4();
+				s += valor + "\r\n";
+			}
+			else if ( tipo == 5){
+				String valor = respPreguntas.get(i).getValueR5();
+				s += valor + "\r\n";	
+			}
+		}
+		
+		FileWriter fichero = null;
+	        PrintWriter pw = null;
+	        try{
+	            fichero = new FileWriter("Encuestas/Respuesta_"+id+".txt");
+	            fichero.write(s);
+
+	        } 
+	        catch (Exception e) {
+	            e.printStackTrace();
+	        } 
+	        finally {
+	           try {
+	           if (null != fichero)
+	              fichero.close();
+	           } catch (Exception e2) {
+	              e2.printStackTrace();
+	           }
+	        }
 	}
 }

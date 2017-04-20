@@ -1,5 +1,8 @@
 package prop.dominio;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -22,5 +25,6 @@ public class Participant extends Persona{
 	public void encuestanoacabada(Integer idEncuesta, ArrayList<RespuestaPregunta> r){
 		
 	}
+	
 	
 }
