@@ -18,7 +18,7 @@ public class driver_contestar {
 	private static Scanner respuesta;
 	
 	
-	public void contestar(){
+	public static void main (String [ ] args) {
 		
         texto = new Scanner(System.in);
         respuesta = new Scanner(System.in);
@@ -28,6 +28,7 @@ public class driver_contestar {
         RespuestaEncuesta re = new RespuestaEncuesta(e,a,rp);
         boolean trobat = false;
         e.leer("1");
+        System.out.println(e.toString());
 		System.out.println("Responde la encuesta:");
 		for(int i = 1; i <= e.getN_preguntas(); ++i){
 			System.out.println("Responde la pregunta"+ i);
@@ -98,8 +99,8 @@ public class driver_contestar {
 				r = new Respuesta_5(p,valor);
 			}
 			rp.add(r);
-			re.guardarRespuesta();
+			
 		}
-		
+		re.guardarRespuesta();
 	}
 }
