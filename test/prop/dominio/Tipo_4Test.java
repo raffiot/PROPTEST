@@ -23,6 +23,7 @@ public class Tipo_4Test {
 		
 		HashSet<String> set = new HashSet<String>(array);
 		assertTrue(set.containsAll(rp.getValueR4()));
+		
 	}
 	
 }
