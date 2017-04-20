@@ -19,7 +19,9 @@ public class driver_contestar {
 	private static Scanner respuesta;
 	
 	
-	public static void main (String [ ] args) {
+
+	public static void main(String [ ] args){
+
 		
         texto = new Scanner(System.in);
         respuesta = new Scanner(System.in);

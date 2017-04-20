@@ -1,5 +1,11 @@
 package prop.dominio;
 
+/**
+ * La classe Analisis se instancia para empezar una nueva analisis sobre las respuestas de usuarios
+ * a una encuesta.
+ * 
+ * @author Raphael							
+ */
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -18,25 +24,52 @@ public class Analisis {
 	private int id;
 	private int k;
 	private double threshold;
-	//private Administrador admin;
 	private Respuesta_Analisis respEncuestas;
 	private Encuesta encuesta;
 	
-	public Analisis(int id, int k, double threshold, Respuesta_Analisis respEncuestas){//Administrador admin,
+	/**
+	 * Constructor de la classe Analisis.
+	 * Una analisis contiene un identificador,
+	 * un numero k que representa el numero de Cluster(representante) que queremos crear en la analisis
+	 * un numero threshold que representa a partir de que distancia acabamos la analisis
+	 * una Respuesta_Analisis que respresenta las respuestas de los usuarios a la encuesta.
+	 * 
+	 * @param id
+	 * 		el identificador de la analisis
+	 * @param k
+	 * 		el numero de cluster que se crea en la analisis
+	 * @param threshold
+	 * 		el parametro que define cuando se para el algorithmo de k-means
+	 * @param respEncuestas
+	 * 		las respuestas de los usuarios a la encuesta
+	 */
+	public Analisis(int id, int k, double threshold, Respuesta_Analisis respEncuestas){
 		this.id = id;
 		this.k = k;
 		this.threshold = threshold;
-		//this.admin = admin;
 		this.respEncuestas = respEncuestas;
 		encuesta = respEncuestas.getListRP().get(0).getEncuesta();
 	}
 	
+	/**
+	 * El metodo principal de la classe analisis, que se hace en pasos:
+	 * 1.Se crea la sentencia que contiene las palabras funcional a la cual no hacemos caso en las respuestas
+	 * a preguntas de tipo 5
+	 * 2.Se crean los clusters con centroids(RespuestaEncuesta) de manera aleatoria.
+	 * 3.Se calcula el minimo y el maximo para cada respuesta a pregunta de tipo 1.
+	 * 4.Se assignan los usuarios a clusters
+	 * 5.Se guardan los centroids de los clusters en una variable oldCluster
+	 * 6.Se recalculan los centroids en funcion de los usuarios que han sido assignado a su cluster
+	 * 7.Se prueba si las distancias entre los nuevos clusters y oldCluster estant inferior al threshold
+	 * Si no es el caso se vuelve al paso 3.
+	 *  
+	 * @return
+	 * 		el Resultado de la analisis
+	 * @throws IOException
+	 * 		se lanza una excepcion cuando no se carga el fichero con las palabras funcionnal.
+	 */
 	public Resultado k_means() throws IOException{
 		
-		//variable listToAnalyse is an array containing the results we want to analyse
-		//variable k is the number of centroids we want
-		//variable sizeVector is the number of question of the questionnary
-		//variable thresholdDist is the distance that will determine when k-mean will end
 		
 		String funcWord = funcionnalString("empty.cat");
 
@@ -80,7 +113,14 @@ public class Analisis {
 		return new Resultado(centroids);
 	}
 	
-
+	/**
+	 * Este metodo crea k cluster de manera aleatoria
+	 * 
+	 * @param k
+	 * 		el numero de cluster que se crean
+	 * @return
+	 * 		la lista de Cluster creado
+	 */
 	public List<Cluster> createCluster(int k){
 		List<Cluster> centroids = new ArrayList<Cluster>();
 		RespuestaEncuesta seed;
@@ -96,7 +136,18 @@ public class Analisis {
 		return centroids;
 	}
 	
-	
+	/**
+	 * Este metodo genera un objeto MinMax que contiene el minimo y el maximo para cada pregunta de tipo 1
+	 * 
+	 * @param encuesta
+	 * 		la encuesta que contiene las preguntas
+	 * @param centroids
+	 * 		los centroids que contiene respuestas a pregunta de tipo 1 que analizamos
+	 * @param respEncuestas
+	 * 		las respuestas de los usuarios que contiene respuestas a pregunta de tipo 1 que analizamos.
+	 * @return
+	 * 		Una Map con el identificador y el objeto MinMax de cada pregunta de tipo 1.
+	 */
 	public HashMap<Integer,MinMax> minMax_Respuesta_1(Encuesta encuesta,List<Cluster> centroids,Respuesta_Analisis respEncuestas){
 		//MIN MAX FOR EACH TYPE 1 QUESTION
 		HashMap<Integer,MinMax> map = new HashMap<Integer,MinMax>();
@@ -127,6 +178,20 @@ public class Analisis {
 		return map;
 	}
 	
+	/**
+	 * Este metodo assigna a cada cluster los usuarios que estan el mas cerca.
+	 * 
+	 * @param encuesta
+	 * 		La encuesta que se analiza
+	 * @param mapMinMax
+	 * 		Los minimo y maximo para cada pregunta de tipo 1
+	 * @param respEncuestas
+	 * 		Las respuestas de los usuarios a la encuesta
+	 * @param centroids
+	 * 		La lista de cluster a la cual se assignan los usuarios
+	 * @return
+	 * 		La lista de cluster con los usuarios assignados
+	 */
 	public List<Cluster> assignacioRespuestaEncuesta(Encuesta encuesta, HashMap<Integer,MinMax> mapMinMax, Respuesta_Analisis respEncuestas, List<Cluster> centroids){
 		
 		
@@ -149,6 +214,21 @@ public class Analisis {
 		return centroids;
 	}
 	
+	/**
+	 * Este metodo recalcula los centroids de los cluster en funcion de los usuarios que han sido assignado al cluster.
+	 * Funciona en 2 pasos:
+	 * 1.Para cada cluster, un bucle sobre los usuarios que han sido assignado para calcular las "medianas" para cada pregunta
+	 * 2.Para cada cluster, el centroid coge como nuevo valor cada mediana a cada pregunta
+	 * 
+	 * @param centroids
+	 * 		La lista de cluster que contiene los centroids que recalculamos
+	 * @param encuesta
+	 * 		La encuesta que se analiza
+	 * @param funcWord
+	 * 		Las palabras funcional que se ignoran para calcular las distancias de las respuestas a pregunta de tipo 5
+	 * @return
+	 * 		La lista de Cluster con los centroids (RespuestaEncuesta) recalculados
+	 */
 	public List<Cluster> recomputeCentroids(List<Cluster> centroids, Encuesta encuesta, String funcWord){
 		
 		
@@ -246,6 +326,21 @@ public class Analisis {
 		
 	}
 	
+	/**
+	 * Este metodo calcula la distancia entre dos respuestas a una misma encuesta.
+	 * Hace un loop sobre todas las preguntas y segun de que tipo esta llama a la funcion distancia con los buenos parametros.
+	 * 
+	 * @param r1
+	 * 		las respuestas a la encuesta 
+	 * @param r2
+	 * 		otra respuestas a la encuesta
+	 * @param e
+	 * 		La encuesta a la cual se ha respondido
+	 * @param mapMinMax
+	 * 		Los minimos y maximos a las preguntas de tipo 1 de la encuesta
+	 * @return
+	 * 		La distancia entre las dos respuestas a encuesta, que es un double que pertenece al intervalo [0,1]
+	 */
 	public double distanceRespEncuesta(RespuestaEncuesta r1,RespuestaEncuesta r2, Encuesta e,HashMap<Integer,MinMax> mapMinMax ){
 		double distance = 0;
 		for(int index = 0; index < e.getN_preguntas(); index++){
@@ -274,28 +369,61 @@ public class Analisis {
 		return distance;
 	}
 	
-	
+	/**
+	 * Classe que sirve para guardar los minimos y maximos a pregunta de tipo 1
+	 * 
+	 * @author Raphael
+	 *
+	 */
 	public class MinMax{
 		private double min;
 		private double max;
 		
+		/**
+		 * El constructor de la classe,
+		 * initialitza el maximo con la menor valor possible y el minimo con la mayor valor possible.
+		 */
 		public MinMax(){
 			min = Double.MAX_VALUE;
 			max = Double.MIN_VALUE;
 		}
-
+		
+		/**
+		 * Metodo para obtenir el minimo
+		 * 
+		 * @return
+		 * 		el minimo
+		 */
 		public double getMin() {
 			return min;
 		}
-
+		
+		/**
+		 * Metodo para modificar el minimo
+		 * 
+		 * @param min
+		 * 		el nuevo minimo
+		 */
 		public void setMin(double min) {
 			this.min = min;
 		}
-
+		
+		/**
+		 * Metodo para obtenir el maximo
+		 * 
+		 * @return
+		 * 		el maximo
+		 */
 		public double getMax() {
 			return max;
 		}
 
+		/**
+		 * Metodo para modificar el maximo
+		 * 
+		 * @param max
+		 * 		el nuevo maximo
+		 */
 		public void setMax(double max) {
 			this.max = max;
 		}
@@ -303,16 +431,36 @@ public class Analisis {
 	}
 	
 	
-
+	/**
+	 * Metodo para obtenir las respuestas  de usuarios a una encuesta que se analizan
+	 * 
+	 * @return
+	 * 		las respuestas a una encuesta de usuarios
+	 */
 	public Respuesta_Analisis getRespEncuestas() {
 		return respEncuestas;
 	}
-
+	
+	/**
+	 * Metodo para obtenir la encuesta  que se analizan
+	 * 
+	 * @return
+	 */
 	public Encuesta getEncuesta() {
 		return encuesta;
 	}
 
-	
+	/**
+	 * Metodo para cargar en una String el fichero que contiene las palabras funcionals.
+	 * Eso sirve para analizar preguntas 5.
+	 * 
+	 * @param filename
+	 * 		El path hasta el fichero 
+	 * @return
+	 * 		La String que contiene las palabras funcionals
+	 * @throws IOException
+	 * 		Se lanza una exception si no se ha encontrado el fichero
+	 */
 	public String funcionnalString(String filename) throws IOException{
 		BufferedReader br = new BufferedReader(new FileReader(filename));
 		try {
