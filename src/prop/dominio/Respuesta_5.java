@@ -1,12 +1,37 @@
 package prop.dominio;
-
+/**
+ * Classe que representa una respuesta a una pregunta de tipo 5
+ * 
+ * @author Raphael
+ *
+ */
 public class Respuesta_5 extends RespuestaPregunta{
 	
-	
+	/**
+	 * Constructor de la classe con la pregunta a la cual se responde y la sentencia que se ha respondido
+	 * 
+	 * @param p
+	 * 		La pregunta que se responde
+	 * @param value
+	 * 		La sentencia que se ha respondido
+	 */
 	public Respuesta_5(Pregunta p, String value) {
 		super(p,0,0,null,null,value.toLowerCase());
 	}
-
+	
+	/**
+	 * Metodo que permite calcular la distancia entre dos respuesta a la misma pregunta de tipo 5
+	 * El calculo de distancia funciona con el algoritmo de Levenshtein 
+	 * 
+	 * @param r
+	 * 		la respuesta a la pregunta con la cual queremos calcular la distancia
+	 * @param minR1
+	 * 		este parametro no sirve en este caso
+	 * @param maxR1
+	 * 		este parametro no sirve en este caso
+	 * @param sizeR2
+	 * 		este parametro no sirve en este caso
+	 */
 	@Override
 	public double distance(RespuestaPregunta r, double minR1, double maxR1,	int sizeR2) {
 		String lhs = this.getValueR5();

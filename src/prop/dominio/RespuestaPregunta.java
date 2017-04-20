@@ -177,6 +177,12 @@ public abstract class RespuestaPregunta {
 		this.valueR5 = valueR5;
 	}
 
+	/**
+	 * Metodo para clonar la respuesta a una pregunta
+	 * 
+	 * @return
+	 * 		la pregunta clonado
+	 */
 	//The default is a type_1 answer, it only clone the answer not the pregunta
 	@Override
 	public RespuestaPregunta clone(){
@@ -198,13 +204,11 @@ public abstract class RespuestaPregunta {
 				}
 				r = new Respuesta_4(pregunta,s);
 				break;
-				/*
 			case 5:
-				RespuestaPregunta r5 = new Respuesta_5(pregunta,valueR5);
-				return r3;
-				break;*/
+				r = new Respuesta_5(pregunta,valueR5);
+				break;
 			default :
-				r = new Respuesta_1(pregunta,0); //TO BE CHANGED?
+				r = null;
 		}
 		return r;
 	}
