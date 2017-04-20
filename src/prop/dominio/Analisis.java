@@ -70,10 +70,6 @@ public class Analisis {
 	 */
 	public Resultado k_means() throws IOException{
 		
-		//variable listToAnalyse is an array containing the results we want to analyse
-		//variable k is the number of centroids we want
-		//variable sizeVector is the number of question of the questionnary
-		//variable thresholdDist is the distance that will determine when k-mean will end
 		
 		String funcWord = funcionnalString("empty.cat");
 
