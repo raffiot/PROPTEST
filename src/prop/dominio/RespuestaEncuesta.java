@@ -1,9 +1,15 @@
 package prop.dominio;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -22,7 +28,7 @@ public class RespuestaEncuesta {
 	}
 	
 	public RespuestaEncuesta(){
-		
+		respPreguntas = new ArrayList<RespuestaPregunta>();
 	}
 	
 	//Particular constructor for centroids RespuestaEncuesta
@@ -52,13 +58,16 @@ public class RespuestaEncuesta {
 		return new RespuestaEncuesta(encuesta,participant,newList);
 	}
 	
-	public void guardarRespuesta(){
+	public void guardarRespuesta(List<RespuestaPregunta> rp,int numEncuesta){
+		
+		respPreguntas = rp;
 		
 		/*creem el document*/
 		int exist = 1;
     	Integer id = 1;
+    	
     	do{	
-    		String sFichero = "Respuestas/Respuesta_"+id.toString()+".txt";
+    		String sFichero = "Respuestas/Respuesta_"+numEncuesta+"_"+id+".txt";
     		File fichero = new File(sFichero);
     		if (fichero.exists()) ++id;
     		else exist = 0;
@@ -67,7 +76,7 @@ public class RespuestaEncuesta {
 		
     	/*plenem el document*/
     	String s = "";
-		s += id +"\r\n";
+		
 		for(int i = 0; i < respPreguntas.size();++i){
 			int tipo = respPreguntas.get(i).getPregunta().getTipo();
 			s += tipo +"\r\n";
@@ -96,7 +105,7 @@ public class RespuestaEncuesta {
 		FileWriter fichero = null;
 	        PrintWriter pw = null;
 	        try{
-	            fichero = new FileWriter("Respuestas/Respuesta_"+id+".txt");
+	            fichero = new FileWriter("Respuestas/Respuesta_"+numEncuesta+"_"+id+".txt");
 	            fichero.write(s);
 
 	        } 
@@ -112,4 +121,78 @@ public class RespuestaEncuesta {
 	           }
 	        }
 	}
+	/**
+	 * Metodo para leer una respuesta de una encuesta de unt txt y cargarlo en un objeto Encuesta
+	 */
+	public void leer(String s,String s2) {
+		try {
+			BufferedReader in = new BufferedReader(new FileReader("Respuestas/Respuesta_"+s+"_"+s2+".txt"));
+			try {
+				Encuesta e = new Encuesta(1);
+				e.leer(s);
+				
+				for(int i = 0; i < e.getN_preguntas(); ++i){
+					 String line = null;
+					    if((line = in.readLine()) != null){
+					        Integer tip = Integer.valueOf(line);
+					        
+					        
+			
+					        switch(tip){
+					        	case 1: 
+					        		line = in.readLine();
+					        		Respuesta_1 r = new Respuesta_1(e.getPreguntas().get(i),Double.valueOf(line));
+					        		this.respPreguntas.add(r);
+					        		break;
+					        		
+					        	case 2:
+					        		line = in.readLine();
+					        		Respuesta_2 r1 = new Respuesta_2(e.getPreguntas().get(i),Integer.valueOf(line));
+					        		this.respPreguntas.add(r1);
+					        		break;
+					        		
+					        		
+					        	case 3:
+					        		line = in.readLine();
+					        		Respuesta_3 r11 = new Respuesta_3(e.getPreguntas().get(i),line);
+					        		this.respPreguntas.add(r11);
+					        		break;
+					        		
+					        		
+					        	case 4:
+					        		line = in.readLine();
+					        		line = line.replace("[", "");
+					        		line = line.replace(",", "");
+					        		line = line.replace("]", "");
+					        		Set<String> set = new HashSet<String>(Arrays.asList(line.split(" ")));
+					        		Respuesta_4 r111 = new Respuesta_4(e.getPreguntas().get(i),set);
+					        		this.respPreguntas.add(r111);
+					        		break;
+					        		
+					    
+					        		
+					        		
+					        	case 5: 
+					        		line = in.readLine();
+					        		Respuesta_5 r1111 = new Respuesta_5(e.getPreguntas().get(i),line);
+					        		this.respPreguntas.add(r1111);
+					        		break;
+						
+					        }
+					 }
+				}
+				
+				in.close();
+				
+			} catch (NumberFormatException | IOException e) {
+				// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 }

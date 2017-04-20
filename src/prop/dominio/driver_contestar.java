@@ -38,12 +38,12 @@ public class driver_contestar {
 			Pregunta p = e.getPreguntas().get(i);
 			Integer tipo = p.getTipo();
 			RespuestaPregunta r=null;
-			System.out.println(tipo);
+			
 			if (tipo == 1){
 				int valor = respuesta.nextInt();
 				int max = ((Tipo_1)p).getMax();
 				int min = ((Tipo_1)p).getMin();
-				System.out.println(max+" "+min+" "+valor);
+				
 				if(valor <= max && valor >= min){
 					r = new Respuesta_1(p,(double)valor);
 				}
@@ -104,6 +104,7 @@ public class driver_contestar {
 			rp.add(r);
 			
 		}
-		re.guardarRespuesta();
+		re.guardarRespuesta(rp,e.getId());
+
 	}
 }
