@@ -1,20 +1,13 @@
 package prop.dominio;
-<<<<<<< HEAD
+
 
 import java.util.HashMap;
-=======
-/**
- * Classe que respresenta un conjunto de respuestas a una misma encuesta
- * Se cree un objecto de ese classe para hacer la analisis.
- * 
- * @author Raphael
- */
->>>>>>> origin/master
+
 import java.util.List;
 
 public class Respuesta_Analisis {
 	
-<<<<<<< HEAD
+
 	private HashMap<Integer,List<RespuestaEncuesta>> listRE;
 
 	public HashMap<Integer, List<RespuestaEncuesta>> getListRE() {
@@ -27,7 +20,7 @@ public class Respuesta_Analisis {
 	
 	public Respuesta_Analisis(HashMap<Integer,List<RespuestaEncuesta>> listRE){
 		this.listRE= listRE;
-=======
+	}
 	private List<RespuestaEncuesta> listRP;
 	/**
 	 * Constructor para crear un objecto con una lista de respuestas a una encuesta.
@@ -57,7 +50,6 @@ public class Respuesta_Analisis {
 	 */
 	public void setListRP(List<RespuestaEncuesta> listRP) {
 		this.listRP = listRP;
->>>>>>> origin/master
 	}
 	
 }

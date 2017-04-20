@@ -61,43 +61,130 @@ public class Encuesta {
 		this.preguntas = preguntas;
 	}
 	
+	/**
+	 * Metodo para obtener el id de la encuesta
+	 * 
+	 * @return
+	 * 		el id de la encuesta
+	 */
 	public int getId() {
 		return id;
 	}
+	
+	/**
+	 * Metodo para darle una id a la encuesta
+	 * 
+	 * @param
+	 * 		el id de la encuesta
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	/**
+	 * Metodo para obtener el numero de preguntas de la encuesta
+	 * 
+	 * @return
+	 * 		el numero de preguntas de la encuesta
+	 */
 	public int getN_preguntas() {
 		return n_preguntas;
 	}
+	
+	/**
+	 * Metodo para obtener el genero de la encuesta
+	 * 
+	 * @return
+	 * 		el genero de la encuesta
+	 */
 	public String getGenero() {
 		return genero;
 	}
+	
+	
+	/**
+	 * Metodo para darle genero a la encuesta
+	 * 
+	 * @param
+	 * 		una string con el genero que tendra la encuesta
+	 */
 	public void setGenero(String genero) {
 		this.genero = genero;
 	}
+	
+	/**
+	 * Metodo para obtener la feacha de la encuesta
+	 * 
+	 * @return
+	 * 		la fecha de la encuesta
+	 */
+	
 	public String getFecha() {
 		return fecha;
 	}
+	
+	/**
+	 * Metodo para darle una fecha a la encuesta
+	 * 
+	 * @param 
+	 * 		fecha de creacion que tendra la encuesta
+	 * 		
+	 */
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
+	
+	/**
+	 * Metodo para obtener la lista de preguntas de la encuesta
+	 * 
+	 * @return
+	 * 		el array de preguntas de la encuesta
+	 */
 	public ArrayList<Pregunta> getPreguntas() {
 		return preguntas;
 	}
+	
+	/**
+	 * Metodo para poner las preguntas en la encuesta
+	 * 
+	 * @param
+	 * 		array con las preguntas que tendra la encuesta
+	 */
 	public void setPreguntas(ArrayList<Pregunta> preguntas) {
 		this.preguntas = preguntas;
 		this.n_preguntas = preguntas.size();
 	}
+	
+	/**
+	 * Metodo para anadir una pregunta a la encuesta
+	 * 
+	 * @param p
+	 * 		la nueva pregunta para anadir a la encuesta
+	 */
 	public void anadir_pregunta(Pregunta p){
 		preguntas.add(p);
 		if (preguntas.size() > n_preguntas) ++n_preguntas;
 	}
 	
+	/**
+	 * Metodo para obtener la pregunta i de la encuesta
+	 * 
+	 * @param i
+	 * 		posicion que ocupa la pregunta que deseamos obtener
+	 * @return
+	 * 		la pregunta que ocupa la posicion i de la encuesta
+	 */
 	public Pregunta get_pre(int i){
 		return preguntas.get(--i);
 	}
 	
+	
+	/**
+	 * Metodo para obtener la encuesta en formato String
+	 * 
+	 * @return
+	 * 		la encuesta en formato de String
+	 */
 	@Override
 	public String toString(){
 		String s = "";
@@ -111,6 +198,9 @@ public class Encuesta {
 		return s;
 	}
 	
+	/**
+	 * Metodo para guardar la encuesta en un fichero txt
+	 */
 	public void guardar() {
 		String s = "";
 		s += id +"\r\n";
@@ -144,6 +234,9 @@ public class Encuesta {
 		
 	}
 	
+	/**
+	 * Metodo para leer una encuesta de unt txt y cargarlo en un objeto Encuesta
+	 */
 	public void leer(String s) {
 		try {
 			BufferedReader in = new BufferedReader(new FileReader("Encuestas/Encuesta_"+s+".txt"));
