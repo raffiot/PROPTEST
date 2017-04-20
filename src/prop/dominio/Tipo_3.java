@@ -1,8 +1,8 @@
 package prop.dominio;
 
 /**
- * La classe Tipo_3 representa una pregunta que se responde con 1 opciones qualitativas.
- * Las differentes modalitats no son ordenadas.
+ * La classe Tipo_3 representa una pregunta que se responde con 1 opcion qualitativa.
+ * Las diferentes modalidades no son ordenadas.
  * 
  * @author Marina
  * @author Miguel
@@ -27,8 +27,8 @@ public class Tipo_3 extends Pregunta {
 	}
 	
 	/**
-	 * Constructor de pregunta de tipo 3 con su identificador, su enunciado,
-	 * el numero de opciones differentes que se puede reponder y
+	 * Constructor de la pregunta de tipo 3 con su identificador, su enunciado,
+	 * el numero de opciones diferentes que se puede responder y
 	 * el nombre de estas opciones.
 	 * 
 	 * @param id
@@ -48,7 +48,7 @@ public class Tipo_3 extends Pregunta {
 	}	
 	
 	/**
-	 * Methodo para obtenir el numero de opciones differentes que hay para responder a la pregunta.
+	 * Metodo para obtener el numero de opciones diferentes que hay para responder a la pregunta.
 	 * 
 	 * @return
 	 * 		el numero de opciones
@@ -58,7 +58,7 @@ public class Tipo_3 extends Pregunta {
 	}
 	
 	/**
-	 * Methodo para obtenir el numero de opciones differentes que hay para responder a la pregunta.
+	 * Metodo para poner el numero de opciones diferentes que hay para responder a la pregunta.
 	 * 
 	 * @param opciones
 	 * 		el numero de opciones
@@ -68,7 +68,7 @@ public class Tipo_3 extends Pregunta {
 	}
 	
 	/**
-	 * Methodo para obtenir el nombre de cada opciones que se pueden eligir para esa pregunta.
+	 * Metodo para obtener el nombre de todas las opciones que se pueden eligir para esa pregunta.
 	 * 
 	 * @return
 	 * 		la lista de estas opciones
@@ -78,7 +78,7 @@ public class Tipo_3 extends Pregunta {
 	}
 	
 	/**
-	 * Methodo para modificar el nombre de cada opciones que se pueden eligir para esa pregunta.
+	 * Metodo para modificar el nombre de todas las opciones que se pueden eligir para esa pregunta.
 	 * 
 	 * @param lista_opciones
 	 * 		la nueva lista de opciones
@@ -89,7 +89,7 @@ public class Tipo_3 extends Pregunta {
 	
 	
 	/**
-	 * Methodo para anadir una opcion a la lista de opciones elegible para responder
+	 * Metodo para anadir una opcion a la lista de opciones elegible para responder
 	 * 
 	 * @param s
 	 * 		la opcion a anadir a la lista de opciones
@@ -100,7 +100,7 @@ public class Tipo_3 extends Pregunta {
 	}
 	
 	/**
-	 * Methodo para passar la pregunta de tipo 3 en una string
+	 * Metodo para passar la pregunta de tipo 3 en una string
 	 * que contiene su identificador,su enunciado, y cada una de las opciones.
 	 * 
 	 * @return
@@ -113,6 +113,15 @@ public class Tipo_3 extends Pregunta {
 		for (int i = 0; i < opciones; ++i) s +="- "+ lista_opciones.get(i)+"\r\n";
 		return s;
 	}
+	
+	/**
+	 * Metodo para pasar la pregunta de tipo 3 en una string
+	 * que contiene su identificador,su enunciado, y cada una de las opciones
+	 * y en un formato especial para guardar en un txt.
+	 * 
+	 * @return
+	 * 		la nueva string creada.
+	 */
 	public String guardar() {
 		String s = "";
 		s += tipo +"\r\n";
@@ -123,7 +132,7 @@ public class Tipo_3 extends Pregunta {
 	}
 	
 	/**
-	 * Methodo para generar una respuesta aleatoria a esa pregunta.
+	 * Metodo para generar una respuesta aleatoria a esa pregunta.
 	 * 
 	 * @return
 	 * 		la respuesta aleatoria a la pregunta de tipo 3

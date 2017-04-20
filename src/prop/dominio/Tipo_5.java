@@ -31,7 +31,7 @@ public class Tipo_5 extends Pregunta {
 	}
 	
 	/**
-	 * Methodo para passar la pregunta de tipo 5 en una string
+	 * Metodo para pasar la pregunta de tipo 5 en una string
 	 * que contiene su identificador y su enunciado
 	 * 
 	 * @return
@@ -45,7 +45,12 @@ public class Tipo_5 extends Pregunta {
 	}
 	
 	/**
+	 * Metodo para pasar la pregunta de tipo 5 en una string
+	 * que contiene su identificador y su enunciado
+	 * y en un formato especial para guardar en un txt.
 	 * 
+	 * @return
+	 * 		la nueva string creada.
 	 */
 	public String guardar(){
 		String s = "";
@@ -55,7 +60,7 @@ public class Tipo_5 extends Pregunta {
 	}
 	
 	/**
-	 * Methodo para generar una respuesta a la pregunta de tipo 5,
+	 * Metodo para generar una respuesta a la pregunta de tipo 5,
 	 * se genera una respuesta vacia para las preguntas de format libre.
 	 * 
 	 * @return

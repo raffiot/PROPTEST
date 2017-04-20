@@ -25,8 +25,7 @@ public class Tipo_1 extends Pregunta {
 	/**
 	 * 
 	 * Constructor de pregunta de tipo 1 con su identificador, su enunciado,
-	 * el numero de opciones (que tiene sentido cuanta es una respuesta qualitativa),
-	 * el valor maximo que se puede responder a la pregunta y
+	 * el numero de opciones el valor maximo que se puede responder a la pregunta y
 	 * el valor minimo que se puede responder a la pregunta.
 	 * 
 	 * @param id
@@ -51,7 +50,7 @@ public class Tipo_1 extends Pregunta {
 	}
 	
 	/**
-	 * Methodo para obtenir el numero de opciones que se pueden eligir en una pregunta qualitativa
+	 * Methodo para obtener el numero de opciones que se pueden eligir 
 	 * 
 	 * @return
 	 * 		el numero de opciones
@@ -61,7 +60,7 @@ public class Tipo_1 extends Pregunta {
 	}
 	
 	/**
-	 * Methodo para modificar el numero de opciones que se pueden eligir en una pregunta qualitativa
+	 * Metodo para modificar el numero de opciones que se pueden eligir 
 	 * 
 	 * @param opciones
 	 * 		el nuevo numero de opciones.
@@ -71,7 +70,7 @@ public class Tipo_1 extends Pregunta {
 	}
 	
 	/**
-	 * Methodo para obtenir el valor maximo que se puede responder a la pregunta
+	 * Metodo para obtener el valor maximo que se puede responder a la pregunta
 	 * 
 	 * @return
 	 * 		el valor maximo
@@ -81,30 +80,27 @@ public class Tipo_1 extends Pregunta {
 	}
 	
 	/**
-	 * Methodo para modificar el valor maximo que se puede responder a la pregunta
+	 * Metodo para modificar el valor maximo que se puede responder a la pregunta
 	 * 
 	 * @param max
-	 * 		la nueva valor maxima
+	 * 		el nuevo valor maximo
 	 */
 	public void setMax(int max) {
 		this.max = max;
 	}
 	
 	/**
-	 * Methodo para obtenir el valor minimo que se puede responder a la pregunta
+	 * Metodo para obtener el valor minimo que se puede responder a la pregunta
 	 * 
 	 * @return
-	 * 		el valor maximo
+	 * 		el valor minimo
 	 */
 	public int getMin() {
 		return min;
 	}
 	
 	/**
-	 * Methodo para modificar el valor minimo que se puede responder a la pregunta
-	 * 
-	 * @param min
-	 * 		la nueva valor maxima
+	 * Metodo para modificar el valor minimo que se puede responder a la pregunta
 	 */
 	public void setMin(int min) {
 		this.min = min;
@@ -112,6 +108,12 @@ public class Tipo_1 extends Pregunta {
 	
 	
 	//If the answer is of type numeric free it will be a long long list.
+	
+	/**
+	 * Metodo que convierte una pregunta Tipo_1 en una string con sus opciones
+	 * 
+	 * @return devuelve la pregunta en formato String
+	 */
 	@Override
 	public String toString(){
 		String s = "";
@@ -120,6 +122,12 @@ public class Tipo_1 extends Pregunta {
 		return s;
 	}
 	
+	/**
+	 * Metodo que convierte una pregunta Tipo_1 en una string con sus opciones
+	 * en el formato correspondiente para guadar la pregunta en un txt
+	 * 
+	 * @return devuelve una string con la pregunta en formato para guardar en txt
+	 */
 	public String guardar() {
 		String s = "";
 		s += tipo+"\r\n";
@@ -131,7 +139,7 @@ public class Tipo_1 extends Pregunta {
 	}
 	
 	/**
-	 * Methodo para generar una respuesta aleatoria (entre el maximo y el minimo) a esa pregunta
+	 * Metodo para generar una respuesta aleatoria (entre el maximo y el minimo) a esa pregunta
 	 * 
 	 * @return
 	 * 		la respuesta a la pregunta

@@ -28,7 +28,7 @@ public class Tipo_2 extends Pregunta {
 	
 	/**
 	 * Constructor de pregunta de tipo 2 con su identificador, su enunciado,
-	 * el numero de opciones differentes que se puede reponder y
+	 * el numero de opciones diferentes que se puede responder y
 	 * el nombre de estas opciones.
 	 * 
 	 * @param id
@@ -36,7 +36,7 @@ public class Tipo_2 extends Pregunta {
 	 * @param enunciado
 	 * 		el enunciado de la pregunta
 	 * @param opciones
-	 * 		el numero de opciones differentes que hay en la pregunta (el tamano de lista_opciones)
+	 * 		el numero de opciones diferentes que hay en la pregunta (el tamano de lista_opciones)
 	 * @param lista_opciones
 	 * 		la lista que contiene las differentes opciones de respuesta.
 	 */
@@ -48,7 +48,7 @@ public class Tipo_2 extends Pregunta {
 	}
 	
 	/**
-	 * Methodo para obtenir el numero de opciones differentes que hay para responder a la pregunta.
+	 * Metodo para obtener el numero de opciones differentes que hay para responder a la pregunta.
 	 * 
 	 * @return
 	 * 		el numero de opciones
@@ -58,7 +58,7 @@ public class Tipo_2 extends Pregunta {
 	}
 	
 	/**
-	 * Methodo para obtenir el numero de opciones differentes que hay para responder a la pregunta.
+	 * Metodo para poner el numero de opciones diferentes que hay para responder a la pregunta.
 	 * 
 	 * @param opciones
 	 * 		el numero de opciones
@@ -68,7 +68,8 @@ public class Tipo_2 extends Pregunta {
 	}
 	
 	/**
-	 * Methodo para obtenir el nombre de cada opciones que se pueden eligir para esa pregunta.
+	 * Metodo para obtener una lista con el nombre de todas las opciones posibles para respoder
+	 * esta pregunta.
 	 * 
 	 * @return
 	 * 		la lista de estas opciones
@@ -78,7 +79,7 @@ public class Tipo_2 extends Pregunta {
 	}
 	
 	/**
-	 * Methodo para modificar el nombre de cada opciones que se pueden eligir para esa pregunta.
+	 * Metodo para modificar el nombre de todas las opciones que se pueden eligir para esta pregunta.
 	 * 
 	 * @param lista_opciones
 	 * 		la nueva lista de opciones
@@ -88,7 +89,7 @@ public class Tipo_2 extends Pregunta {
 	}
 
 	/**
-	 * Methodo para anadir una opcion a la lista de opciones elegible para responder
+	 * Metodo para anadir una opcion a la lista de opciones elegible para responder
 	 * 
 	 * @param s
 	 * 		la opcion a anadir a la lista de opciones
@@ -99,7 +100,7 @@ public class Tipo_2 extends Pregunta {
 	}
 	
 	/**
-	 * Methodo para passar la pregunta de tipo 2 en una string
+	 * Metodo para pasar la pregunta de tipo 2 en una string
 	 * que contiene su identificador,su enunciado, y cada una de las opciones.
 	 * 
 	 * @return
@@ -113,6 +114,15 @@ public class Tipo_2 extends Pregunta {
 		return s;
 	}
 	
+	
+	/**
+	 * Metodo para pasar la pregunta de tipo 2 en una string
+	 * que contiene su identificador,su enunciado, y cada una de las opciones
+	 * y en un formato especial para guardar en un txt.
+	 * 
+	 * @return
+	 * 		la nueva string creada.
+	 */
 	public String guardar() {
 		String s = "";
 		s += tipo +"\r\n";
@@ -123,7 +133,7 @@ public class Tipo_2 extends Pregunta {
 	}
 	
 	/**
-	 * Methodo para generar una respuesta aleatoria a esa pregunta.
+	 * Metodo para generar una respuesta aleatoria a esa pregunta.
 	 * 
 	 * @return
 	 * 		la respuesta aleatoria a la pregunta de tipo 2
