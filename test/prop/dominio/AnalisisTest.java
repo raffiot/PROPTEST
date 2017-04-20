@@ -103,7 +103,7 @@ public class AnalisisTest {
 		Respuesta_Analisis ra = new Respuesta_Analisis(listRE);
 		
 		double threshold = 0.2;
-		return new Analisis(0,2,threshold,ra);
+		return new Analisis(0,2,threshold,ra,e);
 	
 	}
 
@@ -263,7 +263,7 @@ public class AnalisisTest {
 		listRE.add(tipo_1RE);
 		Respuesta_Analisis tipo_1RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_1A = new Analisis(0, 1, 1, tipo_1RA);
+		Analisis tipo_1A = new Analisis(0, 1, 1, tipo_1RA,tipo_1E);
 		List<Cluster> tipo_1C = tipo_1A.createCluster(1);
 		
 		double generatedValue = tipo_1C.get(0).getCentroid().getRespPreguntas().get(0).getValueR1();
@@ -316,7 +316,7 @@ public class AnalisisTest {
 		listRE.add(tipo_1RE2);
 		Respuesta_Analisis tipo_1RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_1A = new Analisis(0, 1, 1, tipo_1RA);
+		Analisis tipo_1A = new Analisis(0, 1, 1, tipo_1RA,tipo_1E);
 		List<Cluster> tipo_1C = tipo_1A.createCluster(1);
 		
 		double generatedValue = tipo_1C.get(0).getCentroid().getRespPreguntas().get(0).getValueR1();
@@ -369,7 +369,7 @@ public class AnalisisTest {
 		listRE.add(tipo_2RE);
 		Respuesta_Analisis tipo_2RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_2A = new Analisis(0, 1, 1, tipo_2RA);
+		Analisis tipo_2A = new Analisis(0, 1, 1, tipo_2RA,tipo_2E);
 		List<Cluster> tipo_2C = tipo_2A.createCluster(1);
 		
 		double generatedValue = tipo_2C.get(0).getCentroid().getRespPreguntas().get(0).getValueR2();
@@ -430,7 +430,7 @@ public class AnalisisTest {
 		listRE.add(tipo_2RE2);
 		Respuesta_Analisis tipo_2RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_2A = new Analisis(0, 1, 1, tipo_2RA);
+		Analisis tipo_2A = new Analisis(0, 1, 1, tipo_2RA,tipo_2E);
 		List<Cluster> tipo_2C = tipo_2A.createCluster(1);
 		
 		HashMap<Integer,MinMax> tipo_2M = tipo_2A.minMax_Respuesta_1(tipo_2E,tipo_2C,tipo_2RA);
@@ -480,7 +480,7 @@ public class AnalisisTest {
 		listRE.add(tipo_3RE);
 		Respuesta_Analisis tipo_3RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_3A = new Analisis(0, 1, 1, tipo_3RA);
+		Analisis tipo_3A = new Analisis(0, 1, 1, tipo_3RA, tipo_3E);
 		List<Cluster> tipo_3C = tipo_3A.createCluster(1);
 		
 		String generatedValue = tipo_3C.get(0).getCentroid().getRespPreguntas().get(0).getValueR3();
@@ -546,7 +546,7 @@ public class AnalisisTest {
 		listRE.add(tipo_3RE3);
 		Respuesta_Analisis tipo_3RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_3A = new Analisis(0, 1, 1, tipo_3RA);
+		Analisis tipo_3A = new Analisis(0, 1, 1, tipo_3RA,tipo_3E);
 		List<Cluster> tipo_3C = tipo_3A.createCluster(1);
 		
 		HashMap<Integer,MinMax> tipo_3M = tipo_3A.minMax_Respuesta_1(tipo_3E,tipo_3C,tipo_3RA);
@@ -599,7 +599,7 @@ public class AnalisisTest {
 		listRE.add(tipo_4RE);
 		Respuesta_Analisis tipo_4RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_4A = new Analisis(0, 1, 1, tipo_4RA);
+		Analisis tipo_4A = new Analisis(0, 1, 1, tipo_4RA,tipo_4E);
 		List<Cluster> tipo_4C = tipo_4A.createCluster(1);
 		
 		Set<String> generatedValue = tipo_4C.get(0).getCentroid().getRespPreguntas().get(0).getValueR4();
@@ -674,7 +674,7 @@ public class AnalisisTest {
 		listRE.add(tipo_4RE3);
 		Respuesta_Analisis tipo_4RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_4A = new Analisis(0, 1, 1, tipo_4RA);
+		Analisis tipo_4A = new Analisis(0, 1, 1, tipo_4RA,tipo_4E);
 		List<Cluster> tipo_4C = tipo_4A.createCluster(1);
 		
 		HashMap<Integer,MinMax> tipo_4M = tipo_4A.minMax_Respuesta_1(tipo_4E,tipo_4C,tipo_4RA);
@@ -718,7 +718,7 @@ public class AnalisisTest {
 		listRE.add(tipo_5RE);
 		Respuesta_Analisis tipo_5RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_5A = new Analisis(0, 1, 1, tipo_5RA);
+		Analisis tipo_5A = new Analisis(0, 1, 1, tipo_5RA,tipo_5E);
 		List<Cluster> tipo_5C = tipo_5A.createCluster(1);
 		
 		HashMap<Integer,MinMax> tipo_5M = tipo_5A.minMax_Respuesta_1(tipo_5E,tipo_5C,tipo_5RA);
@@ -775,7 +775,7 @@ public class AnalisisTest {
 		listRE.add(tipo_5RE3);
 		Respuesta_Analisis tipo_5RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_5A = new Analisis(0, 1, 1, tipo_5RA);
+		Analisis tipo_5A = new Analisis(0, 1, 1, tipo_5RA,tipo_5E);
 		List<Cluster> tipo_5C = tipo_5A.createCluster(1);
 		
 		HashMap<Integer,MinMax> tipo_5M = tipo_5A.minMax_Respuesta_1(tipo_5E,tipo_5C,tipo_5RA);

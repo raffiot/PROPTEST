@@ -10,11 +10,13 @@ public class driver_analizar {
 	private static Scanner texto;
 	private static Scanner opcion;
 	public static void main(String[] args) {
+		texto = new Scanner(System.in);
+		opcion = new Scanner(System.in);
 		System.out.println("LA ENCUESTA Y LA RESPUESTAS DEBEN SER EN CASTELLANO");
 		System.out.println ("Escribe el numero de la encuesta que quieres analizar:");
 		Integer numEncuesta = opcion.nextInt();
 		Encuesta e = new Encuesta(numEncuesta);
-		e.leer("Encuestas/Encuesta_"+numEncuesta);
+		e.leer(numEncuesta.toString());
 		
 		List<RespuestaEncuesta> listRE = new ArrayList<>();
 		Integer index = 1;
@@ -35,11 +37,30 @@ public class driver_analizar {
 		
 		System.out.println ("Escribe el numero de la analisis");
 		Integer idAnalisis = opcion.nextInt();
-		System.out.println ("Escribe el cluster que quieres (la k)");
-		Integer k = opcion.nextInt();
-		System.out.println ("Escribe el threshold para la distancia");
-		Integer threshold = opcion.nextInt();
-		Analisis an = new Analisis(idAnalisis, k, threshold, ra);
+		
+		boolean test = false;
+		Integer k;
+		do{
+			test = false;
+			System.out.println ("Escribe el numero cluster que quieres (la k)");
+			k = opcion.nextInt();
+			if(k<=0){
+				System.out.println("Entrada invalida");
+				test =true;
+			}
+		}while(test);
+		
+		Double threshold;
+		do{
+			test = false;
+			System.out.println ("Escribe el threshold para la distancia (los doubles se escriben con ',' )");
+			threshold = opcion.nextDouble();
+			if(threshold<=0 || threshold >1){
+				System.out.println("Entrada invalida");
+				test =true;
+			}
+		}while(test);
+		Analisis an = new Analisis(idAnalisis, k, threshold, ra,e);
 		Resultado result =null;
 		try {
 			result = an.k_means();
@@ -50,7 +71,6 @@ public class driver_analizar {
 		
 		System.out.println ("Se ha acabado la analisis");
 		System.out.println(result.toString());
-		System.exit(0);
 	}
 
 }

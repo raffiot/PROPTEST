@@ -1,0 +1,10 @@
+1
+4.0
+2
+1
+3
+UPR
+4
+[cultura, educacion]
+5
+mentira ineficaz

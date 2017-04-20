@@ -90,16 +90,31 @@ public class Cluster{
 		this.usuarios = usuarios;
 	}
 	
+	/**
+	 * Metodo que crea una string que describe el cluster
+	 * 
+	 * @return la string que describe cluster
+	 */
 	@Override
 	public String toString(){
 		String s ="";
 		s +="Cluster con index: "+index+"\n";
 		s +="Centroid :\n";
 		s += centroid.toString();
-		s +="Con RespuestaEncuesta assignado: \n";
-		for(RespuestaEncuesta re : usuarios){
-			s+=re.toString();
+		if(usuarios.size() ==0){
+			s+="Sin RespuestaEncuesta assignada \n";
 		}
+		else{
+			s +="Con RespuestaEncuesta assignado: \n";
+			
+			int index = 0;
+			for(RespuestaEncuesta re : usuarios){
+				s+="Usuario "+index+":\n";
+				s+=re.toString();
+				index++;
+			}
+		}
+
 		return s;
 	}
 	

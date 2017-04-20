@@ -212,6 +212,12 @@ public abstract class RespuestaPregunta {
 		}
 		return r;
 	}
+	
+	/**
+	 * Metodo que crea una string que describe una respuesta a una pregunta
+	 * 
+	 * @return la string que describe una respuesta a una pregunta
+	 */
 	@Override
 	public abstract String toString();
 	

@@ -42,13 +42,15 @@ public class Analisis {
 	 * 		el parametro que define cuando se para el algorithmo de k-means
 	 * @param respEncuestas
 	 * 		las respuestas de los usuarios a la encuesta
+	 * @param
+	 * 		la encuesta que se analitza
 	 */
-	public Analisis(int id, int k, double threshold, Respuesta_Analisis respEncuestas){
+	public Analisis(int id, int k, double threshold, Respuesta_Analisis respEncuestas,Encuesta e){
 		this.id = id;
 		this.k = k;
 		this.threshold = threshold;
 		this.respEncuestas = respEncuestas;
-		encuesta = respEncuestas.getListRP().get(0).getEncuesta();
+		encuesta = e;
 	}
 	
 	/**
@@ -271,51 +273,52 @@ public class Analisis {
 					}
 					
 				}
-				
-				switch(tipoP){
-					case 1 :
-						double result = mediana1/cluster.getUsuarios().size();
-						cluster.getCentroid().getRespPreguntas().get(i).setValueR1(result);
-						break;
-					case 2 :
-						int result2 = (int) (mediana2/cluster.getUsuarios().size());
-						cluster.getCentroid().getRespPreguntas().get(i).setValueR2(result2);
-						break;
-					case 3 :
-						String resultS = "";
-						int freqMax = 0;
-						for(String s : mediana3.keySet()){
-							int freq = mediana3.get(s);
-							if(freq > freqMax){
-								resultS = s;
-								freqMax = freq;
+				if(cluster.getUsuarios().size() != 0){
+					switch(tipoP){
+						case 1 :
+							double result = mediana1/cluster.getUsuarios().size();
+							cluster.getCentroid().getRespPreguntas().get(i).setValueR1(result);
+							break;
+						case 2 :
+							int result2 = (int) (mediana2/cluster.getUsuarios().size());
+							cluster.getCentroid().getRespPreguntas().get(i).setValueR2(result2);
+							break;
+						case 3 :
+							String resultS = "";
+							int freqMax = 0;
+							for(String s : mediana3.keySet()){
+								int freq = mediana3.get(s);
+								if(freq > freqMax){
+									resultS = s;
+									freqMax = freq;
+								}
 							}
-						}
-						cluster.getCentroid().getRespPreguntas().get(i).setValueR3(resultS);
-						break;
-						
-					case 4:
-						Set<String> result4 = new HashSet<String>();
-						int freqMax4 = 0;
-						for(Set<String> set : mediana4.keySet()){
-							int f = mediana4.get(set);
-							if(f > freqMax4){
-								result4 = set;
-								freqMax4=f;
+							cluster.getCentroid().getRespPreguntas().get(i).setValueR3(resultS);
+							break;
+							
+						case 4:
+							Set<String> result4 = new HashSet<String>();
+							int freqMax4 = 0;
+							for(Set<String> set : mediana4.keySet()){
+								int f = mediana4.get(set);
+								if(f > freqMax4){
+									result4 = set;
+									freqMax4=f;
+								}
 							}
-						}
-						cluster.getCentroid().getRespPreguntas().get(i).setValueR4(result4);
-						break;
-					case 5:
-						String result5 = "";
-						int max = Collections.max(mediana5.values());
-						for(String word : mediana5.keySet()){
-							if(mediana5.get(word) == max){
-								result5 += word + " ";
+							cluster.getCentroid().getRespPreguntas().get(i).setValueR4(result4);
+							break;
+						case 5:
+							String result5 = "";
+							int max = Collections.max(mediana5.values());
+							for(String word : mediana5.keySet()){
+								if(mediana5.get(word) == max){
+									result5 += word + " ";
+								}
 							}
-						}
-						cluster.getCentroid().getRespPreguntas().get(i).setValueR5(result5);
-						break;					
+							cluster.getCentroid().getRespPreguntas().get(i).setValueR5(result5);
+							break;					
+					}
 				}
 				
 			}
@@ -350,7 +353,7 @@ public class Analisis {
 					distance += r1.getRespPreguntas().get(index).distance(r2.getRespPreguntas().get(index), m.min, m.max, 0);
 					break;
 				case 2 :
-					int size = ((Tipo_2) e.getPreguntas().get(index)).getOpciones(); //SALE !!!!
+					int size = ((Tipo_2) e.getPreguntas().get(index)).getOpciones(); 
 					distance +=  r1.getRespPreguntas().get(index).distance(r2.getRespPreguntas().get(index), 0, 0, size);
 					break;
 				case 3 :

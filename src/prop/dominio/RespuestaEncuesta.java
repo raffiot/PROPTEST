@@ -195,6 +195,11 @@ public class RespuestaEncuesta {
 		
 	}
 	
+	/**
+	 * Metodo que crea una string que describe respuestas a una encuesta
+	 * 
+	 * @return la string que describe respuestas a una encuesta
+	 */
 	@Override
 	public String toString(){
 		String s ="";

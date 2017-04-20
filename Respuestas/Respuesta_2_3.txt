@@ -1,0 +1,10 @@
+1
+9.0
+2
+2
+3
+LR
+4
+[economia, defensa]
+5
+bien cambia
