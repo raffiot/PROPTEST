@@ -1,0 +1,34 @@
+1
+Prueba para leer con 5 preguntas, una de cada tipo
+Fri Apr 14 19:38:44 CEST 2017
+5
+1
+Que nota sacaras en prop?
+0
+10
+2
+Como estas?
+3
+mal
+regular
+bien
+3
+Que color es tu favorito?
+4
+rojo
+azul
+naranja
+rosa
+4
+Que asignaturas cursas?
+8
+prop
+idi
+ies
+bd
+ac
+xc
+fm
+soa
+5
+Que tal llevas el año?
