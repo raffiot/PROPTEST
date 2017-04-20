@@ -90,4 +90,17 @@ public class Cluster{
 		this.usuarios = usuarios;
 	}
 	
+	@Override
+	public String toString(){
+		String s ="";
+		s +="Cluster con index: "+index+"\n";
+		s +="Centroid :\n";
+		s += centroid.toString();
+		s +="Con RespuestaEncuesta assignado: \n";
+		for(RespuestaEncuesta re : usuarios){
+			s+=re.toString();
+		}
+		return s;
+	}
+	
 }

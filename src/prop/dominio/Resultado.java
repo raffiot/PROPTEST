@@ -41,4 +41,15 @@ public class Resultado {
 		this.clusters = clusters;
 	}
 	
+	@Override
+	public String toString(){
+		String s ="";
+		s +="Resultado de la analisis de la encuesta "+ clusters.get(0).getCentroid().getEncuesta().getId();
+		for(Cluster c: clusters){
+			s+=c.toString();
+			s+="\n";
+		}
+		return s;
+	}
+	
 }

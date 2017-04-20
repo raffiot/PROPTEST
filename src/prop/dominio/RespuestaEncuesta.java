@@ -195,4 +195,11 @@ public class RespuestaEncuesta {
 		
 	}
 	
+	@Override
+	public String toString(){
+		String s ="";
+		for(RespuestaPregunta rp : respPreguntas) s+= rp.toString();
+		return s;
+	}
+	
 }
