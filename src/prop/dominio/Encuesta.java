@@ -1,11 +1,16 @@
 package prop.dominio;
+/**
+ * Este clase representa una encuesta que se identifica con un identificador id y que tiene un genero y fecha.
+ * La encuesta esta formada por preguntas de Tipo_1, Tipo_2, Tipo_3, Tipo_4, Tipo_5.
+ *
+ * @author Miguel
+ */
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 
@@ -18,6 +23,12 @@ public class Encuesta {
 	private String fecha;
 	private ArrayList<Pregunta> preguntas;
 	
+	/**
+	 * Constructor de encuesta con su indentificador
+	 * 
+	 * @param id
+	 * 		el identificador que tendra la encuesta
+	 */
 	
 	public Encuesta(Integer id){
 		this.id = id;
@@ -27,6 +38,21 @@ public class Encuesta {
 		preguntas = new ArrayList<>();
 	}
 				
+	/**
+	 * Constructor de encuesta con su indentificador, el numero de preguntas, genero, fecha y su lista de preguntas
+	 * 
+	 * @param id
+	 * 		el identificador que tendra la encuesta
+	 * @param n_preguntas
+	 * 		el numero de preguntas que tendra la encuesta
+	 * @param genero
+	 * 		el genero que tendra la encuesta
+	 * @param fecha
+	 * 		la fecha que representa el dia en que se creo la encuesta 
+	 * @param preguntas
+	 * 		la lista de preguntas que tendra la encuesta
+	 */		
+	
 	public Encuesta(Integer id, Integer n_preguntas, String genero, String fecha,ArrayList<Pregunta>preguntas ){
 		this.id = id;
 		this.n_preguntas = n_preguntas;
@@ -96,7 +122,6 @@ public class Encuesta {
 			}
 		
 		FileWriter fichero = null;
-	        PrintWriter pw = null;
 	        try
 	        {
 	            fichero = new FileWriter("Encuestas/Encuesta_"+this.id+".txt");
@@ -197,7 +222,6 @@ public class Encuesta {
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Documento no encontrado");
 			e.printStackTrace();
 		}
 		
