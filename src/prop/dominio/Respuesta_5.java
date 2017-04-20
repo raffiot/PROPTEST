@@ -56,6 +56,12 @@ public class Respuesta_5 extends RespuestaPregunta{
 	private static int minimum(int a, int b, int c) {                            
         return Math.min(Math.min(a, b), c);                                      
     }
-
+	
+	public String toString() {
+		String s = "";
+		s += this.getPregunta().getEnunciado()+"\n";
+		s += this.getValueR5()+"\n";
+		return s;
+	}
 
 }

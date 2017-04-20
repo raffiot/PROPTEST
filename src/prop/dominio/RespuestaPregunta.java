@@ -212,4 +212,7 @@ public abstract class RespuestaPregunta {
 		}
 		return r;
 	}
+	@Override
+	public abstract String toString();
+	
 }

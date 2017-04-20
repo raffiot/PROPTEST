@@ -39,5 +39,14 @@ public class Respuesta_1 extends RespuestaPregunta{
 		return Math.abs(this.getValueR1()-r.getValueR1())/(maxR1-minR1);
 	}
 	
+	@Override
+	public String toString(){
+		String s = "";
+		s += this.getPregunta().getEnunciado()+"\n";
+		s += this.getValueR1()+"\n";
+		return s;
+	}
+	
+	
 	
 }

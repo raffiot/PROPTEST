@@ -38,5 +38,11 @@ public class Respuesta_2 extends RespuestaPregunta{
 		return Math.abs(this.getValueR2()-r.getValueR2())/((double)sizeR2);
 		
 	}
+	public String toString() {
+		String s = "";
+		s += this.getPregunta().getEnunciado()+"\n";
+		s += this.getValueR2()+"\n";
+		return s;
+	}
 
 }

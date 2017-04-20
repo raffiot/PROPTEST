@@ -37,4 +37,11 @@ public class Respuesta_3 extends RespuestaPregunta{
 		return (this.getValueR3().equals(r.getValueR3())) ? 1 : 0;
 		
 	}
+	public String toString(){
+		String s = "";
+		s += this.getPregunta().getEnunciado()+"\n";
+		s += this.getValueR3()+"\n";
+		return s;
+	}
+	
 }
