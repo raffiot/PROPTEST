@@ -1,0 +1,22 @@
+Miguel:
+	Tipo_x
+	encuesta
+	driver_encuesta
+	junit (tipo_x)
+
+
+Raphael:
+	analsisi
+	respuestanalisis
+	junit
+	Respuesta_x
+	resultado
+	cluster
+
+Marina:
+	driver_contestar
+	RespuestaEncuesta
+	Persona
+	Participant
+	main
+	RespuestaPregunta

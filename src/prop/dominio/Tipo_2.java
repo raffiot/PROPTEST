@@ -148,7 +148,7 @@ public class Tipo_2 extends Pregunta {
 
 	public int getPosicion(String pos){
 		for (int i = 0; i < opciones; ++i){
-			if (lista_opciones.get(i) == pos) return i;
+			if (lista_opciones.get(i).equals(pos)) return i;
 			
 		}
 		return -1;

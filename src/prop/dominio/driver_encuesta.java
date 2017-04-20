@@ -1,5 +1,10 @@
 package prop.dominio;
-
+/**
+* La classe driver_encuesta es un driver que prueba el funcionamiento de la encuesta
+* 
+* 
+* @author Miguel							
+*/
 import java.io.File;
 import java.util.Date;
 import java.util.Scanner;
