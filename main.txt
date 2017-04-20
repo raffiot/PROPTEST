@@ -1,0 +1,83 @@
+
+public class Main(){
+	private static Scanner texto;
+	private static Scanner opcion;
+
+	public void main{
+
+
+		System.out.println ("Escribe USU si eres usuario o ADMIN si eres administrador\r\n");
+
+		String text = texto.nextLine();
+
+		if (text == "USU"){
+
+			System.out.println ("Escribe la opcion que quieras elegir:\r\n");
+			System.out.println ("0.Salir\r\n");
+			System.out.println ("1.Contestar encuesta\r\n");
+			//System.out.println ("2.Recuperar encuesta\r\n");
+
+			while(op.cion.nextInt() != 0){
+				var = opcion.nextInt();
+				switch (var){
+					case 0:{
+						System.out.println ("Has salido de tu sesion\r\n");
+						break;
+						}
+					case 1:{
+						driver_contestar.main(null);
+						break;
+					}
+					/*case 2:{
+
+						break;
+					}*/
+					
+
+				}
+				System.out.println ("Escribe la opcion que quieras elegir:\r\n");
+				System.out.println ("0.Salir\r\n");
+				System.out.println ("1.Contestar encuesta\r\n");
+				//System.out.println ("2.Recuperar encuesta\r\n");
+			}
+		}
+
+		else if (text == "ADMIN"){
+
+			while(opcion.nextInt() != 0){
+				System.out.println ("Escribe la opcion que quieras elegir:\r\n");
+				System.out.println ("0.Salir\r\n");
+				System.out.println ("1.Gestionar encuesta\r\n");
+				System.out.println ("2.Analizar encuestas\r\n");
+
+
+				var = opcion.nextInt();
+
+				switch(var){
+					case 0:{
+						System.out.println ("Has salido de tu sesion\r\n");
+						break;
+					}
+					case 1:{
+						driver_encuesta.main(null);
+						break;
+					}
+					case 2:{
+						driver_analizar.main(null);
+						break;
+					}
+
+				}
+				System.out.println ("Escribe la opcion que quieras elegir:\r\n");
+				System.out.println ("0.Salir\r\n");
+				System.out.println ("1.Gestionar encuesta\r\n");
+				System.out.println ("2.Analizar encuestas\r\n");
+			}
+		}
+		else{
+
+			System.out.println ("Escribe USU si eres usuario o ADMIN si eres administrador");
+		}
+
+	}
+}	
