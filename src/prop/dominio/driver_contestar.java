@@ -23,17 +23,17 @@ public class driver_contestar {
         texto = new Scanner(System.in);
         respuesta = new Scanner(System.in);
         Participant a = null;
-		Encuesta e = null;
+		Encuesta e = new Encuesta(1);
 		List<RespuestaPregunta> rp = new ArrayList<RespuestaPregunta>();
         RespuestaEncuesta re = new RespuestaEncuesta(e,a,rp);
         boolean trobat = false;
-        
+        e.leer("1");
 		System.out.println("Responde la encuesta:");
 		for(int i = 1; i <= e.getN_preguntas(); ++i){
 			System.out.println("Responde la pregunta"+ i);
 			Pregunta p = e.getPreguntas().get(i);
 			Integer tipo = p.getTipo();
-			RespuestaPregunta r = new RespuestaPregunta(p);
+			RespuestaPregunta r=null;
 			
 			if (tipo == 1){
 				int valor = respuesta.nextInt();
