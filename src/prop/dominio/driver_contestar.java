@@ -18,7 +18,7 @@ public class driver_contestar {
 	private static Scanner respuesta;
 	
 	
-	public void contestar(){
+	public static void main(String [ ] args){
 		
         texto = new Scanner(System.in);
         respuesta = new Scanner(System.in);
