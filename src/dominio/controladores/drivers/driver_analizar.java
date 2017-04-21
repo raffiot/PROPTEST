@@ -1,4 +1,7 @@
-package prop.dominio;
+package dominio.controladores.drivers;
+
+
+import dominio.clases.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,7 +23,7 @@ public class driver_analizar {
 		
 		List<RespuestaEncuesta> listRE = new ArrayList<>();
 		Integer index = 1;
-		String sFichero = "Respuestas/Respuesta_"+numEncuesta+"_"+index+".txt";
+		String sFichero = "src/persistencia/Respuestas/Respuesta_"+numEncuesta+"_"+index+".txt";
 		File fichero = new File(sFichero);
 		
 		while(fichero.exists()){
@@ -29,7 +32,7 @@ public class driver_analizar {
 				listRE.add(re);
 				
 				index++;
-				sFichero = "Respuestas/Respuesta_"+numEncuesta+"_"+index+".txt";
+				sFichero = "src/persistencia/Respuestas/Respuesta_"+numEncuesta+"_"+index+".txt";
 				fichero = new File(sFichero);
 		}
 		

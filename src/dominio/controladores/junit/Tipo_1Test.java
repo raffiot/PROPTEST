@@ -1,5 +1,6 @@
-package prop.dominio;
+package dominio.controladores.junit;
 
+import dominio.clases.*;
 import static org.junit.Assert.*;
 
 import org.junit.Test;

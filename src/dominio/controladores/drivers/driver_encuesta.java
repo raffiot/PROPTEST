@@ -1,4 +1,4 @@
-package prop.dominio;
+package dominio.controladores.drivers;
 /**
 * La classe driver_encuesta es un driver que prueba el funcionamiento de la encuesta
 * 
@@ -8,6 +8,7 @@ package prop.dominio;
 import java.io.File;
 import java.util.Date;
 import java.util.Scanner;
+import dominio.clases.*;
 
 public class driver_encuesta {
 	private static Scanner texto;

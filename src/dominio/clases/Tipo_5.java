@@ -1,4 +1,4 @@
-package prop.dominio;
+package dominio.clases;
 /**
  * La classe Tipo_5 representa una pregunta que se responde con una(s) palabra(s) de format libre.
  * 

@@ -1,4 +1,4 @@
-package prop.dominio;
+package dominio.clases;
 
 /**
  * La classe Tipo_1 representa una pregunta que se responde con un sol valor numeric o qualitativa.

@@ -1,4 +1,4 @@
-package prop.dominio;
+package dominio.clases;
 /**
  * Classe que representa el resultado de la analisis
  * Para la primera entrega este resultado es simplemente un conjunto de cluster.

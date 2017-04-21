@@ -1,4 +1,4 @@
-package prop.dominio;
+package dominio.clases;
 
 /**
  * La classe Pregunta representa una pregunta.

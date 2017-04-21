@@ -1,4 +1,4 @@
-package prop.dominio;
+package dominio.clases;
 /**
  * Este clase representa una encuesta que se identifica con un identificador id y que tiene un genero y fecha.
  * La encuesta esta formada por preguntas de Tipo_1, Tipo_2, Tipo_3, Tipo_4, Tipo_5.
@@ -214,7 +214,7 @@ public class Encuesta {
 		FileWriter fichero = null;
 	        try
 	        {
-	            fichero = new FileWriter("Encuestas/Encuesta_"+this.id+".txt");
+	            fichero = new FileWriter("src/persistencia/Encuestas/Encuesta_"+this.id+".txt");
 	           // pw = new PrintWriter(fichero);
 	            fichero.write(s);
 
@@ -239,7 +239,7 @@ public class Encuesta {
 	 */
 	public void leer(String s) {
 		try {
-			BufferedReader in = new BufferedReader(new FileReader("Encuestas/Encuesta_"+s+".txt"));
+			BufferedReader in = new BufferedReader(new FileReader("src/persistencia/Encuestas/Encuesta_"+s+".txt"));
 			try {
 				this.id = Integer.valueOf(in.readLine());
 				this.genero = in.readLine();

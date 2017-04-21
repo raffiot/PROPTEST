@@ -1,6 +1,8 @@
-package prop.dominio;
+package dominio.clases;
 
 import java.util.Scanner;
+
+import dominio.controladores.drivers.*;
 
 public class Main {
 	private static Scanner texto;
@@ -19,17 +21,13 @@ public class Main {
 
 			int var = opcion.nextInt();
 			switch (var){
-				case 0:{
+				case 0:
 					System.out.println ("Has salido de tu sesion");
 					System.exit(0);
-					break;
-					}
-				case 1:{
-					driver_contestar.main(null);
-					break;
-				}
-					
-
+					break;				
+				case 1:
+					dominio.controladores.drivers.driver_contestar.main(null);
+					break;			
 			}
 		}
 
@@ -45,19 +43,19 @@ public class Main {
 				int var = opcion.nextInt();
 
 				switch(var){
-					case 0:{
+					case 0:
 						System.out.println ("Has salido de tu sesion");
 						System.exit(0);
 						break;
-					}
-					case 1:{
-						driver_encuesta.main(null);
+					
+					case 1:
+						dominio.controladores.drivers.driver_encuesta.main(null);
 						break;
-					}
-					case 2:{
-						driver_analizar.main(null);
+					
+					case 2:
+						dominio.controladores.drivers.driver_analizar.main(null);
 						break;
-					}
+					
 
 				}
 			}while(opcion.nextInt() != 0);

@@ -1,4 +1,4 @@
-package prop.dominio;
+package dominio.clases;
 
 /**
  * Classe contenedora de respuestas de usuarios a una encuesta para empezar la analisis

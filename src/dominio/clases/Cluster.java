@@ -1,4 +1,4 @@
-package prop.dominio;
+package dominio.clases;
 
 /**
  * Este classe representa un representante de usuarios con sus usuarios ajuntado a el.

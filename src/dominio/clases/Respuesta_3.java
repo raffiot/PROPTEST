@@ -1,4 +1,4 @@
-package prop.dominio;
+package dominio.clases;
 /**
  * Classe que representa una respuesta a una pregunta de tipo 3
  * 

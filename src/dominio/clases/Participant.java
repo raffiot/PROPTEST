@@ -1,7 +1,7 @@
-package prop.dominio;
+package dominio.clases;
 
 /**
- * La classe Pregunta representa una persona que es participante, es decir, uan persona que responde encuestas.
+ * La clase Pregunta representa una persona que es participante, es decir, uan persona que responde encuestas.
  * 
  * @author Marina				
  */
@@ -16,14 +16,14 @@ import com.sun.javafx.collections.MappingChange.Map;
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 public class Participant extends Persona{
-	private HashMap<Integer,List<RespuestaPregunta>> EncuestaNoAcabada;
+	private HashMap<Integer,ArrayList<RespuestaPregunta>> EncuestaNoAcabada;
 	
 	/**
 	 * Constructor vacio de un participante
 	 *
 	 */
 	public Participant(){
-		EncuestaParticipant = new HashMap<Integer,RespuestaEncuesta>();
+		EncuestaNoAcabada = new HashMap<Integer,ArrayList<RespuestaPregunta>>();
 	}
 	
 	/**

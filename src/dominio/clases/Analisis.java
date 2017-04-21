@@ -1,4 +1,4 @@
-package prop.dominio;
+package dominio.clases;
 
 /**
  * La classe Analisis se instancia para empezar una nueva analisis sobre las respuestas de usuarios

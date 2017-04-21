@@ -1,19 +1,18 @@
-package prop.dominio;
+package dominio.controladores.junit;
 
+import dominio.clases.*;
 import static org.junit.Assert.*;
-
+import dominio.clases.Analisis.MinMax;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.junit.Test;
 
-import prop.dominio.Analisis.MinMax;
+
 
 public class AnalisisTest {
 	

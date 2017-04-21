@@ -1,4 +1,4 @@
-package prop.dominio;
+package dominio.controladores.drivers;
 
 /**
  * El driver contestar sirve para probar que se almacenan y tratan las respuestas de forma correcta
@@ -6,6 +6,7 @@ package prop.dominio;
  * @author Marina				
  */
 
+import dominio.clases.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
