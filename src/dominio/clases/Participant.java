@@ -12,8 +12,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.sun.javafx.collections.MappingChange.Map;
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+import java.util.Map;
+import java.util.List;
 
 public class Participant extends Persona{
 	private HashMap<Integer,ArrayList<RespuestaPregunta>> EncuestaNoAcabada;
