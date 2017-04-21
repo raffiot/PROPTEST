@@ -120,9 +120,15 @@ public class RespuestaEncuesta {
     	Integer id = 1;
     	
     	
-    		String sFichero = "persistencia/Respuestas/Respuesta_"+numEncuesta+"_"+Main.user+".txt";
+    	do{	
+    		String sFichero = "persistencia/Respuestas/Respuesta_"+numEncuesta+"_"+id+".txt";
     		File fichero = new File(sFichero);
+    		if (fichero.exists()) ++id;
+    		else exist = 0;
+    	}
+    	while(exist != 0);
     		//if (fichero.exists()) ++id;
+       
     	
 		
     	/*plenem el document*/
@@ -153,13 +159,15 @@ public class RespuestaEncuesta {
 			}
 		}
 		
-			FileWriter fichero1 = null;
+		FileWriter fichero1 = null;
 	        PrintWriter pw = null;
 	        try{
-	            fichero1 = new FileWriter("persistencia/Respuestas/Respuesta_"+numEncuesta+"_"+Main.user.toLowerCase()+".txt");
+	        	fichero1 = new FileWriter("persistencia/Respuestas/Respuesta_"+numEncuesta+"_"+id+".txt");
 	            fichero1.write(s);
+	            
 
 	        } 
+
 	        catch (Exception e) {
 	            e.printStackTrace();
 	        } 

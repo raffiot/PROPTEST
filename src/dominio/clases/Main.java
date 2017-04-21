@@ -8,7 +8,7 @@ import dominio.controladores.drivers.*;
 public class Main {
 	private static Scanner texto;
 	private static Scanner opcion;
-	static String user;
+	
 	public static void main(String[] args) {
 		texto = new Scanner(System.in);
 		opcion = new Scanner(System.in);
@@ -17,8 +17,7 @@ public class Main {
 		String text = texto.nextLine();
 		int var;
 		if (text.equals("USU")){
-			System.out.println ("Por favor, introduc tu nombre de usuario:");
-			user = texto.nextLine();
+			
 			System.out.println("");
 			System.out.println ("Escribe la opcion que quieras elegir:");
 			System.out.println ("0.Salir");
