@@ -46,13 +46,12 @@ public class Resultado {
 	 * 
 	 * @return la string que describe resultado
 	 */
-	@Override
-	public String toString(){
+	public String toString(Analisis an){
 		String s ="";
 		s +="Resultado de la analisis de la encuesta "+ clusters.get(0).getCentroid().getEncuesta().getId()+ "\n";
 		for(Cluster c: clusters){
 			s+="----------------------------------------\n";
-			s+=c.toString();
+			s+=c.toString(an);
 			s+="\n";
 		}
 		return s;
