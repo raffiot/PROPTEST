@@ -20,7 +20,7 @@ public class driver_analizar {
     	int exist = 1;
     	Integer id = 1;
     	do{	
-    		String sFichero = "src/persistencia/Encuestas/Encuesta_"+id.toString()+".txt";
+    		String sFichero = "persistencia/Encuestas/Encuesta_"+id.toString()+".txt";
     		File fichero = new File(sFichero);
     		if (fichero.exists()){ 
     			System.out.println("Encuesta_"+id);
@@ -35,7 +35,7 @@ public class driver_analizar {
 		
 		List<RespuestaEncuesta> listRE = new ArrayList<>();
 		Integer index = 1;
-		String sFichero = "src/persistencia/Respuestas/Respuesta_"+numEncuesta+"_"+index+".txt";
+		String sFichero = "persistencia/Respuestas/Respuesta_"+numEncuesta+"_"+index+".txt";
 		File fichero = new File(sFichero);
 		
 		while(fichero.exists()){
@@ -44,7 +44,7 @@ public class driver_analizar {
 				listRE.add(re);
 				
 				index++;
-				sFichero = "src/persistencia/Respuestas/Respuesta_"+numEncuesta+"_"+index+".txt";
+				sFichero = "persistencia/Respuestas/Respuesta_"+numEncuesta+"_"+index+".txt";
 				fichero = new File(sFichero);
 		}
 		

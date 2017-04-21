@@ -206,7 +206,7 @@ public class Encuesta {
 	 * 		la id de la encuesta que se desea borrar
 	 */
 	public void borrar(int i){
-		File fichero = new File("src/persistencia/Encuestas/Encuesta_"+i+".txt");
+		File fichero = new File("persistencia/Encuestas/Encuesta_"+i+".txt");
 		fichero.delete();
 	}
 	
@@ -226,7 +226,7 @@ public class Encuesta {
 		FileWriter fichero = null;
 	        try
 	        {
-	            fichero = new FileWriter("src/persistencia/Encuestas/Encuesta_"+this.id+".txt");
+	            fichero = new FileWriter("persistencia/Encuestas/Encuesta_"+this.id+".txt");
 	           // pw = new PrintWriter(fichero);
 	            fichero.write(s);
 
@@ -254,7 +254,7 @@ public class Encuesta {
 	 */
 	public void leer(String s) {
 		try {
-			BufferedReader in = new BufferedReader(new FileReader("src/persistencia/Encuestas/Encuesta_"+s+".txt"));
+			BufferedReader in = new BufferedReader(new FileReader("persistencia/Encuestas/Encuesta_"+s+".txt"));
 			try {
 				this.id = Integer.valueOf(in.readLine());
 				this.genero = in.readLine();

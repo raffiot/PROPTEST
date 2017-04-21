@@ -35,7 +35,7 @@ public class driver_contestar {
         	int exist = 1;
         	Integer id = 1;
         	do{	
-        		String sFichero = "src/persistencia/Encuestas/Encuesta_"+id.toString()+".txt";
+        		String sFichero = "persistencia/Encuestas/Encuesta_"+id.toString()+".txt";
         		File fichero = new File(sFichero);
         		if (fichero.exists()){ 
         			System.out.println("Encuesta_"+id);
@@ -45,7 +45,7 @@ public class driver_contestar {
         	}while(exist != 0);
         	System.out.println("Escribe el numero de la encuesta que quieres responder");
         	numEnquesta = respuesta.nextInt();
-        	String sFichero = "src/persistencia/Encuestas/Encuesta_"+numEnquesta+".txt";
+        	String sFichero = "persistencia/Encuestas/Encuesta_"+numEnquesta+".txt";
     		File fichero = new File(sFichero);
     		trobat = fichero.exists();
     		if(!trobat) 
