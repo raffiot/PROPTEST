@@ -111,6 +111,7 @@ public class Cluster{
 				s+="\n";
 				s+="Usuario "+index+":\n";
 				s+="Distancia con el centroid: "+an.distanceRespEncuesta(centroid,re,an.getEncuesta(),an.getMapMinMax());
+				s+="\n";
 				s+=re.toString();
 				index++;
 			}
