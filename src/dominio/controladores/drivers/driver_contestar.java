@@ -31,13 +31,25 @@ public class driver_contestar {
         boolean trobat = false;
         Integer numEnquesta;
         do{
+        	System.out.println("Encuestas actuales:");
+        	int exist = 1;
+        	Integer id = 1;
+        	do{	
+        		String sFichero = "src/persistencia/Encuestas/Encuesta_"+id.toString()+".txt";
+        		File fichero = new File(sFichero);
+        		if (fichero.exists()){ 
+        			System.out.println("Encuesta_"+id);
+        			++id;
+        		}
+        		else exist = 0;
+        	}while(exist != 0);
         	System.out.println("Escribe el numero de la encuesta que quieres responder");
         	numEnquesta = respuesta.nextInt();
-        	String sFichero = "Encuestas/Encuesta_"+numEnquesta+".txt";
+        	String sFichero = "src/persistencia/Encuestas/Encuesta_"+numEnquesta+".txt";
     		File fichero = new File(sFichero);
     		trobat = fichero.exists();
     		if(!trobat) 
-    			System.out.println("no se ha trobat la encuesta");
+    			System.out.println("no se ha encontrado la encuesta");
         }while(!trobat);
         
         trobat = false;
@@ -121,6 +133,6 @@ public class driver_contestar {
 		}
 			
 		re.guardarRespuesta(rp,e.getId());
-
+		System.out.println("Encuesta finalizada. Gracias por particpar!");
 	}
 }
