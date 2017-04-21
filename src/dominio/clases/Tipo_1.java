@@ -3,9 +3,8 @@ package dominio.clases;
 /**
  * La classe Tipo_1 representa una pregunta que se responde con un sol valor numeric o qualitativa.
  * 
- * @author Marina
  * @author Miguel
- * @author Raphael							
+							
  */
 
 public class Tipo_1 extends Pregunta {

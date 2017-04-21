@@ -4,9 +4,7 @@ package dominio.clases;
  * La classe Tipo_3 representa una pregunta que se responde con 1 opcion qualitativa.
  * Las diferentes modalidades no son ordenadas.
  * 
- * @author Marina
- * @author Miguel
- * @author Raphael							
+* @author Miguel					
  */
 
 import java.util.ArrayList;

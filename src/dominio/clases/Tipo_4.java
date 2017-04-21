@@ -3,10 +3,7 @@ package dominio.clases;
 /**
  * La classe Tipo_4 representa una pregunta que se responde con 1 o mas opciones qualitativas.
  * Las differentes modalidades no son ordenadas.
- * 
- * @author Marina
- * @author Miguel
- * @author Raphael							
+ * @author Miguel						
  */
 
 import java.util.ArrayList;
