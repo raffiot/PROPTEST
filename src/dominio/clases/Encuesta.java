@@ -200,7 +200,7 @@ public class Encuesta {
 	}
 	
 	public void borrar(int i){
-		File fichero = new File("src/persistencia/Encuestas/Encuesta_"+this.id+".txt");
+		File fichero = new File("src/persistencia/Encuestas/Encuesta_"+i+".txt");
 		fichero.delete();
 	}
 	

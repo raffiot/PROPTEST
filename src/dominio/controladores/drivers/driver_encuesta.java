@@ -41,7 +41,7 @@ public class driver_encuesta {
         	int exist = 1;
         	Integer id = 1;
         	do{	
-        		String sFichero = "Encuestas/Encuesta_"+id.toString()+".txt";
+        		String sFichero = "src/persistencia/Encuestas/Encuesta_"+id.toString()+".txt";
         		File fichero = new File(sFichero);
         		if (fichero.exists()) ++id;
         		else exist = 0;
@@ -60,7 +60,7 @@ public class driver_encuesta {
         	int exist = 1;
         	Integer id = 1;
         	do{	
-        		String sFichero = "- Encuestas/Encuesta_"+id.toString()+".txt";
+        		String sFichero = "src/persistencia/Encuestas/Encuesta_"+id.toString()+".txt";
         		File fichero = new File(sFichero);
         		if (fichero.exists()){ 
         			System.out.println("Encuesta_"+id);
@@ -80,7 +80,7 @@ public class driver_encuesta {
         	int exist = 1;
         	Integer id = 1;
         	do{	
-        		String sFichero = "- Encuestas/Encuesta_"+id.toString()+".txt";
+        		String sFichero = "src/persistencia/Encuestas/Encuesta_"+id.toString()+".txt";
         		File fichero = new File(sFichero);
         		if (fichero.exists()){ 
         			System.out.println("Encuesta_"+id);
@@ -89,7 +89,8 @@ public class driver_encuesta {
         		else exist = 0;
         	}while(exist != 0);
         	System.out.println("Introduce el numero de encuesta que desea borrar");
-        	e.borrar(var = opcion.nextInt());
+        	int toDelete = opcion.nextInt();
+        	e.borrar(toDelete);
         }
         
        }while(borrado == 0);
