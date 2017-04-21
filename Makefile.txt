@@ -1,9 +1,9 @@
-JFLAGS = -g
-JC = javac
 .SUFFIXES: .java .class
 
-all: Main.class
+all:
 	javac src/dominio/clases/*.java src/dominio/controladores/drivers/*.java
 
 clean:
-	$(RM) *.class
+	rm src/dominio/clases/*.class src/dominio/controladores/drivers/*.class
+run:
+	java -cp src dominio.clases.Main
