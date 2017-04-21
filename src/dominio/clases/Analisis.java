@@ -27,7 +27,7 @@ public class Analisis {
 	private double threshold;
 	private Respuesta_Analisis respEncuestas;
 	private Encuesta encuesta;
-	private HashMap<Integer,MinMax> mapMinMax;
+	private Map<Integer,MinMax> mapMinMax;
 	
 	/**
 	 * Constructor de la classe Analisis.
@@ -156,9 +156,9 @@ public class Analisis {
 	 * @return
 	 * 		Una Map con el identificador y el objeto MinMax de cada pregunta de tipo 1.
 	 */
-	public HashMap<Integer,MinMax> minMax_Respuesta_1(Encuesta encuesta,List<Cluster> centroids,Respuesta_Analisis respEncuestas){
+	public Map<Integer,MinMax> minMax_Respuesta_1(Encuesta encuesta,List<Cluster> centroids,Respuesta_Analisis respEncuestas){
 		//MIN MAX FOR EACH TYPE 1 QUESTION
-		HashMap<Integer,MinMax> map = new HashMap<Integer,MinMax>();
+		Map<Integer,MinMax> map = new HashMap<Integer,MinMax>();
 		for(int i =0; i< encuesta.getN_preguntas(); i++){
 			MinMax minmax = new MinMax();
 			if(encuesta.getPreguntas().get(i).tipo == 1){
