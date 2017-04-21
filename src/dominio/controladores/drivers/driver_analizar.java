@@ -58,9 +58,9 @@ public class driver_analizar {
 		Integer k;
 		do{
 			test = false;
-			System.out.println ("Escribe el numero de cluster que quieres (la k)");
+			System.out.println ("Escribe el numero de cluster que quieres \n(la k, debe ser inferior o igual al numero de respuestas)");
 			k = opcion.nextInt();
-			if(k<=0){
+			if(k<=0 || k > listRE.size()){
 				System.out.println("Entrada invalida");
 				test =true;
 			}
