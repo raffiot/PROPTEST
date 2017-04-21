@@ -24,13 +24,18 @@ public class driver_encuesta {
         opcion = new Scanner(System.in);
         
         int var;
- 
-        System.out.println("1. Crear encuesta.");
-        System.out.println("2. Importar encuesta.");
-        
-        var = opcion.nextInt();
+        int borrado = 0;
         Integer id_p = 0;
         Encuesta e = new Encuesta(0);
+        
+       do{
+        System.out.println("1. Crear encuesta.");
+        System.out.println("2. Importar encuesta.");
+        System.out.println("3. Eliminar encuesta.");
+        
+        var = opcion.nextInt();
+        
+        
         
         if (var == 1){
         	int exist = 1;
@@ -47,14 +52,47 @@ public class driver_encuesta {
             e.setFecha(fecha.toString());
             System.out.println("Introduzaca genero de la encuesta");
             e.setGenero(texto.nextLine());
+            borrado = 1;
         }
         
         else if (var == 2){
+        	System.out.println("Encuestas actuales:");
+        	int exist = 1;
+        	Integer id = 1;
+        	do{	
+        		String sFichero = "- Encuestas/Encuesta_"+id.toString()+".txt";
+        		File fichero = new File(sFichero);
+        		if (fichero.exists()){ 
+        			System.out.println("Encuesta_"+id);
+        			++id;
+        		}
+        		else exist = 0;
+        	}while(exist != 0);
         	System.out.println("Introduce la id de la encuesta que quieres importar");
         	var = opcion.nextInt();
         	e.leer(String.valueOf(var));
+        	borrado = 1;
         	
         }
+        
+        else if(var == 3){
+        	System.out.println("Encuestas actuales:");
+        	int exist = 1;
+        	Integer id = 1;
+        	do{	
+        		String sFichero = "- Encuestas/Encuesta_"+id.toString()+".txt";
+        		File fichero = new File(sFichero);
+        		if (fichero.exists()){ 
+        			System.out.println("Encuesta_"+id);
+        			++id;
+        		}
+        		else exist = 0;
+        	}while(exist != 0);
+        	System.out.println("Introduce el numero de encuesta que desea borrar");
+        	e.borrar(var = opcion.nextInt());
+        }
+        
+       }while(borrado == 0);
             
         	do{
     	    

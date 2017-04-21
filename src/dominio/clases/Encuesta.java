@@ -7,6 +7,7 @@ package dominio.clases;
  */
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -196,6 +197,11 @@ public class Encuesta {
 			s += preguntas.get(i).toString();
 			}
 		return s;
+	}
+	
+	public void borrar(int i){
+		File fichero = new File("src/persistencia/Encuestas/Encuesta_"+this.id+".txt");
+		fichero.delete();
 	}
 	
 	/**
