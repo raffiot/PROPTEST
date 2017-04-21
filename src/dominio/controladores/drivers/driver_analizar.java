@@ -50,14 +50,15 @@ public class driver_analizar {
 		
 		Respuesta_Analisis ra = new Respuesta_Analisis(listRE);
 		
-		System.out.println ("Escribe el numero de la analisis");
-		Integer idAnalisis = opcion.nextInt();
+		//System.out.println ("Escribe el numero de la analisis");
+		//Integer idAnalisis = opcion.nextInt();
+		Integer idAnalisis = 0;
 		
 		boolean test = false;
 		Integer k;
 		do{
 			test = false;
-			System.out.println ("Escribe el numero cluster que quieres (la k)");
+			System.out.println ("Escribe el numero de cluster que quieres (la k)");
 			k = opcion.nextInt();
 			if(k<=0){
 				System.out.println("Entrada invalida");
