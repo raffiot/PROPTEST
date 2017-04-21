@@ -7,9 +7,9 @@ package dominio.clases;
  */
 
 public abstract class  Pregunta {
-	Integer id;
-	String enunciado;
-	Integer tipo;
+	public Integer id;
+	public String enunciado;
+	public Integer tipo;
 	
 	/**
 	 * Constructor vacio de una pregunta

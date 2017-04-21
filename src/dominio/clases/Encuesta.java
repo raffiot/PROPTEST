@@ -242,8 +242,6 @@ public class Encuesta {
 	              e2.printStackTrace();
 	           }
 	        }
-		
-		
 	}
 	
 	/**
