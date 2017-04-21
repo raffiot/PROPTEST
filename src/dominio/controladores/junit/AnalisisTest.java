@@ -114,7 +114,7 @@ public class AnalisisTest {
 	@Test
 	public void createClusterTest(){
 		Analisis an = createAnalisis();		
-		List<Cluster> list = an.createCluster(2);
+		List<Cluster> list = an.createCluster(2,an.getRespEncuestas());
 		assertNotNull(list.get(0));
 		assertNotNull(list.get(1));
 		Pregunta p1 = list.get(0).getCentroid().getEncuesta().getPreguntas().get(0);
@@ -152,7 +152,7 @@ public class AnalisisTest {
 	@Test
 	public void minMax_Respuesta_1Test(){
 		Analisis an = createAnalisis();
-		List<Cluster> list = an.createCluster(2);
+		List<Cluster> list = an.createCluster(2,an.getRespEncuestas());
 		HashMap<Integer,MinMax> m = an.minMax_Respuesta_1(an.getEncuesta(),list,an.getRespEncuestas());
 		double value11 = an.getRespEncuestas().getListRP().get(0).getRespPreguntas().get(0).getValueR1();
 		double value21 = an.getRespEncuestas().getListRP().get(1).getRespPreguntas().get(0).getValueR1();
@@ -195,7 +195,7 @@ public class AnalisisTest {
 	@Test
 	public void assignacioRespuestaEncuestaTest(){
 		Analisis an = createAnalisis();
-		List<Cluster> list = an.createCluster(2);
+		List<Cluster> list = an.createCluster(2,an.getRespEncuestas());
 		HashMap<Integer,MinMax> m = an.minMax_Respuesta_1(an.getEncuesta(),list,an.getRespEncuestas());
 		an.assignacioRespuestaEncuesta(an.getEncuesta(), m, an.getRespEncuestas(), list);
 		
@@ -263,7 +263,7 @@ public class AnalisisTest {
 		Respuesta_Analisis tipo_1RA = new Respuesta_Analisis(listRE);
 		
 		Analisis tipo_1A = new Analisis(0, 1, 1, tipo_1RA,tipo_1E);
-		List<Cluster> tipo_1C = tipo_1A.createCluster(1);
+		List<Cluster> tipo_1C = tipo_1A.createCluster(1,tipo_1A.getRespEncuestas());
 		
 		double generatedValue = tipo_1C.get(0).getCentroid().getRespPreguntas().get(0).getValueR1();
 		assertTrue("Method createCluster failled",generatedValue <= 20 && generatedValue >= 0);
@@ -273,7 +273,7 @@ public class AnalisisTest {
 		String funcWord;
 		funcWord ="";
 		try {
-			funcWord = tipo_1A.funcionnalString("empty.eng");
+			funcWord = tipo_1A.funcionnalString("empty.sp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -316,7 +316,7 @@ public class AnalisisTest {
 		Respuesta_Analisis tipo_1RA = new Respuesta_Analisis(listRE);
 		
 		Analisis tipo_1A = new Analisis(0, 1, 1, tipo_1RA,tipo_1E);
-		List<Cluster> tipo_1C = tipo_1A.createCluster(1);
+		List<Cluster> tipo_1C = tipo_1A.createCluster(1,tipo_1A.getRespEncuestas());
 		
 		double generatedValue = tipo_1C.get(0).getCentroid().getRespPreguntas().get(0).getValueR1();
 		assertTrue("Method createCluster failled",generatedValue <= 20 && generatedValue >= 0);
@@ -326,7 +326,7 @@ public class AnalisisTest {
 		String funcWord;
 		funcWord ="";
 		try {
-			funcWord = tipo_1A.funcionnalString("empty.eng");
+			funcWord = tipo_1A.funcionnalString("empty.sp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -369,7 +369,7 @@ public class AnalisisTest {
 		Respuesta_Analisis tipo_2RA = new Respuesta_Analisis(listRE);
 		
 		Analisis tipo_2A = new Analisis(0, 1, 1, tipo_2RA,tipo_2E);
-		List<Cluster> tipo_2C = tipo_2A.createCluster(1);
+		List<Cluster> tipo_2C = tipo_2A.createCluster(1,tipo_2A.getRespEncuestas());
 		
 		double generatedValue = tipo_2C.get(0).getCentroid().getRespPreguntas().get(0).getValueR2();
 		assertTrue("Method createCluster failled",generatedValue <= 4 && generatedValue >= 0);
@@ -379,7 +379,7 @@ public class AnalisisTest {
 		String funcWord;
 		funcWord ="";
 		try {
-			funcWord = tipo_2A.funcionnalString("empty.eng");
+			funcWord = tipo_2A.funcionnalString("empty.sp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -430,14 +430,14 @@ public class AnalisisTest {
 		Respuesta_Analisis tipo_2RA = new Respuesta_Analisis(listRE);
 		
 		Analisis tipo_2A = new Analisis(0, 1, 1, tipo_2RA,tipo_2E);
-		List<Cluster> tipo_2C = tipo_2A.createCluster(1);
+		List<Cluster> tipo_2C = tipo_2A.createCluster(1,tipo_2A.getRespEncuestas());
 		
 		HashMap<Integer,MinMax> tipo_2M = tipo_2A.minMax_Respuesta_1(tipo_2E,tipo_2C,tipo_2RA);
 		tipo_2A.assignacioRespuestaEncuesta(tipo_2E, tipo_2M, tipo_2RA, tipo_2C);
 		String funcWord;
 		funcWord ="";
 		try {
-			funcWord = tipo_2A.funcionnalString("empty.eng");
+			funcWord = tipo_2A.funcionnalString("empty.sp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -480,7 +480,7 @@ public class AnalisisTest {
 		Respuesta_Analisis tipo_3RA = new Respuesta_Analisis(listRE);
 		
 		Analisis tipo_3A = new Analisis(0, 1, 1, tipo_3RA, tipo_3E);
-		List<Cluster> tipo_3C = tipo_3A.createCluster(1);
+		List<Cluster> tipo_3C = tipo_3A.createCluster(1,tipo_3A.getRespEncuestas());
 		
 		String generatedValue = tipo_3C.get(0).getCentroid().getRespPreguntas().get(0).getValueR3();
 		assertTrue("Method createCluster failled",lista_opciones.contains(generatedValue));
@@ -490,7 +490,7 @@ public class AnalisisTest {
 		String funcWord;
 		funcWord ="";
 		try {
-			funcWord = tipo_3A.funcionnalString("empty.eng");
+			funcWord = tipo_3A.funcionnalString("empty.sp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -546,14 +546,14 @@ public class AnalisisTest {
 		Respuesta_Analisis tipo_3RA = new Respuesta_Analisis(listRE);
 		
 		Analisis tipo_3A = new Analisis(0, 1, 1, tipo_3RA,tipo_3E);
-		List<Cluster> tipo_3C = tipo_3A.createCluster(1);
+		List<Cluster> tipo_3C = tipo_3A.createCluster(1,tipo_3A.getRespEncuestas());
 		
 		HashMap<Integer,MinMax> tipo_3M = tipo_3A.minMax_Respuesta_1(tipo_3E,tipo_3C,tipo_3RA);
 		tipo_3A.assignacioRespuestaEncuesta(tipo_3E, tipo_3M, tipo_3RA, tipo_3C);
 		String funcWord;
 		funcWord ="";
 		try {
-			funcWord = tipo_3A.funcionnalString("empty.eng");
+			funcWord = tipo_3A.funcionnalString("empty.sp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -599,7 +599,7 @@ public class AnalisisTest {
 		Respuesta_Analisis tipo_4RA = new Respuesta_Analisis(listRE);
 		
 		Analisis tipo_4A = new Analisis(0, 1, 1, tipo_4RA,tipo_4E);
-		List<Cluster> tipo_4C = tipo_4A.createCluster(1);
+		List<Cluster> tipo_4C = tipo_4A.createCluster(1,tipo_4A.getRespEncuestas());
 		
 		Set<String> generatedValue = tipo_4C.get(0).getCentroid().getRespPreguntas().get(0).getValueR4();
 		assertTrue("Method createCluster failled",lista_opciones.containsAll(generatedValue));
@@ -609,7 +609,7 @@ public class AnalisisTest {
 		
 		String funcWord ="";
 		try {
-			funcWord = tipo_4A.funcionnalString("empty.eng");
+			funcWord = tipo_4A.funcionnalString("empty.sp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -674,14 +674,14 @@ public class AnalisisTest {
 		Respuesta_Analisis tipo_4RA = new Respuesta_Analisis(listRE);
 		
 		Analisis tipo_4A = new Analisis(0, 1, 1, tipo_4RA,tipo_4E);
-		List<Cluster> tipo_4C = tipo_4A.createCluster(1);
+		List<Cluster> tipo_4C = tipo_4A.createCluster(1,tipo_4A.getRespEncuestas());
 		
 		HashMap<Integer,MinMax> tipo_4M = tipo_4A.minMax_Respuesta_1(tipo_4E,tipo_4C,tipo_4RA);
 		tipo_4A.assignacioRespuestaEncuesta(tipo_4E, tipo_4M, tipo_4RA, tipo_4C);
 		
 		String funcWord ="";
 		try {
-			funcWord = tipo_4A.funcionnalString("empty.eng");
+			funcWord = tipo_4A.funcionnalString("empty.sp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -708,7 +708,7 @@ public class AnalisisTest {
 		listP.add(tipo_5P);
 		Encuesta tipo_5E = new Encuesta(0,1,null,null,listP);
 		
-		RespuestaPregunta tipo_5R = new Respuesta_5(tipo_5P,"I love cookies");
+		RespuestaPregunta tipo_5R = new Respuesta_5(tipo_5P,"Me gusta cookies");
 		ArrayList<RespuestaPregunta> listR = new ArrayList<>();
 		listR.add(tipo_5R);
 		RespuestaEncuesta tipo_5RE = new RespuestaEncuesta(tipo_5E,listR);
@@ -718,14 +718,14 @@ public class AnalisisTest {
 		Respuesta_Analisis tipo_5RA = new Respuesta_Analisis(listRE);
 		
 		Analisis tipo_5A = new Analisis(0, 1, 1, tipo_5RA,tipo_5E);
-		List<Cluster> tipo_5C = tipo_5A.createCluster(1);
+		List<Cluster> tipo_5C = tipo_5A.createCluster(1,tipo_5A.getRespEncuestas());
 		
 		HashMap<Integer,MinMax> tipo_5M = tipo_5A.minMax_Respuesta_1(tipo_5E,tipo_5C,tipo_5RA);
 		tipo_5A.assignacioRespuestaEncuesta(tipo_5E, tipo_5M, tipo_5RA, tipo_5C);
 		
 		String funcWord ="";
 		try {
-			funcWord = tipo_5A.funcionnalString("empty.eng");
+			funcWord = tipo_5A.funcionnalString("empty.sp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -733,7 +733,7 @@ public class AnalisisTest {
 		tipo_5A.recomputeCentroids(tipo_5C, tipo_5E, funcWord);
 		String recomputedValue = tipo_5C.get(0).getCentroid().getRespPreguntas().get(0).getValueR5();
 		
-		assertTrue("recomputeCentroids failled on type 5 question",recomputedValue.contains("love") && recomputedValue.contains("cookies"));
+		assertTrue("recomputeCentroids failled on type 5 question",recomputedValue.contains("gusta") && recomputedValue.contains("cookies"));
 	}
 	
 	/**
@@ -751,19 +751,19 @@ public class AnalisisTest {
 		Encuesta tipo_5E = new Encuesta(0,1,null,null,listP);
 		
 		//respuesta1
-		RespuestaPregunta tipo_5R1 = new Respuesta_5(tipo_5P,"I love cookies");
+		RespuestaPregunta tipo_5R1 = new Respuesta_5(tipo_5P,"Me gusta cookies");
 		ArrayList<RespuestaPregunta> listR1 = new ArrayList<>();
 		listR1.add(tipo_5R1);
 		RespuestaEncuesta tipo_5RE1 = new RespuestaEncuesta(tipo_5E,listR1);
 		
 		//respuesta2
-		RespuestaPregunta tipo_5R2 = new Respuesta_5(tipo_5P,"I dislike cookies");
+		RespuestaPregunta tipo_5R2 = new Respuesta_5(tipo_5P,"No me gusta cookies");
 		ArrayList<RespuestaPregunta> listR2 = new ArrayList<>();
 		listR2.add(tipo_5R2);
 		RespuestaEncuesta tipo_5RE2 = new RespuestaEncuesta(tipo_5E,listR2);
 		
 		//respuesta3
-		RespuestaPregunta tipo_5R3 = new Respuesta_5(tipo_5P,"I dislike milk");
+		RespuestaPregunta tipo_5R3 = new Respuesta_5(tipo_5P,"No me milk");
 		ArrayList<RespuestaPregunta> listR3 = new ArrayList<>();
 		listR3.add(tipo_5R3);
 		RespuestaEncuesta tipo_5RE3 = new RespuestaEncuesta(tipo_5E,listR3);
@@ -775,21 +775,21 @@ public class AnalisisTest {
 		Respuesta_Analisis tipo_5RA = new Respuesta_Analisis(listRE);
 		
 		Analisis tipo_5A = new Analisis(0, 1, 1, tipo_5RA,tipo_5E);
-		List<Cluster> tipo_5C = tipo_5A.createCluster(1);
+		List<Cluster> tipo_5C = tipo_5A.createCluster(1,tipo_5A.getRespEncuestas());
 		
 		HashMap<Integer,MinMax> tipo_5M = tipo_5A.minMax_Respuesta_1(tipo_5E,tipo_5C,tipo_5RA);
 		tipo_5A.assignacioRespuestaEncuesta(tipo_5E, tipo_5M, tipo_5RA, tipo_5C);
 		
 		String funcWord ="";
 		try {
-			funcWord = tipo_5A.funcionnalString("empty.eng");
+			funcWord = tipo_5A.funcionnalString("empty.sp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		tipo_5A.recomputeCentroids(tipo_5C, tipo_5E, funcWord);
 		String recomputedValue = tipo_5C.get(0).getCentroid().getRespPreguntas().get(0).getValueR5();
-		
-		assertTrue("recomputeCentroids failled on type 5 question",recomputedValue.contains("cookies") && recomputedValue.contains("dislike"));
+		System.out.println(recomputedValue);
+		assertTrue("recomputeCentroids failled on type 5 question",recomputedValue.contains("cookies") && recomputedValue.contains("gusta"));
 	}
 }

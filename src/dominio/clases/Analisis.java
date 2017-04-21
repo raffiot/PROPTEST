@@ -74,11 +74,11 @@ public class Analisis {
 	public Resultado k_means() throws IOException{
 		
 		
-		String funcWord = funcionnalString("empty.sp");
+		String funcWord = funcionnalString("../empty.sp");
 
 		
 		//CREATION OF SEEDS
-		List<Cluster> centroids = createCluster(k);
+		List<Cluster> centroids = createCluster(k,respEncuestas);
 		
 		
 		
@@ -124,18 +124,22 @@ public class Analisis {
 	 * @return
 	 * 		la lista de Cluster creado
 	 */
-	public List<Cluster> createCluster(int k){
+	public List<Cluster> createCluster(int k,Respuesta_Analisis respEncuestas){
 		List<Cluster> centroids = new ArrayList<Cluster>();
 		RespuestaEncuesta seed;
+		/*
 		for(int i = 0; i < k; i++){
 			List<RespuestaPregunta> listRP = new ArrayList<RespuestaPregunta>();
 			for(int j = 0; j < encuesta.getN_preguntas() ; j++){
 				RespuestaPregunta rp = encuesta.getPreguntas().get(j).generateAnswer();
 				listRP.add(rp);
 			}
-			seed = new RespuestaEncuesta(encuesta,listRP);
+			*/
+		for(int i = 0; i < k; i++){
+			seed = respEncuestas.getListRP().get(i).clone();
 			centroids.add(new Cluster(i,seed));
 		}
+			
 		return centroids;
 	}
 	
