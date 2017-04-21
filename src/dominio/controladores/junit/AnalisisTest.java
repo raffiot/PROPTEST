@@ -3,11 +3,13 @@ package dominio.controladores.junit;
 import dominio.clases.*;
 import static org.junit.Assert.*;
 import dominio.clases.Analisis.MinMax;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.junit.Test;
@@ -153,7 +155,7 @@ public class AnalisisTest {
 	public void minMax_Respuesta_1Test(){
 		Analisis an = createAnalisis();
 		List<Cluster> list = an.createCluster(2,an.getRespEncuestas());
-		HashMap<Integer,MinMax> m = an.minMax_Respuesta_1(an.getEncuesta(),list,an.getRespEncuestas());
+		Map<Integer,MinMax> m = an.minMax_Respuesta_1(an.getEncuesta(),list,an.getRespEncuestas());
 		double value11 = an.getRespEncuestas().getListRP().get(0).getRespPreguntas().get(0).getValueR1();
 		double value21 = an.getRespEncuestas().getListRP().get(1).getRespPreguntas().get(0).getValueR1();
 		double value31 = an.getRespEncuestas().getListRP().get(2).getRespPreguntas().get(0).getValueR1();
@@ -196,7 +198,7 @@ public class AnalisisTest {
 	public void assignacioRespuestaEncuestaTest(){
 		Analisis an = createAnalisis();
 		List<Cluster> list = an.createCluster(2,an.getRespEncuestas());
-		HashMap<Integer,MinMax> m = an.minMax_Respuesta_1(an.getEncuesta(),list,an.getRespEncuestas());
+		Map<Integer,MinMax> m = an.minMax_Respuesta_1(an.getEncuesta(),list,an.getRespEncuestas());
 		an.assignacioRespuestaEncuesta(an.getEncuesta(), m, an.getRespEncuestas(), list);
 		
 		RespuestaEncuesta re1 = an.getRespEncuestas().getListRP().get(0);	
@@ -268,7 +270,7 @@ public class AnalisisTest {
 		double generatedValue = tipo_1C.get(0).getCentroid().getRespPreguntas().get(0).getValueR1();
 		assertTrue("Method createCluster failled",generatedValue <= 20 && generatedValue >= 0);
 		
-		HashMap<Integer,MinMax> tipo_1M = tipo_1A.minMax_Respuesta_1(tipo_1E,tipo_1C,tipo_1RA);
+		Map<Integer,MinMax> tipo_1M = tipo_1A.minMax_Respuesta_1(tipo_1E,tipo_1C,tipo_1RA);
 		tipo_1A.assignacioRespuestaEncuesta(tipo_1E, tipo_1M, tipo_1RA, tipo_1C);
 		String funcWord;
 		funcWord ="";
@@ -321,7 +323,7 @@ public class AnalisisTest {
 		double generatedValue = tipo_1C.get(0).getCentroid().getRespPreguntas().get(0).getValueR1();
 		assertTrue("Method createCluster failled",generatedValue <= 20 && generatedValue >= 0);
 		
-		HashMap<Integer,MinMax> tipo_1M = tipo_1A.minMax_Respuesta_1(tipo_1E,tipo_1C,tipo_1RA);
+		Map<Integer,MinMax> tipo_1M = tipo_1A.minMax_Respuesta_1(tipo_1E,tipo_1C,tipo_1RA);
 		tipo_1A.assignacioRespuestaEncuesta(tipo_1E, tipo_1M, tipo_1RA, tipo_1C);
 		String funcWord;
 		funcWord ="";
@@ -374,7 +376,7 @@ public class AnalisisTest {
 		double generatedValue = tipo_2C.get(0).getCentroid().getRespPreguntas().get(0).getValueR2();
 		assertTrue("Method createCluster failled",generatedValue <= 4 && generatedValue >= 0);
 		
-		HashMap<Integer,MinMax> tipo_2M = tipo_2A.minMax_Respuesta_1(tipo_2E,tipo_2C,tipo_2RA);
+		Map<Integer,MinMax> tipo_2M = tipo_2A.minMax_Respuesta_1(tipo_2E,tipo_2C,tipo_2RA);
 		tipo_2A.assignacioRespuestaEncuesta(tipo_2E, tipo_2M, tipo_2RA, tipo_2C);
 		String funcWord;
 		funcWord ="";
@@ -432,7 +434,7 @@ public class AnalisisTest {
 		Analisis tipo_2A = new Analisis(0, 1, 1, tipo_2RA,tipo_2E);
 		List<Cluster> tipo_2C = tipo_2A.createCluster(1,tipo_2A.getRespEncuestas());
 		
-		HashMap<Integer,MinMax> tipo_2M = tipo_2A.minMax_Respuesta_1(tipo_2E,tipo_2C,tipo_2RA);
+		Map<Integer,MinMax> tipo_2M = tipo_2A.minMax_Respuesta_1(tipo_2E,tipo_2C,tipo_2RA);
 		tipo_2A.assignacioRespuestaEncuesta(tipo_2E, tipo_2M, tipo_2RA, tipo_2C);
 		String funcWord;
 		funcWord ="";
@@ -485,7 +487,7 @@ public class AnalisisTest {
 		String generatedValue = tipo_3C.get(0).getCentroid().getRespPreguntas().get(0).getValueR3();
 		assertTrue("Method createCluster failled",lista_opciones.contains(generatedValue));
 		
-		HashMap<Integer,MinMax> tipo_3M = tipo_3A.minMax_Respuesta_1(tipo_3E,tipo_3C,tipo_3RA);
+		Map<Integer,MinMax> tipo_3M = tipo_3A.minMax_Respuesta_1(tipo_3E,tipo_3C,tipo_3RA);
 		tipo_3A.assignacioRespuestaEncuesta(tipo_3E, tipo_3M, tipo_3RA, tipo_3C);
 		String funcWord;
 		funcWord ="";
@@ -548,7 +550,7 @@ public class AnalisisTest {
 		Analisis tipo_3A = new Analisis(0, 1, 1, tipo_3RA,tipo_3E);
 		List<Cluster> tipo_3C = tipo_3A.createCluster(1,tipo_3A.getRespEncuestas());
 		
-		HashMap<Integer,MinMax> tipo_3M = tipo_3A.minMax_Respuesta_1(tipo_3E,tipo_3C,tipo_3RA);
+		Map<Integer,MinMax> tipo_3M = tipo_3A.minMax_Respuesta_1(tipo_3E,tipo_3C,tipo_3RA);
 		tipo_3A.assignacioRespuestaEncuesta(tipo_3E, tipo_3M, tipo_3RA, tipo_3C);
 		String funcWord;
 		funcWord ="";
@@ -604,7 +606,7 @@ public class AnalisisTest {
 		Set<String> generatedValue = tipo_4C.get(0).getCentroid().getRespPreguntas().get(0).getValueR4();
 		assertTrue("Method createCluster failled",lista_opciones.containsAll(generatedValue));
 		
-		HashMap<Integer,MinMax> tipo_4M = tipo_4A.minMax_Respuesta_1(tipo_4E,tipo_4C,tipo_4RA);
+		Map<Integer,MinMax> tipo_4M = tipo_4A.minMax_Respuesta_1(tipo_4E,tipo_4C,tipo_4RA);
 		tipo_4A.assignacioRespuestaEncuesta(tipo_4E, tipo_4M, tipo_4RA, tipo_4C);
 		
 		String funcWord ="";
@@ -676,7 +678,7 @@ public class AnalisisTest {
 		Analisis tipo_4A = new Analisis(0, 1, 1, tipo_4RA,tipo_4E);
 		List<Cluster> tipo_4C = tipo_4A.createCluster(1,tipo_4A.getRespEncuestas());
 		
-		HashMap<Integer,MinMax> tipo_4M = tipo_4A.minMax_Respuesta_1(tipo_4E,tipo_4C,tipo_4RA);
+		Map<Integer,MinMax> tipo_4M = tipo_4A.minMax_Respuesta_1(tipo_4E,tipo_4C,tipo_4RA);
 		tipo_4A.assignacioRespuestaEncuesta(tipo_4E, tipo_4M, tipo_4RA, tipo_4C);
 		
 		String funcWord ="";
@@ -720,7 +722,7 @@ public class AnalisisTest {
 		Analisis tipo_5A = new Analisis(0, 1, 1, tipo_5RA,tipo_5E);
 		List<Cluster> tipo_5C = tipo_5A.createCluster(1,tipo_5A.getRespEncuestas());
 		
-		HashMap<Integer,MinMax> tipo_5M = tipo_5A.minMax_Respuesta_1(tipo_5E,tipo_5C,tipo_5RA);
+		Map<Integer,MinMax> tipo_5M = tipo_5A.minMax_Respuesta_1(tipo_5E,tipo_5C,tipo_5RA);
 		tipo_5A.assignacioRespuestaEncuesta(tipo_5E, tipo_5M, tipo_5RA, tipo_5C);
 		
 		String funcWord ="";
@@ -777,7 +779,7 @@ public class AnalisisTest {
 		Analisis tipo_5A = new Analisis(0, 1, 1, tipo_5RA,tipo_5E);
 		List<Cluster> tipo_5C = tipo_5A.createCluster(1,tipo_5A.getRespEncuestas());
 		
-		HashMap<Integer,MinMax> tipo_5M = tipo_5A.minMax_Respuesta_1(tipo_5E,tipo_5C,tipo_5RA);
+		Map<Integer,MinMax> tipo_5M = tipo_5A.minMax_Respuesta_1(tipo_5E,tipo_5C,tipo_5RA);
 		tipo_5A.assignacioRespuestaEncuesta(tipo_5E, tipo_5M, tipo_5RA, tipo_5C);
 		
 		String funcWord ="";
