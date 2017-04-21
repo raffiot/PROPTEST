@@ -23,7 +23,9 @@ public class driver_analizar {
     		String sFichero = "persistencia/Encuestas/Encuesta_"+id.toString()+".txt";
     		File fichero = new File(sFichero);
     		if (fichero.exists()){ 
-    			System.out.println("Encuesta_"+id);
+    			Encuesta en = new Encuesta(id);
+    			en.leer(id.toString());
+    			System.out.println("Encuesta_"+id+ " Genero = "+en.getGenero());
     			++id;
     		}
     		else exist = 0;

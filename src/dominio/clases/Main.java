@@ -4,24 +4,29 @@ import java.util.Scanner;
 
 import dominio.controladores.drivers.*;
 
+
 public class Main {
 	private static Scanner texto;
 	private static Scanner opcion;
+	static String user;
 	public static void main(String[] args) {
 		texto = new Scanner(System.in);
 		opcion = new Scanner(System.in);
 		System.out.println("Escribe USU si eres usuario o ADMIN si eres administrador");
-
+		
 		String text = texto.nextLine();
-
+		int var;
 		if (text.equals("USU")){
+			System.out.println ("Por favor, introduc tu nombre de usuario:");
+			user = texto.nextLine();
+			System.out.println("");
 			System.out.println ("Escribe la opcion que quieras elegir:");
 			System.out.println ("0.Salir");
 			System.out.println ("1.Contestar encuesta");
 			do{	
 			
 
-				int var = opcion.nextInt();
+				var = opcion.nextInt();
 				switch (var){
 					case 0:
 						System.out.println ("Has salido de tu sesion");
@@ -36,7 +41,7 @@ public class Main {
 				System.out.println ("0.Salir");
 				System.out.println ("1.Contestar encuesta");
 			
-			}while(opcion.nextInt() != 0);
+			}while(var != 0);
 		}
 
 		else if (text.equals("ADMIN")){
@@ -48,7 +53,7 @@ public class Main {
 			do{
 				
 
-				int var = opcion.nextInt();
+				var = opcion.nextInt();
 
 				switch(var){
 					case 0:
@@ -72,7 +77,7 @@ public class Main {
 				System.out.println ("0.Salir");
 				System.out.println ("1.Gestionar encuesta");
 				System.out.println ("2.Analizar encuestas");
-			}while(opcion.nextInt() != 0);
+			}while(var != 0);
 		}
 		else{
 

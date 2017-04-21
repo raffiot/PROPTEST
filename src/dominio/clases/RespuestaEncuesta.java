@@ -119,13 +119,11 @@ public class RespuestaEncuesta {
 		int exist = 1;
     	Integer id = 1;
     	
-    	do{	
-    		String sFichero = "persistencia/Respuestas/Respuesta_"+numEncuesta+"_"+id+".txt";
+    	
+    		String sFichero = "persistencia/Respuestas/Respuesta_"+numEncuesta+"_"+Main.user+".txt";
     		File fichero = new File(sFichero);
-    		if (fichero.exists()) ++id;
-    		else exist = 0;
-    	}
-    	while(exist != 0);
+    		//if (fichero.exists()) ++id;
+    	
 		
     	/*plenem el document*/
     	String s = "";
@@ -155,11 +153,11 @@ public class RespuestaEncuesta {
 			}
 		}
 		
-		FileWriter fichero = null;
+			FileWriter fichero1 = null;
 	        PrintWriter pw = null;
 	        try{
-	            fichero = new FileWriter("persistencia/Respuestas/Respuesta_"+numEncuesta+"_"+id+".txt");
-	            fichero.write(s);
+	            fichero1 = new FileWriter("persistencia/Respuestas/Respuesta_"+numEncuesta+"_"+Main.user.toLowerCase()+".txt");
+	            fichero1.write(s);
 
 	        } 
 	        catch (Exception e) {
@@ -167,8 +165,8 @@ public class RespuestaEncuesta {
 	        } 
 	        finally {
 	           try {
-	           if (null != fichero)
-	              fichero.close();
+	           if (null != fichero1)
+	              fichero1.close();
 	           } catch (Exception e2) {
 	              e2.printStackTrace();
 	           }
