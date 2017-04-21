@@ -47,7 +47,6 @@ public class Respuesta_1 extends RespuestaPregunta{
 	@Override
 	public String toString(){
 		String s = "";
-		s += this.getPregunta().getEnunciado()+"\n";
 		s += this.getValueR1()+"\n";
 		return s;
 	}

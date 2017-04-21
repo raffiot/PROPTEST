@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Predicate;
 public class Analisis {
 	
 	
@@ -73,7 +74,7 @@ public class Analisis {
 	public Resultado k_means() throws IOException{
 		
 		
-		String funcWord = funcionnalString("empty.cat");
+		String funcWord = funcionnalString("empty.sp");
 
 		
 		//CREATION OF SEEDS
@@ -264,7 +265,15 @@ public class Analisis {
 					case 5 :
 						String respString = cluster.getUsuarios().get(j).getRespPreguntas().get(i).getValueR5();
 						Set<String> set2 = new HashSet<String>(Arrays.asList(respString.split(" ")));
-						set2.removeIf(word -> funcWord.contains(word));
+						set2.removeIf(new Predicate<String>() {
+
+							@Override
+							public boolean test(String t) {
+								return funcWord.contains(t);
+							}
+							
+						});
+
 						for(String word : set2){
 							int value3 = mediana5.getOrDefault(word, 0);
 							mediana5.put(word, value3+1);

@@ -59,7 +59,6 @@ public class Respuesta_5 extends RespuestaPregunta{
 	
 	public String toString() {
 		String s = "";
-		s += this.getPregunta().getEnunciado()+"\n";
 		s += this.getValueR5()+"\n";
 		return s;
 	}

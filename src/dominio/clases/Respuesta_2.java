@@ -40,7 +40,6 @@ public class Respuesta_2 extends RespuestaPregunta{
 	}
 	public String toString() {
 		String s = "";
-		s += this.getPregunta().getEnunciado()+"\n";
 		s += ((Tipo_2)this.getPregunta()).getLista_opciones().get(this.getValueR2())+"\n";
 		return s;
 	}

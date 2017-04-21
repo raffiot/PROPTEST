@@ -51,6 +51,7 @@ public class Resultado {
 		String s ="";
 		s +="Resultado de la analisis de la encuesta "+ clusters.get(0).getCentroid().getEncuesta().getId()+ "\n";
 		for(Cluster c: clusters){
+			s+="----------------------------------------\n";
 			s+=c.toString();
 			s+="\n";
 		}
