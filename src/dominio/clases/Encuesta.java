@@ -208,6 +208,8 @@ public class Encuesta {
 	public void borrar(int i){
 		File fichero = new File("persistencia/Encuestas/Encuesta_"+i+".txt");
 		fichero.delete();
+		//habria que borrar todas las respuestas de la encuesta borrada para no
+		//generar conflictos...
 	}
 	
 	/**
