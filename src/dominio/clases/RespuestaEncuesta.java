@@ -120,7 +120,7 @@ public class RespuestaEncuesta {
     	Integer id = 1;
     	
     	do{	
-    		String sFichero = "src/persistencia/Respuestas/Respuesta_"+numEncuesta+"_"+id+".txt";
+    		String sFichero = "persistencia/Respuestas/Respuesta_"+numEncuesta+"_"+id+".txt";
     		File fichero = new File(sFichero);
     		if (fichero.exists()) ++id;
     		else exist = 0;
@@ -158,7 +158,7 @@ public class RespuestaEncuesta {
 		FileWriter fichero = null;
 	        PrintWriter pw = null;
 	        try{
-	            fichero = new FileWriter("src/persistencia/Respuestas/Respuesta_"+numEncuesta+"_"+id+".txt");
+	            fichero = new FileWriter("persistencia/Respuestas/Respuesta_"+numEncuesta+"_"+id+".txt");
 	            fichero.write(s);
 
 	        } 
@@ -184,7 +184,7 @@ public class RespuestaEncuesta {
 	 */
 	public void leer(String s,String s2) {
 		try {
-			BufferedReader in = new BufferedReader(new FileReader("src/persistencia/Respuestas/Respuesta_"+s+"_"+s2+".txt"));
+			BufferedReader in = new BufferedReader(new FileReader("persistencia/Respuestas/Respuesta_"+s+"_"+s2+".txt"));
 			try {
 				Encuesta e = new Encuesta(1);
 				e.leer(s);
