@@ -239,7 +239,7 @@ public class RespuestaEncuesta {
 					        }
 					 }
 				}
-				
+				this.encuesta = e;
 				in.close();
 				
 			} catch (NumberFormatException | IOException e) {
