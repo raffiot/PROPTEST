@@ -27,6 +27,7 @@ public class Analisis {
 	private double threshold;
 	private Respuesta_Analisis respEncuestas;
 	private Encuesta encuesta;
+	private HashMap<Integer,MinMax> mapMinMax;
 	
 	/**
 	 * Constructor de la classe Analisis.
@@ -81,12 +82,12 @@ public class Analisis {
 		List<Cluster> centroids = createCluster(k,respEncuestas);
 		
 		
-		
+		HmapMinMax = minMax_Respuesta_1(encuesta,centroids,respEncuestas);
 		
 		
 		boolean underThreshold = true;
 		do{
-			HashMap<Integer,MinMax> mapMinMax = minMax_Respuesta_1(encuesta,centroids,respEncuestas);
+			
 			
 			//ASSIG EACH RESPUESTA_ENCUESTA TO CLUSTER
 			centroids = assignacioRespuestaEncuesta(encuesta, mapMinMax, respEncuestas, centroids);
@@ -170,6 +171,7 @@ public class Analisis {
 						minmax.setMax(res);
 					}
 				}
+				/**FOR ALEATORIO
 				for(Cluster c : centroids){
 					double res = c.getCentroid().getRespPreguntas().get(i).getValueR1();
 					if(res < minmax.getMin()){
@@ -179,6 +181,7 @@ public class Analisis {
 						minmax.setMax(res);
 					}
 				}
+				*/
 			}
 			map.put(encuesta.getPreguntas().get(i).getId(), minmax);
 		}
@@ -466,7 +469,11 @@ public class Analisis {
 	public Encuesta getEncuesta() {
 		return encuesta;
 	}
-
+	
+	public Map<Integer,MinMax> getMapMinMax(){
+		return mapMinMax;
+	}
+	
 	/**
 	 * Metodo para cargar en una String el fichero que contiene las palabras funcionals.
 	 * Eso sirve para analizar preguntas 5.
