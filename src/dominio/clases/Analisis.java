@@ -73,7 +73,7 @@ public class Analisis {
 	public Resultado k_means() throws IOException{
 		
 		
-		String funcWord = funcionnalString("empty.cat");
+		String funcWord = funcionnalString("empty.sp");
 
 		
 		//CREATION OF SEEDS
