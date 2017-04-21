@@ -357,7 +357,7 @@ public class Analisis {
 	 * @return
 	 * 		La distancia entre las dos respuestas a encuesta, que es un double que pertenece al intervalo [0,1]
 	 */
-	public double distanceRespEncuesta(RespuestaEncuesta r1,RespuestaEncuesta r2, Encuesta e,HashMap<Integer,MinMax> mapMinMax ){
+	public static double distanceRespEncuesta(RespuestaEncuesta r1,RespuestaEncuesta r2, Encuesta e,HashMap<Integer,MinMax> mapMinMax ){
 		double distance = 0;
 		for(int index = 0; index < e.getN_preguntas(); index++){
 			switch (e.getPreguntas().get(index).tipo){
@@ -381,7 +381,7 @@ public class Analisis {
 			}
 			
 		}
-		distance /= encuesta.getN_preguntas();
+		distance /= e.getN_preguntas();
 		return distance;
 	}
 	
