@@ -86,7 +86,7 @@ public class driver_analizar {
 		}
 		
 		System.out.println ("Se ha acabado la analisis");
-		System.out.println(result.toString());
+		System.out.println(result.toString(an));
 	}
 
 }
