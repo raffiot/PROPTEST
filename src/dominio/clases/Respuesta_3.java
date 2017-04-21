@@ -34,7 +34,7 @@ public class Respuesta_3 extends RespuestaPregunta{
 	 * 		este parametro no sirve en este caso
 	 */
 	public double distance(RespuestaPregunta r, double minR1, double maxR1, int sizeR2){
-		return (this.getValueR3().equals(r.getValueR3())) ? 1 : 0;
+		return (this.getValueR3().equals(r.getValueR3())) ? 0 : 1;
 		
 	}
 	public String toString(){
