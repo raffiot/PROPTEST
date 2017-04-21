@@ -283,7 +283,7 @@ public class driver_encuesta {
         		}
         
         	}while (var != 0);
-        	System.exit(0);
+        	//System.exit(0);
 
 	}
 }

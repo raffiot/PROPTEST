@@ -18,27 +18,35 @@ public class Main {
 			System.out.println ("Escribe la opcion que quieras elegir:");
 			System.out.println ("0.Salir");
 			System.out.println ("1.Contestar encuesta");
+			do{	
+			
 
-			int var = opcion.nextInt();
-			switch (var){
-				case 0:
-					System.out.println ("Has salido de tu sesion");
-					System.exit(0);
-					break;				
-				case 1:
-					dominio.controladores.drivers.driver_contestar.main(null);
-					break;			
-			}
+				int var = opcion.nextInt();
+				switch (var){
+					case 0:
+						System.out.println ("Has salido de tu sesion");
+						System.exit(0);
+						break;				
+					case 1:
+						dominio.controladores.drivers.driver_contestar.main(null);
+						break;			
+				}
+				System.out.println ("Vuelta al menu principal!");
+				System.out.println ("Escribe la opcion que quieras elegir:");
+				System.out.println ("0.Salir");
+				System.out.println ("1.Contestar encuesta");
+			
+			}while(opcion.nextInt() != 0);
 		}
 
 		else if (text.equals("ADMIN")){
+			System.out.println ("Escribe la opcion que quieras elegir:");
+			System.out.println ("0.Salir");
+			System.out.println ("1.Gestionar encuesta");
+			System.out.println ("2.Analizar encuestas");
 
 			do{
-				System.out.println ("Escribe la opcion que quieras elegir:");
-				System.out.println ("0.Salir");
-				System.out.println ("1.Gestionar encuesta");
-				System.out.println ("2.Analizar encuestas");
-
+				
 
 				int var = opcion.nextInt();
 
@@ -55,9 +63,15 @@ public class Main {
 					case 2:
 						dominio.controladores.drivers.driver_analizar.main(null);
 						break;
-					
-
+						
+						
+						
 				}
+				System.out.println ("Vuelta al menu principal!");
+				System.out.println ("Escribe la opcion que quieras elegir:");
+				System.out.println ("0.Salir");
+				System.out.println ("1.Gestionar encuesta");
+				System.out.println ("2.Analizar encuestas");
 			}while(opcion.nextInt() != 0);
 		}
 		else{
