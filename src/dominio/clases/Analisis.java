@@ -82,7 +82,7 @@ public class Analisis {
 		List<Cluster> centroids = createCluster(k,respEncuestas);
 		
 		
-		HmapMinMax = minMax_Respuesta_1(encuesta,centroids,respEncuestas);
+		mapMinMax = minMax_Respuesta_1(encuesta,centroids,respEncuestas);
 		
 		
 		boolean underThreshold = true;
