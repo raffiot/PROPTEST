@@ -39,7 +39,6 @@ public class Respuesta_3 extends RespuestaPregunta{
 	}
 	public String toString(){
 		String s = "";
-		s += this.getPregunta().getEnunciado()+"\n";
 		s += this.getValueR3()+"\n";
 		return s;
 	}

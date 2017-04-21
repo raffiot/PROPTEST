@@ -105,10 +105,11 @@ public class Cluster{
 			s+="Sin RespuestaEncuesta assignada \n";
 		}
 		else{
-			s +="Con RespuestaEncuesta assignado: \n";
+			s +="\nCon RespuestaEncuesta assignado: \n";
 			
 			int index = 0;
 			for(RespuestaEncuesta re : usuarios){
+				s+="\n";
 				s+="Usuario "+index+":\n";
 				s+=re.toString();
 				index++;
