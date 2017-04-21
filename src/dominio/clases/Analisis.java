@@ -204,24 +204,28 @@ public class Analisis {
 	 */
 	public List<Cluster> assignacioRespuestaEncuesta(Encuesta encuesta, Map<Integer,MinMax> mapMinMax, Respuesta_Analisis respEncuestas, List<Cluster> centroids){
 		
-		
+		List<Cluster> newCentroids = new ArrayList<Cluster>();
+		for(Cluster c : centroids){
+			Cluster newCluster = new Cluster(c.getIndex(), c.getCentroid());
+			newCentroids.add(newCluster);
+		}
 		for(RespuestaEncuesta ra: respEncuestas.getListRP()){
 			double distance_min = 1.;
 			int index_centroid=0;
 			
 			for(int i = 0; i < k; i++){
-				double distance = distanceRespEncuesta(ra,centroids.get(i).getCentroid(),encuesta,mapMinMax);
+				double distance = distanceRespEncuesta(ra,newCentroids.get(i).getCentroid(),encuesta,mapMinMax);
 				if(distance < distance_min){
 					distance_min = distance;
 					index_centroid = i;
 				}
 			}
 			
-			centroids.get(index_centroid).getUsuarios().add(ra);	
+			newCentroids.get(index_centroid).getUsuarios().add(ra);	
 			
 		}
 		
-		return centroids;
+		return newCentroids;
 	}
 	
 	/**
