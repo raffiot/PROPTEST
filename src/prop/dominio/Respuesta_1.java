@@ -39,6 +39,11 @@ public class Respuesta_1 extends RespuestaPregunta{
 		return Math.abs(this.getValueR1()-r.getValueR1())/(maxR1-minR1);
 	}
 	
+	/**Metodo que hacer un Override sobre toString
+	 * pasa una respuesta_1 a string
+	 * 
+	 * @return la string con las respuesta_1
+	 */
 	@Override
 	public String toString(){
 		String s = "";
