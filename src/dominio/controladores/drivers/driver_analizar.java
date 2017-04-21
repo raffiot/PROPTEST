@@ -16,6 +16,18 @@ public class driver_analizar {
 		texto = new Scanner(System.in);
 		opcion = new Scanner(System.in);
 		System.out.println("LA ENCUESTA Y LA RESPUESTAS DEBEN SER EN CASTELLANO");
+		System.out.println("Encuestas actuales:");
+    	int exist = 1;
+    	Integer id = 1;
+    	do{	
+    		String sFichero = "src/persistencia/Encuestas/Encuesta_"+id.toString()+".txt";
+    		File fichero = new File(sFichero);
+    		if (fichero.exists()){ 
+    			System.out.println("Encuesta_"+id);
+    			++id;
+    		}
+    		else exist = 0;
+    	}while(exist != 0);
 		System.out.println ("Escribe el numero de la encuesta que quieres analizar:");
 		Integer numEncuesta = opcion.nextInt();
 		Encuesta e = new Encuesta(numEncuesta);

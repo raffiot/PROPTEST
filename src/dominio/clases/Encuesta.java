@@ -199,6 +199,12 @@ public class Encuesta {
 		return s;
 	}
 	
+	/**
+	 * Metodo para borrar una encuesta
+	 * 
+	 * @param
+	 * 		la id de la encuesta que se desea borrar
+	 */
 	public void borrar(int i){
 		File fichero = new File("src/persistencia/Encuestas/Encuesta_"+i+".txt");
 		fichero.delete();
