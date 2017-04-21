@@ -95,8 +95,7 @@ public class Cluster{
 	 * 
 	 * @return la string que describe cluster
 	 */
-	@Override
-	public String toString(){
+	public String toString(Analisis an){
 		String s ="";
 		s +="Cluster con index: "+index+"\n";
 		s +="Centroid :\n";
@@ -111,6 +110,7 @@ public class Cluster{
 			for(RespuestaEncuesta re : usuarios){
 				s+="\n";
 				s+="Usuario "+index+":\n";
+				s+="Distancia con el centroid: "+an.distanceRespEncuesta(centroid,re,an.getEncuesta(),an.getMapMinMax());
 				s+=re.toString();
 				index++;
 			}
