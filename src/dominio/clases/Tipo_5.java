@@ -4,8 +4,7 @@ package dominio.clases;
  * 
  * 
  * @author Miguel
- * @author Marina
- * @author Raphael 								
+							
  */
 public class Tipo_5 extends Pregunta {
 	

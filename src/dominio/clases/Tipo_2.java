@@ -1,12 +1,9 @@
 package dominio.clases;
 
 /**
- * La classe Tipo_2 representa una pregunta que se responde con 1 opciones qualitativas.
- * Las differentes modalitats son ordenadas.
- * 
- * @author Marina
+ * La classe Tipo_2 representa una pregunta que se responde con 1 opcion qualitativa.
+ * Las diferentes modalidades son ordenadas.
  * @author Miguel
- * @author Raphael							
  */
 
 import java.util.ArrayList;
