@@ -202,7 +202,7 @@ public class Analisis {
 	 * @return
 	 * 		La lista de cluster con los usuarios assignados
 	 */
-	public List<Cluster> assignacioRespuestaEncuesta(Encuesta encuesta, HashMap<Integer,MinMax> mapMinMax, Respuesta_Analisis respEncuestas, List<Cluster> centroids){
+	public List<Cluster> assignacioRespuestaEncuesta(Encuesta encuesta, Map<Integer,MinMax> mapMinMax, Respuesta_Analisis respEncuestas, List<Cluster> centroids){
 		
 		
 		for(RespuestaEncuesta ra: respEncuestas.getListRP()){
@@ -360,7 +360,7 @@ public class Analisis {
 	 * @return
 	 * 		La distancia entre las dos respuestas a encuesta, que es un double que pertenece al intervalo [0,1]
 	 */
-	public static double distanceRespEncuesta(RespuestaEncuesta r1,RespuestaEncuesta r2, Encuesta e,HashMap<Integer,MinMax> mapMinMax ){
+	public static double distanceRespEncuesta(RespuestaEncuesta r1,RespuestaEncuesta r2, Encuesta e,Map<Integer,MinMax> mapMinMax ){
 		double distance = 0;
 		for(int index = 0; index < e.getN_preguntas(); index++){
 			switch (e.getPreguntas().get(index).tipo){
