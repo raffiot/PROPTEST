@@ -43,7 +43,7 @@ public class Analisis {
 	 * 		el parametro que define cuando se para el algorithmo de k-means
 	 * @param respEncuestas
 	 * 		las respuestas de los usuarios a la encuesta
-	 * @param
+	 * @param e
 	 * 		la encuesta que se analitza
 	 */
 	public Analisis(int id, int k, double threshold, Respuesta_Analisis respEncuestas,Encuesta e){
@@ -457,6 +457,7 @@ public class Analisis {
 	 * Metodo para obtenir la encuesta  que se analizan
 	 * 
 	 * @return
+	 * 		la encuesta que se analiza
 	 */
 	public Encuesta getEncuesta() {
 		return encuesta;

@@ -100,6 +100,9 @@ public class Tipo_1 extends Pregunta {
 	
 	/**
 	 * Metodo para modificar el valor minimo que se puede responder a la pregunta
+	 * 
+	 * @param min
+	 * 		el nuevo minimo 
 	 */
 	public void setMin(int min) {
 		this.min = min;

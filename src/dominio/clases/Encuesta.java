@@ -75,7 +75,7 @@ public class Encuesta {
 	/**
 	 * Metodo para darle una id a la encuesta
 	 * 
-	 * @param
+	 * @param id
 	 * 		el id de la encuesta
 	 */
 	public void setId(int id) {
@@ -106,7 +106,7 @@ public class Encuesta {
 	/**
 	 * Metodo para darle genero a la encuesta
 	 * 
-	 * @param
+	 * @param genero
 	 * 		una string con el genero que tendra la encuesta
 	 */
 	public void setGenero(String genero) {
@@ -148,7 +148,7 @@ public class Encuesta {
 	/**
 	 * Metodo para poner las preguntas en la encuesta
 	 * 
-	 * @param
+	 * @param preguntas
 	 * 		array con las preguntas que tendra la encuesta
 	 */
 	public void setPreguntas(ArrayList<Pregunta> preguntas) {
@@ -202,7 +202,7 @@ public class Encuesta {
 	/**
 	 * Metodo para borrar una encuesta
 	 * 
-	 * @param
+	 * @param i
 	 * 		la id de la encuesta que se desea borrar
 	 */
 	public void borrar(int i){
@@ -248,6 +248,9 @@ public class Encuesta {
 	
 	/**
 	 * Metodo para leer una encuesta de unt txt y cargarlo en un objeto Encuesta
+	 * 
+	 * @param s
+	 * 		el identificador de la encuesta que se quiere leer
 	 */
 	public void leer(String s) {
 		try {

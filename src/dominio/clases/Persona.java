@@ -28,7 +28,7 @@ public class Persona {
 	 * 
 	 * @param nombre
 	 * 		el nombre que identifica una persona/usuario
-	 * @password
+	 * @param password
 	 * 		la contrasenya de ese nombre/usuario
 	 * 
 	 */
@@ -70,7 +70,7 @@ public class Persona {
 	/**
 	 * Metodo para modificar el password de la persona con la que tratamos
 	 * 
-	 * @param nombre
+	 * @param password
 	 * 		el password de la persona tratada
 	 */
 	public void setPassword(String password){

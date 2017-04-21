@@ -90,7 +90,7 @@ public abstract class RespuestaPregunta {
 	/**
 	 * Metodo para modificar el valor de la respuesta pregunta tipo 1
 	 * 
-	 * @param
+	 * @param valueR1
 	 * 		el valor de la respuesta pregunta tipo 1
 	 */
 	public void setValueR1(double valueR1) {
@@ -110,7 +110,7 @@ public abstract class RespuestaPregunta {
 	/**
 	 * Metodo para modificar el valor de la respuesta pregunta tipo 2
 	 * 
-	 * @param
+	 * @param valueR2
 	 * 		el valor de la respuesta pregunta tipo 2
 	 */
 	public void setValueR2(int valueR2) {
@@ -130,7 +130,7 @@ public abstract class RespuestaPregunta {
 	/**
 	 * Metodo para modificar el valor de la respuesta pregunta tipo 3
 	 * 
-	 * @param
+	 * @param valueR3
 	 * 		el valor de la respuesta pregunta tipo 3
 	 */
 	public void setValueR3(String valueR3) {
@@ -150,7 +150,7 @@ public abstract class RespuestaPregunta {
 	/**
 	 * Metodo para modificar el valor de la respuesta pregunta tipo 4
 	 * 
-	 * @param
+	 * @param valueR4
 	 * 		el valor de la respuesta pregunta tipo 4
 	 */
 	public void setValueR4(Set<String> valueR4) {
@@ -170,7 +170,7 @@ public abstract class RespuestaPregunta {
 	/**
 	 * Metodo para modificar el valor de la respuesta pregunta tipo 5
 	 * 
-	 * @param
+	 * @param valueR5
 	 * 		el valor de la respuesta pregunta tipo 5
 	 */
 	public void setValueR5(String valueR5) {

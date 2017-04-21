@@ -87,7 +87,7 @@ public abstract class  Pregunta {
 	/**
 	 * Metodo para modificar el tipo de la pregunta
 	 * 
-	 * @param enunciado
+	 * @param tipo
 	 * 		el tipo de la pregunta 
 	 */
 	public void setTipo(int tipo) {
