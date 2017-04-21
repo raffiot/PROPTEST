@@ -1,43 +1,9 @@
 JFLAGS = -g
 JC = javac
 .SUFFIXES: .java .class
-.java.class:
-        $(JC) $(JFLAGS) $*.java
 
-MAIN = Main
+all: Main.class
+	javac src/dominio/clases/*.java src/dominio/controladores/drivers/*.java
 
-CLASSES = \
-        Analisis.java \
-        Cluster.java \
-        driver_analizar.java \
-        driver_contestar.java \
-        driver_encuesta.java \
-        Encuesta.java \
-	Participant.java \
-        Persona.java \
-        Pregunta.java \
-	Respuesta_1.java \
-        Respuesta_2.java \
-	Respuesta_3.java \
-	Respuesta_4.java \
-	Respuesta_5.java \	
-	Respuesta_Analisis.java \
-	RespuestaEncuesta.java
-	RespuestaPregunta.java
-	Resultado.java \
-        Test.java \
-	Tipo_1.java \
-	Tipo_2.java \
-	Tipo_3.java \
-	Tipo_4.java \
-	Tipo_5.java \
-	Main.java 
-
-default: classes
-
-classes: $(CLASSES:.java=.class)
-
-run:$(MAIN).class
-	java $(MAIN)
 clean:
-        $(RM) *.class
+	$(RM) *.class
