@@ -106,14 +106,13 @@ public class Cluster{
 		else{
 			s +="\nCon RespuestaEncuesta assignado: \n";
 			
-			int index = 0;
+
 			for(RespuestaEncuesta re : usuarios){
 				s+="\n";
-				s+="Usuario "+index+":\n";
+				s+="Usuario "+(an.getRespEncuestas().getListRP().indexOf(re)+1)+":\n";
 				s+="Distancia con el centroid: "+an.distanceRespEncuesta(centroid,re,an.getEncuesta(),an.getMapMinMax());
 				s+="\n";
 				s+=re.toString();
-				index++;
 			}
 		}
 

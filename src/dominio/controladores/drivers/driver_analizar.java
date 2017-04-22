@@ -20,7 +20,7 @@ public class driver_analizar {
     	int exist = 1;
     	Integer id = 1;
     	do{	
-    		String sFichero = "persistencia/Encuestas/Encuesta_"+id.toString()+".txt";
+    		String sFichero = "src/persistencia/Encuestas/Encuesta_"+id.toString()+".txt";
     		File fichero = new File(sFichero);
     		if (fichero.exists()){ 
     			Encuesta en = new Encuesta(id);
@@ -37,7 +37,7 @@ public class driver_analizar {
 		
 		List<RespuestaEncuesta> listRE = new ArrayList<>();
 		Integer index = 1;
-		String sFichero = "persistencia/Respuestas/Respuesta_"+numEncuesta+"_"+index+".txt";
+		String sFichero = "src/persistencia/Respuestas/Respuesta_"+numEncuesta+"_"+index+".txt";
 		File fichero = new File(sFichero);
 		
 		while(fichero.exists()){
@@ -46,7 +46,7 @@ public class driver_analizar {
 				listRE.add(re);
 				
 				index++;
-				sFichero = "persistencia/Respuestas/Respuesta_"+numEncuesta+"_"+index+".txt";
+				sFichero = "src/persistencia/Respuestas/Respuesta_"+numEncuesta+"_"+index+".txt";
 				fichero = new File(sFichero);
 		}
 		
@@ -71,7 +71,8 @@ public class driver_analizar {
 		Double threshold;
 		do{
 			test = false;
-			System.out.println ("Escribe el threshold para la distancia (los doubles se escriben con ',' )");
+			System.out.println ("Escribe el threshold para la distancia");
+			System.out.println("(los doubles se escriben con ',' en windows, con '.' en linux)");
 			threshold = opcion.nextDouble();
 			if(threshold<=0 || threshold >1){
 				System.out.println("Entrada invalida");
