@@ -28,6 +28,7 @@ public class Analisis {
 	private Respuesta_Analisis respEncuestas;
 	private Encuesta encuesta;
 	private Map<Integer,MinMax> mapMinMax;
+	private List<Cluster> centroids;
 	
 	/**
 	 * Constructor de la classe Analisis.
@@ -79,7 +80,7 @@ public class Analisis {
 
 		
 		//CREATION OF SEEDS
-		List<Cluster> centroids = createCluster(k,respEncuestas);
+		centroids = createCluster(k,respEncuestas);
 		
 		
 		mapMinMax = minMax_Respuesta_1(encuesta,centroids,respEncuestas);
@@ -478,6 +479,17 @@ public class Analisis {
 		return mapMinMax;
 	}
 	
+	/**
+	 * Metodo para obtenir los cluster que ha generado la analisis
+	 * 
+	 * @return
+	 * 		la lista de clusters generado per la analisis
+	 */
+	public List<Cluster> getCentroids() {
+		return centroids;
+	}
+
+
 	/**
 	 * Metodo para cargar en una String el fichero que contiene las palabras funcionals.
 	 * Eso sirve para analizar preguntas 5.

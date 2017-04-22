@@ -113,6 +113,13 @@ public class Cluster{
 				s+="Distancia con el centroid: "+an.distanceRespEncuesta(centroid,re,an.getEncuesta(),an.getMapMinMax());
 				s+="\n";
 				s+=re.toString();
+				s+="Distancia con los otros centroids:\n";
+				for(Cluster c : an.getCentroids()){
+					if(this.index != c.getIndex()){
+						s+="Centroid "+c.getIndex()+" : "+an.distanceRespEncuesta(c.getCentroid(), re, an.getEncuesta(), an.getMapMinMax());
+						s+="\n";
+					}
+				}
 			}
 		}
 
