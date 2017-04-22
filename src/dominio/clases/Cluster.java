@@ -95,6 +95,8 @@ public class Cluster{
 	/**
 	 * Metodo que crea una string que describe el cluster
 	 * 
+	 * @param an
+	 * 		la analisis que a producido el cluster
 	 * @return la string que describe cluster
 	 */
 	public String toString(Analisis an){

@@ -46,6 +46,8 @@ public class Resultado {
 	/**
 	 * Metodo que crea una string que describe el resultado
 	 * 
+	 * @param an
+	 * 		la analisis que a producido el resultado
 	 * @return la string que describe resultado
 	 */
 	public String toString(Analisis an){

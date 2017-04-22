@@ -67,7 +67,7 @@ public class Analisis {
 	 * El metodo principal de la classe analisis, que se hace en pasos:
 	 * 1.Se crea la sentencia que contiene las palabras funcional a la cual no hacemos caso en las respuestas
 	 * a preguntas de tipo 5
-	 * 2.Se crean los clusters con centroids(RespuestaEncuesta) de manera aleatoria.
+	 * 2.Se crean los clusters con centroids(RespuestaEncuesta).
 	 * 3.Se calcula el minimo y el maximo para cada respuesta a pregunta de tipo 1.
 	 * 4.Se assignan los usuarios a clusters
 	 * 5.Se guardan los centroids de los clusters en una variable oldCluster
@@ -126,10 +126,13 @@ public class Analisis {
 	}
 	
 	/**
-	 * Este metodo crea k cluster de manera aleatoria
+	 * Este metodo crea k cluster 
+	 * con los centroids que sean los k primeros respuestas a encuestas de los usuarios.
 	 * 
 	 * @param k
 	 * 		el numero de cluster que se crean
+	 * @param respEncuestas
+	 * 		las respuestas a encuesta que sirven para crear los centroids
 	 * @return
 	 * 		la lista de Cluster creado
 	 */
