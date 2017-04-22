@@ -7,6 +7,8 @@ package dominio.clases;
  */
 import java.util.List;
 
+import dominio.controladores.Analisis;
+
 
 public class Resultado {	
 	private List<Cluster> clusters;

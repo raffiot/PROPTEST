@@ -2,7 +2,8 @@ package dominio.controladores.junit;
 
 import dominio.clases.*;
 import static org.junit.Assert.*;
-import dominio.clases.Analisis.MinMax;
+import dominio.controladores.Analisis;
+import dominio.controladores.Analisis.MinMax;
 
 import java.io.IOException;
 import java.util.ArrayList;
