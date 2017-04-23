@@ -29,10 +29,11 @@ public class RespuestaEncuesta {
 	 * 
 	 * @param e
 	 * 		La encuesta a la cual se ha ha respondido
-	 * @param p
-	 * 		El participant que ha respondido
+	 * @param s
+	 * 		El nombre del participant que ha respondido
 	 * @param rp
 	 * 		El conjunto de respuestas
+	 * 
 	 */
 	public RespuestaEncuesta(Encuesta e, String s, List<RespuestaPregunta> rp){
 		encuesta = e;

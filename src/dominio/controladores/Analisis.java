@@ -211,6 +211,8 @@ public class Analisis {
 	 * 		Las respuestas de los usuarios a la encuesta
 	 * @param centroids
 	 * 		La lista de cluster a la cual se assignan los usuarios
+	 * @param funcWord
+	 * 		La lista de palabras funcionnal util para calcular las distancia
 	 * @return
 	 * 		La lista de cluster con los usuarios assignados
 	 */
@@ -379,6 +381,8 @@ public class Analisis {
 	 * 		La encuesta a la cual se ha respondido
 	 * @param mapMinMax
 	 * 		Los minimos y maximos a las preguntas de tipo 1 de la encuesta
+	 * @param funWord
+	 * 		Las palabras funcionnal que sirven despues para calcular la distancia
 	 * @return
 	 * 		La distancia entre las dos respuestas a encuesta, que es un double que pertenece al intervalo [0,1]
 	 */
