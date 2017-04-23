@@ -200,7 +200,7 @@ public class AnalisisTest {
 		Analisis an = createAnalisis();
 		List<Cluster> list = an.createCluster(2,an.getRespEncuestas());
 		Map<Integer,MinMax> m = an.minMax_Respuesta_1(an.getEncuesta(),list,an.getRespEncuestas());
-		an.assignacioRespuestaEncuesta(an.getEncuesta(), m, an.getRespEncuestas(), list);
+		an.assignacioRespuestaEncuesta(an.getEncuesta(), m, an.getRespEncuestas(), list,an.getFuncWord());
 		
 		RespuestaEncuesta re1 = an.getRespEncuestas().getListRP().get(0);	
 		RespuestaEncuesta re2 = an.getRespEncuestas().getListRP().get(1);	
@@ -210,12 +210,12 @@ public class AnalisisTest {
 		
 		assertEquals(3,list.get(0).getUsuarios().size()+list.get(1).getUsuarios().size());
 		
-		double d1 = an.distanceRespEncuesta(re1, rec1, an.getEncuesta(), m);
-		double d2 = an.distanceRespEncuesta(re2, rec1, an.getEncuesta(), m);
-		double d3 = an.distanceRespEncuesta(re3, rec1, an.getEncuesta(), m);
-		double d4 = an.distanceRespEncuesta(re1, rec2, an.getEncuesta(), m);
-		double d5 = an.distanceRespEncuesta(re2, rec2, an.getEncuesta(), m);
-		double d6 = an.distanceRespEncuesta(re3, rec2, an.getEncuesta(), m);
+		double d1 = an.distanceRespEncuesta(re1, rec1, an.getEncuesta(), m,an.getFuncWord());
+		double d2 = an.distanceRespEncuesta(re2, rec1, an.getEncuesta(), m,an.getFuncWord());
+		double d3 = an.distanceRespEncuesta(re3, rec1, an.getEncuesta(), m,an.getFuncWord());
+		double d4 = an.distanceRespEncuesta(re1, rec2, an.getEncuesta(), m,an.getFuncWord());
+		double d5 = an.distanceRespEncuesta(re2, rec2, an.getEncuesta(), m,an.getFuncWord());
+		double d6 = an.distanceRespEncuesta(re3, rec2, an.getEncuesta(), m,an.getFuncWord());
 		if(d1 < d4){
 			assertTrue(list.get(0).getUsuarios().contains(re1));
 		}
@@ -272,7 +272,7 @@ public class AnalisisTest {
 		assertTrue("Method createCluster failled",generatedValue <= 20 && generatedValue >= 0);
 		
 		Map<Integer,MinMax> tipo_1M = tipo_1A.minMax_Respuesta_1(tipo_1E,tipo_1C,tipo_1RA);
-		tipo_1A.assignacioRespuestaEncuesta(tipo_1E, tipo_1M, tipo_1RA, tipo_1C);
+		tipo_1A.assignacioRespuestaEncuesta(tipo_1E, tipo_1M, tipo_1RA, tipo_1C,tipo_1A.getFuncWord());
 		String funcWord;
 		funcWord ="";
 		try {
@@ -325,7 +325,7 @@ public class AnalisisTest {
 		assertTrue("Method createCluster failled",generatedValue <= 20 && generatedValue >= 0);
 		
 		Map<Integer,MinMax> tipo_1M = tipo_1A.minMax_Respuesta_1(tipo_1E,tipo_1C,tipo_1RA);
-		tipo_1A.assignacioRespuestaEncuesta(tipo_1E, tipo_1M, tipo_1RA, tipo_1C);
+		tipo_1A.assignacioRespuestaEncuesta(tipo_1E, tipo_1M, tipo_1RA, tipo_1C, tipo_1A.getFuncWord());
 		String funcWord;
 		funcWord ="";
 		try {
@@ -378,7 +378,7 @@ public class AnalisisTest {
 		assertTrue("Method createCluster failled",generatedValue <= 4 && generatedValue >= 0);
 		
 		Map<Integer,MinMax> tipo_2M = tipo_2A.minMax_Respuesta_1(tipo_2E,tipo_2C,tipo_2RA);
-		tipo_2A.assignacioRespuestaEncuesta(tipo_2E, tipo_2M, tipo_2RA, tipo_2C);
+		tipo_2A.assignacioRespuestaEncuesta(tipo_2E, tipo_2M, tipo_2RA, tipo_2C,tipo_2A.getFuncWord());
 		String funcWord;
 		funcWord ="";
 		try {
@@ -436,7 +436,7 @@ public class AnalisisTest {
 		List<Cluster> tipo_2C = tipo_2A.createCluster(1,tipo_2A.getRespEncuestas());
 		
 		Map<Integer,MinMax> tipo_2M = tipo_2A.minMax_Respuesta_1(tipo_2E,tipo_2C,tipo_2RA);
-		tipo_2A.assignacioRespuestaEncuesta(tipo_2E, tipo_2M, tipo_2RA, tipo_2C);
+		tipo_2A.assignacioRespuestaEncuesta(tipo_2E, tipo_2M, tipo_2RA, tipo_2C, tipo_2A.getFuncWord());
 		String funcWord;
 		funcWord ="";
 		try {
@@ -489,7 +489,7 @@ public class AnalisisTest {
 		assertTrue("Method createCluster failled",lista_opciones.contains(generatedValue));
 		
 		Map<Integer,MinMax> tipo_3M = tipo_3A.minMax_Respuesta_1(tipo_3E,tipo_3C,tipo_3RA);
-		tipo_3A.assignacioRespuestaEncuesta(tipo_3E, tipo_3M, tipo_3RA, tipo_3C);
+		tipo_3A.assignacioRespuestaEncuesta(tipo_3E, tipo_3M, tipo_3RA, tipo_3C,tipo_3A.getFuncWord());
 		String funcWord;
 		funcWord ="";
 		try {
@@ -552,7 +552,7 @@ public class AnalisisTest {
 		List<Cluster> tipo_3C = tipo_3A.createCluster(1,tipo_3A.getRespEncuestas());
 		
 		Map<Integer,MinMax> tipo_3M = tipo_3A.minMax_Respuesta_1(tipo_3E,tipo_3C,tipo_3RA);
-		tipo_3A.assignacioRespuestaEncuesta(tipo_3E, tipo_3M, tipo_3RA, tipo_3C);
+		tipo_3A.assignacioRespuestaEncuesta(tipo_3E, tipo_3M, tipo_3RA, tipo_3C,tipo_3A.getFuncWord());
 		String funcWord;
 		funcWord ="";
 		try {
@@ -608,7 +608,7 @@ public class AnalisisTest {
 		assertTrue("Method createCluster failled",lista_opciones.containsAll(generatedValue));
 		
 		Map<Integer,MinMax> tipo_4M = tipo_4A.minMax_Respuesta_1(tipo_4E,tipo_4C,tipo_4RA);
-		tipo_4A.assignacioRespuestaEncuesta(tipo_4E, tipo_4M, tipo_4RA, tipo_4C);
+		tipo_4A.assignacioRespuestaEncuesta(tipo_4E, tipo_4M, tipo_4RA, tipo_4C,tipo_4A.getFuncWord());
 		
 		String funcWord ="";
 		try {
@@ -680,7 +680,7 @@ public class AnalisisTest {
 		List<Cluster> tipo_4C = tipo_4A.createCluster(1,tipo_4A.getRespEncuestas());
 		
 		Map<Integer,MinMax> tipo_4M = tipo_4A.minMax_Respuesta_1(tipo_4E,tipo_4C,tipo_4RA);
-		tipo_4A.assignacioRespuestaEncuesta(tipo_4E, tipo_4M, tipo_4RA, tipo_4C);
+		tipo_4A.assignacioRespuestaEncuesta(tipo_4E, tipo_4M, tipo_4RA, tipo_4C,tipo_4A.getFuncWord());
 		
 		String funcWord ="";
 		try {
@@ -724,7 +724,7 @@ public class AnalisisTest {
 		List<Cluster> tipo_5C = tipo_5A.createCluster(1,tipo_5A.getRespEncuestas());
 		
 		Map<Integer,MinMax> tipo_5M = tipo_5A.minMax_Respuesta_1(tipo_5E,tipo_5C,tipo_5RA);
-		tipo_5A.assignacioRespuestaEncuesta(tipo_5E, tipo_5M, tipo_5RA, tipo_5C);
+		tipo_5A.assignacioRespuestaEncuesta(tipo_5E, tipo_5M, tipo_5RA, tipo_5C,tipo_5A.getFuncWord());
 		
 		String funcWord ="";
 		try {
@@ -781,7 +781,7 @@ public class AnalisisTest {
 		List<Cluster> tipo_5C = tipo_5A.createCluster(1,tipo_5A.getRespEncuestas());
 		
 		Map<Integer,MinMax> tipo_5M = tipo_5A.minMax_Respuesta_1(tipo_5E,tipo_5C,tipo_5RA);
-		tipo_5A.assignacioRespuestaEncuesta(tipo_5E, tipo_5M, tipo_5RA, tipo_5C);
+		tipo_5A.assignacioRespuestaEncuesta(tipo_5E, tipo_5M, tipo_5RA, tipo_5C,tipo_5A.getFuncWord());
 		
 		String funcWord ="";
 		try {

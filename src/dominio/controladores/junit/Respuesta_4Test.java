@@ -24,7 +24,7 @@ public class Respuesta_4Test {
 		RespuestaPregunta p1 = new Respuesta_4(null,set1);
 		RespuestaPregunta p2 = new Respuesta_4(null,set2);
 		
-		double distance = p1.distance(p2, 0, 0, 0);
+		double distance = p1.distance(p2, 0, 0, 0,null);
 		assertTrue("the distance is superior to 1",distance <= 1);
 		assertTrue("the distance is inferior to 0",distance >= 0);
 		assertEquals("the distance isn't well computed",1-2./5,distance,0);
