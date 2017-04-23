@@ -342,7 +342,13 @@ public class Analisis {
 							break;
 						case 5:
 							String result5 = "";
-							int max = Collections.max(mediana5.values());
+							int max = 0;
+							try{
+								max = Collections.max(mediana5.values());
+							}catch(Exception e){
+								System.out.println("Una de las respuestas solo tiene palabras funcionnals, cambian las respuestas");
+								System.exit(0);
+							}
 							for(String word : mediana5.keySet()){
 								if(mediana5.get(word) == max){
 									result5 += word + " ";

@@ -42,6 +42,14 @@ public class Respuesta_5 extends RespuestaPregunta{
 		String lhs = this.getValueR5();
 		String rhs = r.getValueR5();
 		Set<String> setFun = new HashSet<String>(Arrays.asList(funR5.split("\n")));
+		for(String s : setFun){
+			if(lhs.contains(" "+s+" ")){ //Espacio para estar seguro que es solo la palabra que queremos
+				lhs.replaceAll(s, "");
+			}
+			if(rhs.contains(" "+s+" ")){
+				rhs.replaceAll(s, "");
+			}
+		}
 		int[][] distance = new int[lhs.length() + 1][rhs.length() + 1];        
         
         for (int i = 0; i <= lhs.length(); i++)                                 

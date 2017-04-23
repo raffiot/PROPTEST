@@ -113,7 +113,7 @@ public class Cluster{
 
 			for(RespuestaEncuesta re : usuarios){
 				s+="\n";
-				s+="Usuario "+(an.getRespEncuestas().getListRP().indexOf(re)+1)+":\n";
+				s+="Usuario "+re.getNombre()+":\n";
 				s+="Distancia con el centroid: "+an.distanceRespEncuesta(centroid,re,an.getEncuesta(),an.getMapMinMax(), an.getFuncWord());
 				s+="\n";
 				s+=re.toString();

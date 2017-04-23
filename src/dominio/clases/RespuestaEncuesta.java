@@ -261,6 +261,10 @@ public class RespuestaEncuesta {
 		
 	}
 	
+	public String getNombre() {
+		return nombre;
+	}
+
 	/**
 	 * Metodo que crea una string que describe respuestas a una encuesta
 	 * 
