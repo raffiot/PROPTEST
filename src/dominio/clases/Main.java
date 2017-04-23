@@ -10,7 +10,7 @@ public class Main {
 	private static Scanner opcion;
 	public static String user = "";
 	public static void main(String[] args) {
-		String user = "";
+
 		texto = new Scanner(System.in);
 		opcion = new Scanner(System.in);
 		System.out.println("Escribe USU si eres usuario o ADMIN si eres administrador");
