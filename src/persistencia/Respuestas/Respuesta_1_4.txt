@@ -1,0 +1,11 @@
+iris
+1
+4.0
+2
+2
+3
+naranja
+4
+[bd, ac, soa]
+5
+cookies tambien

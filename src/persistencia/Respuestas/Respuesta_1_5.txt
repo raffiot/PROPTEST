@@ -1,0 +1,11 @@
+iris
+1
+10.0
+2
+0
+3
+rojo
+4
+[ies, idi]
+5
+cookies tambien
