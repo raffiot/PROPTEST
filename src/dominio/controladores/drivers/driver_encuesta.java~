@@ -98,13 +98,11 @@ public class driver_encuesta {
         	e.borrar(toDelete);
         }
         
-        else if (var == 0){
-		borrado =1;
-		toLeave =0;
-        }
+        else if (var == 0) borrado =1;
+        
        }while(borrado == 0);
           
-  		if(toLeave ==1){
+  
         	do{
     	    
         	
@@ -296,7 +294,6 @@ public class driver_encuesta {
         		}
         
         	}while (var != 0);
-		}
 
 	}
 }

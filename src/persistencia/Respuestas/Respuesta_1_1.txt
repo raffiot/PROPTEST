@@ -2,10 +2,10 @@ raphael
 1
 8.0
 2
-2
+0
 3
-rosa
+rojo
 4
-[bd, ac, ies]
+[ies, prop, idi]
 5
-todo muy bien
+todo genial

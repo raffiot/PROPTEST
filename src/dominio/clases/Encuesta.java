@@ -212,10 +212,10 @@ public class Encuesta {
 		int j = 1;
 		int exist = 1;
 		do{	
-    		String sFichero = "src/persistencia/Respuestsa/Respuesta_"+i+"_"+"j"+".txt";
+    		String sFichero = "src/persistencia/Respuestas/Respuesta_"+i+"_"+j+".txt";
     		File fichero1 = new File(sFichero);
     		if (fichero1.exists()){
-    			fichero.delete();
+    			fichero1.delete();
     			++j;
     		}
     		else exist = 0;
