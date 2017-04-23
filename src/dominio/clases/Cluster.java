@@ -114,13 +114,13 @@ public class Cluster{
 			for(RespuestaEncuesta re : usuarios){
 				s+="\n";
 				s+="Usuario "+(an.getRespEncuestas().getListRP().indexOf(re)+1)+":\n";
-				s+="Distancia con el centroid: "+an.distanceRespEncuesta(centroid,re,an.getEncuesta(),an.getMapMinMax());
+				s+="Distancia con el centroid: "+an.distanceRespEncuesta(centroid,re,an.getEncuesta(),an.getMapMinMax(), an.getFuncWord());
 				s+="\n";
 				s+=re.toString();
 				s+="Distancia con los otros centroids:\n";
 				for(Cluster c : an.getCentroids()){
 					if(this.index != c.getIndex()){
-						s+="Centroid "+c.getIndex()+" : "+an.distanceRespEncuesta(c.getCentroid(), re, an.getEncuesta(), an.getMapMinMax());
+						s+="Centroid "+c.getIndex()+" : "+an.distanceRespEncuesta(c.getCentroid(), re, an.getEncuesta(), an.getMapMinMax(), an.getFuncWord());
 						s+="\n";
 					}
 				}

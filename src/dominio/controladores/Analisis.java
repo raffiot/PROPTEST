@@ -36,6 +36,7 @@ public class Analisis {
 	private Encuesta encuesta;
 	private Map<Integer,MinMax> mapMinMax;
 	private List<Cluster> centroids;
+	private String funcWord;
 	
 	/**
 	 * Constructor de la classe Analisis.
@@ -83,7 +84,7 @@ public class Analisis {
 	public Resultado k_means() throws IOException{
 		
 		
-		String funcWord = funcionnalString("empty.sp");
+		funcWord = funcionnalString("empty.sp");
 
 		
 		//CREATION OF SEEDS
@@ -98,7 +99,7 @@ public class Analisis {
 			
 			
 			//ASSIG EACH RESPUESTA_ENCUESTA TO CLUSTER
-			centroids = assignacioRespuestaEncuesta(encuesta, mapMinMax, respEncuestas, centroids);
+			centroids = assignacioRespuestaEncuesta(encuesta, mapMinMax, respEncuestas, centroids, funcWord);
 			
 			
 			//Save old centroids before modificate
@@ -113,7 +114,7 @@ public class Analisis {
 			//check if we are under threshold
 			underThreshold = true;
 			for(Cluster cluster: centroids){
-				double d = distanceRespEncuesta(cluster.getCentroid(), oldCentroids.get(cluster.getIndex()), encuesta, mapMinMax);
+				double d = distanceRespEncuesta(cluster.getCentroid(), oldCentroids.get(cluster.getIndex()), encuesta, mapMinMax,funcWord);
 				if(d > threshold){
 					underThreshold = false;
 				}
@@ -213,7 +214,7 @@ public class Analisis {
 	 * @return
 	 * 		La lista de cluster con los usuarios assignados
 	 */
-	public List<Cluster> assignacioRespuestaEncuesta(Encuesta encuesta, Map<Integer,MinMax> mapMinMax, Respuesta_Analisis respEncuestas, List<Cluster> centroids){
+	public List<Cluster> assignacioRespuestaEncuesta(Encuesta encuesta, Map<Integer,MinMax> mapMinMax, Respuesta_Analisis respEncuestas, List<Cluster> centroids, String funcWord){
 		
 		List<Cluster> newCentroids = new ArrayList<Cluster>();
 		for(Cluster c : centroids){
@@ -225,7 +226,7 @@ public class Analisis {
 			int index_centroid=0;
 			
 			for(int i = 0; i < k; i++){
-				double distance = distanceRespEncuesta(ra,newCentroids.get(i).getCentroid(),encuesta,mapMinMax);
+				double distance = distanceRespEncuesta(ra,newCentroids.get(i).getCentroid(),encuesta,mapMinMax,funcWord);
 				if(distance < distance_min){
 					distance_min = distance;
 					index_centroid = i;
@@ -375,26 +376,26 @@ public class Analisis {
 	 * @return
 	 * 		La distancia entre las dos respuestas a encuesta, que es un double que pertenece al intervalo [0,1]
 	 */
-	public double distanceRespEncuesta(RespuestaEncuesta r1,RespuestaEncuesta r2, Encuesta e,Map<Integer,MinMax> mapMinMax ){
+	public double distanceRespEncuesta(RespuestaEncuesta r1,RespuestaEncuesta r2, Encuesta e,Map<Integer,MinMax> mapMinMax, String funWord ){
 		double distance = 0;
 		for(int index = 0; index < e.getN_preguntas(); index++){
 			switch (e.getPreguntas().get(index).tipo){
 				case 1 :
 					MinMax m = mapMinMax.get(e.getPreguntas().get(index).id); 
-					distance += r1.getRespPreguntas().get(index).distance(r2.getRespPreguntas().get(index), m.min, m.max, 0);
+					distance += r1.getRespPreguntas().get(index).distance(r2.getRespPreguntas().get(index), m.min, m.max, 0,null);
 					break;
 				case 2 :
 					int size = ((Tipo_2) e.getPreguntas().get(index)).getOpciones(); 
-					distance +=  r1.getRespPreguntas().get(index).distance(r2.getRespPreguntas().get(index), 0, 0, size);
+					distance +=  r1.getRespPreguntas().get(index).distance(r2.getRespPreguntas().get(index), 0, 0, size,null);
 					break;
 				case 3 :
-					distance += r1.getRespPreguntas().get(index).distance(r2.getRespPreguntas().get(index), 0, 0, 0);
+					distance += r1.getRespPreguntas().get(index).distance(r2.getRespPreguntas().get(index), 0, 0, 0,null);
 					break;
 				case 4 :
-					distance += r1.getRespPreguntas().get(index).distance(r2.getRespPreguntas().get(index), 0, 0, 0);
+					distance += r1.getRespPreguntas().get(index).distance(r2.getRespPreguntas().get(index), 0, 0, 0,null);
 					break;
 				case 5 :
-					distance += r1.getRespPreguntas().get(index).distance(r2.getRespPreguntas().get(index), 0, 0, 0);
+					distance += r1.getRespPreguntas().get(index).distance(r2.getRespPreguntas().get(index), 0, 0, 0,funWord);
 					break;								
 			}
 			
@@ -499,6 +500,15 @@ public class Analisis {
 		return centroids;
 	}
 
+	/**
+	 * Metodo para obtenir las palabra funcionnal que no se hacen caso en la analisis
+	 * 
+	 * @return
+	 * 		Una String que contiene las palabras funcionnals.
+	 */
+	public String getFuncWord() {
+		return funcWord;
+	}
 
 	/**
 	 * Metodo para cargar en una String el fichero que contiene las palabras funcionals.

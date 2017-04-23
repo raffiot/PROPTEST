@@ -35,7 +35,7 @@ public class Respuesta_1 extends RespuestaPregunta{
 	 *  	
 	 */
 	@Override
-	public double distance(RespuestaPregunta r, double minR1, double maxR1, int sizeR2){
+	public double distance(RespuestaPregunta r, double minR1, double maxR1, int sizeR2,String funR5){
 		return Math.abs(this.getValueR1()-r.getValueR1())/(maxR1-minR1);
 	}
 	

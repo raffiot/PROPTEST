@@ -1,4 +1,9 @@
 package dominio.clases;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Classe que representa una respuesta a una pregunta de tipo 5
  * 
@@ -33,9 +38,11 @@ public class Respuesta_5 extends RespuestaPregunta{
 	 * 		este parametro no sirve en este caso
 	 */
 	@Override
-	public double distance(RespuestaPregunta r, double minR1, double maxR1,	int sizeR2) {
+	public double distance(RespuestaPregunta r, double minR1, double maxR1,	int sizeR2,String funR5) {
 		String lhs = this.getValueR5();
 		String rhs = r.getValueR5();
+		Set<String> setFun = new HashSet<String>(Arrays.asList(funR5.split(" ")));
+		System.out.println(setFun.size());
 		int[][] distance = new int[lhs.length() + 1][rhs.length() + 1];        
         
         for (int i = 0; i <= lhs.length(); i++)                                 

@@ -33,7 +33,7 @@ public class Respuesta_4 extends RespuestaPregunta{
 	 * @param sizeR2
 	 * 		este parametro no sirve en este caso
 	 */
-	public double distance(RespuestaPregunta r, double minR1, double maxR1, int sizeR2){
+	public double distance(RespuestaPregunta r, double minR1, double maxR1, int sizeR2,String funR5){
 		Set<String> respuesta1 = this.getValueR4();
 		Set<String> respuesta2 = r.getValueR4();
 		double ucounter = respuesta1.size();

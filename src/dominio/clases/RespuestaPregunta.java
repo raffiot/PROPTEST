@@ -75,7 +75,7 @@ public abstract class RespuestaPregunta {
 	}
 	
 	
-	public abstract double distance(RespuestaPregunta r, double minR1, double maxR1, int sizeR2);
+	public abstract double distance(RespuestaPregunta r, double minR1, double maxR1, int sizeR2, String funR5);
 
 	/**
 	 * Metodo para obtener el valor de la respuesta pregunta tipo 1
