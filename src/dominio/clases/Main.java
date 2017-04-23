@@ -8,8 +8,9 @@ import dominio.controladores.drivers.*;
 public class Main {
 	private static Scanner texto;
 	private static Scanner opcion;
-	
+	public static String user = "";
 	public static void main(String[] args) {
+		String user = "";
 		texto = new Scanner(System.in);
 		opcion = new Scanner(System.in);
 		System.out.println("Escribe USU si eres usuario o ADMIN si eres administrador");
@@ -17,7 +18,8 @@ public class Main {
 		String text = texto.nextLine();
 		int var;
 		if (text.equals("USU")){
-			
+			System.out.println("Escribe tu nombre de usuario");
+			user = texto.nextLine().toLowerCase();
 			System.out.println("");
 			System.out.println ("Escribe la opcion que quieras elegir:");
 			System.out.println ("0.Salir");

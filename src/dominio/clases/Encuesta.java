@@ -201,6 +201,7 @@ public class Encuesta {
 	
 	/**
 	 * Metodo para borrar una encuesta
+	 * al borrar la encuesta todas las respuestas de esa encuesta son borradas
 	 * 
 	 * @param i
 	 * 		la id de la encuesta que se desea borrar
@@ -208,8 +209,18 @@ public class Encuesta {
 	public void borrar(int i){
 		File fichero = new File("src/persistencia/Encuestas/Encuesta_"+i+".txt");
 		fichero.delete();
-		//habria que borrar todas las respuestas de la encuesta borrada para no
-		//generar conflictos...
+		int j = 1;
+		int exist = 1;
+		do{	
+    		String sFichero = "src/persistencia/Respuestsa/Respuesta_"+i+"_"+"j"+".txt";
+    		File fichero1 = new File(sFichero);
+    		if (fichero1.exists()){
+    			fichero.delete();
+    			++j;
+    		}
+    		else exist = 0;
+    	}while(exist != 0);
+		
 	}
 	
 	/**
