@@ -21,7 +21,7 @@ import java.util.Set;
 
 public class RespuestaEncuesta {
 	private Encuesta encuesta;
-	private Participant participant;//identificador de participante solo
+	private String nombre;//identificador de participante solo
 	private List<RespuestaPregunta> respPreguntas;
 	
 	/**
@@ -34,9 +34,9 @@ public class RespuestaEncuesta {
 	 * @param rp
 	 * 		El conjunto de respuestas
 	 */
-	public RespuestaEncuesta(Encuesta e, Participant p, List<RespuestaPregunta> rp){
+	public RespuestaEncuesta(Encuesta e, String s, List<RespuestaPregunta> rp){
 		encuesta = e;
-		participant = p;
+		nombre = s;
 		respPreguntas = new ArrayList<RespuestaPregunta>();
 		for(RespuestaPregunta r : rp){
 			respPreguntas.add(r);
@@ -99,7 +99,7 @@ public class RespuestaEncuesta {
 		for(RespuestaPregunta rp : respPreguntas){
 			newList.add(rp.clone());
 		}
-		return new RespuestaEncuesta(encuesta,participant,newList);
+		return new RespuestaEncuesta(encuesta,nombre,newList);
 	}
 	
 	/**
@@ -133,6 +133,7 @@ public class RespuestaEncuesta {
 		
     	/*plenem el document*/
     	String s = "";
+    	s += this.nombre+"\r\n";
 		
 		for(int i = 0; i < respPreguntas.size();++i){
 			int tipo = respPreguntas.get(i).getPregunta().getTipo();
@@ -194,7 +195,8 @@ public class RespuestaEncuesta {
 			try {
 				Encuesta e = new Encuesta(1);
 				e.leer(s);
-				
+				this.nombre = in.readLine();
+						
 				for(int i = 0; i < e.getN_preguntas(); ++i){
 					 String line = null;
 					    if((line = in.readLine()) != null){

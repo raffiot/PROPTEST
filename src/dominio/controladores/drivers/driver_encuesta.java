@@ -32,7 +32,7 @@ public class driver_encuesta {
         System.out.println("1. Crear encuesta.");
         System.out.println("2. Importar encuesta.");
         System.out.println("3. Eliminar encuesta.");
-        
+        System.out.println("0. Salir");
         var = opcion.nextInt();
         
         
@@ -97,6 +97,8 @@ public class driver_encuesta {
         	e.borrar(toDelete);
         }
         
+        else if (var == 0) System.exit(0);
+        
        }while(borrado == 0);
             
         	do{
@@ -118,6 +120,7 @@ public class driver_encuesta {
         				System.out.println("3. Variables cualitativas no ordenadas,");
         				System.out.println("4. Variables cualitativas no ordenadas donde la respuesta es un conjunto,");
         				System.out.println("5. Tipo libre,");
+        				System.out.println("0. Salir");
     			
         				int aux = 0;
         				aux = opcion.nextInt();
@@ -192,6 +195,9 @@ public class driver_encuesta {
         					e.anadir_pregunta(p1111);
         					System.out.println("Pregunta insertada");
     					break;
+    					
+        				case 0:
+        					break;
     					
         				}
     			break;
@@ -281,13 +287,12 @@ public class driver_encuesta {
     				}
     				
     			}
-    			
-        		break;
+        			else if (aux3 == 3) break;
     		
         		}
         
         	}while (var != 0);
-        	//System.exit(0);
+        	System.exit(0);
 
 	}
 }

@@ -55,10 +55,10 @@ public class driver_contestar {
         }while(!trobat);
         
         trobat = false;
-        Participant a = null;
+        
 		Encuesta e = new Encuesta(numEnquesta);
 		List<RespuestaPregunta> rp = new ArrayList<RespuestaPregunta>();
-        RespuestaEncuesta re = new RespuestaEncuesta(e,a,rp);
+        RespuestaEncuesta re = new RespuestaEncuesta(e,Main.user,rp);
         
         e.leer(numEnquesta.toString());
         System.out.println(e.toString());
