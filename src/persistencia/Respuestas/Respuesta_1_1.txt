@@ -1,0 +1,11 @@
+raphael
+1
+8.0
+2
+2
+3
+rosa
+4
+[bd, ac, ies]
+5
+todo muy bien

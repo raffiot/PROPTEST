@@ -1,0 +1,11 @@
+robert
+1
+10.0
+2
+0
+3
+naranja
+4
+[bd, ac, xc]
+5
+todo funcionna
