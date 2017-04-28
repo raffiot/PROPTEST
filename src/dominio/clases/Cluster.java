@@ -10,8 +10,6 @@ package dominio.clases;
 import java.util.ArrayList;
 import java.util.List;
 
-import dominio.controladores.Analisis;
-
 public class Cluster{
 
 	private int index;

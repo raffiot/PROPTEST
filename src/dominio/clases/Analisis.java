@@ -1,4 +1,4 @@
-package dominio.controladores;
+package dominio.clases;
 
 /**
  * La classe Analisis se instancia para empezar una nueva analisis sobre las respuestas de usuarios
@@ -19,13 +19,6 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
-
-import dominio.clases.Cluster;
-import dominio.clases.Encuesta;
-import dominio.clases.RespuestaEncuesta;
-import dominio.clases.Respuesta_Analisis;
-import dominio.clases.Resultado;
-import dominio.clases.Tipo_2;
 public class Analisis {
 	
 	
