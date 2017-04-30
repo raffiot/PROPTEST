@@ -34,7 +34,7 @@ public class Main {
 						System.exit(0);
 						break;				
 					case 1:
-						dominio.controladores.drivers.driver_contestar.main(null);
+						dominio.controladores.controlador_contestar.main(null);
 						break;			
 				}
 				System.out.println ("Vuelta al menu principal!");
@@ -63,11 +63,11 @@ public class Main {
 						break;
 					
 					case 1:
-						dominio.controladores.drivers.driver_encuesta.main(null);
+						dominio.controladores.controlador_encuesta.main(null);
 						break;
 					
 					case 2:
-						dominio.controladores.drivers.driver_analizar.main(null);
+						dominio.controladores.controlador_analizar.main(null);
 						break;
 						
 						

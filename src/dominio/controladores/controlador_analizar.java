@@ -1,4 +1,4 @@
-package dominio.controladores.drivers;
+package dominio.controladores;
 
 
 import dominio.clases.*;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class driver_analizar {
+public class controlador_analizar {
 	private static Scanner texto;
 	private static Scanner opcion;
 	public static void main(String[] args) {

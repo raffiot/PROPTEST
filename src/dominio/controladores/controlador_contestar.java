@@ -1,4 +1,4 @@
-package dominio.controladores.drivers;
+package dominio.controladores;
 
 /**
  * El driver contestar sirve para probar que se almacenan y tratan las respuestas de forma correcta
@@ -16,7 +16,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 
-public class driver_contestar {
+public class controlador_contestar {
 	private static Scanner texto;
 	private static Scanner respuesta;
 	
