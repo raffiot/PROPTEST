@@ -261,7 +261,6 @@ public class Analisis {
 				Map<String,Integer> mediana3 = new HashMap<String,Integer>();
 				Map<Set<String>,Integer> mediana4 = new HashMap<Set<String>,Integer>();
 				Map<String,Integer> mediana5 = new HashMap<String,Integer>();
-
 				for(int j = 0; j < cluster.getUsuarios().size() ; j++){
 					switch (tipoP){
 					case 1 :

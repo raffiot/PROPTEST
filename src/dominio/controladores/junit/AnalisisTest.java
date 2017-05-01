@@ -199,7 +199,7 @@ public class AnalisisTest {
 		Analisis an = createAnalisis();
 		List<Cluster> list = an.createCluster(2,an.getRespEncuestas());
 		Map<Integer,MinMax> m = an.minMax_Respuesta_1(an.getEncuesta(),list,an.getRespEncuestas());
-		an.assignacioRespuestaEncuesta(an.getEncuesta(), m, an.getRespEncuestas(), list,an.getFuncWord());
+		list = an.assignacioRespuestaEncuesta(an.getEncuesta(), m, an.getRespEncuestas(), list,an.getFuncWord());
 		
 		RespuestaEncuesta re1 = an.getRespEncuestas().getListRP().get(0);	
 		RespuestaEncuesta re2 = an.getRespEncuestas().getListRP().get(1);	
@@ -271,7 +271,7 @@ public class AnalisisTest {
 		assertTrue("Method createCluster failled",generatedValue <= 20 && generatedValue >= 0);
 		
 		Map<Integer,MinMax> tipo_1M = tipo_1A.minMax_Respuesta_1(tipo_1E,tipo_1C,tipo_1RA);
-		tipo_1A.assignacioRespuestaEncuesta(tipo_1E, tipo_1M, tipo_1RA, tipo_1C,tipo_1A.getFuncWord());
+		tipo_1C = tipo_1A.assignacioRespuestaEncuesta(tipo_1E, tipo_1M, tipo_1RA, tipo_1C,tipo_1A.getFuncWord());
 		String funcWord;
 		funcWord ="";
 		try {
@@ -317,14 +317,14 @@ public class AnalisisTest {
 		listRE.add(tipo_1RE2);
 		Respuesta_Analisis tipo_1RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_1A = new Analisis(0, 1, 1, tipo_1RA,tipo_1E);
+		Analisis tipo_1A = new Analisis(0, 1, 0.1, tipo_1RA,tipo_1E);
 		List<Cluster> tipo_1C = tipo_1A.createCluster(1,tipo_1A.getRespEncuestas());
 		
 		double generatedValue = tipo_1C.get(0).getCentroid().getRespPreguntas().get(0).getValueR1();
 		assertTrue("Method createCluster failled",generatedValue <= 20 && generatedValue >= 0);
 		
 		Map<Integer,MinMax> tipo_1M = tipo_1A.minMax_Respuesta_1(tipo_1E,tipo_1C,tipo_1RA);
-		tipo_1A.assignacioRespuestaEncuesta(tipo_1E, tipo_1M, tipo_1RA, tipo_1C, tipo_1A.getFuncWord());
+		tipo_1C = tipo_1A.assignacioRespuestaEncuesta(tipo_1E, tipo_1M, tipo_1RA, tipo_1C, tipo_1A.getFuncWord());
 		String funcWord;
 		funcWord ="";
 		try {
@@ -370,14 +370,14 @@ public class AnalisisTest {
 		listRE.add(tipo_2RE);
 		Respuesta_Analisis tipo_2RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_2A = new Analisis(0, 1, 1, tipo_2RA,tipo_2E);
+		Analisis tipo_2A = new Analisis(0, 1, 0.1, tipo_2RA,tipo_2E);
 		List<Cluster> tipo_2C = tipo_2A.createCluster(1,tipo_2A.getRespEncuestas());
 		
 		double generatedValue = tipo_2C.get(0).getCentroid().getRespPreguntas().get(0).getValueR2();
 		assertTrue("Method createCluster failled",generatedValue <= 4 && generatedValue >= 0);
 		
 		Map<Integer,MinMax> tipo_2M = tipo_2A.minMax_Respuesta_1(tipo_2E,tipo_2C,tipo_2RA);
-		tipo_2A.assignacioRespuestaEncuesta(tipo_2E, tipo_2M, tipo_2RA, tipo_2C,tipo_2A.getFuncWord());
+		tipo_2C = tipo_2A.assignacioRespuestaEncuesta(tipo_2E, tipo_2M, tipo_2RA, tipo_2C,tipo_2A.getFuncWord());
 		String funcWord;
 		funcWord ="";
 		try {
@@ -431,11 +431,11 @@ public class AnalisisTest {
 		listRE.add(tipo_2RE2);
 		Respuesta_Analisis tipo_2RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_2A = new Analisis(0, 1, 1, tipo_2RA,tipo_2E);
+		Analisis tipo_2A = new Analisis(0, 1, 0.1, tipo_2RA,tipo_2E);
 		List<Cluster> tipo_2C = tipo_2A.createCluster(1,tipo_2A.getRespEncuestas());
 		
 		Map<Integer,MinMax> tipo_2M = tipo_2A.minMax_Respuesta_1(tipo_2E,tipo_2C,tipo_2RA);
-		tipo_2A.assignacioRespuestaEncuesta(tipo_2E, tipo_2M, tipo_2RA, tipo_2C, tipo_2A.getFuncWord());
+		tipo_2C = tipo_2A.assignacioRespuestaEncuesta(tipo_2E, tipo_2M, tipo_2RA, tipo_2C, tipo_2A.getFuncWord());
 		String funcWord;
 		funcWord ="";
 		try {
@@ -481,14 +481,14 @@ public class AnalisisTest {
 		listRE.add(tipo_3RE);
 		Respuesta_Analisis tipo_3RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_3A = new Analisis(0, 1, 1, tipo_3RA, tipo_3E);
+		Analisis tipo_3A = new Analisis(0, 1, 0.1, tipo_3RA, tipo_3E);
 		List<Cluster> tipo_3C = tipo_3A.createCluster(1,tipo_3A.getRespEncuestas());
 		
 		String generatedValue = tipo_3C.get(0).getCentroid().getRespPreguntas().get(0).getValueR3();
 		assertTrue("Method createCluster failled",lista_opciones.contains(generatedValue));
 		
 		Map<Integer,MinMax> tipo_3M = tipo_3A.minMax_Respuesta_1(tipo_3E,tipo_3C,tipo_3RA);
-		tipo_3A.assignacioRespuestaEncuesta(tipo_3E, tipo_3M, tipo_3RA, tipo_3C,tipo_3A.getFuncWord());
+		tipo_3C =tipo_3A.assignacioRespuestaEncuesta(tipo_3E, tipo_3M, tipo_3RA, tipo_3C,tipo_3A.getFuncWord());
 		String funcWord;
 		funcWord ="";
 		try {
@@ -547,11 +547,11 @@ public class AnalisisTest {
 		listRE.add(tipo_3RE3);
 		Respuesta_Analisis tipo_3RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_3A = new Analisis(0, 1, 1, tipo_3RA,tipo_3E);
+		Analisis tipo_3A = new Analisis(0, 1, 0.1, tipo_3RA,tipo_3E);
 		List<Cluster> tipo_3C = tipo_3A.createCluster(1,tipo_3A.getRespEncuestas());
 		
 		Map<Integer,MinMax> tipo_3M = tipo_3A.minMax_Respuesta_1(tipo_3E,tipo_3C,tipo_3RA);
-		tipo_3A.assignacioRespuestaEncuesta(tipo_3E, tipo_3M, tipo_3RA, tipo_3C,tipo_3A.getFuncWord());
+		tipo_3C = tipo_3A.assignacioRespuestaEncuesta(tipo_3E, tipo_3M, tipo_3RA, tipo_3C,tipo_3A.getFuncWord());
 		String funcWord;
 		funcWord ="";
 		try {
@@ -600,14 +600,14 @@ public class AnalisisTest {
 		listRE.add(tipo_4RE);
 		Respuesta_Analisis tipo_4RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_4A = new Analisis(0, 1, 1, tipo_4RA,tipo_4E);
+		Analisis tipo_4A = new Analisis(0, 1, 0.1, tipo_4RA,tipo_4E);
 		List<Cluster> tipo_4C = tipo_4A.createCluster(1,tipo_4A.getRespEncuestas());
 		
 		Set<String> generatedValue = tipo_4C.get(0).getCentroid().getRespPreguntas().get(0).getValueR4();
 		assertTrue("Method createCluster failled",lista_opciones.containsAll(generatedValue));
 		
 		Map<Integer,MinMax> tipo_4M = tipo_4A.minMax_Respuesta_1(tipo_4E,tipo_4C,tipo_4RA);
-		tipo_4A.assignacioRespuestaEncuesta(tipo_4E, tipo_4M, tipo_4RA, tipo_4C,tipo_4A.getFuncWord());
+		tipo_4C = tipo_4A.assignacioRespuestaEncuesta(tipo_4E, tipo_4M, tipo_4RA, tipo_4C,tipo_4A.getFuncWord());
 		
 		String funcWord ="";
 		try {
@@ -679,7 +679,7 @@ public class AnalisisTest {
 		List<Cluster> tipo_4C = tipo_4A.createCluster(1,tipo_4A.getRespEncuestas());
 		
 		Map<Integer,MinMax> tipo_4M = tipo_4A.minMax_Respuesta_1(tipo_4E,tipo_4C,tipo_4RA);
-		tipo_4A.assignacioRespuestaEncuesta(tipo_4E, tipo_4M, tipo_4RA, tipo_4C,tipo_4A.getFuncWord());
+		tipo_4C = tipo_4A.assignacioRespuestaEncuesta(tipo_4E, tipo_4M, tipo_4RA, tipo_4C,tipo_4A.getFuncWord());
 		
 		String funcWord ="";
 		try {
@@ -722,15 +722,17 @@ public class AnalisisTest {
 		Analisis tipo_5A = new Analisis(0, 1, 1, tipo_5RA,tipo_5E);
 		List<Cluster> tipo_5C = tipo_5A.createCluster(1,tipo_5A.getRespEncuestas());
 		
-		Map<Integer,MinMax> tipo_5M = tipo_5A.minMax_Respuesta_1(tipo_5E,tipo_5C,tipo_5RA);
-		tipo_5A.assignacioRespuestaEncuesta(tipo_5E, tipo_5M, tipo_5RA, tipo_5C,tipo_5A.getFuncWord());
-		
 		String funcWord ="";
 		try {
 			funcWord = tipo_5A.funcionnalString("empty.sp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		Map<Integer,MinMax> tipo_5M = tipo_5A.minMax_Respuesta_1(tipo_5E,tipo_5C,tipo_5RA);
+		tipo_5C = tipo_5A.assignacioRespuestaEncuesta(tipo_5E, tipo_5M, tipo_5RA, tipo_5C,funcWord);
+		
+		
 		
 		tipo_5A.recomputeCentroids(tipo_5C, tipo_5E, funcWord);
 		String recomputedValue = tipo_5C.get(0).getCentroid().getRespPreguntas().get(0).getValueR5();
@@ -779,15 +781,17 @@ public class AnalisisTest {
 		Analisis tipo_5A = new Analisis(0, 1, 1, tipo_5RA,tipo_5E);
 		List<Cluster> tipo_5C = tipo_5A.createCluster(1,tipo_5A.getRespEncuestas());
 		
-		Map<Integer,MinMax> tipo_5M = tipo_5A.minMax_Respuesta_1(tipo_5E,tipo_5C,tipo_5RA);
-		tipo_5A.assignacioRespuestaEncuesta(tipo_5E, tipo_5M, tipo_5RA, tipo_5C,tipo_5A.getFuncWord());
-		
 		String funcWord ="";
 		try {
 			funcWord = tipo_5A.funcionnalString("empty.sp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		Map<Integer,MinMax> tipo_5M = tipo_5A.minMax_Respuesta_1(tipo_5E,tipo_5C,tipo_5RA);
+		tipo_5C = tipo_5A.assignacioRespuestaEncuesta(tipo_5E, tipo_5M, tipo_5RA, tipo_5C,funcWord);
+		
+		
 		
 		tipo_5A.recomputeCentroids(tipo_5C, tipo_5E, funcWord);
 		String recomputedValue = tipo_5C.get(0).getCentroid().getRespPreguntas().get(0).getValueR5();
