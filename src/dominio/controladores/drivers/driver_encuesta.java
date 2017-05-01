@@ -1,5 +1,12 @@
 package dominio.controladores.drivers;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import dominio.clases.*;
@@ -18,7 +25,7 @@ public class driver_encuesta {
         System.out.println ("Una Encuesta ha sido cargada para probar sus metodos");
         
         Encuesta e = new Encuesta(1);
-        e.leer("1");
+        leer(1,e);
         
         int var;
         System.out.println ("Pulse 1 para visualizar la encuesta cargada");
@@ -134,9 +141,41 @@ public class driver_encuesta {
         		case 4: 
         			System.out.println("Introduzca el numero de pregunta que desea ver");
         			System.out.println(e.get_pre(opcion.nextInt()).toString());
+        			System.out.println();
+        			break;
         		
         		case 5:
+        			guardar(e);
+        			System.out.println("Las encuesta ha sido guardada \n");
+        			
+        		case 6:
+        			System.out.println("Las encuestas disponibles son las siguientes: ");
+        			int exist = 1;
+                	Integer id = 1;
+                	do{	
+                		String sFichero = "Data/Drivers/Encuestas/Encuesta_"+id.toString()+".txt";
+                		File fichero = new File(sFichero);
+                		if (fichero.exists()){ 
+                			Encuesta en = new Encuesta(id);
+                			en.leer(id.toString());
+                			System.out.println("Encuesta_"+id+ " Genero = "+en.getGenero());
+                			++id;
+                		}
+                		else exist = 0;
+                	}while(exist != 0);
+                	System.out.println("Introduce la id de la encuesta que quieres importar");
+                	var = opcion.nextInt();
+                	leer(var,e);
+                	break;
+                	
+        		case 7:
+        			borrar(e);
+        			System.out.println("La encuesta ha sido borrada.");
+        			System.out.println("DRIVER FINALIZADO");
+        			System.exit(0);
+        			break;
         		
+                	
         	}
         	
         	
@@ -144,6 +183,124 @@ public class driver_encuesta {
         
         
         
-	}  
+	}
+	
+	public static void leer(int i, Encuesta e) {
+		try {
+			BufferedReader in = new BufferedReader(new FileReader("Data/Drivers/Encuestas/Encuesta_"+i+".txt"));
+			try {
+				e.setId(Integer.valueOf(in.readLine()));
+				e.setGenero(in.readLine());
+				e.setFecha(in.readLine());
+				e.setN_preguntas(Integer.valueOf(in.readLine()));
+				
+				for(int i1 = 0; i1 <e.getN_preguntas(); ++i1){
+					 String line = null;
+					    if((line = in.readLine()) != null){
+					        Integer tip = Integer.valueOf(line);
+					        String aux = "";
+					        aux = in.readLine();
+			
+					        switch(tip){
+					        	case 1: 
+							
+					        		Integer min = Integer.valueOf(in.readLine());
+					        		Integer max = Integer.valueOf(in.readLine());
+					        		Tipo_1 p = new Tipo_1(i1+1,aux,(max-min+1),max,min);
+					        		e.anadir_pregunta(p);
+					        		break;
+					        		
+					        	case 2:
+					        		Integer opciones = Integer.valueOf(in.readLine());
+					        		ArrayList <String> l = new ArrayList<String>();
+					        		for (int j = 0; j < opciones; ++j){
+					        			l.add(in.readLine());
+					        			
+					        		}
+					        		Tipo_2 p1 = new Tipo_2(i1+1,aux,opciones,l);
+					        		e.anadir_pregunta(p1);
+					        		break;
+					        		
+					        		
+					        	case 3:
+					        		Integer opciones1 = Integer.valueOf(in.readLine());
+					        		ArrayList <String> l1 = new ArrayList<String>();
+					        		for (int j = 0; j < opciones1; ++j){
+					        			l1.add(in.readLine());
+					        			
+					        		}
+					        		Tipo_3 p11 = new Tipo_3(i1+1,aux,opciones1,l1);
+					        		e.anadir_pregunta(p11);
+					        		break;
+					        		
+					        		
+					        	case 4:
+					        		Integer opciones11 = Integer.valueOf(in.readLine());
+					        		ArrayList <String> l11 = new ArrayList<String>();
+					        		for (int j = 0; j < opciones11; ++j){
+					        			l11.add(in.readLine());
+					        			
+					        		}
+					        		Tipo_4 p111 = new Tipo_4(i1+1,aux,opciones11,l11);
+					        		e.anadir_pregunta(p111);
+					        		break;
+					        		
+					        		
+					        	case 5: 
+					        		Tipo_5 p1111 = new Tipo_5(i1+1,aux);
+					        		e.anadir_pregunta(p1111);
+					        		break;
+						
+					        }
+					 }
+				}
+				
+				in.close();
+				
+			} catch (NumberFormatException | IOException e1) {
+				// TODO Auto-generated catch block
+			e1.printStackTrace();
+			}
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+	}
+	public static void guardar(Encuesta e) {
+		String s = "";
+		s += e.getId() +"\r\n";
+		s += e.getGenero() +"\r\n";
+		s += e.getFecha()+ "\r\n";
+		s += e.getN_preguntas() +"\r\n";
+		for(int i = 0; i < e.getN_preguntas();++i){
+			s += e.getPreguntas().get(i).guardar();
+			}
+		
+		FileWriter fichero = null;
+	        try
+	        {
+	            fichero = new FileWriter("Data/Drivers/Encuestas/Encuesta_"+e.getId()+".txt");
+	           // pw = new PrintWriter(fichero);
+	            fichero.write(s);
+
+	        } catch (Exception e1) {
+	            e1.printStackTrace();
+	        } finally {
+	           try {
+	           // Nuevamente aprovechamos el finally para 
+	           // asegurarnos que se cierra el fichero.
+	           if (null != fichero)
+	              fichero.close();
+	           } catch (Exception e2) {
+	              e2.printStackTrace();
+	           }
+	        }
+	}
+	public static void borrar(Encuesta e){
+		File fichero = new File("src/persistencia/Encuestas/Encuesta_"+e.getId()+".txt");
+		fichero.delete();
+		
+	}
 
 }

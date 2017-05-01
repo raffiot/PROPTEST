@@ -92,6 +92,17 @@ public class Encuesta {
 		return n_preguntas;
 	}
 	
+	
+	/**
+	 * Metodo para darle el numero de preguntas a la encuesta
+	 * 
+	 * @param n_preguntas
+	 * 		int con el numero de preguntas que tendra la encuesta
+	 */
+	public void setN_preguntas(int n_preguntas) {
+		this.n_preguntas = n_preguntas;
+	}
+	
 	/**
 	 * Metodo para obtener el genero de la encuesta
 	 * 
@@ -207,12 +218,12 @@ public class Encuesta {
 	 * 		la id de la encuesta que se desea borrar
 	 */
 	public void borrar(int i){
-		File fichero = new File("src/persistencia/Encuestas/Encuesta_"+i+".txt");
+		File fichero = new File("Data/Encuestas/Encuesta_"+i+".txt");
 		fichero.delete();
 		int j = 1;
 		int exist = 1;
 		do{	
-    		String sFichero = "src/persistencia/Respuestas/Respuesta_"+i+"_"+j+".txt";
+    		String sFichero = "Data/Respuestas/Respuesta_"+i+"_"+j+".txt";
     		File fichero1 = new File(sFichero);
     		if (fichero1.exists()){
     			fichero1.delete();
@@ -239,7 +250,7 @@ public class Encuesta {
 		FileWriter fichero = null;
 	        try
 	        {
-	            fichero = new FileWriter("src/persistencia/Encuestas/Encuesta_"+this.id+".txt");
+	            fichero = new FileWriter("Data/Encuestas/Encuesta_"+this.id+".txt");
 	           // pw = new PrintWriter(fichero);
 	            fichero.write(s);
 
@@ -265,7 +276,7 @@ public class Encuesta {
 	 */
 	public void leer(String s) {
 		try {
-			BufferedReader in = new BufferedReader(new FileReader("src/persistencia/Encuestas/Encuesta_"+s+".txt"));
+			BufferedReader in = new BufferedReader(new FileReader("Data/Encuestas/Encuesta_"+s+".txt"));
 			try {
 				this.id = Integer.valueOf(in.readLine());
 				this.genero = in.readLine();

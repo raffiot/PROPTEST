@@ -1,0 +1,53 @@
+3
+Encuesta del cis
+Fri Apr 21 11:30:01 CEST 2017
+8
+3
+Que nacionalidad tiene?
+4
+Española
+Italiana
+Francesa
+Otra
+2
+Como calificaria usted la situacion politica en España?
+5
+muy mala
+mala
+regular
+buena
+muy buena
+2
+Como calificaria usted la situacion economica en España?
+5
+muy mala
+mala
+buena
+regular
+muy buena
+2
+Usted cree que la situacion economica del pais es mejor, igual o peor que hace un año?
+3
+mejor
+igual
+peor
+5
+Cual es, a su jucio, el principal problema que existe en España?
+1
+Quiero que me señale, el nivel de preocupacion que tiene por el avance de la ciencia y la tecnologia 
+1
+5
+3
+Se ha conectao a Internet en los ultimos tres meses
+3
+Si
+No
+N.C
+2
+Con que frecuencia lee las politicas de privacidad de las paginas de internet que usa?
+5
+Siempre
+Casi siempre
+Algunas veces
+Raramente
+Nunca

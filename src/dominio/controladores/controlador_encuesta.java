@@ -42,7 +42,7 @@ public class controlador_encuesta {
         	int exist = 1;
         	Integer id = 1;
         	do{	
-        		String sFichero = "src/persistencia/Encuestas/Encuesta_"+id.toString()+".txt";
+        		String sFichero = "Data/Encuestas/Encuesta_"+id.toString()+".txt";
         		File fichero = new File(sFichero);
         		if (fichero.exists()) ++id;
         		else exist = 0;
@@ -61,7 +61,7 @@ public class controlador_encuesta {
         	int exist = 1;
         	Integer id = 1;
         	do{	
-        		String sFichero = "src/persistencia/Encuestas/Encuesta_"+id.toString()+".txt";
+        		String sFichero = "Data/Encuestas/Encuesta_"+id.toString()+".txt";
         		File fichero = new File(sFichero);
         		if (fichero.exists()){ 
         			Encuesta en = new Encuesta(id);
@@ -83,7 +83,7 @@ public class controlador_encuesta {
         	int exist = 1;
         	Integer id = 1;
         	do{	
-        		String sFichero = "src/persistencia/Encuestas/Encuesta_"+id.toString()+".txt";
+        		String sFichero = "Data/Encuestas/Encuesta_"+id.toString()+".txt";
         		File fichero = new File(sFichero);
         		if (fichero.exists()){ 
         			Encuesta en = new Encuesta(id);
