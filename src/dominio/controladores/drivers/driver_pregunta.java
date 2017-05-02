@@ -2,6 +2,7 @@ package dominio.controladores.drivers;
 
 import java.util.Scanner;
 
+import dominio.clases.Pregunta;
 import dominio.clases.Tipo_1;
 import dominio.clases.Tipo_2;
 import dominio.clases.Tipo_3;
@@ -15,12 +16,13 @@ public class driver_pregunta {
 		 
         System.out.println ("Empezamos la ejecucion del driver de Pregunta");
         int id_p = 0;
+        int var1;
         do{
-        
+        	Pregunta pglobal = null;
         	System.out.println ("Introduzca el tipo de pregunta que desea crear");
-        	int var = opcion.nextInt();
+        	var1 = opcion.nextInt();
         	
-        	switch (var){
+        	switch (var1){
         		
         	case 1:
 				Tipo_1 p = new Tipo_1();
@@ -32,7 +34,7 @@ public class driver_pregunta {
 				p.setMax(opcion.nextInt());
 				p.setOpciones(p.getMax()-p.getMin());
 				p.setId(++id_p); 
-				
+				pglobal = p;
 				
 			break;
 			
@@ -47,7 +49,7 @@ public class driver_pregunta {
 					p1.anadir_opcion(texto.nextLine());
 				}
 				p1.setId(++id_p);
-				
+				pglobal = p1;
 				
 			break;
 			
@@ -64,7 +66,7 @@ public class driver_pregunta {
 					p11.anadir_opcion(s);
 				}
 				p11.setId(++id_p);
-				
+				pglobal = p11;
 				
 			break;
 			
@@ -79,7 +81,7 @@ public class driver_pregunta {
 					p111.anadir_opcion(texto.nextLine());
 				}
 				p111.setId(++id_p);
-				
+				pglobal = p111;
 			break;
 			
 			case 5:
@@ -87,32 +89,45 @@ public class driver_pregunta {
 				System.out.println("Inserte enunciado");
 				p1111.setEnunciado(texto.nextLine());
 				p1111.setId(++id_p);
-				
+				pglobal = p1111;
 			break;
         			
         		
         	}
-        			
+        		int var2;	
         	do{
         		System.out.println("Indique que desea hacer ahora :");
         		System.out.println(" 1. Mostrar el enunciado de la pregunta");
         		System.out.println("2. Mostrar tipo de la pregunta");
         		System.out.println("3. Pasar la pregunta a String y imprimirla por pantalla");
-        		System.out.println("3. Pasar la pregunta a String y imprimirla por pantalla");
-        		System.out.println("4.Mostrar el formato en que se guarda la pregunta");
+        		
+        		System.out.println("4. Mostrar el formato en que se guarda la pregunta");
         		System.out.println("0. Salir");
         		
-        		var = opcion.nextInt();
-        		switch (var) {
+        		var2 = opcion.nextInt();
+        		switch (var2) {
         		
         		case 1:
-        			System.out.println();
+        			System.out.println(pglobal.getEnunciado());
+        			break;
+        		case 2:
+        			System.out.println(pglobal.getTipo());
+        			break;
+        		
+        		case 3:
+        			System.out.println(pglobal.toString());
+        			break;
+        			
+        		case 4:
+        			System.out.println(pglobal.guardar());
+        			break;
         		}
+        		
         	
-        	} while (var != 0);
+        	} while (var2 != 0);
 	
         
         
-        }
+        }while (var1 != 0);
 	}
 }
