@@ -27,3 +27,9 @@ run_Tipo_4Test:
 	java $(JFLAGS) org.junit.runner.JUnitCore dominio.controladores.junit.Tipo_4Test
 run_Tipo_5Test:
 	java $(JFLAGS) org.junit.runner.JUnitCore dominio.controladores.junit.Tipo_5Test
+
+run_driver_encuesta : 
+	java $(JFLAGS) dominio.controladores.drivers.driver_encuesta
+	
+run_driver_pregunta:
+	java $(JFLAGS) dominio.controladores.drivers.driver_pregunta

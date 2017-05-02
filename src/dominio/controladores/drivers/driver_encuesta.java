@@ -18,7 +18,8 @@ public class driver_encuesta {
 	private static Scanner opcion;
 	public static void main (String [ ] args) {
 		 
-        
+	      texto = new Scanner(System.in);
+	        opcion = new Scanner(System.in);
  
         System.out.println ("Empezamos la ejecucion del driver de encuesta");
         
