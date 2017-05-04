@@ -6,7 +6,7 @@ all:
 	javac $(JFLAGS) src/dominio/clases/*.java src/dominio/controladores/drivers/*.java src/dominio/controladores/junit/*.java 
 
 clean:
-	rm src/dominio/clases/*.class src/dominio/controladores/drivers/*.class src/dominio/controladores/junit/*.class 
+	rm src/dominio/clases/*.class src/dominio/controladores/drivers/*.class src/dominio/controladores/junit/*.class src/dominio/controladores/drivers/*.class 
 run:
 	java $(JFLAGS) dominio.clases.Main
 run_AnalisisTest:
@@ -33,3 +33,6 @@ run_driver_encuesta :
 	
 run_driver_pregunta:
 	java $(JFLAGS) dominio.controladores.drivers.driver_pregunta
+
+run_driver_analisis:
+	java $(JFLAGS) dominio.controladores.drivers.driver_analisis
