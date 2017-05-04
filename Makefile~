@@ -33,6 +33,3 @@ run_driver_encuesta :
 	
 run_driver_pregunta:
 	java $(JFLAGS) dominio.controladores.drivers.driver_pregunta
-
-run_driver_analisis:
-	java $(JFLAGS) dominio.controladores.drivers.driver_analisis
