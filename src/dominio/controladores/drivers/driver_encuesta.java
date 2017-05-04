@@ -149,22 +149,21 @@ public class driver_encuesta {
         		case 5:
         			guardar(e);
         			System.out.println("Las encuesta ha sido guardada \n");
-        			
+        			break;
         		case 6:
         			System.out.println("Las encuestas disponibles son las siguientes: ");
-        			int exist = 1;
-                	Integer id = 1;
-                	do{	
-                		String sFichero = "Data/Drivers/Encuestas/Encuesta_"+id.toString()+".txt";
+        			
+                	for (int id1 = 1; id1 < 100; ++id1){
+                		String sFichero = "Data/Drivers/Encuestas/Encuesta_"+id1+".txt";
                 		File fichero = new File(sFichero);
                 		if (fichero.exists()){ 
-                			Encuesta en = new Encuesta(id);
-                			en.leer(id.toString());
-                			System.out.println("Encuesta_"+id+ " Genero = "+en.getGenero());
-                			++id;
+                			Encuesta en = new Encuesta(id1);
+                			leer(id1,en);
+                			System.out.println("Encuesta_"+id1+ " Genero = "+en.getGenero());
+                			++id1;
                 		}
-                		else exist = 0;
-                	}while(exist != 0);
+                		
+                	}
                 	System.out.println("Introduce la id de la encuesta que quieres importar");
                 	var = opcion.nextInt();
                 	leer(var,e);
@@ -178,19 +177,19 @@ public class driver_encuesta {
         			var = opcion.nextInt();
         			if (var == 1){
         				System.out.println("Las encuestas disponibles son las siguientes: ");
-            			int exist1 = 1;
-                    	Integer id1 = 1;
-                    	do{	
-                    		String sFichero = "Data/Drivers/Encuestas/Encuesta_"+id1.toString()+".txt";
+            			
+                    	
+                    	for (int id1 = 1; id1 < 100; ++id1){
+                    		String sFichero = "Data/Drivers/Encuestas/Encuesta_"+id1+".txt";
                     		File fichero = new File(sFichero);
                     		if (fichero.exists()){ 
                     			Encuesta en = new Encuesta(id1);
-                    			en.leer(id1.toString());
+                    			leer(id1,en);
                     			System.out.println("Encuesta_"+id1+ " Genero = "+en.getGenero());
                     			++id1;
                     		}
-                    		else exist1 = 0;
-                    	}while(exist1 != 0);
+                    		
+                    	}
                     	System.out.println("Introduce la id de la encuesta que quieres importar");
                     	var = opcion.nextInt();
                     	leer(var,e);
