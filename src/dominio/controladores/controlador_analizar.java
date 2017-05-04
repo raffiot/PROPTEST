@@ -20,7 +20,7 @@ public class controlador_analizar {
     	int exist = 1;
     	Integer id = 1;
     	do{	
-    		String sFichero = "src/persistencia/Encuestas/Encuesta_"+id.toString()+".txt";
+    		String sFichero = "Data/Encuestas/Encuesta_"+id.toString()+".txt";
     		File fichero = new File(sFichero);
     		if (fichero.exists()){ 
     			Encuesta en = new Encuesta(id);
@@ -37,7 +37,7 @@ public class controlador_analizar {
 		
 		List<RespuestaEncuesta> listRE = new ArrayList<>();
 		Integer index = 1;
-		String sFichero = "src/persistencia/Respuestas/Respuesta_"+numEncuesta+"_"+index+".txt";
+		String sFichero = "Data/Respuestas/Respuesta_"+numEncuesta+"_"+index+".txt";
 		File fichero = new File(sFichero);
 		
 		while(fichero.exists()){
@@ -46,7 +46,7 @@ public class controlador_analizar {
 				listRE.add(re);
 				
 				index++;
-				sFichero = "src/persistencia/Respuestas/Respuesta_"+numEncuesta+"_"+index+".txt";
+				sFichero = "Data/Respuestas/Respuesta_"+numEncuesta+"_"+index+".txt";
 				fichero = new File(sFichero);
 		}
 		
