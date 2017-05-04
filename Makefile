@@ -6,7 +6,7 @@ all:
 	javac $(JFLAGS) src/dominio/clases/*.java src/dominio/controladores/drivers/*.java src/dominio/controladores/junit/*.java 
 
 clean:
-	rm src/dominio/clases/*.class src/dominio/controladores/drivers/*.class src/dominio/controladores/junit/*.class 
+	rm src/dominio/clases/*.class src/dominio/controladores/drivers/*.class src/dominio/controladores/junit/*.class src/dominio/controladores/*.class
 run:
 	java $(JFLAGS) dominio.clases.Main
 run_AnalisisTest:
