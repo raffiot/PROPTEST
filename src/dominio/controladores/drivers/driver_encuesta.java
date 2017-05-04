@@ -23,10 +23,24 @@ public class driver_encuesta {
  
         System.out.println ("Empezamos la ejecucion del driver de encuesta");
         
-        System.out.println ("Una Encuesta ha sido cargada para probar sus metodos");
-        
-        Encuesta e = new Encuesta(1);
-        leer(1,e);
+       
+        System.out.println("Las encuestas disponibles son las siguientes: ");
+		
+    	for (int id1 = 1; id1 < 100; ++id1){
+    		String sFichero = "Data/Drivers/Encuestas/Encuesta_"+id1+".txt";
+    		File fichero = new File(sFichero);
+    		if (fichero.exists()){ 
+    			Encuesta en = new Encuesta(id1);
+    			leer(id1,en);
+    			System.out.println("Encuesta_"+id1+ " Genero = "+en.getGenero());
+    			
+    		}
+    		
+    	}
+    	System.out.println("Introduce la id de la encuesta que quieres importar");
+    	int var2 = opcion.nextInt();
+    	Encuesta e = new Encuesta(1);
+    	leer(var2,e);
         
         int var;
         System.out.println ("Pulse 1 para visualizar la encuesta cargada");
@@ -142,7 +156,7 @@ public class driver_encuesta {
     			
         		case 4: 
         			System.out.println("Introduzca el numero de pregunta que desea ver");
-        			System.out.println(e.get_pre(opcion.nextInt()).toString());
+        			System.out.println(e.get_pre(opcion.nextInt()));
         			System.out.println();
         			break;
         		
