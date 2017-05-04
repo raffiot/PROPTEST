@@ -160,7 +160,7 @@ public class driver_encuesta {
                 			Encuesta en = new Encuesta(id1);
                 			leer(id1,en);
                 			System.out.println("Encuesta_"+id1+ " Genero = "+en.getGenero());
-                			++id1;
+                			
                 		}
                 		
                 	}
@@ -186,7 +186,7 @@ public class driver_encuesta {
                     			Encuesta en = new Encuesta(id1);
                     			leer(id1,en);
                     			System.out.println("Encuesta_"+id1+ " Genero = "+en.getGenero());
-                    			++id1;
+                    			
                     		}
                     		
                     	}
