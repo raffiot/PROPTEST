@@ -13,8 +13,8 @@ public class driver_pregunta {
 	private static Scanner texto;
 	private static Scanner opcion;
 	public static void main (String [ ] args) {
-	      texto = new Scanner(System.in);
-	        opcion = new Scanner(System.in);
+	     texto = new Scanner(System.in);
+	     opcion = new Scanner(System.in);
 		 
         System.out.println ("Empezamos la ejecucion del driver de Pregunta");
         int id_p = 0;

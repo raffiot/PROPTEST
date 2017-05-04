@@ -47,6 +47,8 @@ public class driver_encuesta {
         	System.out.println ("Pulse 5 si desea guardar la encuesta");
         	System.out.println ("Pulse 6 si desea cargar otra encuesta");
         	System.out.println ("Pulse 7 si desea borrar la encuesta");
+        	System.out.println ("Pulse 8 si desea mostrar en terminal la encuesta en formato String");
+        	System.out.println ("Pulse 0 si desea salir");
         	
         	var = opcion.nextInt();
         	System.out.println("");
@@ -68,6 +70,7 @@ public class driver_encuesta {
     				System.out.println("3. Variables cualitativas no ordenadas,");
     				System.out.println("4. Variables cualitativas no ordenadas donde la respuesta es un conjunto,");
     				System.out.println("5. Tipo libre,");
+    				System.out.println("0. Salir");
     				int aux = opcion.nextInt();
     				
     				
@@ -75,7 +78,7 @@ public class driver_encuesta {
     				String s = texto.nextLine();
     				
     				switch (aux){
-    				
+    					case 0: break;
     					case 1:  
     						Tipo_1 p = new Tipo_1();
     						p.setEnunciado(s);
@@ -132,10 +135,8 @@ public class driver_encuesta {
     						p5.setEnunciado(s);
     						p5.setId(e.getN_preguntas());
     						e.anadir_pregunta(p5);
-    						
-    					case 0: 
-    						var = 0;
     						break;
+    					
     				}
     			break;
     			
@@ -172,11 +173,39 @@ public class driver_encuesta {
         		case 7:
         			borrar(e);
         			System.out.println("La encuesta ha sido borrada.");
-        			System.out.println("DRIVER FINALIZADO");
-        			System.exit(0);
+        			System.out.println("Pulse 1 si desea cargar otra encuesta");
+        			System.out.println("Pulse 0 si desea salir del driver");
+        			var = opcion.nextInt();
+        			if (var == 1){
+        				System.out.println("Las encuestas disponibles son las siguientes: ");
+            			int exist1 = 1;
+                    	Integer id1 = 1;
+                    	do{	
+                    		String sFichero = "Data/Drivers/Encuestas/Encuesta_"+id1.toString()+".txt";
+                    		File fichero = new File(sFichero);
+                    		if (fichero.exists()){ 
+                    			Encuesta en = new Encuesta(id1);
+                    			en.leer(id1.toString());
+                    			System.out.println("Encuesta_"+id1+ " Genero = "+en.getGenero());
+                    			++id1;
+                    		}
+                    		else exist1 = 0;
+                    	}while(exist1 != 0);
+                    	System.out.println("Introduce la id de la encuesta que quieres importar");
+                    	var = opcion.nextInt();
+                    	leer(var,e);
+        			}
+        			
+        			else if(var == 0){
+        				System.exit(0);
+        			}
         			break;
+        			
+        		case 0: System.exit(0);
         		
-                	
+        		case 8: 
+        			System.out.println(e.toString());
+                	break;
         	}
         	
         	
@@ -299,7 +328,7 @@ public class driver_encuesta {
 	        }
 	}
 	public static void borrar(Encuesta e){
-		File fichero = new File("src/persistencia/Encuestas/Encuesta_"+e.getId()+".txt");
+		File fichero = new File("Data/Drivers/Encuestas/Encuesta_"+e.getId()+".txt");
 		fichero.delete();
 		
 	}
