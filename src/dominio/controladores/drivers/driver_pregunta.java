@@ -13,13 +13,16 @@ public class driver_pregunta {
 	private static Scanner texto;
 	private static Scanner opcion;
 	public static void main (String [ ] args) {
+	     texto = new Scanner(System.in);
+	     opcion = new Scanner(System.in);
 		 
         System.out.println ("Empezamos la ejecucion del driver de Pregunta");
         int id_p = 0;
         int var1;
         do{
         	Pregunta pglobal = null;
-        	System.out.println ("Introduzca el tipo de pregunta que desea crear");
+        	System.out.println ("Introduzca el tipo de pregunta que desea crear, del 1 al 5");
+        	System.out.println ("Pulse 0 para salir");
         	var1 = opcion.nextInt();
         	
         	switch (var1){
@@ -91,34 +94,37 @@ public class driver_pregunta {
 				p1111.setId(++id_p);
 				pglobal = p1111;
 			break;
-        			
+        	
+			case 0: System.exit(0);
         		
         	}
         		int var2;	
         	do{
         		System.out.println("Indique que desea hacer ahora :");
-        		System.out.println(" 1. Mostrar el enunciado de la pregunta");
+        		System.out.println("1. Mostrar el enunciado de la pregunta");
         		System.out.println("2. Mostrar tipo de la pregunta");
         		System.out.println("3. Pasar la pregunta a String y imprimirla por pantalla");
-        		
         		System.out.println("4. Mostrar el formato en que se guarda la pregunta");
-        		System.out.println("0. Salir");
+        		System.out.println("0. Salir y crear una nueva pregunta");
         		
         		var2 = opcion.nextInt();
         		switch (var2) {
         		
         		case 1:
+        			System.out.println("El enunciado de la pregunta es:");
         			System.out.println(pglobal.getEnunciado());
         			break;
         		case 2:
-        			System.out.println(pglobal.getTipo());
+        			System.out.println("El tipo de la pregunta es: " + pglobal.getTipo());
         			break;
         		
         		case 3:
+        			System.out.println("El formato String es el siguiente:");
         			System.out.println(pglobal.toString());
         			break;
         			
         		case 4:
+        			System.out.println("El formato para guardar una pregunta es el siguiente:");
         			System.out.println(pglobal.guardar());
         			break;
         		}

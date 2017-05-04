@@ -18,14 +18,29 @@ public class driver_encuesta {
 	private static Scanner opcion;
 	public static void main (String [ ] args) {
 		 
-        
+	      texto = new Scanner(System.in);
+	        opcion = new Scanner(System.in);
  
         System.out.println ("Empezamos la ejecucion del driver de encuesta");
         
-        System.out.println ("Una Encuesta ha sido cargada para probar sus metodos");
-        
-        Encuesta e = new Encuesta(1);
-        leer(1,e);
+       
+        System.out.println("Las encuestas disponibles son las siguientes: ");
+		
+    	for (int id1 = 1; id1 < 100; ++id1){
+    		String sFichero = "Data/Drivers/Encuestas/Encuesta_"+id1+".txt";
+    		File fichero = new File(sFichero);
+    		if (fichero.exists()){ 
+    			Encuesta en = new Encuesta(id1);
+    			leer(id1,en);
+    			System.out.println("Encuesta_"+id1+ " Genero = "+en.getGenero());
+    			
+    		}
+    		
+    	}
+    	System.out.println("Introduce la id de la encuesta que quieres importar");
+    	int var2 = opcion.nextInt();
+    	Encuesta e = new Encuesta(1);
+    	leer(var2,e);
         
         int var;
         System.out.println ("Pulse 1 para visualizar la encuesta cargada");
@@ -46,6 +61,8 @@ public class driver_encuesta {
         	System.out.println ("Pulse 5 si desea guardar la encuesta");
         	System.out.println ("Pulse 6 si desea cargar otra encuesta");
         	System.out.println ("Pulse 7 si desea borrar la encuesta");
+        	System.out.println ("Pulse 8 si desea mostrar en terminal la encuesta en formato String");
+        	System.out.println ("Pulse 0 si desea salir");
         	
         	var = opcion.nextInt();
         	System.out.println("");
@@ -67,6 +84,7 @@ public class driver_encuesta {
     				System.out.println("3. Variables cualitativas no ordenadas,");
     				System.out.println("4. Variables cualitativas no ordenadas donde la respuesta es un conjunto,");
     				System.out.println("5. Tipo libre,");
+    				System.out.println("0. Salir");
     				int aux = opcion.nextInt();
     				
     				
@@ -74,7 +92,7 @@ public class driver_encuesta {
     				String s = texto.nextLine();
     				
     				switch (aux){
-    				
+    					case 0: break;
     					case 1:  
     						Tipo_1 p = new Tipo_1();
     						p.setEnunciado(s);
@@ -131,38 +149,35 @@ public class driver_encuesta {
     						p5.setEnunciado(s);
     						p5.setId(e.getN_preguntas());
     						e.anadir_pregunta(p5);
-    						
-    					case 0: 
-    						var = 0;
     						break;
+    					
     				}
     			break;
     			
         		case 4: 
         			System.out.println("Introduzca el numero de pregunta que desea ver");
-        			System.out.println(e.get_pre(opcion.nextInt()).toString());
+        			System.out.println(e.get_pre(opcion.nextInt()));
         			System.out.println();
         			break;
         		
         		case 5:
         			guardar(e);
         			System.out.println("Las encuesta ha sido guardada \n");
-        			
+        			break;
         		case 6:
         			System.out.println("Las encuestas disponibles son las siguientes: ");
-        			int exist = 1;
-                	Integer id = 1;
-                	do{	
-                		String sFichero = "Data/Drivers/Encuestas/Encuesta_"+id.toString()+".txt";
+        			
+                	for (int id1 = 1; id1 < 100; ++id1){
+                		String sFichero = "Data/Drivers/Encuestas/Encuesta_"+id1+".txt";
                 		File fichero = new File(sFichero);
                 		if (fichero.exists()){ 
-                			Encuesta en = new Encuesta(id);
-                			en.leer(id.toString());
-                			System.out.println("Encuesta_"+id+ " Genero = "+en.getGenero());
-                			++id;
+                			Encuesta en = new Encuesta(id1);
+                			leer(id1,en);
+                			System.out.println("Encuesta_"+id1+ " Genero = "+en.getGenero());
+                			
                 		}
-                		else exist = 0;
-                	}while(exist != 0);
+                		
+                	}
                 	System.out.println("Introduce la id de la encuesta que quieres importar");
                 	var = opcion.nextInt();
                 	leer(var,e);
@@ -171,11 +186,39 @@ public class driver_encuesta {
         		case 7:
         			borrar(e);
         			System.out.println("La encuesta ha sido borrada.");
-        			System.out.println("DRIVER FINALIZADO");
-        			System.exit(0);
+        			System.out.println("Pulse 1 si desea cargar otra encuesta");
+        			System.out.println("Pulse 0 si desea salir del driver");
+        			var = opcion.nextInt();
+        			if (var == 1){
+        				System.out.println("Las encuestas disponibles son las siguientes: ");
+            			
+                    	
+                    	for (int id1 = 1; id1 < 100; ++id1){
+                    		String sFichero = "Data/Drivers/Encuestas/Encuesta_"+id1+".txt";
+                    		File fichero = new File(sFichero);
+                    		if (fichero.exists()){ 
+                    			Encuesta en = new Encuesta(id1);
+                    			leer(id1,en);
+                    			System.out.println("Encuesta_"+id1+ " Genero = "+en.getGenero());
+                    			
+                    		}
+                    		
+                    	}
+                    	System.out.println("Introduce la id de la encuesta que quieres importar");
+                    	var = opcion.nextInt();
+                    	leer(var,e);
+        			}
+        			
+        			else if(var == 0){
+        				System.exit(0);
+        			}
         			break;
+        			
+        		case 0: System.exit(0);
         		
-                	
+        		case 8: 
+        			System.out.println(e.toString());
+                	break;
         	}
         	
         	
@@ -298,7 +341,7 @@ public class driver_encuesta {
 	        }
 	}
 	public static void borrar(Encuesta e){
-		File fichero = new File("src/persistencia/Encuestas/Encuesta_"+e.getId()+".txt");
+		File fichero = new File("Data/Drivers/Encuestas/Encuesta_"+e.getId()+".txt");
 		fichero.delete();
 		
 	}
