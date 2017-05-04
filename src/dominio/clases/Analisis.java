@@ -493,6 +493,16 @@ public class Analisis {
 	}
 	
 	/**
+	 * Metodo para modificar el map que contiene los minimos y maximos
+	 * 
+	 * @param mapMinMax
+	 * 		la nueva map de minimos y maximos
+	 */
+	public void setMapMinMax(Map<Integer, MinMax> mapMinMax) {
+		this.mapMinMax = mapMinMax;
+	}
+
+	/**
 	 * Metodo para obtenir los cluster que ha generado la analisis
 	 * 
 	 * @return
@@ -500,6 +510,28 @@ public class Analisis {
 	 */
 	public List<Cluster> getCentroids() {
 		return centroids;
+	}
+
+	
+	/**
+	 * Metodo para modificar la lista de cluster
+	 * 
+	 * @param centroids
+	 * 	la nueva lista de cluster
+	 */
+	public void setCentroids(List<Cluster> centroids) {
+		this.centroids = centroids;
+	}
+	
+	
+	/**
+	 * Metodo para modificar las palabras funcionals
+	 * 
+	 * @param funcWord
+	 * 		las nuevas palabras funcionals
+	 */
+	public void setFuncWord(String funcWord) {
+		this.funcWord = funcWord;
 	}
 
 	/**

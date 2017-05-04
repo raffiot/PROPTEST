@@ -42,14 +42,19 @@ public class Respuesta_5 extends RespuestaPregunta{
 		String lhs = this.getValueR5();
 		String rhs = r.getValueR5();
 		Set<String> setFun = new HashSet<String>(Arrays.asList(funR5.split("\n")));
-		for(String s : setFun){
-			if(lhs.contains(" "+s+" ")){ //Espacio para estar seguro que es solo la palabra que queremos
-				lhs.replaceAll(s, "");
-			}
-			if(rhs.contains(" "+s+" ")){
-				rhs.replaceAll(s, "");
+		for(String s : lhs.split(" ")){
+			if(setFun.contains(s)){
+				lhs = lhs.replace(s, "");
+				
 			}
 		}
+		for(String s : rhs.split(" ")){
+			if(setFun.contains(s)){
+				rhs = rhs.replace(s, "");
+			}
+		}
+		rhs = rhs.replace(" ", "");
+		lhs = lhs.replace(" ", "");
 		int[][] distance = new int[lhs.length() + 1][rhs.length() + 1];        
         
         for (int i = 0; i <= lhs.length(); i++)                                 
@@ -73,7 +78,7 @@ public class Respuesta_5 extends RespuestaPregunta{
 	
 	public String toString() {
 		String s = "";
-		s += this.getValueR5()+"\n";
+		s += "	"+this.getValueR5()+"\n";
 		return s;
 	}
 

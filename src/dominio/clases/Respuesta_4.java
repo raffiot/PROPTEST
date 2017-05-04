@@ -49,7 +49,7 @@ public class Respuesta_4 extends RespuestaPregunta{
 	}
 	public String toString() {
 		String s = "";
-		s += this.getValueR4().toString()+"\n";
+		s += "	"+this.getValueR4().toString()+"\n";
 		return s;
 	}
 	

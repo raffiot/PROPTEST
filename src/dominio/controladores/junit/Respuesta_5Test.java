@@ -45,6 +45,23 @@ public class Respuesta_5Test {
 		assertEquals("the distance is not the one expected",5./6,distance,0);
 	}
 	
+	//Test with sentences
+	@Test
+	public void distanceTest2(){	
+		String funWord="";
+		try {
+			funWord = funcionnalString("empty.sp");
+		} catch (IOException e) {
+			System.out.println("failled to get funcionnal String");
+			e.printStackTrace();
+		}
+		RespuestaPregunta p1 = new Respuesta_5(null,"todo Genial");
+		RespuestaPregunta p2 = new Respuesta_5(null,"genial");
+		double distance = p1.distance(p2, 0, 0, 0,funWord);
+		assertTrue("the distance is superior to 1",distance <= 1);
+		assertEquals("the distance is not the one expected",0,distance,0);
+	}
+	
 	@Test
 	public void distanceZeroTest(){
 		String funWord="";
