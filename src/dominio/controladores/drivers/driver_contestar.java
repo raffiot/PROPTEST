@@ -6,15 +6,20 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 import dominio.clases.*;
 
 
 public class driver_contestar {
 	private static Scanner texto;
-	private static Scanner opcion;
+	private static Scanner respuesta;
 
 	public static void main (String [ ] args) {
 
@@ -54,18 +59,18 @@ public class driver_contestar {
         while(!trobat);
 
     	System.out.println("Introduce la id de la encuesta que quieres responder");
-    	int var2 = opcion.nextInt();
+    	String var2 = texto.nextLine();
         
         int var;
         System.out.println ("Pulse 1 para visualizar la encuesta que quiere responder");
         System.out.println ("Pulse 0 si desea salir del driver");
 
-        var = opcion.nextInt();
+        var = respuesta.nextInt();
 
-        Encuesta e = new Encuesta(var2);
+        Encuesta e = new Encuesta(1);
 		List<RespuestaPregunta> rp = new ArrayList<RespuestaPregunta>();
         
-        e.leer(var2.toString());
+        e.leer(var2);
 
         do{
         	if (var == 0) System.exit(0);
@@ -148,9 +153,9 @@ public class driver_contestar {
 
     }
 
-    public void guardar(List<RespuestaPregunta> rp,int numEncuesta){
+    public static  void guardar(List<RespuestaPregunta> rp,int numEncuesta){
 		
-		respPreguntas = rp;
+		
 		
 		/*creem el document*/
 		int exist = 1;
@@ -167,29 +172,29 @@ public class driver_contestar {
 		
     	/*plenem el document*/
     	String s = "";
-    	s += this.nombre+"\r\n";
+    	s += "driver"+"\r\n";
 		
-		for(int i = 0; i < respPreguntas.size();++i){
-			int tipo = respPreguntas.get(i).getPregunta().getTipo();
+		for(int i = 0; i < rp.size();++i){
+			int tipo = rp.get(i).getPregunta().getTipo();
 			s += tipo +"\r\n";
 			if ( tipo == 1){
-				double valor = respPreguntas.get(i).getValueR1();
+				double valor = rp.get(i).getValueR1();
 				s += valor + "\r\n";
 			}
 			else if ( tipo == 2){
-				int valor = respPreguntas.get(i).getValueR2();
+				int valor = rp.get(i).getValueR2();
 				s += valor + "\r\n";
 			}
 			else if ( tipo == 3){
-				String valor = respPreguntas.get(i).getValueR3();
+				String valor = rp.get(i).getValueR3();
 				s += valor + "\r\n";
 			}
 			else if ( tipo == 4){
-				Set<String> valor = respPreguntas.get(i).getValueR4();
+				Set<String> valor = rp.get(i).getValueR4();
 				s += valor + "\r\n";
 			}
 			else if ( tipo == 5){
-				String valor = respPreguntas.get(i).getValueR5();
+				String valor = rp.get(i).getValueR5();
 				s += valor + "\r\n";	
 			}
 		}
