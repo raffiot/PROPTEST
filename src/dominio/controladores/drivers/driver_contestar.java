@@ -50,7 +50,7 @@ public class driver_contestar {
 
         	System.out.println("Escribe el numero de la encuesta que quieres responder");
         	numEnquesta = respuesta.nextInt();
-        	String sFichero = "Data/Encuestas/Encuesta_"+id.toString()+".txt";
+        	String sFichero = "Data/Encuestas/Encuesta_"+numEnquesta+".txt";
     		File fichero = new File(sFichero);
     		trobat = fichero.exists();
     		if(!trobat) 
