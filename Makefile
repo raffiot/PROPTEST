@@ -36,3 +36,6 @@ run_driver_pregunta:
 
 run_driver_analisis:
 	java $(JFLAGS) dominio.controladores.drivers.driver_analisis
+	
+run_driver_contestar:
+	java $(JFLAGS) dominio.controladores.drivers.driver_contestar
