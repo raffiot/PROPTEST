@@ -58,8 +58,7 @@ public class driver_contestar {
         }
         while(!trobat);
 
-    	System.out.println("Introduce la id de la encuesta que quieres responder");
-    	String var2 = texto.nextLine();
+    	
         
         int var;
         System.out.println ("Pulse 1 para visualizar la encuesta que quiere responder");
@@ -70,7 +69,7 @@ public class driver_contestar {
         Encuesta e = new Encuesta(1);
 		List<RespuestaPregunta> rp = new ArrayList<RespuestaPregunta>();
         
-        e.leer(var2);
+        e.leer(numEnquesta.toString());
 
         do{
         	if (var == 0) System.exit(0);
