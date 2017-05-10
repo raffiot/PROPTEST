@@ -1,5 +1,7 @@
 package dominio.clases;
 
+import java.io.Serializable;
+
 /**
  * La classe Tipo_4 representa una pregunta que se responde con 1 o mas opciones qualitativas.
  * Las differentes modalidades no son ordenadas.
@@ -11,7 +13,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-public class Tipo_4 extends Pregunta {
+public class Tipo_4 extends Pregunta implements Serializable {
 	
 	int opciones;
 	ArrayList <String>lista_opciones;

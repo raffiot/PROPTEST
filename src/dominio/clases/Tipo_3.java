@@ -1,5 +1,7 @@
 package dominio.clases;
 
+import java.io.Serializable;
+
 /**
  * La classe Tipo_3 representa una pregunta que se responde con 1 opcion qualitativa.
  * Las diferentes modalidades no son ordenadas.
@@ -10,7 +12,7 @@ package dominio.clases;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Tipo_3 extends Pregunta {
+public class Tipo_3 extends Pregunta implements Serializable{
 	
 	int opciones;
 	ArrayList <String>lista_opciones;
