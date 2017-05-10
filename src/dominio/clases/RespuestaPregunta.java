@@ -1,5 +1,7 @@
 package dominio.clases;
 
+import java.io.Serializable;
+
 /**
  * La classe Pregunta representa una pregunta.
  * 
@@ -11,7 +13,7 @@ package dominio.clases;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class RespuestaPregunta {
+public abstract class RespuestaPregunta implements Serializable{
 	private Pregunta pregunta;
 	private double valueR1;
 	private int valueR2;

@@ -1,4 +1,7 @@
 package dominio.clases;
+
+import java.io.Serializable;
+
 /**
  * La classe Tipo_5 representa una pregunta que se responde con una(s) palabra(s) de format libre.
  * 
@@ -6,7 +9,7 @@ package dominio.clases;
  * @author Miguel
 							
  */
-public class Tipo_5 extends Pregunta {
+public class Tipo_5 extends Pregunta implements Serializable {
 	
 	/**
 	 * Constructor vacio de la pregunta de tipo 5

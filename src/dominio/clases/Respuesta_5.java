@@ -1,5 +1,6 @@
 package dominio.clases;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,7 +11,7 @@ import java.util.Set;
  * @author Raphael
  *
  */
-public class Respuesta_5 extends RespuestaPregunta{
+public class Respuesta_5 extends RespuestaPregunta implements Serializable{
 	
 	/**
 	 * Constructor de la classe con la pregunta a la cual se responde y la sentencia que se ha respondido

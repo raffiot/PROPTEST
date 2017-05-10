@@ -1,4 +1,5 @@
 package dominio.clases;
+import java.io.Serializable;
 /**
  * Classe que representa una respuesta a una pregunta de tipo 4
  * 
@@ -7,7 +8,7 @@ package dominio.clases;
  */
 import java.util.Set;
 
-public class Respuesta_4 extends RespuestaPregunta{
+public class Respuesta_4 extends RespuestaPregunta implements Serializable{
 	
 	/**
 	 * Constructor de la classe con la pregunta a la cual se responde y los valores que se ha respondido
