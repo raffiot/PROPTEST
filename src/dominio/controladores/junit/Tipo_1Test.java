@@ -1,6 +1,8 @@
 package dominio.controladores.junit;
 
 import dominio.clases.*;
+import persistencia.Persistencia;
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -33,4 +35,11 @@ public class Tipo_1Test {
 		assertEquals(s,"1"+"\r\n"+"Que nota tendras en el examen de prop?"+"\r\n"+"0"+"\r\n"+"5"+"\r\n");
 	}
 	
+	@Test
+	public void guardar_testPersistencia() {
+		Tipo_1 t1 = new Tipo_1(0,"Que nota tendras en el examen de prop?",6,5,0);
+		Persistencia.escribir(t1, "");
+		Tipo_1 t2 = (Tipo_1) Persistencia.leer("");
+		assertEquals(t1.toString(),t2.toString());
+	}
 }
