@@ -1,12 +1,14 @@
 package dominio.clases;
 
+import java.io.Serializable;
+
 /**
  * La classe Pregunta representa una pregunta.
  * 
  * @author Miguel					
  */
 
-public abstract class  Pregunta {
+public abstract class  Pregunta implements Serializable{
 	public Integer id;
 	public String enunciado;
 	public Integer tipo;

@@ -1,5 +1,7 @@
 package dominio.clases;
 
+import java.io.Serializable;
+
 /**
  * La classe Tipo_1 representa una pregunta que se responde con un sol valor numeric o qualitativa.
  * 
@@ -7,7 +9,7 @@ package dominio.clases;
 							
  */
 
-public class Tipo_1 extends Pregunta {
+public class Tipo_1 extends Pregunta implements Serializable{
 	
 	private Integer opciones;
 	private Integer max;
