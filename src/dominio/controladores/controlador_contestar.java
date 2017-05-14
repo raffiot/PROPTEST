@@ -47,7 +47,7 @@ public class controlador_contestar {
         	}while(exist != 0);
         	System.out.println("Escribe el numero de la encuesta que quieres responder");
         	numEnquesta = respuesta.nextInt();
-        	String sFichero = "Data/Encuestas/Encuesta_"+id.toString()+".txt";
+        	String sFichero = "Data/Encuestas/Encuesta_"+numEnquesta.toString()+".txt";
     		File fichero = new File(sFichero);
     		trobat = fichero.exists();
     		if(!trobat) 
