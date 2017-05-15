@@ -13,13 +13,17 @@ public class Cjt_encuestas implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Encuesta> encuestas;
 	
-	@SuppressWarnings("unchecked")
+
 	public Cjt_encuestas(){
-		this.encuestas = (ArrayList<Encuesta>)Persistencia.leer("Data/Encuestas");
+		ArrayList<Encuesta> aux = new ArrayList<Encuesta>();
+		Persistencia<ArrayList<Encuesta>> p = new Persistencia<ArrayList<Encuesta>>(aux);
+		this.encuestas = p.leer("Data/Encuestas");
 	}
 	
 	public void guardar(){
-		Persistencia.escribir(this.encuestas,"Data/Encuestas");
+		
+		Persistencia<ArrayList<Encuesta>> p = new Persistencia<ArrayList<Encuesta>>(this.encuestas);
+		p.escribir("Data/Encuestas");
 		
 	}
 
