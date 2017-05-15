@@ -14,14 +14,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
 import java.util.function.Predicate;
 public class Analisis {
 	
@@ -264,7 +262,7 @@ public class Analisis {
 				double mediana2 = 0;
 				Map<String,Integer> mediana3 = new HashMap<String,Integer>();
 				Map<Set<String>,Integer> mediana4 = new HashMap<Set<String>,Integer>();
-				Map<String,Integer> mediana5 = new TreeMap<String,Integer>();
+				Map<String,Integer> mediana5 = new LinkedHashMap<String,Integer>();
 				for(int j = 0; j < cluster.getUsuarios().size() ; j++){
 					switch (tipoP){
 					case 1 :
@@ -286,7 +284,7 @@ public class Analisis {
 					case 5 :
 						String respString = cluster.getUsuarios().get(j).getRespPreguntas().get(i).getValueR5();
 						
-						List<String> set2 = new ArrayList<String>(Arrays.asList(respString.split(" ")));
+						Set<String> set2 = new LinkedHashSet<String>(Arrays.asList(respString.split(" ")));
 						
 						set2.removeIf(new Predicate<String>() {
 
@@ -298,13 +296,8 @@ public class Analisis {
 						});
 
 						for(String word : set2){
-							if(cluster.getIndex()==2)System.out.println(word);
 							int value3 = mediana5.getOrDefault(word, 0);
 							mediana5.put(word, value3+1);
-						}
-						
-						for(String word:mediana5.keySet()){
-							//if(cluster.getIndex()==2)System.out.println(word);
 						}
 						
 						break;																						

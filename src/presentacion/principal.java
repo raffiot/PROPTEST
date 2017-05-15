@@ -1,11 +1,14 @@
-package presentación;
+package presentacion;
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import javax.swing.JPasswordField;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.JTextField;
@@ -15,7 +18,7 @@ public class principal {
 
 	private JFrame frame;
 	private JTextField textField;
-	private JTextField textField_1;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -74,9 +77,8 @@ public class principal {
 		lblPassword.setBounds(106, 116, 78, 14);
 		frame.getContentPane().add(lblPassword);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(207, 110, 86, 20);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		passwordField = new JPasswordField();
+		passwordField.setBounds(207, 113, 86, 20);
+		frame.getContentPane().add(passwordField);
 	}
 }
