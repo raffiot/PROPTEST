@@ -3,7 +3,7 @@ package dominio.clases;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import persistencia.Persistencia;
+import persistencia.*;
 
 public class Cjt_encuestas implements Serializable {
 	
@@ -12,19 +12,18 @@ public class Cjt_encuestas implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Encuesta> encuestas;
-	
+	final String pathEncuesta = "Data/Encuestas/encuestas.dat";
 
 	public Cjt_encuestas(){
-		ArrayList<Encuesta> aux = new ArrayList<Encuesta>();
-		Persistencia<ArrayList<Encuesta>> p = new Persistencia<ArrayList<Encuesta>>(aux);
-		p.leer("Data/Encuestas");
-		this.encuestas = aux;
+		
+		Persistencia_Encuesta p = new Persistencia_Encuesta();
+		encuestas = p.leer(pathEncuesta);
 	}
 	
 	public void guardar(){
 		
-		Persistencia<ArrayList<Encuesta>> p = new Persistencia<ArrayList<Encuesta>>(this.encuestas);
-		p.escribir("Data/Encuestas");
+		Persistencia_Encuesta p = new Persistencia_Encuesta();
+		p.escribir(pathEncuesta,encuestas);
 		
 	}
 

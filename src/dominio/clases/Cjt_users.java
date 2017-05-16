@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import persistencia.Persistencia;
+import persistencia.Persistencia_User;
 
-public class Conjunto_User implements Serializable{
+public class Cjt_users implements Serializable{
 	private ArrayList<Persona> users;
 	
 	private String pathUser = "Data/Usuarios/users.dat";
@@ -32,7 +33,7 @@ public class Conjunto_User implements Serializable{
 	}
 
 
-	public Conjunto_User(){
+	public Cjt_users(){
 		this.users = new ArrayList<Persona>();
 		
 	}
@@ -40,16 +41,16 @@ public class Conjunto_User implements Serializable{
 	
 	public void leerMaps(){	
 		
-		
-		Persistencia<ArrayList<Persona>> p = new Persistencia<ArrayList<Persona>>(users);
-		p.leer(pathUser);
+		//Persistencia<ArrayList<Persona>> p = new Persistencia<ArrayList<Persona>>(aux);
+		Persistencia_User p = new Persistencia_User();
+		users = p.leer(pathUser);
 		
 	}
 	
 	public void guardarMaps(){
 		
-		Persistencia<ArrayList<Persona>> p = new Persistencia<ArrayList<Persona>>(this.users);
-		p.escribir(pathUser);
+		Persistencia_User p = new Persistencia_User();
+		p.escribir(pathUser,users);
 		
 		
 	}

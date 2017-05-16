@@ -5,50 +5,25 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
+import dominio.clases.Persona;
 
 
-public class Persistencia<T> {
-	T obj;
+public abstract class Persistencia<T> {
 	
-	public Persistencia(T obj){
-		this.obj = obj;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public void leer(String path){
-		try {
-	            //Stream para leer archivo
-	            ObjectInputStream file = new ObjectInputStream(new FileInputStream( path));
-	            //Se lee el objeto de archivo y este debe convertirse al tipo de clase que corresponde
-	            obj = (T) file.readObject();
-	            //se cierra archivo
-	            file.close();
-	            //Se utilizan metodos de la clase asi como variables guardados en el objeto
-	           
-	        } catch (ClassNotFoundException ex) {
-	             System.out.println(ex);
-	        } catch (IOException ex) {
-	             System.out.println(ex);
-	       }
-		
-	}
-	
-	public void escribir(String path){
+	public abstract T leer(String path);
+	public void escribir(String path,T obj){
 		try {
             //Se crea un Stream para guardar archivo
             ObjectOutputStream file = new ObjectOutputStream(new FileOutputStream( path ));
             //Se escribe el objeto en archivo
-            file.writeObject(this.obj);
+            file.writeObject(obj);
             //se cierra archivo
             file.close();
         } catch (IOException ex) {
             System.out.println(ex);
-        }
-		
-		
-		
+        }	
 	}
-	
-	
-
+		
 }

@@ -1,16 +1,16 @@
 package dominio.controladores;
 
 import dominio.clases.Cjt_encuestas;
-import dominio.clases.Conjunto_User;
+import dominio.clases.Cjt_users;
 
 public class Controlador_dominio {
 		private Cjt_encuestas encuestas;
-		private Conjunto_User users;
+		private Cjt_users users;
 		
 	public Controlador_dominio(){
 		Cjt_encuestas e = new Cjt_encuestas();
 		this.setEncuestas(e);
-		Conjunto_User u = new Conjunto_User();
+		Cjt_users u = new Cjt_users();
 		this.users = u;
 		cargar_usuarios();
 	}
