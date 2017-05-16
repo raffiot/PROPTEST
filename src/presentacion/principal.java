@@ -51,7 +51,7 @@ public class principal {
 	 */
 	private void initialize() {
 		cd = new Controlador_dominio();
-		
+		cd.cargar_usuarios();
 		frame = new JFrame();
 		frame.setBounds(100, 100, 497, 320);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1,9 +1,11 @@
 package dominio.controladores;
 
+import dominio.clases.Cjt_encuestas;
 import dominio.clases.Conjunto_User;
 
 public class Controlador_dominio {
-	
+		private Cjt_encuestas encuestas;
+		
 	public String entrar(String username, String password) throws Exception{
 		
 		/**
@@ -21,5 +23,9 @@ public class Controlador_dominio {
 		else{
 			return "NO";
 		}
+	}
+	
+	public void cargar_usuarios(){
+		
 	}
 }
