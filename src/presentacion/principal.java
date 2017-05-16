@@ -64,20 +64,22 @@ public class principal {
 		JButton button = new JButton("Entrar");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				boolean b = false;
+				String answer = "";
 				try {
-					b = cd.entrar(userField.getText(),passwordField.getText());
+					answer = cd.entrar(userField.getText(),passwordField.getText());
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
+					// ERROR ONE FIELD EMPTY
 					e.printStackTrace();
 				}
-				if(b){
+				if(answer.equals("USU")){
+					
+				}
+				else if(answer.equals("ADMIN")){
 					
 				}
 				else{
-					
+					//NOT FIND
 				}
-				//if b => entrar else error
 			}
 		});
 		button.setBounds(126, 196, 89, 23);
