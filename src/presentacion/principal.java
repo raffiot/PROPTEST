@@ -19,7 +19,7 @@ import dominio.controladores.Controlador_dominio;
 
 public class principal {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField userField;
 	private JPasswordField passwordField;
 	private Controlador_dominio cd;
@@ -45,6 +45,12 @@ public class principal {
 	 */
 	public principal() {
 		initialize();
+	}
+	public principal(Controlador_dominio cd){
+		initialize();
+		this.cd = cd;
+		
+		
 	}
 
 	/**
