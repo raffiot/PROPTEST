@@ -13,6 +13,7 @@ import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import dominio.controladores.Controlador_dominio;
 
@@ -51,7 +52,7 @@ public class principal {
 	 */
 	private void initialize() {
 		cd = new Controlador_dominio();
-		cd.cargar_usuarios();
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 497, 320);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,21 +65,29 @@ public class principal {
 		JButton button = new JButton("Entrar");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String answer = "";
+				int answer = -1;
 				try {
 					answer = cd.entrar(userField.getText(),passwordField.getText());
 				} catch (Exception e) {
 					// ERROR ONE FIELD EMPTY
 					e.printStackTrace();
 				}
-				if(answer.equals("USU")){
+				if(answer == 1){
+					Panel_usuario ven = new Panel_usuario(cd);
+			        ven.setVisible(true);
+			        frame.setVisible(false);
+			        
 					
 				}
-				else if(answer.equals("ADMIN")){
+				else if(answer == 0){
+					Frame_admin ven = new Frame_admin(cd);
+			        ven.setVisible(true);
+			        frame.setVisible(false);
 					
 				}
 				else{
 					//NOT FIND
+					JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrecto","Error", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});

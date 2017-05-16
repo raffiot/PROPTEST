@@ -5,8 +5,18 @@ import dominio.clases.Conjunto_User;
 
 public class Controlador_dominio {
 		private Cjt_encuestas encuestas;
+		private Conjunto_User users;
 		
-	public String entrar(String username, String password) throws Exception{
+	public Controlador_dominio(){
+		Cjt_encuestas e = new Cjt_encuestas();
+		this.setEncuestas(e);
+		Conjunto_User u = new Conjunto_User();
+		this.users = u;
+		cargar_usuarios();
+	}
+		
+		
+	public int entrar(String username, String password) throws Exception{
 		
 		/**
 		 * return "NO" if not find, "USU" if usuario, "ADMIN" if admin 
@@ -14,18 +24,26 @@ public class Controlador_dominio {
 		if(username == null || password == null ){
 			throw new Exception("Unas de las entradas esta vacia");
 		}
-		Conjunto_User cu = new Conjunto_User();
+		
 		//Salvaguardar que usuario somos
-		boolean find = cu.identification(username, password);
+		boolean find = users.identification(username, password);
 		if(find){
-			return cu.getType(username);
+			return users.getType(username);
 		}
-		else{
-			return "NO";
-		}
+		return -1;
 	}
 	
-	public void cargar_usuarios(){
-		
+	private void cargar_usuarios(){
+		users.leerMaps();
+	}
+
+
+	public Cjt_encuestas getEncuestas() {
+		return encuestas;
+	}
+
+
+	public void setEncuestas(Cjt_encuestas encuestas) {
+		this.encuestas = encuestas;
 	}
 }

@@ -1,73 +1,103 @@
 package dominio.clases;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 import persistencia.Persistencia;
 
-public class Conjunto_User {
-	ArrayList<String> users;
-	ArrayList<String> passwords;
-	ArrayList<String> type;
-	final String pathUser = "Data/user";
-	final String pathPass = "Data/path";
-	final String pathType = "Data/type";
+public class Conjunto_User implements Serializable{
+	private ArrayList<Persona> users;
+	
+	private String pathUser = "Data/Usuarios/users.dat";
+
+	
+	public ArrayList<Persona> getUsers() {
+		return users;
+	}
+
+
+	public void setUsers(ArrayList<Persona> users) {
+		this.users = users;
+	}
+
+
+	public String getPathUser() {
+		return pathUser;
+	}
+
+
+	public void setPathUser(String pathUser) {
+		this.pathUser = pathUser;
+	}
+
+
+	public Conjunto_User(){
+		this.users = new ArrayList<Persona>();
+		
+	}
 	
 	
 	public void leerMaps(){	
 		
-		ArrayList<String> aux = new ArrayList<String>();
-		Persistencia<ArrayList<String>> p = new Persistencia<ArrayList<String>>(aux);
+		
+		Persistencia<ArrayList<Persona>> p = new Persistencia<ArrayList<Persona>>(users);
 		p.leer(pathUser);
-		users = aux;
 		
-		aux = new ArrayList<String>();
-		p.leer(pathPass);
-		passwords = aux;
-		
-		aux = new ArrayList<String>();
-		p.leer(pathType);
-		type = aux;
 	}
 	
 	public void guardarMaps(){
-		ArrayList<String> aux = new ArrayList<String>();
-		Persistencia<ArrayList<String>> p = new Persistencia<ArrayList<String>>(aux);
 		
-		aux = users;
+		Persistencia<ArrayList<Persona>> p = new Persistencia<ArrayList<Persona>>(this.users);
 		p.escribir(pathUser);
 		
-		aux = passwords;
-		p.escribir(pathPass);
 		
-		aux = type;
-		p.escribir(pathType);
 	}
 	
 	public boolean yaExiste(String username){
-		return users.contains(username);
+		for(Persona p : users){
+			if(p.getNombre().equals(username)) return true;
+		}
+		return false;
 	}
 	
-	public void addUser(String username, String password, String type){
-		users.add(username);
-		passwords.add(password);
-		this.type.add(type);
+	public void addUser(String username, String password, int type){
+		Persona a = null;
+		if(type == 0){
+			a = new Administrador(username,password);
+		}
+		else if (type == 1){
+			a = new Usuario(username,password); 
+		}
+		
+		users.add(a);
+		
 	}
 	
 	public void removeUser(String username){
-		int index = users.indexOf(username);
-		users.remove(index);
-		passwords.remove(index);
-		type.remove(index);
+		users.removeIf(new Predicate<Persona>() {
+
+			@Override
+			public boolean test(Persona t) {
+				// TODO Auto-generated method stub
+				return t.getNombre().equals(username);
+			}
+		});
 	}
 	
 	public boolean identification(String username, String password){
-		int index = users.indexOf(username);
-		return passwords.get(index).equals(password);
+		
+		for(Persona p : users){
+			if(p.getNombre().equals(username) && p.getPassword().equals(password)) return true;
+		}
+		return false;
 	}
 	
-	public String getType(String username){
-		int index = users.indexOf(username);
-		return type.get(index);
+	public int getType(String username){
+		for(Persona p : users){
+			if(p.getNombre().equals(username)) return p.getTipo();
+		}
+		return -1;
 	}
 	
 }

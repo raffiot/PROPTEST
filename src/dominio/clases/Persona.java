@@ -1,5 +1,7 @@
 package dominio.clases;
 
+import java.io.Serializable;
+
 /**
  * La classe Pregunta representa una pregunta.
  * 
@@ -7,18 +9,18 @@ package dominio.clases;
  * 				
  */
 
-public class Persona {
-	Integer id;
+public class Persona implements Serializable {
+	
 	String nombre;
 	String password;
-	
+	int tipo;
 	/**
 	 * Constructor vacio de una persona
 	 * 
 	 */
 	
 	public Persona(){
-		id = 0;
+		
 		nombre= "";
 		password = "";
 	}
@@ -32,9 +34,18 @@ public class Persona {
 	 * 		la contrasenya de ese nombre/usuario
 	 * 
 	 */
-	public Persona(String nombre, String password){
+	public Persona(String nombre, String password, int type){
 		this.nombre = nombre;
 		this.password = password;
+		this.tipo = type;
+	}
+	
+	public void setTipo(int tipo){
+		this.tipo = tipo;
+	}
+	
+	public int getTipo(){
+		return this.tipo;
 	}
 	
 	/**
