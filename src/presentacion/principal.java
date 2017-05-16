@@ -57,10 +57,6 @@ public class principal {
 		frame.getContentPane().add(btnEntrar);
 		
 		JButton button = new JButton("Entrar");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		button.setBounds(126, 196, 89, 23);
 		frame.getContentPane().add(button);
 		
