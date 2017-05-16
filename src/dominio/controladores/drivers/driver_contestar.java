@@ -1,12 +1,7 @@
 package dominio.controladores.drivers;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -199,7 +194,6 @@ public class driver_contestar {
 		}
 		
 		FileWriter fichero1 = null;
-	        PrintWriter pw = null;
 	        try{
 	        	fichero1 = new FileWriter("Data/Drivers/Respuestas/Respuesta_"+numEncuesta+"_"+id+".txt");
 	            fichero1.write(s);

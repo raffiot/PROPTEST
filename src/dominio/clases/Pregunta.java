@@ -9,6 +9,10 @@ import java.io.Serializable;
  */
 
 public abstract class  Pregunta implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public Integer id;
 	public String enunciado;
 	public Integer tipo;

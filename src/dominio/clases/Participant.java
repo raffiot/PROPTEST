@@ -6,14 +6,10 @@ package dominio.clases;
  * @author Marina				
  */
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.PrintWriter;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import java.util.Map;
-import java.util.List;
 
 public class Participant extends Persona{
 	private HashMap<Integer,ArrayList<RespuestaPregunta>> EncuestaNoAcabada;

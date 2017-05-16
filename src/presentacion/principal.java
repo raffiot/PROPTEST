@@ -14,11 +14,14 @@ import javax.swing.UIManager;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
+import dominio.controladores.Controlador_dominio;
+
 public class principal {
 
 	private JFrame frame;
-	private JTextField textField;
+	private JTextField userField;
 	private JPasswordField passwordField;
+	private Controlador_dominio cd;
 
 	/**
 	 * Launch the application.
@@ -47,6 +50,8 @@ public class principal {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		cd = new Controlador_dominio();
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 497, 320);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,13 +62,31 @@ public class principal {
 		frame.getContentPane().add(btnEntrar);
 		
 		JButton button = new JButton("Entrar");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				boolean b = false;
+				try {
+					b = cd.entrar(userField.getText(),passwordField.getText());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if(b){
+					
+				}
+				else{
+					
+				}
+				//if b => entrar else error
+			}
+		});
 		button.setBounds(126, 196, 89, 23);
 		frame.getContentPane().add(button);
 		
-		textField = new JTextField();
-		textField.setBounds(207, 82, 86, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		userField = new JTextField();
+		userField.setBounds(207, 82, 86, 20);
+		frame.getContentPane().add(userField);
+		userField.setColumns(10);
 		
 		JLabel lblUser = new JLabel("User:");
 		lblUser.setBounds(106, 88, 46, 14);

@@ -10,10 +10,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class controlador_analizar {
-	private static Scanner texto;
 	private static Scanner opcion;
 	public static void main(String[] args) {
-		texto = new Scanner(System.in);
 		opcion = new Scanner(System.in);
 		System.out.println("LA ENCUESTA Y LA RESPUESTAS DEBEN SER EN CASTELLANO");
 		System.out.println("Encuestas actuales:");

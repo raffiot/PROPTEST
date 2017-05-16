@@ -11,14 +11,19 @@ public class Respuestas implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private HashMap<Integer,RespuestaEncuesta> respuestas;
+	final String pathRespuestas = "Data/Respuestas";
 	
-	@SuppressWarnings("unchecked")
 	public Respuestas(){
-		this.respuestas = (HashMap<Integer, RespuestaEncuesta>) Persistencia.leer("Data/Respuestas"); 
+		HashMap<Integer,RespuestaEncuesta> aux = new HashMap<Integer,RespuestaEncuesta>();
+		Persistencia<HashMap<Integer,RespuestaEncuesta>> p = new Persistencia<HashMap<Integer,RespuestaEncuesta>>(aux);
+		p.leer(pathRespuestas);
+		respuestas = aux;
 	}
 	
 	public void guardar(){
-		Persistencia.escribir(respuestas, "Data/Respuestas");
+		HashMap<Integer,RespuestaEncuesta> aux = respuestas;
+		Persistencia<HashMap<Integer,RespuestaEncuesta>> p = new Persistencia<HashMap<Integer,RespuestaEncuesta>>(aux);		
+		p.escribir(pathRespuestas);
 	}
 		
 }

@@ -12,7 +12,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,6 +20,10 @@ import java.util.List;
 import java.util.Set;
 
 public class RespuestaEncuesta implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Encuesta encuesta;
 	private String nombre;//identificador de participante solo
 	private List<RespuestaPregunta> respPreguntas;
@@ -163,7 +166,6 @@ public class RespuestaEncuesta implements Serializable{
 		}
 		
 		FileWriter fichero1 = null;
-	        PrintWriter pw = null;
 	        try{
 	        	fichero1 = new FileWriter("Data/Respuestas/Respuesta_"+numEncuesta+"_"+id+".txt");
 	            fichero1.write(s);

@@ -14,8 +14,8 @@ public class Persistencia<T> {
 		this.obj = obj;
 	}
 	
-	public T leer(String path){
-		 
+	@SuppressWarnings("unchecked")
+	public void leer(String path){
 		try {
 	            //Stream para leer archivo
 	            ObjectInputStream file = new ObjectInputStream(new FileInputStream( path));
@@ -30,8 +30,6 @@ public class Persistencia<T> {
 	        } catch (IOException ex) {
 	             System.out.println(ex);
 	       }
-		
-		return this.obj;
 		
 	}
 	

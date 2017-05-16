@@ -1,7 +1,6 @@
 package dominio.controladores.junit;
 
 import dominio.clases.*;
-import persistencia.Persistencia;
 
 import static org.junit.Assert.*;
 

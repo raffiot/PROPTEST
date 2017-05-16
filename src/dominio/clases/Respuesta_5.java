@@ -14,6 +14,11 @@ import java.util.Set;
 public class Respuesta_5 extends RespuestaPregunta implements Serializable{
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Constructor de la classe con la pregunta a la cual se responde y la sentencia que se ha respondido
 	 * 
 	 * @param p

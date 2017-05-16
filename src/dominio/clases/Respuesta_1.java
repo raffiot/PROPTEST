@@ -11,6 +11,11 @@ import java.io.Serializable;
 public class Respuesta_1 extends RespuestaPregunta implements Serializable{
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * El constructor de la classe, se construye la respuesta con la pregunta y el valor de respuesta.
 	 * 
 	 * @param p

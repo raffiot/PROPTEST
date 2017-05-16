@@ -14,6 +14,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 public abstract class RespuestaPregunta implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Pregunta pregunta;
 	private double valueR1;
 	private int valueR2;

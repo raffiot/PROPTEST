@@ -19,6 +19,10 @@ import java.util.ArrayList;
 
 public class Encuesta implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer n_preguntas;
 	private String genero;

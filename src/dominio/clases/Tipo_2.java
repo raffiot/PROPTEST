@@ -13,6 +13,10 @@ import java.util.Random;
 
 public class Tipo_2 extends Pregunta implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer opciones;
 	private ArrayList <String>lista_opciones;
 	

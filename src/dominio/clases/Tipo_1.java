@@ -11,6 +11,10 @@ import java.io.Serializable;
 
 public class Tipo_1 extends Pregunta implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer opciones;
 	private Integer max;
 	private Integer min;

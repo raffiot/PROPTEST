@@ -15,6 +15,10 @@ import java.util.Set;
 
 public class Tipo_4 extends Pregunta implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int opciones;
 	ArrayList <String>lista_opciones;
 	

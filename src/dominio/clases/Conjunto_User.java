@@ -1,32 +1,46 @@
 package dominio.clases;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import persistencia.Persistencia;
 
 public class Conjunto_User {
-	List<String> users;
-	List<String> passwords;
-	List<String> type;
+	ArrayList<String> users;
+	ArrayList<String> passwords;
+	ArrayList<String> type;
 	final String pathUser = "Data/user";
 	final String pathPass = "Data/path";
 	final String pathType = "Data/type";
 	
 	
-	@SuppressWarnings("unchecked")
 	public void leerMaps(){	
-		users = (ArrayList<String>) Persistencia.leer(pathUser);
-		passwords = (ArrayList<String>) Persistencia.leer(pathPass);
-		type = (ArrayList<String>) Persistencia.leer(pathType);
+		
+		ArrayList<String> aux = new ArrayList<String>();
+		Persistencia<ArrayList<String>> p = new Persistencia<ArrayList<String>>(aux);
+		p.leer(pathUser);
+		users = aux;
+		
+		aux = new ArrayList<String>();
+		p.leer(pathPass);
+		passwords = aux;
+		
+		aux = new ArrayList<String>();
+		p.leer(pathType);
+		type = aux;
 	}
 	
 	public void guardarMaps(){
+		ArrayList<String> aux = new ArrayList<String>();
+		Persistencia<ArrayList<String>> p = new Persistencia<ArrayList<String>>(aux);
 		
-		Persistencia.escribir(users, pathUser);
-		Persistencia.escribir(users, pathPass);
-		Persistencia.escribir(users, pathType);
+		aux = users;
+		p.escribir(pathUser);
+		
+		aux = passwords;
+		p.escribir(pathPass);
+		
+		aux = type;
+		p.escribir(pathType);
 	}
 	
 	public boolean yaExiste(String username){

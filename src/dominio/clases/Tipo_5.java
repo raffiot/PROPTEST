@@ -12,6 +12,11 @@ import java.io.Serializable;
 public class Tipo_5 extends Pregunta implements Serializable {
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Constructor vacio de la pregunta de tipo 5
 	 */
 	public Tipo_5(){

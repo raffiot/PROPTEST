@@ -17,7 +17,8 @@ public class Cjt_encuestas implements Serializable {
 	public Cjt_encuestas(){
 		ArrayList<Encuesta> aux = new ArrayList<Encuesta>();
 		Persistencia<ArrayList<Encuesta>> p = new Persistencia<ArrayList<Encuesta>>(aux);
-		this.encuestas = p.leer("Data/Encuestas");
+		p.leer("Data/Encuestas");
+		this.encuestas = aux;
 	}
 	
 	public void guardar(){
