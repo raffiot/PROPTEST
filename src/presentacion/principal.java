@@ -65,6 +65,13 @@ public class principal {
 		frame.getContentPane().setLayout(null);
 		
 		JButton btnEntrar = new JButton("Registrarse");
+		btnEntrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Frame_resgister fr = new Frame_resgister(cd);
+		        fr.setVisible(true);
+		        frame.setVisible(false);
+			}
+		});
 		btnEntrar.setBounds(244, 196, 102, 23);
 		frame.getContentPane().add(btnEntrar);
 		
@@ -93,7 +100,7 @@ public class principal {
 				}
 				else{
 					//NOT FIND
-					JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrecto","Error", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Contraseï¿½a o usuario incorrecto","Error", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});

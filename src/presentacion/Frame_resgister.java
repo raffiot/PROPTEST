@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import dominio.controladores.Controlador_dominio;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
@@ -22,7 +23,7 @@ public class Frame_resgister extends JFrame {
 	private Controlador_dominio cd;
 	private JPanel contentPane;
 	private JTextField field1;
-	private JTextField field2;
+	private JPasswordField field2;
 	private JLabel label_secret;
 	private JRadioButton rdadmin;
 	private JRadioButton rdusu;
@@ -47,7 +48,15 @@ public class Frame_resgister extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Frame_resgister() {
+	public Frame_resgister(){
+		init();
+	}
+	
+	public Frame_resgister(Controlador_dominio cd){
+		this.cd = cd;
+		init();
+	}
+	public void init() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -68,7 +77,7 @@ public class Frame_resgister extends JFrame {
 		contentPane.add(field1);
 		field1.setColumns(10);
 		
-		field2 = new JTextField();
+		field2 = new JPasswordField();
 		field2.setBounds(282, 61, 86, 20);
 		contentPane.add(field2);
 		field2.setColumns(10);
@@ -102,6 +111,32 @@ public class Frame_resgister extends JFrame {
 		label_secret.setVisible(false);
 		
 		JButton btnRegistrarse = new JButton("Registrarse");
+		btnRegistrarse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String user = field1.getText();
+				String pass = field2.getText();
+				boolean usu = rdusu.isSelected();
+				if(!usu){
+					String passadmin = fieldSecretPass.getText();
+					if(!passadmin.equals("Borja")){
+						JOptionPane.showMessageDialog(null, "Contrase�a de administrador incorrecta","Error", JOptionPane.INFORMATION_MESSAGE);
+					}
+				}
+				
+				boolean hasRegister = cd.registrar(user,pass,usu);
+				
+				if(!hasRegister){
+					JOptionPane.showMessageDialog(null, "Nombre de usuario o administrador no disponible","Error", JOptionPane.INFORMATION_MESSAGE);
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "Usuario o administrador registrado !","Success", JOptionPane.INFORMATION_MESSAGE);
+					principal p = new principal(cd);
+					p.frame.setVisible(true);
+					dispose();
+				}
+				
+			}
+		});
 		btnRegistrarse.setBounds(303, 228, 121, 23);
 		contentPane.add(btnRegistrarse);
 		

@@ -33,6 +33,25 @@ public class Controlador_dominio {
 		return -1;
 	}
 	
+	public boolean registrar(String user, String pass, boolean usu){
+		if(users.yaExiste(user)){
+			return false;
+		}
+		else{
+			int tipo = 0;
+			if(usu){
+				tipo = 1;
+			}
+			else{
+				tipo = 0;
+			}
+			users.addUser(user, pass, tipo);
+			users.guardarMaps();
+			return true;
+		}
+		
+	}
+	
 	private void cargar_usuarios(){
 		users.leerMaps();
 	}
