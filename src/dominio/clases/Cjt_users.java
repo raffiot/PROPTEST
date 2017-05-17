@@ -39,7 +39,7 @@ public class Cjt_users implements Serializable{
 	}
 	
 	
-	public void leerMaps(){	
+	public void leerUsu(){	
 		
 		//Persistencia<ArrayList<Persona>> p = new Persistencia<ArrayList<Persona>>(aux);
 		Persistencia_User p = new Persistencia_User();
@@ -47,7 +47,7 @@ public class Cjt_users implements Serializable{
 		
 	}
 	
-	public void guardarMaps(){
+	public void guardarUsu(){
 		
 		Persistencia_User p = new Persistencia_User();
 		p.escribir(pathUser,users);

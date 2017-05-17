@@ -52,7 +52,7 @@ public class controlador_analizar {
 		
 		//System.out.println ("Escribe el numero de la analisis");
 		//Integer idAnalisis = opcion.nextInt();
-		Integer idAnalisis = 0;
+
 		
 		boolean test = false;
 		Integer k;
@@ -77,14 +77,18 @@ public class controlador_analizar {
 				test =true;
 			}
 		}while(test);
-		Analisis an = new Analisis(idAnalisis, k, threshold, ra,e);
-		Resultado result =null;
+		Analisis an = null;
 		try {
-			result = an.k_means();
+			an = new Analisis(k, threshold, ra,e,0);
 		} catch (IOException e1) {
 			System.out.println("no se ha podido cargar el fichero de palabras funcional");
 			e1.printStackTrace();
+			System.exit(0);
 		}
+		Resultado result =null;
+		
+		result = an.k_means();
+		
 		
 		System.out.println ("Se ha acabado la analisis");
 		System.out.println(result.toString(an));

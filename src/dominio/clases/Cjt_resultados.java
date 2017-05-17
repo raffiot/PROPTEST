@@ -10,13 +10,15 @@ public class Cjt_resultados implements Serializable{
 	private ArrayList<Resultado> resultados;
 	final String pathResultado = "Data/Resultados/resultados.dat";
 
-	public Cjt_resultados(){
+	
+	public void leerResu(){	
 		
 		Persistencia_Resultado p = new Persistencia_Resultado();
-		resultados = p.leer(pathResultado);
+		resultados = p.leer(pathResultado);	
 	}
 	
-	public void guardar(){
+	
+	public void guardarResu(){
 		
 		Persistencia_Resultado p = new Persistencia_Resultado();
 		p.escribir(pathResultado,resultados);

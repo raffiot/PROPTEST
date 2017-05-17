@@ -24,8 +24,9 @@ public class AnalisisTest {
 	 * 
 	 * @return
 	 * 		la analisis creada
+	 * @throws IOException 
 	 */
-	private Analisis createAnalisis(){
+	private Analisis createAnalisis() throws IOException{
 		
 		ArrayList<Pregunta> preguntas = new ArrayList<>();
 		
@@ -103,17 +104,18 @@ public class AnalisisTest {
 		Respuesta_Analisis ra = new Respuesta_Analisis(listRE);
 		
 		double threshold = 0.2;
-		return new Analisis(0,2,threshold,ra,e);
+		return new Analisis(2,threshold,ra,e,0);
 	
 	}
 
 	/**
 	 * Este metodo prueba que se han creado los clusters con el metodo createCluster
 	 * y muestra por pantalla las respuestas.
+	 * @throws IOException 
 	 */
 	
 	@Test
-	public void createClusterTest(){
+	public void createClusterTest() throws IOException{
 		Analisis an = createAnalisis();		
 		List<Cluster> list = an.createCluster(2,an.getRespEncuestas());
 		assertNotNull(list.get(0));
@@ -149,9 +151,10 @@ public class AnalisisTest {
 	/**
 	 * Este metodo prueba la creacion del objeto MinMax sobre las respuestas que se han creado en createAnalisis.
 	 * Es decir que este metodo proba que el minimum y el maximum para cada pregunta de tipo 1 estan en el objeto MinMax.
+	 * @throws IOException 
 	 */
 	@Test
-	public void minMax_Respuesta_1Test(){
+	public void minMax_Respuesta_1Test() throws IOException{
 		Analisis an = createAnalisis();
 		List<Cluster> list = an.createCluster(2,an.getRespEncuestas());
 		Map<Integer,MinMax> m = an.minMax_Respuesta_1(an.getEncuesta(),list,an.getRespEncuestas());
@@ -191,10 +194,11 @@ public class AnalisisTest {
 	/**
 	 * Este metodo prueba que cada usuario (su RespuestaEncuesta) a sido assignado al cluster con lo cual tiene minima distancia.
 	 * Prueba tambien que todos los usuarios an sido assignado y que las distancias son inferior a 1.
+	 * @throws IOException 
 	 */
 	
 	@Test
-	public void assignacioRespuestaEncuestaTest(){
+	public void assignacioRespuestaEncuestaTest() throws IOException{
 		Analisis an = createAnalisis();
 		List<Cluster> list = an.createCluster(2,an.getRespEncuestas());
 		Map<Integer,MinMax> m = an.minMax_Respuesta_1(an.getEncuesta(),list,an.getRespEncuestas());
@@ -242,9 +246,10 @@ public class AnalisisTest {
 	 * Este metodo prueba que cuando la encuesta tiene una unica pregunta de tipo 1
 	 * y que hay un unico usuario que ha respondido, el centroid del cluster cuando se recalcula
 	 * tiene la misma respuesta que el usuario.
+	 * @throws IOException 
 	 */
 	@Test
-	public void recomputeCentroidsTest_Tipo1(){
+	public void recomputeCentroidsTest_Tipo1() throws IOException{
 		
 		double expectedValue = 5;
 		
@@ -263,7 +268,7 @@ public class AnalisisTest {
 		listRE.add(tipo_1RE);
 		Respuesta_Analisis tipo_1RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_1A = new Analisis(0, 1, 1, tipo_1RA,tipo_1E);
+		Analisis tipo_1A = new Analisis(1, 1, tipo_1RA,tipo_1E,0);
 		List<Cluster> tipo_1C = tipo_1A.createCluster(1,tipo_1A.getRespEncuestas());
 		
 		double generatedValue = tipo_1C.get(0).getCentroid().getRespPreguntas().get(0).getValueR1();
@@ -271,13 +276,7 @@ public class AnalisisTest {
 		
 		Map<Integer,MinMax> tipo_1M = tipo_1A.minMax_Respuesta_1(tipo_1E,tipo_1C,tipo_1RA);
 		tipo_1C = tipo_1A.assignacioRespuestaEncuesta(tipo_1E, tipo_1M, tipo_1RA, tipo_1C,tipo_1A.getFuncWord());
-		String funcWord;
-		funcWord ="";
-		try {
-			funcWord = tipo_1A.funcionnalString("empty.sp");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		String funcWord = tipo_1A.getFuncWord();
 		
 		tipo_1A.recomputeCentroids(tipo_1C, tipo_1E, funcWord);
 		double recomputedValue = tipo_1C.get(0).getCentroid().getRespPreguntas().get(0).getValueR1();
@@ -288,11 +287,12 @@ public class AnalisisTest {
 	 * Este metodo prueba que cuando la encuesta tiene una unica pregunta de tipo 1
 	 * y que hay dos usuario que han respondido, el centroid del cluster cuando se recalcula
 	 * tiene la mediana entre las respuestas de los usuarios.
+	 * @throws IOException 
 	 */
 	
 	
 	@Test
-	public void recomputeCentroidsTest_Tipo1bis(){
+	public void recomputeCentroidsTest_Tipo1bis() throws IOException{
 		
 		double expectedValue = 5;
 		
@@ -316,7 +316,7 @@ public class AnalisisTest {
 		listRE.add(tipo_1RE2);
 		Respuesta_Analisis tipo_1RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_1A = new Analisis(0, 1, 0.1, tipo_1RA,tipo_1E);
+		Analisis tipo_1A = new Analisis(1, 0.1, tipo_1RA,tipo_1E,0);
 		List<Cluster> tipo_1C = tipo_1A.createCluster(1,tipo_1A.getRespEncuestas());
 		
 		double generatedValue = tipo_1C.get(0).getCentroid().getRespPreguntas().get(0).getValueR1();
@@ -324,13 +324,7 @@ public class AnalisisTest {
 		
 		Map<Integer,MinMax> tipo_1M = tipo_1A.minMax_Respuesta_1(tipo_1E,tipo_1C,tipo_1RA);
 		tipo_1C = tipo_1A.assignacioRespuestaEncuesta(tipo_1E, tipo_1M, tipo_1RA, tipo_1C, tipo_1A.getFuncWord());
-		String funcWord;
-		funcWord ="";
-		try {
-			funcWord = tipo_1A.funcionnalString("empty.sp");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		String funcWord = tipo_1A.getFuncWord();
 		
 		tipo_1A.recomputeCentroids(tipo_1C, tipo_1E, funcWord);
 		double recomputedValue = tipo_1C.get(0).getCentroid().getRespPreguntas().get(0).getValueR1();
@@ -341,10 +335,11 @@ public class AnalisisTest {
 	 * Este metodo prueba que cuando la encuesta tiene una unica pregunta de tipo 2
 	 * y que hay un unico usuario que ha respondido, el centroid del cluster cuando se recalcula
 	 * tiene la misma respuesta que el usuario.
+	 * @throws IOException 
 	 */
 	
 	@Test
-	public void recomputeCentroidsTest_Tipo2(){
+	public void recomputeCentroidsTest_Tipo2() throws IOException{
 		
 		int expectedValue = 3;
 		
@@ -369,7 +364,7 @@ public class AnalisisTest {
 		listRE.add(tipo_2RE);
 		Respuesta_Analisis tipo_2RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_2A = new Analisis(0, 1, 0.1, tipo_2RA,tipo_2E);
+		Analisis tipo_2A = new Analisis(1, 0.1, tipo_2RA,tipo_2E,0);
 		List<Cluster> tipo_2C = tipo_2A.createCluster(1,tipo_2A.getRespEncuestas());
 		
 		double generatedValue = tipo_2C.get(0).getCentroid().getRespPreguntas().get(0).getValueR2();
@@ -377,13 +372,7 @@ public class AnalisisTest {
 		
 		Map<Integer,MinMax> tipo_2M = tipo_2A.minMax_Respuesta_1(tipo_2E,tipo_2C,tipo_2RA);
 		tipo_2C = tipo_2A.assignacioRespuestaEncuesta(tipo_2E, tipo_2M, tipo_2RA, tipo_2C,tipo_2A.getFuncWord());
-		String funcWord;
-		funcWord ="";
-		try {
-			funcWord = tipo_2A.funcionnalString("empty.sp");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		String funcWord = tipo_2A.getFuncWord();
 		
 		tipo_2A.recomputeCentroids(tipo_2C, tipo_2E, funcWord);
 		int recomputedValue = tipo_2C.get(0).getCentroid().getRespPreguntas().get(0).getValueR2();
@@ -394,10 +383,11 @@ public class AnalisisTest {
 	 * Este metodo prueba que cuando la encuesta tiene una unica pregunta de tipo 2
 	 * y que hay dos usuario que han respondido, el centroid del cluster cuando se recalcula
 	 * tiene la mediana entre las respuestas de los usuarios.
+	 * @throws IOException 
 	 */
 	
 	@Test
-	public void recomputeCentroidsTest_Tipo2bis(){
+	public void recomputeCentroidsTest_Tipo2bis() throws IOException{
 		
 		int expectedValue = 3;
 		
@@ -430,18 +420,12 @@ public class AnalisisTest {
 		listRE.add(tipo_2RE2);
 		Respuesta_Analisis tipo_2RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_2A = new Analisis(0, 1, 0.1, tipo_2RA,tipo_2E);
+		Analisis tipo_2A = new Analisis(1, 0.1, tipo_2RA,tipo_2E,0);
 		List<Cluster> tipo_2C = tipo_2A.createCluster(1,tipo_2A.getRespEncuestas());
 		
 		Map<Integer,MinMax> tipo_2M = tipo_2A.minMax_Respuesta_1(tipo_2E,tipo_2C,tipo_2RA);
 		tipo_2C = tipo_2A.assignacioRespuestaEncuesta(tipo_2E, tipo_2M, tipo_2RA, tipo_2C, tipo_2A.getFuncWord());
-		String funcWord;
-		funcWord ="";
-		try {
-			funcWord = tipo_2A.funcionnalString("empty.sp");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		String funcWord = tipo_2A.getFuncWord();
 		
 		tipo_2A.recomputeCentroids(tipo_2C, tipo_2E, funcWord);
 		int recomputedValue = tipo_2C.get(0).getCentroid().getRespPreguntas().get(0).getValueR2();
@@ -452,10 +436,11 @@ public class AnalisisTest {
 	 * Este metodo prueba que cuando la encuesta tiene una unica pregunta de tipo 3
 	 * y que hay un unico usuario que ha respondido, el centroid del cluster cuando se recalcula
 	 * tiene la misma respuesta que el usuario.
+	 * @throws IOException 
 	 */
 	
 	@Test
-	public void recomputeCentroidsTest_Tipo3(){
+	public void recomputeCentroidsTest_Tipo3() throws IOException{
 		
 		String expectedValue = "op2"; 
 		
@@ -480,7 +465,7 @@ public class AnalisisTest {
 		listRE.add(tipo_3RE);
 		Respuesta_Analisis tipo_3RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_3A = new Analisis(0, 1, 0.1, tipo_3RA, tipo_3E);
+		Analisis tipo_3A = new Analisis(1, 0.1, tipo_3RA, tipo_3E,0);
 		List<Cluster> tipo_3C = tipo_3A.createCluster(1,tipo_3A.getRespEncuestas());
 		
 		String generatedValue = tipo_3C.get(0).getCentroid().getRespPreguntas().get(0).getValueR3();
@@ -488,13 +473,7 @@ public class AnalisisTest {
 		
 		Map<Integer,MinMax> tipo_3M = tipo_3A.minMax_Respuesta_1(tipo_3E,tipo_3C,tipo_3RA);
 		tipo_3C =tipo_3A.assignacioRespuestaEncuesta(tipo_3E, tipo_3M, tipo_3RA, tipo_3C,tipo_3A.getFuncWord());
-		String funcWord;
-		funcWord ="";
-		try {
-			funcWord = tipo_3A.funcionnalString("empty.sp");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		String funcWord = tipo_3A.getFuncWord();
 		
 		tipo_3A.recomputeCentroids(tipo_3C, tipo_3E, funcWord);
 		String recomputedValue = tipo_3C.get(0).getCentroid().getRespPreguntas().get(0).getValueR3();
@@ -505,10 +484,11 @@ public class AnalisisTest {
 	 * Este metodo prueba que cuando la encuesta tiene una unica pregunta de tipo 3
 	 * y que hay dos usuario que han respondido, el centroid del cluster cuando se recalcula
 	 * tiene la mediana entre las respuestas de los usuarios.
+	 * @throws IOException 
 	 */
 	
 	@Test
-	public void recomputeCentroidsTest_Tipo3bis(){
+	public void recomputeCentroidsTest_Tipo3bis() throws IOException{
 		
 		String expectedValue = "op2"; 
 		
@@ -546,18 +526,12 @@ public class AnalisisTest {
 		listRE.add(tipo_3RE3);
 		Respuesta_Analisis tipo_3RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_3A = new Analisis(0, 1, 0.1, tipo_3RA,tipo_3E);
+		Analisis tipo_3A = new Analisis(1, 0.1, tipo_3RA,tipo_3E,0);
 		List<Cluster> tipo_3C = tipo_3A.createCluster(1,tipo_3A.getRespEncuestas());
 		
 		Map<Integer,MinMax> tipo_3M = tipo_3A.minMax_Respuesta_1(tipo_3E,tipo_3C,tipo_3RA);
 		tipo_3C = tipo_3A.assignacioRespuestaEncuesta(tipo_3E, tipo_3M, tipo_3RA, tipo_3C,tipo_3A.getFuncWord());
-		String funcWord;
-		funcWord ="";
-		try {
-			funcWord = tipo_3A.funcionnalString("empty.sp");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		String funcWord = tipo_3A.getFuncWord();
 		
 		tipo_3A.recomputeCentroids(tipo_3C, tipo_3E, funcWord);
 		String recomputedValue = tipo_3C.get(0).getCentroid().getRespPreguntas().get(0).getValueR3();
@@ -568,10 +542,11 @@ public class AnalisisTest {
 	 * Este metodo prueba que cuando la encuesta tiene una unica pregunta de tipo 4
 	 * y que hay un unico usuario que ha respondido, el centroid del cluster cuando se recalcula
 	 * tiene la misma respuesta que el usuario.
+	 * @throws IOException 
 	 */
 	
 	@Test
-	public void recomputeCentroidsTest_Tipo4(){
+	public void recomputeCentroidsTest_Tipo4() throws IOException{
 		
 		Set<String> expectedValue = new HashSet<>();
 		expectedValue.add("op2");
@@ -599,7 +574,7 @@ public class AnalisisTest {
 		listRE.add(tipo_4RE);
 		Respuesta_Analisis tipo_4RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_4A = new Analisis(0, 1, 0.1, tipo_4RA,tipo_4E);
+		Analisis tipo_4A = new Analisis(1, 0.1, tipo_4RA,tipo_4E,0);
 		List<Cluster> tipo_4C = tipo_4A.createCluster(1,tipo_4A.getRespEncuestas());
 		
 		Set<String> generatedValue = tipo_4C.get(0).getCentroid().getRespPreguntas().get(0).getValueR4();
@@ -608,12 +583,7 @@ public class AnalisisTest {
 		Map<Integer,MinMax> tipo_4M = tipo_4A.minMax_Respuesta_1(tipo_4E,tipo_4C,tipo_4RA);
 		tipo_4C = tipo_4A.assignacioRespuestaEncuesta(tipo_4E, tipo_4M, tipo_4RA, tipo_4C,tipo_4A.getFuncWord());
 		
-		String funcWord ="";
-		try {
-			funcWord = tipo_4A.funcionnalString("empty.sp");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		String funcWord = tipo_4A.getFuncWord();
 		
 		tipo_4A.recomputeCentroids(tipo_4C, tipo_4E, funcWord);
 		Set<String> recomputedValue = tipo_4C.get(0).getCentroid().getRespPreguntas().get(0).getValueR4();
@@ -625,10 +595,11 @@ public class AnalisisTest {
 	 * Este metodo prueba que cuando la encuesta tiene una unica pregunta de tipo 4
 	 * y que hay tres usuario que han respondido, el centroid del cluster cuando se recalcula
 	 * tiene la respuesta con mas frequencia de los usuarios.
+	 * @throws IOException 
 	 */
 	
 	@Test
-	public void recomputeCentroidsTest_Tipo4bis(){
+	public void recomputeCentroidsTest_Tipo4bis() throws IOException{
 		
 		Set<String> expectedValue = new HashSet<>();
 		expectedValue.add("op2");
@@ -674,18 +645,13 @@ public class AnalisisTest {
 		listRE.add(tipo_4RE3);
 		Respuesta_Analisis tipo_4RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_4A = new Analisis(0, 1, 1, tipo_4RA,tipo_4E);
+		Analisis tipo_4A = new Analisis(1, 1, tipo_4RA,tipo_4E,0);
 		List<Cluster> tipo_4C = tipo_4A.createCluster(1,tipo_4A.getRespEncuestas());
 		
 		Map<Integer,MinMax> tipo_4M = tipo_4A.minMax_Respuesta_1(tipo_4E,tipo_4C,tipo_4RA);
 		tipo_4C = tipo_4A.assignacioRespuestaEncuesta(tipo_4E, tipo_4M, tipo_4RA, tipo_4C,tipo_4A.getFuncWord());
 		
-		String funcWord ="";
-		try {
-			funcWord = tipo_4A.funcionnalString("empty.sp");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		String funcWord = tipo_4A.getFuncWord();
 		
 		tipo_4A.recomputeCentroids(tipo_4C, tipo_4E, funcWord);
 		Set<String> recomputedValue = tipo_4C.get(0).getCentroid().getRespPreguntas().get(0).getValueR4();
@@ -698,11 +664,12 @@ public class AnalisisTest {
 	 * Este metodo prueba que cuando la encuesta tiene una unica pregunta de tipo 5
 	 * y que hay un unico usuario que ha respondido, el centroid del cluster cuando se recalcula
 	 * tiene la misma respuesta que el usuario.
+	 * @throws IOException 
 	 */
 	
 	
 	@Test
-	public void recomputeCentroidsTest_Tipo5(){
+	public void recomputeCentroidsTest_Tipo5() throws IOException{
 		
 		Pregunta tipo_5P = new Tipo_5(0, "");
 		ArrayList<Pregunta> listP = new ArrayList<>();
@@ -718,15 +685,10 @@ public class AnalisisTest {
 		listRE.add(tipo_5RE);
 		Respuesta_Analisis tipo_5RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_5A = new Analisis(0, 1, 1, tipo_5RA,tipo_5E);
+		Analisis tipo_5A = new Analisis(1, 1, tipo_5RA,tipo_5E,0);
 		List<Cluster> tipo_5C = tipo_5A.createCluster(1,tipo_5A.getRespEncuestas());
 		
-		String funcWord ="";
-		try {
-			funcWord = tipo_5A.funcionnalString("empty.sp");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		String funcWord = tipo_5A.getFuncWord();
 		
 		Map<Integer,MinMax> tipo_5M = tipo_5A.minMax_Respuesta_1(tipo_5E,tipo_5C,tipo_5RA);
 		tipo_5C = tipo_5A.assignacioRespuestaEncuesta(tipo_5E, tipo_5M, tipo_5RA, tipo_5C,funcWord);
@@ -743,10 +705,11 @@ public class AnalisisTest {
 	 * Este metodo prueba que cuando la encuesta tiene una unica pregunta de tipo 5
 	 * y que hay tres usuario que han respondido, el centroid del cluster cuando se recalcula
 	 * tiene las palabras con mas frequencia en las respuestas de los usuarios.
+	 * @throws IOException 
 	 */
 	
 	@Test
-	public void recomputeCentroidsTest_Tipo5bis(){
+	public void recomputeCentroidsTest_Tipo5bis() throws IOException{
 		
 		Pregunta tipo_5P = new Tipo_5(0, "");
 		ArrayList<Pregunta> listP = new ArrayList<>();
@@ -777,15 +740,10 @@ public class AnalisisTest {
 		listRE.add(tipo_5RE3);
 		Respuesta_Analisis tipo_5RA = new Respuesta_Analisis(listRE);
 		
-		Analisis tipo_5A = new Analisis(0, 1, 1, tipo_5RA,tipo_5E);
+		Analisis tipo_5A = new Analisis(1, 1, tipo_5RA,tipo_5E,0);
 		List<Cluster> tipo_5C = tipo_5A.createCluster(1,tipo_5A.getRespEncuestas());
 		
-		String funcWord ="";
-		try {
-			funcWord = tipo_5A.funcionnalString("empty.sp");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		String funcWord = tipo_5A.getFuncWord();
 		
 		Map<Integer,MinMax> tipo_5M = tipo_5A.minMax_Respuesta_1(tipo_5E,tipo_5C,tipo_5RA);
 		tipo_5C = tipo_5A.assignacioRespuestaEncuesta(tipo_5E, tipo_5M, tipo_5RA, tipo_5C,funcWord);

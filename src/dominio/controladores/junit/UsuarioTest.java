@@ -21,8 +21,8 @@ public class UsuarioTest {
 		Cjt_users u = new Cjt_users();
 		Cjt_users u1 = new Cjt_users();
 		u.addUser("Pepe", "1234", 1);
-		u.guardarMaps();
-		u1.leerMaps();
+		u.guardarUsu();
+		u1.leerUsu();
 		
 		assertEquals(u.getUsers().get(0).getNombre(),u1.getUsers().get(0).getNombre());
 	}

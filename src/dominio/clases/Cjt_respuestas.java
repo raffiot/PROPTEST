@@ -14,12 +14,13 @@ public class Cjt_respuestas implements Serializable {
 	private HashMap<Integer,RespuestaEncuesta> respuestas;
 	final String pathRespuestas = "Data/Respuestas/respuestas.dat";
 	
-	public Cjt_respuestas(){
+	
+	public void leerResp(){
 		Persistencia_Respuesta p = new Persistencia_Respuesta();
 		respuestas = p.leer(pathRespuestas);
 	}
 	
-	public void guardar(){
+	public void guardarResp(){
 		Persistencia_Respuesta p = new Persistencia_Respuesta();	
 		p.escribir(pathRespuestas,respuestas);
 	}

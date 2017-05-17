@@ -13,14 +13,16 @@ public class Cjt_encuestas implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Encuesta> encuestas;
 	final String pathEncuesta = "Data/Encuestas/encuestas.dat";
-
-	public Cjt_encuestas(){
+	
+	public void leerEncuestas(){	
 		
 		Persistencia_Encuesta p = new Persistencia_Encuesta();
 		encuestas = p.leer(pathEncuesta);
+		
 	}
 	
-	public void guardar(){
+	
+	public void guardarEncuestas(){
 		
 		Persistencia_Encuesta p = new Persistencia_Encuesta();
 		p.escribir(pathEncuesta,encuestas);

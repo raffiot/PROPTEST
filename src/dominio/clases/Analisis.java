@@ -24,7 +24,6 @@ import java.util.function.Predicate;
 public class Analisis {
 	
 	
-	private int id;
 	private int k;
 	private double threshold;
 	private Respuesta_Analisis respEncuestas;
@@ -50,13 +49,22 @@ public class Analisis {
 	 * 		las respuestas de los usuarios a la encuesta
 	 * @param e
 	 * 		la encuesta que se analitza
+	 * @throws IOException 
 	 */
-	public Analisis(int id, int k, double threshold, Respuesta_Analisis respEncuestas,Encuesta e){
-		this.id = id;
+	public Analisis(int k, double threshold, Respuesta_Analisis respEncuestas,Encuesta e,int idioma) throws IOException{
 		this.k = k;
 		this.threshold = threshold;
 		this.respEncuestas = respEncuestas;
 		encuesta = e;
+		if(idioma == 0){
+			funcWord = funcionnalString("empty.sp");
+		}
+		else if(idioma == 1){
+			funcWord = funcionnalString("empty.cat");
+		}
+		else{
+			funcWord = funcionnalString("empty.eng");
+		}
 	}
 	
 	/**
@@ -76,10 +84,7 @@ public class Analisis {
 	 * @throws IOException
 	 * 		se lanza una excepcion cuando no se carga el fichero con las palabras funcionnal.
 	 */
-	public Resultado k_means() throws IOException{
-		
-		
-		funcWord = funcionnalString("empty.sp");
+	public Resultado k_means(){	
 
 		
 		//CREATION OF SEEDS

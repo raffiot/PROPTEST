@@ -13,7 +13,7 @@ import dominio.clases.Analisis.MinMax;
 
 public class driver_analisis {
 	private static Scanner opcion;
-	public static void main (String [ ] args) {
+	public static void main (String [ ] args) throws IOException {
 		
 		opcion = new Scanner(System.in);
 		
@@ -134,21 +134,12 @@ public class driver_analisis {
 				}
 			}while(badAnswer);
 			
-			int idAna = 0;
 			double threshold = 0; //No nos sirve aqui
 			Respuesta_Analisis ra = new Respuesta_Analisis(listRE);
-			Analisis analisis = new Analisis(idAna,k,threshold,ra,e);
+			Analisis analisis = new Analisis(k,threshold,ra,e,0);
 			List<Cluster> clusters = new ArrayList<Cluster>();
 			
-			String funcWord ="";
-			try {
-				funcWord = analisis.funcionnalString("empty.sp");
-			} catch (IOException exc) {
-				System.out.println("no se ha cargado bien las palabras funcionals");
-				exc.printStackTrace();
-				System.exit(0);
-			}
-			analisis.setFuncWord(funcWord);
+			String funcWord = analisis.getFuncWord();
 			
 			clusters = analisis.createCluster(k, ra);
 			analisis.setCentroids(clusters);
@@ -311,17 +302,13 @@ public class driver_analisis {
 				}
 			}while(badAnswer);
 			
-			int idAna = 0;
 			Respuesta_Analisis ra = new Respuesta_Analisis(listRE);
-			Analisis analisis = new Analisis(idAna,k,threshold,ra,e);
+			Analisis analisis = new Analisis(k,threshold,ra,e,0);
 			
 			Resultado result =null;
-			try {
-				result = analisis.k_means();
-			} catch (IOException e1) {
-				System.out.println("no se ha podido cargar el fichero de palabras funcional");
-				e1.printStackTrace();
-			}
+			
+			result = analisis.k_means();
+
 			
 			System.out.println ("Se ha acabado la analisis");
 			System.out.println(result.toString(analisis));
