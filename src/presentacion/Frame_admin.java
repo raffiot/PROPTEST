@@ -1,6 +1,7 @@
 package presentacion;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -15,6 +16,9 @@ import java.awt.GridBagConstraints;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Insets;
+import java.awt.Window;
+
+import javax.swing.JDesktopPane;
 
 public class Frame_admin extends JFrame {
 
@@ -55,24 +59,54 @@ public class Frame_admin extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		contentPane.setLayout(gbl_contentPane);
+		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Crear Encuesta");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		JButton btnCrearEncuesta = new JButton("Crear encuesta");
+		btnCrearEncuesta.setBounds(14, 66, 150, 44);
+		contentPane.add(btnCrearEncuesta);
+		
+		JButton btnBorrarEncuesta = new JButton("Borrar encuesta");
+		btnBorrarEncuesta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNewButton.gridwidth = 3;
-		gbc_btnNewButton.gridx = 6;
-		gbc_btnNewButton.gridy = 2;
-		contentPane.add(btnNewButton, gbc_btnNewButton);
+		btnBorrarEncuesta.setBounds(14, 176, 150, 44);
+		contentPane.add(btnBorrarEncuesta);
+		
+		JButton btnAnalizarEncuesta = new JButton("Analizar encuesta");
+		btnAnalizarEncuesta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnAnalizarEncuesta.setBounds(240, 44, 140, 55);
+		contentPane.add(btnAnalizarEncuesta);
+		
+		JButton btnVisualizarAnalisis = new JButton("Visualizar analisis");
+		btnVisualizarAnalisis.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnVisualizarAnalisis.setBounds(240, 141, 140, 55);
+		contentPane.add(btnVisualizarAnalisis);
+		
+		JButton btnVisualizarEncuestas = new JButton("Visualizar encuestas");
+		btnVisualizarEncuestas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Frame_encuestas ven = new Frame_encuestas(cd);
+				ven.setVisible(true);
+		        setVisible(false);
+		        dispose();
+			}
+		});
+		btnVisualizarEncuestas.setBounds(14, 11, 150, 44);
+		contentPane.add(btnVisualizarEncuestas);
+		
+		JButton btnImportarEncuesta = new JButton("Importar encuesta");
+		btnImportarEncuesta.setBounds(14, 121, 150, 44);
+		contentPane.add(btnImportarEncuesta);
+		
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.setBounds(335, 227, 89, 23);
+		contentPane.add(btnSalir);
 	}
-
 }

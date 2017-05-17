@@ -72,7 +72,7 @@ public class principal {
 		        frame.setVisible(false);
 			}
 		});
-		btnEntrar.setBounds(244, 196, 102, 23);
+		btnEntrar.setBounds(106, 188, 118, 39);
 		frame.getContentPane().add(btnEntrar);
 		
 		JButton button = new JButton("Entrar");
@@ -89,13 +89,14 @@ public class principal {
 					Panel_usuario ven = new Panel_usuario(cd);
 			        ven.setVisible(true);
 			        frame.setVisible(false);
-			        
+			        frame.dispose();
 					
 				}
 				else if(answer == 0){
 					Frame_admin ven = new Frame_admin(cd);
 			        ven.setVisible(true);
 			        frame.setVisible(false);
+			        frame.dispose();
 					
 				}
 				else{
@@ -104,7 +105,7 @@ public class principal {
 				}
 			}
 		});
-		button.setBounds(126, 196, 89, 23);
+		button.setBounds(267, 188, 106, 39);
 		frame.getContentPane().add(button);
 		
 		userField = new JTextField();
