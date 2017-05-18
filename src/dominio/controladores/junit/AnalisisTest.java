@@ -755,4 +755,5 @@ public class AnalisisTest {
 		System.out.println(recomputedValue);
 		assertTrue("recomputeCentroids failled on type 5 question",recomputedValue.contains("cookies") && recomputedValue.contains("gusta"));
 	}
+	
 }

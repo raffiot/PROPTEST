@@ -10,6 +10,9 @@ public class Cjt_resultados implements Serializable{
 	private ArrayList<Resultado> resultados;
 	final String pathResultado = "Data/Resultados/resultados.dat";
 
+	public Cjt_resultados(){
+		resultados = new ArrayList<Resultado>();
+	}
 	
 	public void leerResu(){	
 		
@@ -24,4 +27,10 @@ public class Cjt_resultados implements Serializable{
 		p.escribir(pathResultado,resultados);
 		
 	}
+	
+	public void addResu(Resultado r){
+		resultados.add(r);
+	}
+	
+	
 }
