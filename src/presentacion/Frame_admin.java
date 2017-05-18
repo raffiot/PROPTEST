@@ -111,6 +111,15 @@ public class Frame_admin extends JFrame {
 		contentPane.add(btnImportarEncuesta);
 		
 		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cd.update();
+				principal p = new principal();
+				p.frame.setVisible(true);
+				dispose();
+				
+			}
+		});
 		btnSalir.setBounds(335, 227, 89, 23);
 		contentPane.add(btnSalir);
 	}

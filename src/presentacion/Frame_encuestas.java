@@ -108,23 +108,25 @@ public class Frame_encuestas  extends JFrame {
 			
 		getContentPane().add(label);
 		
-		borrar = new JButton("borrar");
-		borrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int i = list.getSelectedIndex();
-				
-				if (i >= 0){
-					String s = list.getSelectedValue();
-					s = s.substring(0,1);
-					aux.remove(i);
-					cd.eliminarEncuesta(s);
+		if (state == "borrar"){
+			borrar = new JButton("borrar");
+			borrar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					int i = list.getSelectedIndex();
+
+					if (i >= 0){
+						String s = list.getSelectedValue();
+						s = s.substring(0,1);
+						aux.remove(i);
+						cd.eliminarEncuesta(s);
+					}
+					else JOptionPane.showMessageDialog(null, "Debe seleccionar una encuesta"
+							,"Error", JOptionPane.ERROR_MESSAGE);
 				}
-				else JOptionPane.showMessageDialog(null, "Debe seleccionar una encuesta"
-					     ,"Error", JOptionPane.ERROR_MESSAGE);
-			}
-		});
-		borrar.setBounds(20, 237, 89, 23);
-		getContentPane().add(borrar);
+			});
+			borrar.setBounds(20, 237, 89, 23);
+			getContentPane().add(borrar);
+		}
 	}
 }
 		

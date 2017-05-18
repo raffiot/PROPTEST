@@ -101,4 +101,5 @@ public class Cjt_users implements Serializable{
 		return -1;
 	}
 	
+	
 }

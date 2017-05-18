@@ -128,6 +128,10 @@ public class Controlador_dominio {
 	public void eliminarEncuesta(String s){
 		encuestas.eliminarE(s);
 	}
+	public void update(){
+		encuestas.guardarEncuestas();
+		users.guardarUsu();
+	}
 	
 	
 }
