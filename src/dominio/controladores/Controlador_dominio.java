@@ -1,6 +1,7 @@
 package dominio.controladores;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import dominio.clases.*;
 
@@ -113,6 +114,19 @@ public class Controlador_dominio {
 
 	public Cjt_resultados getResultados() {
 		return resultados;
+	}
+	public ArrayList<String> getList(){
+		ArrayList<String> list = new ArrayList<String>();
+		for(int i = 0; i < encuestas.size();++i){
+			String s = "";
+			s = encuestas.get(i).getId()+". "+ encuestas.get(i).getGenero();
+			list.add(s);
+		}
+		return list;
+	}
+	
+	public void eliminarEncuesta(String s){
+		encuestas.eliminarE(s);
 	}
 	
 	

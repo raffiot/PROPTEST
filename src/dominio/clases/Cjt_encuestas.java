@@ -40,4 +40,14 @@ public class Cjt_encuestas implements Serializable {
 	public Encuesta get(int i){
 		return encuestas.get(i);
 	}
+	
+	public void anadirEncuesta( Encuesta e){
+		encuestas.add(e);
+	}
+	public void eliminarE(String s){
+		for (int i = 0; i < encuestas.size(); ++i){
+			if(encuestas.get(i).getId() == Integer.parseInt(s)) encuestas.remove(i);
+		}
+	}
 }
+

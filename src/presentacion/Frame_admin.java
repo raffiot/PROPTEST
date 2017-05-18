@@ -68,6 +68,11 @@ public class Frame_admin extends JFrame {
 		JButton btnBorrarEncuesta = new JButton("Borrar encuesta");
 		btnBorrarEncuesta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Frame_encuestas ven = new Frame_encuestas(cd,"borrar");
+				ven.setVisible(true);
+		        setVisible(false);
+		        dispose();
+				
 			}
 		});
 		btnBorrarEncuesta.setBounds(14, 176, 150, 44);
@@ -92,7 +97,7 @@ public class Frame_admin extends JFrame {
 		JButton btnVisualizarEncuestas = new JButton("Visualizar encuestas");
 		btnVisualizarEncuestas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Frame_encuestas ven = new Frame_encuestas(cd);
+				Frame_encuestas ven = new Frame_encuestas(cd,"visualizar");
 				ven.setVisible(true);
 		        setVisible(false);
 		        dispose();
