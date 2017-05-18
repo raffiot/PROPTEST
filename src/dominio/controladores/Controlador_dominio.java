@@ -137,11 +137,11 @@ public class Controlador_dominio {
 	public void eliminarEncuesta(String s){
 		encuestas.eliminarE(s);
 	}
+	
 	public void update(){
 		encuestas.guardarEncuestas();
 		users.guardarUsu();
 	}
->>>>>>> 669483333a1b9fa0d3d5c80792f265b95c7f5c21
 	
 	
 }
