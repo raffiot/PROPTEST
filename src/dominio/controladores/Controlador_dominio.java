@@ -145,6 +145,10 @@ public class Controlador_dominio {
 	public void importar(String s){
 		encuestas.importar(s);
 	}
+	public String getE (int i){
+		return encuestas.getE(i);
+		
+	}
 	
 	
 }

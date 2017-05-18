@@ -107,6 +107,13 @@ public class Frame_admin extends JFrame {
 		contentPane.add(btnVisualizarEncuestas);
 		
 		JButton btnImportarEncuesta = new JButton("Importar encuesta");
+		btnImportarEncuesta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Frame_importar ven = new Frame_importar(cd);
+				ven.setVisible(true);
+				dispose();
+			}
+		});
 		btnImportarEncuesta.setBounds(14, 121, 150, 44);
 		contentPane.add(btnImportarEncuesta);
 		

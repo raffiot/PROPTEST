@@ -6,12 +6,16 @@ import java.awt.EventQueue;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import dominio.controladores.Controlador_dominio;
+
 import javax.swing.JTree;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -25,6 +29,9 @@ public class Frame_importar extends JFrame {
 	private JTextField textField;
     private JTextArea textArea;
     private JButton btnImportar;
+    
+    private Controlador_dominio cd;
+    private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -45,7 +52,17 @@ public class Frame_importar extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Frame_importar() {
+	public Frame_importar(Controlador_dominio cd){
+		this.cd = cd;
+		init();
+	}
+	
+	public Frame_importar(){
+		init();
+	}
+	
+	
+	public void init() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -112,13 +129,32 @@ public class Frame_importar extends JFrame {
 	        btnImportar = new JButton("Importar");
 	        btnImportar.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
+	        		if (textField.getText() == "") JOptionPane.showMessageDialog(null, "Debe seleccionar un archivo"
+							,"Error", JOptionPane.ERROR_MESSAGE);
+	        	
+	        	else {
 	        		String s = textField.getText();
 	        		cd.importar(s);
+	        		textField.setText("");
+	        		textArea.setText("");
+	        		
+	        	}
 	        		
 	        	}
 	        });
 	        btnImportar.setBounds(335, 229, 89, 23);
 	        contentPane.add(btnImportar);
+	        
+	        btnNewButton = new JButton("Salir");
+	        btnNewButton.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		Frame_admin ven = new Frame_admin(cd);
+	        		ven.setVisible(true);
+	        		dispose();
+	        	}
+	        });
+	        btnNewButton.setBounds(22, 229, 89, 23);
+	        contentPane.add(btnNewButton);
 	 
 	        
 	 

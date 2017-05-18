@@ -84,6 +84,22 @@ public class Frame_encuestas  extends JFrame {
 		
 		
 		list.setBounds(10, 61, 414, 165);
+		list.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent evt) {
+		        JList list = (JList)evt.getSource();
+		        if (evt.getClickCount() == 2) {
+		            // Double-click detected
+		            //int index = list.getSelectedIndex();
+		            String s = (String) list.getSelectedValue();
+					s = s.substring(0,1);
+					s = cd.getE(Integer.parseInt(s));
+					Frame_mostrar ven = new Frame_mostrar(s);
+					ven.setVisible(true);
+					
+		            
+		        }
+		    }
+		});
 		
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
