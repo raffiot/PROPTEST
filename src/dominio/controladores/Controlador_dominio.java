@@ -115,6 +115,15 @@ public class Controlador_dominio {
 	public Cjt_resultados getResultados() {
 		return resultados;
 	}
+
+	public Resultado getCurrenResu() {
+		return currenResu;
+	}
+
+	public Analisis getCurrenAna() {
+		return currenAna;
+	}
+
 	public ArrayList<String> getList(){
 		ArrayList<String> list = new ArrayList<String>();
 		for(int i = 0; i < encuestas.size();++i){
@@ -132,6 +141,7 @@ public class Controlador_dominio {
 		encuestas.guardarEncuestas();
 		users.guardarUsu();
 	}
+>>>>>>> 669483333a1b9fa0d3d5c80792f265b95c7f5c21
 	
 	
 }
