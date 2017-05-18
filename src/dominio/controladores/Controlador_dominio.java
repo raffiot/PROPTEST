@@ -142,6 +142,9 @@ public class Controlador_dominio {
 		encuestas.guardarEncuestas();
 		users.guardarUsu();
 	}
+	public void importar(String s){
+		encuestas.importar(s);
+	}
 	
 	
 }

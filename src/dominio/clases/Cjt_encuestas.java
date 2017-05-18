@@ -49,5 +49,13 @@ public class Cjt_encuestas implements Serializable {
 			if(encuestas.get(i).getId() == Integer.parseInt(s)) encuestas.remove(i);
 		}
 	}
+	
+	public void importar(String s){
+		Encuesta e = new Encuesta(1);
+		e.importar(s);
+		e.setId(encuestas.size()+1);
+		encuestas.add(e);
+
+	}
 }
 
