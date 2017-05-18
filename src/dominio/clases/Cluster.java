@@ -7,11 +7,16 @@ package dominio.clases;
  * @author Raphael
  */
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cluster{
+public class Cluster implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int index;
 	private RespuestaEncuesta centroid;
 	private List<RespuestaEncuesta> usuarios;

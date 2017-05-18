@@ -134,8 +134,23 @@ public class Controlador_dominio {
 		return list;
 	}
 	
+	public ArrayList<String> getListResp(int encNb){
+		ArrayList<String> list = new ArrayList<String>();
+		//VERIFY AFTER SEEING WHAT THE INTEGER IS FOR
+		for(RespuestaEncuesta re : respuestas.getRespuestas().values()){
+			if(re.getEncuesta().getId() == encNb)
+				list.add("Respuesta de "+re.getNombre());
+		}
+		return list;
+	}
+	
+	
 	public void eliminarEncuesta(String s){
 		encuestas.eliminarE(s);
+	}
+	
+	public Encuesta selecionnarEncuesta(String s){
+		return encuestas.selecE(s);
 	}
 	
 	public void update(){

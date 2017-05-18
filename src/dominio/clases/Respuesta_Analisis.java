@@ -7,10 +7,15 @@ package dominio.clases;
  */
 
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Respuesta_Analisis {
+public class Respuesta_Analisis implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private List<RespuestaEncuesta> listRP;
 	/**
 	 * Constructor para crear un objecto con una lista de respuestas a una encuesta.

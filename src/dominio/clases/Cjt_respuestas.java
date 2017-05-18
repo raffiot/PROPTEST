@@ -14,7 +14,9 @@ public class Cjt_respuestas implements Serializable {
 	private HashMap<Integer,RespuestaEncuesta> respuestas;
 	final String pathRespuestas = "Data/Respuestas/respuestas.dat";
 	
-	
+	public Cjt_respuestas(){
+		respuestas = new HashMap<>();
+	}
 	public void leerResp(){
 		Persistencia_Respuesta p = new Persistencia_Respuesta();
 		respuestas = p.leer(pathRespuestas);
@@ -24,5 +26,12 @@ public class Cjt_respuestas implements Serializable {
 		Persistencia_Respuesta p = new Persistencia_Respuesta();	
 		p.escribir(pathRespuestas,respuestas);
 	}
-		
+	
+	public void addResp(Integer i, RespuestaEncuesta re){
+		respuestas.put(i, re);
+	}
+	public HashMap<Integer, RespuestaEncuesta> getRespuestas() {
+		return respuestas;
+	}	
+	
 }

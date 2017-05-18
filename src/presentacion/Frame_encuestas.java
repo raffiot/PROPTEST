@@ -7,19 +7,25 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
+import dominio.clases.Encuesta;
 import dominio.controladores.Controlador_dominio;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+
 import javax.swing.JLabel;
+
 import java.awt.Font;
 import java.awt.Component;
+
 import javax.swing.Box;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -28,7 +34,7 @@ public class Frame_encuestas  extends JFrame {
 	
 	private Controlador_dominio cd;
 	private String state;
-	private JButton borrar;
+	private JButton btnBorrarAnalizar;
 	private JList<String> list;
 
 	/**
@@ -118,15 +124,18 @@ public class Frame_encuestas  extends JFrame {
 		if (state == "visualizar"){
 			label.setText("Encuestas a visualizar");
 		}
-		if (state == "borrar"){
+		else if (state == "borrar"){
 			label.setText("Elija la encuesta que quiere borrar");
+		}
+		else if (state == "analizar"){
+			label.setText("Elija la encuesta que quieres analizar");
 		}
 			
 		getContentPane().add(label);
 		
 		if (state == "borrar"){
-			borrar = new JButton("borrar");
-			borrar.addActionListener(new ActionListener() {
+			btnBorrarAnalizar = new JButton("borrar");
+			btnBorrarAnalizar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					int i = list.getSelectedIndex();
 
@@ -140,8 +149,24 @@ public class Frame_encuestas  extends JFrame {
 							,"Error", JOptionPane.ERROR_MESSAGE);
 				}
 			});
-			borrar.setBounds(20, 237, 89, 23);
-			getContentPane().add(borrar);
+			btnBorrarAnalizar.setBounds(20, 237, 89, 23);
+			getContentPane().add(btnBorrarAnalizar);
+		}
+		
+		if (state == "analizar"){
+			btnBorrarAnalizar = new JButton("analizar");
+			btnBorrarAnalizar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					int i = list.getSelectedIndex();
+					if (i >= 0){
+						String s = list.getSelectedValue();
+						Encuesta enc = cd.selecionnarEncuesta(s);
+						Frame_respuestas ven = new Frame_respuestas(cd,enc);
+						ven.setVisible(true);
+						dispose();
+					}
+				}
+			});
 		}
 	}
 }

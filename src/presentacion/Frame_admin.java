@@ -81,6 +81,10 @@ public class Frame_admin extends JFrame {
 		JButton btnAnalizarEncuesta = new JButton("Analizar encuesta");
 		btnAnalizarEncuesta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Frame_encuestas ven = new Frame_encuestas(cd,"analizar");
+				ven.setVisible(true);
+		        setVisible(false);
+		        dispose();
 			}
 		});
 		btnAnalizarEncuesta.setBounds(240, 44, 140, 55);

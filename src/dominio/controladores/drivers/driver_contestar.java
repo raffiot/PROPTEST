@@ -143,6 +143,14 @@ public class driver_contestar {
 			}while(!trobat);	
 		}
 		guardar(rp,e.getId());
+		
+		//COMAND USED TO CREATE FIRST RESPUESTAS.DAT
+		/**
+		Cjt_respuestas cr = new Cjt_respuestas();
+		RespuestaEncuesta re = new RespuestaEncuesta(e, "Raphael", rp);
+		cr.addResp(1, re);
+		cr.guardarResp();*/
+		
 		System.out.println("Encuesta finalizada. Gracias por particpar!");
 
     }

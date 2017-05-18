@@ -7,11 +7,16 @@ package dominio.clases;
  */
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class Participant extends Persona{
+public class Participant extends Persona implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private HashMap<Integer,ArrayList<RespuestaPregunta>> EncuestaNoAcabada;
 	
 	/**

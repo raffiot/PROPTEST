@@ -1,4 +1,5 @@
 package dominio.clases;
+import java.io.Serializable;
 /**
  * Classe que representa el resultado de la analisis
  * Para la primera entrega este resultado es simplemente un conjunto de cluster.
@@ -8,7 +9,11 @@ package dominio.clases;
 import java.util.List;
 
 
-public class Resultado {	
+public class Resultado implements Serializable{	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private List<Cluster> clusters;
 	
 	/**
