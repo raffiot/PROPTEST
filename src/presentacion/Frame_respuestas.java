@@ -61,8 +61,11 @@ public class Frame_respuestas extends JFrame {
 		
 		
 		List<RespuestaEncuesta> items = cd.getListResp(enc.getId());
+		int [] selected = new int[items.size()];
+		
 		CheckListItem[] itemList = new CheckListItem [items.size()];
 		for(int i = 0; i < items.size(); i++){
+			selected[i] = 0;
 			itemList[i] = new CheckListItem(items.get(i).getNombre()+" #"+i);
 		}
 		JList list_1 = new JList(itemList);
@@ -78,6 +81,12 @@ public class Frame_respuestas extends JFrame {
 						.getElementAt(index);
 				item.setSelected(!item.isSelected()); // Toggle selected state
 				list.repaint(list.getCellBounds(index, index));// Repaint cell
+				if(item.isSelected()){
+					selected[index] = 1;
+				}
+				else{
+					selected[index] = 0;
+				}
 			}
 		});
 		
@@ -89,7 +98,8 @@ public class Frame_respuestas extends JFrame {
 		JButton btnSiguiente = new JButton("Siguiente");
 		btnSiguiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int [] selected = list_1.getSelectedIndices();
+				
+				
 				List<RespuestaEncuesta> selectedItems = cd.selectedItem(selected,items);
 				Frame_analisis ven = new Frame_analisis(cd,enc,selectedItems);
 				ven.setVisible(true);

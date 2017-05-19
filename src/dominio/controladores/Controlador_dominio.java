@@ -69,7 +69,7 @@ public class Controlador_dominio {
 		
 	}
 	
-	public void analizar(int k, double thresh, int idioma, Encuesta enc, List<RespuestaEncuesta> listRE){
+	public Resultado analizar(int k, double thresh, int idioma, Encuesta enc, List<RespuestaEncuesta> listRE){
 		//0 = espagnol
 		//1 = catalan
 		//2 = english
@@ -80,7 +80,7 @@ public class Controlador_dominio {
 			System.out.println("ne se ha cargado las palabras funcionnal");
 			e.printStackTrace();
 		}
-		currenResu = currenAna.k_means();
+		return currenAna.k_means();
 	}
 	
 	
@@ -170,13 +170,16 @@ public class Controlador_dominio {
 	}
 
 
-
+	public void anadirResuGuardar(Resultado r){
+		resultados.addResu(r);
+		resultados.guardarResu();
+	}
 
 
 	public List<RespuestaEncuesta> selectedItem(int [] selected,List<RespuestaEncuesta> rEnc) {
 		List<RespuestaEncuesta> result = new ArrayList<>();
 		for(int i = 0 ; i < selected.length; i++){
-			result.add(rEnc.get(selected[i]));
+			if(selected[i] == 1)result.add(rEnc.get(i));
 		}
 		return result;
 	}

@@ -148,7 +148,7 @@ public class driver_contestar {
 		/**
 		Cjt_respuestas cr = new Cjt_respuestas();
 		cr.leerResp();
-		RespuestaEncuesta re = new RespuestaEncuesta(e, "Raphael", rp);
+		RespuestaEncuesta re = new RespuestaEncuesta(e, "Marina", rp);
 		cr.addResp(e.getId(), re);
 		cr.guardarResp();
 		*/

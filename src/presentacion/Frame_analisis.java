@@ -66,12 +66,14 @@ public class Frame_analisis extends JFrame {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);
 		
+	
+		
 		int min = 1;
 		int max = listRE.size();
 		int middle = (1+max)/2;
-		sliderk = new JSlider(min,max);
+		sliderk = new JSlider(min,max,middle);
 		sliderk.setBounds(132, 31, 280, 52);
-		sliderk.setMajorTickSpacing(2);
+		sliderk.setMajorTickSpacing(1);
 		sliderk.setMinorTickSpacing(1);
 		sliderk.setPaintTicks(true);
 		sliderk.setPaintLabels(true);
@@ -118,15 +120,25 @@ public class Frame_analisis extends JFrame {
 				int k = sliderk.getValue();
 				double thresh = sliderthresh.getValue()/10.0;
 				int idioma = comboBoxIdioma.getSelectedIndex();
-				cd.analizar(k, thresh, idioma,enc,listRE);
+				Resultado r = cd.analizar(k, thresh, idioma,enc,listRE);
+				Frame_MonstrarResultado ven = new Frame_MonstrarResultado(cd,enc,listRE,r);
+				ven.setVisible(true);
+				dispose();
 			}
 		});
 		btnAnalizar.setBounds(335, 227, 89, 23);
 		getContentPane().add(btnAnalizar);
 		
-		JButton btnBack = new JButton("Volver");
-		btnBack.setBounds(10, 227, 89, 23);
-		getContentPane().add(btnBack);
+		JButton btnAtras = new JButton("Atras");
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Frame_respuestas ven = new Frame_respuestas(cd,enc);
+				ven.setVisible(true);
+				dispose();
+			}
+		});
+		btnAtras.setBounds(10, 227, 89, 23);
+		getContentPane().add(btnAtras);
 		
 		
 		
