@@ -7,6 +7,7 @@ package dominio.controladores;
  */
 
 import dominio.clases.*;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,6 +15,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
+
+import persistencia.Persistencia;
+import persistencia.Persistencia_Respuesta;
 
 
 public class controlador_contestar {

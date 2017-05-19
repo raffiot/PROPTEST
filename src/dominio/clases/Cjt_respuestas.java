@@ -1,6 +1,7 @@
 package dominio.clases;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import persistencia.Persistencia;
@@ -11,7 +12,9 @@ public class Cjt_respuestas implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private HashMap<Integer,RespuestaEncuesta> respuestas;
+	//Integer es el index de la encuesta
+	//
+	private HashMap<Integer, Respuesta_Analisis> respuestas;
 	final String pathRespuestas = "Data/Respuestas/respuestas.dat";
 	
 	public Cjt_respuestas(){
@@ -28,9 +31,18 @@ public class Cjt_respuestas implements Serializable {
 	}
 	
 	public void addResp(Integer i, RespuestaEncuesta re){
-		respuestas.put(i, re);
+		int index = re.getEncuesta().getId();
+		if(!respuestas.containsKey(index)){
+			ArrayList<RespuestaEncuesta> listRE = new ArrayList<>();
+			listRE.add(re);
+			Respuesta_Analisis ra = new Respuesta_Analisis(listRE);
+			respuestas.put(index, ra);
+		}
+		else{
+			respuestas.get(index).addRespuestaEncuesta(re);
+		}
 	}
-	public HashMap<Integer, RespuestaEncuesta> getRespuestas() {
+	public HashMap<Integer, Respuesta_Analisis> getRespuestas() {
 		return respuestas;
 	}	
 	

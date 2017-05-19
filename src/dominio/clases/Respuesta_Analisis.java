@@ -47,4 +47,8 @@ public class Respuesta_Analisis implements Serializable{
 		this.listRP = listRP;
 	}
 	
+	public void addRespuestaEncuesta(RespuestaEncuesta re){
+		listRP.add(re);
+	}
+	
 }

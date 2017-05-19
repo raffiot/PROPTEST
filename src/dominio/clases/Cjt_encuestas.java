@@ -51,8 +51,8 @@ public class Cjt_encuestas implements Serializable {
 	}
 	
 	public Encuesta selecE(String s){
-		for(Encuesta e : encuestas){
-			if(e.getId()== Integer.parseInt(s))return e;
+		for (int i = 0; i < encuestas.size(); ++i){
+			if(encuestas.get(i).getId() == Integer.parseInt(s)) return encuestas.get(i);
 		}
 		return null;
 	}

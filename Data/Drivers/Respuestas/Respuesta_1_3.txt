@@ -1,0 +1,11 @@
+driver
+1
+10.0
+2
+1
+3
+azul
+4
+[soa, prop, fm]
+5
+bien mucha potra en prop

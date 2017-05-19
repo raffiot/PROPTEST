@@ -115,7 +115,8 @@ public class Frame_encuestas  extends JFrame {
 				dispose();
 			}
 		});
-		btnAtras.setBounds(335, 237, 89, 23);
+		btnAtras.setBounds(20, 237, 89, 23);
+		//btnAtras.setBounds(335, 237, 89, 23);
 		getContentPane().add(btnAtras);
 		
 		JLabel label = new JLabel("");
@@ -149,17 +150,20 @@ public class Frame_encuestas  extends JFrame {
 							,"Error", JOptionPane.ERROR_MESSAGE);
 				}
 			});
-			btnBorrarAnalizar.setBounds(20, 237, 89, 23);
+			
+			//btnBorrarAnalizar.setBounds(20, 237, 89, 23);
+			btnBorrarAnalizar.setBounds(335, 237, 89, 23);
 			getContentPane().add(btnBorrarAnalizar);
 		}
 		
 		if (state == "analizar"){
-			btnBorrarAnalizar = new JButton("analizar");
+			btnBorrarAnalizar = new JButton("Siguiente");
 			btnBorrarAnalizar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					int i = list.getSelectedIndex();
 					if (i >= 0){
 						String s = list.getSelectedValue();
+						s = s.substring(0,1);
 						Encuesta enc = cd.selecionnarEncuesta(s);
 						Frame_respuestas ven = new Frame_respuestas(cd,enc);
 						ven.setVisible(true);
@@ -167,6 +171,9 @@ public class Frame_encuestas  extends JFrame {
 					}
 				}
 			});
+			//btnBorrarAnalizar.setBounds(20, 237, 89, 23);
+			btnBorrarAnalizar.setBounds(335, 237, 89, 23);
+			getContentPane().add(btnBorrarAnalizar);
 		}
 	}
 }

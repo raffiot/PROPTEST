@@ -3,14 +3,14 @@ package presentacion;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.util.Hashtable;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTree;
 
-import dominio.clases.Cjt_resultados;
-import dominio.clases.Resultado;
+import dominio.clases.*;
 import dominio.controladores.Controlador_dominio;
 
 import javax.swing.JSlider;
@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -25,6 +26,8 @@ public class Frame_analisis extends JFrame {
 
 	private JPanel contentPane;
 	private Controlador_dominio cd;
+	private Encuesta enc;
+	private List<RespuestaEncuesta> listRE;
 	private JSlider sliderk;
 	private JSlider sliderthresh;
 	private JComboBox<String> comboBoxIdioma;
@@ -51,8 +54,10 @@ public class Frame_analisis extends JFrame {
 		init();
 	}
 	
-	public Frame_analisis(Controlador_dominio cd){
+	public Frame_analisis(Controlador_dominio cd, Encuesta enc, List<RespuestaEncuesta> listRE){
 		this.cd = cd;
+		this.enc = enc;
+		this.listRE = listRE;
 		init();
 	}
 	
@@ -62,10 +67,8 @@ public class Frame_analisis extends JFrame {
 		getContentPane().setLayout(null);
 		
 		int min = 1;
-		//int max = cd.getMaxK();
-		int max = 15;
-		//int middle = (1+max)/2;
-		int middle = 5;
+		int max = listRE.size();
+		int middle = (1+max)/2;
 		sliderk = new JSlider(min,max);
 		sliderk.setBounds(132, 31, 280, 52);
 		sliderk.setMajorTickSpacing(2);
@@ -115,7 +118,7 @@ public class Frame_analisis extends JFrame {
 				int k = sliderk.getValue();
 				double thresh = sliderthresh.getValue()/10.0;
 				int idioma = comboBoxIdioma.getSelectedIndex();
-				cd.analizar(k, thresh, idioma);
+				cd.analizar(k, thresh, idioma,enc,listRE);
 			}
 		});
 		btnAnalizar.setBounds(335, 227, 89, 23);

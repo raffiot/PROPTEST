@@ -2,6 +2,7 @@ package dominio.controladores;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import dominio.clases.*;
 
@@ -68,12 +69,13 @@ public class Controlador_dominio {
 		
 	}
 	
-	public void analizar(int k, double thresh, int idioma){
+	public void analizar(int k, double thresh, int idioma, Encuesta enc, List<RespuestaEncuesta> listRE){
 		//0 = espagnol
 		//1 = catalan
 		//2 = english
+		Respuesta_Analisis ra = new Respuesta_Analisis(listRE);
 		try {
-			currenAna = new Analisis(k, thresh, currResp, currentEnc, idioma);
+			currenAna = new Analisis(k, thresh, ra, enc, idioma);
 		} catch (IOException e) {
 			System.out.println("ne se ha cargado las palabras funcionnal");
 			e.printStackTrace();
@@ -81,9 +83,6 @@ public class Controlador_dominio {
 		currenResu = currenAna.k_means();
 	}
 	
-	public int getMaxK(){
-		return currResp.getListRP().size();
-	}
 	
 	private void cargar_usuarios(){
 		users.leerUsu();
@@ -134,14 +133,14 @@ public class Controlador_dominio {
 		return list;
 	}
 	
-	public ArrayList<String> getListResp(int encNb){
+	public List<RespuestaEncuesta> getListResp(int encNb){
+		/**
 		ArrayList<String> list = new ArrayList<String>();
 		//VERIFY AFTER SEEING WHAT THE INTEGER IS FOR
-		for(RespuestaEncuesta re : respuestas.getRespuestas().values()){
-			if(re.getEncuesta().getId() == encNb)
-				list.add("Respuesta de "+re.getNombre());
-		}
-		return list;
+		for(RespuestaEncuesta re : respuestas.getRespuestas().get(encNb).getListRP()){
+			list.add("Respuesta de "+re.getNombre());
+		}*/
+		return respuestas.getRespuestas().get(encNb).getListRP();
 	}
 	
 	
@@ -163,6 +162,18 @@ public class Controlador_dominio {
 	public String getE (int i){
 		return encuestas.getE(i);
 		
+	}
+
+
+
+
+
+	public List<RespuestaEncuesta> selectedItem(int [] selected,List<RespuestaEncuesta> rEnc) {
+		List<RespuestaEncuesta> result = new ArrayList<>();
+		for(int i = 0 ; i < selected.length; i++){
+			result.add(rEnc.get(selected[i]));
+		}
+		return result;
 	}
 	
 	
