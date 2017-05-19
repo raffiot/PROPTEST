@@ -59,13 +59,13 @@ public class Frame_respuestas extends JFrame {
 		getContentPane().setLayout(null);
 		 
 		
+		
 		List<RespuestaEncuesta> items = cd.getListResp(enc.getId());
 		CheckListItem[] itemList = new CheckListItem [items.size()];
 		for(int i = 0; i < items.size(); i++){
 			itemList[i] = new CheckListItem(items.get(i).getNombre()+" #"+i);
 		}
 		JList list_1 = new JList(itemList);
-		list_1.setBounds(0, 0, 434, 211);
 		list_1.setCellRenderer(new CheckListRenderer());
 		list_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list_1.addMouseListener(new MouseAdapter() {
@@ -80,8 +80,11 @@ public class Frame_respuestas extends JFrame {
 				list.repaint(list.getCellBounds(index, index));// Repaint cell
 			}
 		});
-		//getContentPane().add(new JScrollPane(list_1));
-		getContentPane().add(list_1);
+		
+		JScrollPane jsp = new JScrollPane(list_1);
+		jsp.setBounds(0, 0, 434, 211);
+		
+		getContentPane().add(jsp);
 
 		JButton btnSiguiente = new JButton("Siguiente");
 		btnSiguiente.addActionListener(new ActionListener() {

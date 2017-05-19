@@ -140,7 +140,12 @@ public class Controlador_dominio {
 		for(RespuestaEncuesta re : respuestas.getRespuestas().get(encNb).getListRP()){
 			list.add("Respuesta de "+re.getNombre());
 		}*/
-		return respuestas.getRespuestas().get(encNb).getListRP();
+		if(respuestas.getRespuestas().containsKey(encNb)){
+			return respuestas.getRespuestas().get(encNb).getListRP();
+		}
+		else{
+			return null;
+		}
 	}
 	
 	
