@@ -9,6 +9,7 @@ import javax.swing.ListSelectionModel;
 
 import dominio.clases.Encuesta;
 import dominio.controladores.Controlador_dominio;
+import dominio.controladores.Controlador_presentacion;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -32,7 +33,7 @@ import java.awt.event.ActionEvent;
 public class Frame_encuestas  extends JFrame {
 
 	
-	private Controlador_dominio cd;
+	private Controlador_presentacion cp;
 	private String state;
 	private JButton btnBorrarAnalizar;
 	private JList<String> list;
@@ -60,8 +61,8 @@ public class Frame_encuestas  extends JFrame {
 		initialize();
 	}
 	
-	public Frame_encuestas(Controlador_dominio cd, String state) {
-		this.cd = cd;
+	public Frame_encuestas(Controlador_presentacion cp, String state) {
+		this.cp = cp;
 		this.state = state;
 		initialize();
 		
@@ -80,7 +81,7 @@ public class Frame_encuestas  extends JFrame {
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		getContentPane().add(list);
 		ArrayList<String> e = new ArrayList<String>();
-		e = cd.getList();
+		e = cp.getList();
 		DefaultListModel<String> aux = new DefaultListModel<String>();
 		for(int i = 0; i < e.size(); ++i){
 			aux.addElement(e.get(i));
@@ -98,7 +99,7 @@ public class Frame_encuestas  extends JFrame {
 		            //int index = list.getSelectedIndex();
 		            String s = (String) list.getSelectedValue();
 					s = s.substring(0,1);
-					s = cd.getE(Integer.parseInt(s));
+					s = cp.getE(Integer.parseInt(s));
 					Frame_mostrar ven = new Frame_mostrar(s);
 					ven.setVisible(true);
 					
@@ -110,7 +111,7 @@ public class Frame_encuestas  extends JFrame {
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Frame_admin ven = new Frame_admin(cd);
+				Frame_admin ven = new Frame_admin(cp);
 				ven.setVisible(true);
 				dispose();
 			}
@@ -144,7 +145,7 @@ public class Frame_encuestas  extends JFrame {
 						String s = list.getSelectedValue();
 						s = s.substring(0,1);
 						aux.remove(i);
-						cd.eliminarEncuesta(s);
+						cp.eliminarEncuesta(s);
 					}
 					else JOptionPane.showMessageDialog(null, "Debe seleccionar una encuesta"
 							,"Error", JOptionPane.ERROR_MESSAGE);
@@ -164,12 +165,12 @@ public class Frame_encuestas  extends JFrame {
 					if (i >= 0){
 						String s = list.getSelectedValue();
 						s = s.substring(0,1);
-						Encuesta enc = cd.selecionnarEncuesta(s);
-						if(cd.getListResp(enc.getId()) == null){
+						Encuesta enc = cp.selecionnarEncuesta(s);
+						if(cp.getListResp(enc.getId()) == null){
 							JOptionPane.showMessageDialog(null, "No hay ninguna respuesta para esta encuesta","Error", JOptionPane.ERROR_MESSAGE);
 						}
 						else{
-							Frame_respuestas ven = new Frame_respuestas(cd,enc);
+							Frame_respuestas ven = new Frame_respuestas(cp,enc);
 							ven.setVisible(true);
 							dispose();
 						}

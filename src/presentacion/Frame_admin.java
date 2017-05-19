@@ -8,7 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import dominio.controladores.Controlador_dominio;
+
+import dominio.controladores.Controlador_presentacion;
 
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
@@ -23,7 +24,7 @@ import javax.swing.JDesktopPane;
 public class Frame_admin extends JFrame {
 
 	private JPanel contentPane;
-	private Controlador_dominio cd;
+	private Controlador_presentacion cp;
 	/**
 	 * Launch the application.
 	 */
@@ -47,9 +48,9 @@ public class Frame_admin extends JFrame {
 		init();
 	}
 	
-	public Frame_admin(Controlador_dominio cd) {
+	public Frame_admin(Controlador_presentacion cd) {
 		init();
-		this.cd  = cd;
+		this.cp  = cd;
 		
 	}
 	
@@ -68,7 +69,7 @@ public class Frame_admin extends JFrame {
 		JButton btnBorrarEncuesta = new JButton("Borrar encuesta");
 		btnBorrarEncuesta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Frame_encuestas ven = new Frame_encuestas(cd,"borrar");
+				Frame_encuestas ven = new Frame_encuestas(cp,"borrar");
 				ven.setVisible(true);
 		        setVisible(false);
 		        dispose();
@@ -81,7 +82,7 @@ public class Frame_admin extends JFrame {
 		JButton btnAnalizarEncuesta = new JButton("Analizar encuesta");
 		btnAnalizarEncuesta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Frame_encuestas ven = new Frame_encuestas(cd,"analizar");
+				Frame_encuestas ven = new Frame_encuestas(cp,"analizar");
 				ven.setVisible(true);
 		        setVisible(false);
 		        dispose();
@@ -101,7 +102,7 @@ public class Frame_admin extends JFrame {
 		JButton btnVisualizarEncuestas = new JButton("Visualizar encuestas");
 		btnVisualizarEncuestas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Frame_encuestas ven = new Frame_encuestas(cd,"visualizar");
+				Frame_encuestas ven = new Frame_encuestas(cp,"visualizar");
 				ven.setVisible(true);
 		        setVisible(false);
 		        dispose();
@@ -113,7 +114,7 @@ public class Frame_admin extends JFrame {
 		JButton btnImportarEncuesta = new JButton("Importar encuesta");
 		btnImportarEncuesta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Frame_importar ven = new Frame_importar(cd);
+				Frame_importar ven = new Frame_importar(cp);
 				ven.setVisible(true);
 				dispose();
 			}
@@ -124,7 +125,7 @@ public class Frame_admin extends JFrame {
 		JButton btnSalir = new JButton("Salir");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cd.update();
+				cp.update();
 				principal p = new principal();
 				p.frame.setVisible(true);
 				dispose();

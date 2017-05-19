@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import dominio.controladores.Controlador_dominio;
+import dominio.controladores.Controlador_presentacion;
 
 import javax.swing.JTree;
 import java.awt.event.ActionListener;
@@ -30,7 +31,7 @@ public class Frame_importar extends JFrame {
     private JTextArea textArea;
     private JButton btnImportar;
     
-    private Controlador_dominio cd;
+    private Controlador_presentacion cp;
     private JButton btnNewButton;
 
 	/**
@@ -52,8 +53,8 @@ public class Frame_importar extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Frame_importar(Controlador_dominio cd){
-		this.cd = cd;
+	public Frame_importar(Controlador_presentacion cp){
+		this.cp = cp;
 		init();
 	}
 	
@@ -134,7 +135,7 @@ public class Frame_importar extends JFrame {
 	        	
 	        	else {
 	        		String s = textField.getText();
-	        		cd.importar(s);
+	        		cp.importar(s);
 	        		textField.setText("");
 	        		textArea.setText("");
 	        		
@@ -148,7 +149,7 @@ public class Frame_importar extends JFrame {
 	        btnNewButton = new JButton("Salir");
 	        btnNewButton.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
-	        		Frame_admin ven = new Frame_admin(cd);
+	        		Frame_admin ven = new Frame_admin(cp);
 	        		ven.setVisible(true);
 	        		dispose();
 	        	}

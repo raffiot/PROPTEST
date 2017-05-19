@@ -15,14 +15,14 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import dominio.controladores.Controlador_dominio;
+import dominio.controladores.Controlador_presentacion;
 
 public class principal {
 
 	public JFrame frame;
 	private JTextField userField;
 	private JPasswordField passwordField;
-	private Controlador_dominio cd;
+	private Controlador_presentacion cp;
 
 	/**
 	 * Launch the application.
@@ -46,9 +46,9 @@ public class principal {
 	public principal() {
 		initialize();
 	}
-	public principal(Controlador_dominio cd){
+	public principal(Controlador_presentacion cd){
 		initialize();
-		this.cd = cd;
+		this.cp = cd;
 		
 		
 	}
@@ -57,7 +57,7 @@ public class principal {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		cd = new Controlador_dominio();
+		cp = new Controlador_presentacion();
 		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 497, 320);
@@ -67,7 +67,7 @@ public class principal {
 		JButton btnEntrar = new JButton("Registrarse");
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Frame_resgister fr = new Frame_resgister(cd);
+				Frame_resgister fr = new Frame_resgister(cp);
 		        fr.setVisible(true);
 		        frame.setVisible(false);
 			}
@@ -80,20 +80,20 @@ public class principal {
 			public void actionPerformed(ActionEvent arg0) {
 				int answer = -1;
 				try {
-					answer = cd.entrar(userField.getText(),passwordField.getText());
+					answer = cp.entrar(userField.getText(),passwordField.getText());
 				} catch (Exception e) {
 					// ERROR ONE FIELD EMPTY
 					e.printStackTrace();
 				}
 				if(answer == 1){
-					Panel_usuario ven = new Panel_usuario(cd);
+					Panel_usuario ven = new Panel_usuario(cp);
 			        ven.setVisible(true);
 			        frame.setVisible(false);
 			        frame.dispose();
 					
 				}
 				else if(answer == 0){
-					Frame_admin ven = new Frame_admin(cd);
+					Frame_admin ven = new Frame_admin(cp);
 			        ven.setVisible(true);
 			        frame.setVisible(false);
 			        frame.dispose();

@@ -29,7 +29,7 @@ public class Controlador_presentacion {
 		
 		//Salvaguardar que usuario somos
 		
-		 return cd.identificacion(username, password);
+		 return cd.entrar(username, password);
 		
 	}
 	public boolean registrar(String user, String pass, boolean usu){

@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import dominio.controladores.Controlador_dominio;
+import dominio.controladores.Controlador_presentacion;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -20,7 +21,7 @@ import javax.swing.JPasswordField;
 
 public class Frame_resgister extends JFrame {
 
-	private Controlador_dominio cd;
+	private Controlador_presentacion cp;
 	private JPanel contentPane;
 	private JTextField field1;
 	private JPasswordField field2;
@@ -52,8 +53,8 @@ public class Frame_resgister extends JFrame {
 		init();
 	}
 	
-	public Frame_resgister(Controlador_dominio cd){
-		this.cd = cd;
+	public Frame_resgister(Controlador_presentacion cd){
+		this.cp = cd;
 		init();
 	}
 	public void init() {
@@ -123,14 +124,14 @@ public class Frame_resgister extends JFrame {
 					}
 				}
 				
-				boolean hasRegister = cd.registrar(user,pass,usu);
+				boolean hasRegister = cp.registrar(user,pass,usu);
 				
 				if(!hasRegister){
 					JOptionPane.showMessageDialog(null, "Nombre de usuario o administrador no disponible","Error", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else{
 					JOptionPane.showMessageDialog(null, "Usuario o administrador registrado !","Success", JOptionPane.INFORMATION_MESSAGE);
-					principal p = new principal(cd);
+					principal p = new principal(cp);
 					p.frame.setVisible(true);
 					dispose();
 				}
@@ -143,7 +144,7 @@ public class Frame_resgister extends JFrame {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				principal p = new principal(cd);
+				principal p = new principal(cp);
 				p.frame.setVisible(true);
 				dispose();
 				

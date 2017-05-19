@@ -7,7 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import dominio.controladores.Controlador_dominio;
+
+import dominio.controladores.Controlador_presentacion;
 
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
@@ -16,7 +17,7 @@ import java.awt.GridBagConstraints;
 public class Panel_usuario extends JFrame {
 
 	private JPanel contentPane;
-	private Controlador_dominio cd;
+	private Controlador_presentacion cp;
 
 	/**
 	 * Launch the application.
@@ -38,9 +39,10 @@ public class Panel_usuario extends JFrame {
 		init();
 		
 	}
-	public Panel_usuario(Controlador_dominio cd) {
+	public Panel_usuario(Controlador_presentacion cd) {
+		this.cp = cd;
 		init();
-		this.cd = cd;
+		
 		
 	}
 

@@ -35,12 +35,8 @@ public class Controlador_dominio {
 
 	public int entrar(String username, String password) throws Exception{
 		
-		/**
-		 * return "NO" if not find, "USU" if usuario, "ADMIN" if admin 
-		 */
-		if(username == null || password == null ){
-			throw new Exception("Unas de las entradas esta vacia");
-		}
+		
+		
 		
 		//Salvaguardar que usuario somos
 		boolean find = users.identification(username, password);
