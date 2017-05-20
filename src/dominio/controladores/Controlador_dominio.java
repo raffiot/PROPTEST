@@ -2,6 +2,7 @@ package dominio.controladores;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import dominio.clases.*;
@@ -284,6 +285,79 @@ public class Controlador_dominio {
 		}
 		Respuesta_Analisis ra = new Respuesta_Analisis(listRE);
 		currentResp = ra;
+		
+	}
+	
+	public void crearEncuesta(){
+		currentEnc = new Encuesta(0);
+		currentEnc.setId(encuestas.size()+1);
+		
+	}
+	public void guardarEncuesta(String s) {
+		currentEnc.setGenero(s);
+		Date fecha = new Date();
+		currentEnc.setFecha(fecha.toString());
+		encuestas.anadirEncuesta(currentEnc);
+	}
+	
+	public void anadirPegunta1(String en, int min, int max){
+		Tipo_1 p = new Tipo_1();
+		p.setEnunciado(en);
+		p.setMin(min);
+		p.setMax(max);
+		p.setOpciones(max-min+1);
+		p.setId(currentEnc.getN_preguntas()+1); 
+		currentEnc.anadir_pregunta(p);
+		
+	}
+
+
+
+
+
+	public void anadirPegunta234(String text, ArrayList<String> opcs, int tipo) {
+	if (tipo == 2 ){
+		Tipo_2 p1 = new Tipo_2();
+		p1.setEnunciado(text);
+		p1.setOpciones(opcs.size());
+		for (int i = 0; i < p1.getOpciones(); ++i) {
+			p1.anadir_opcion(opcs.get(i));
+		}
+		p1.setId(currentEnc.getN_preguntas()+1);
+		currentEnc.anadir_pregunta(p1);
+	}
+	
+	if (tipo == 3){
+		Tipo_3 p1 = new Tipo_3();
+		p1.setEnunciado(text);
+		p1.setOpciones(opcs.size());
+		for (int i = 0; i < p1.getOpciones(); ++i) {
+			p1.anadir_opcion(opcs.get(i));
+		}
+		p1.setId(currentEnc.getN_preguntas()+1);
+		currentEnc.anadir_pregunta(p1);
+	}
+	
+	if (tipo == 4){
+		Tipo_4 p1 = new Tipo_4();
+		p1.setEnunciado(text);
+		p1.setOpciones(opcs.size());
+		for (int i = 0; i < p1.getOpciones(); ++i) {
+			p1.anadir_opcion(opcs.get(i));
+		}
+		p1.setId(currentEnc.getN_preguntas()+1);
+		currentEnc.anadir_pregunta(p1);
+	}
+		
+}
+
+
+	public void anadirPegunta5(String s) {
+		Tipo_5 p = new Tipo_5();
+		p.setEnunciado(s);
+		p.setId(currentEnc.getN_preguntas()+1);
+		currentEnc.anadir_pregunta(p);
+	
 		
 	}
 	

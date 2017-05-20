@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JEditorPane;
+
 import dominio.clases.Analisis;
 import dominio.clases.Encuesta;
 import dominio.clases.RespuestaEncuesta;
@@ -119,6 +121,30 @@ public class Controlador_presentacion {
 		
 	}
 	
+	public void crearEncuesta(){
+		cd.crearEncuesta();
+	}
+	
+	public void anadirPegunta1(String en, int min, int max){
+		
+		cd.anadirPegunta1(en,min,max);
+	
+		
+	}
+	
+	public void guardarEncuesta(String s) {
+		cd.guardarEncuesta(s);
+	}
+
+	public void anadirPegunta234(String text, ArrayList<String> opcs, int tipo) {
+		cd.anadirPegunta234(text,opcs,tipo);
+		
+	}
+
+	public void anadirTipo5(String s) {
+		cd.anadirPegunta5(s);
+		
+	}
 
 
 	

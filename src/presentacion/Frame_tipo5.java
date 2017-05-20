@@ -7,9 +7,13 @@ import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.border.EmptyBorder;
+
+import dominio.controladores.Controlador_presentacion;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +21,7 @@ import java.awt.event.ActionListener;
 public class Frame_tipo5 extends JFrame {
 
 	private JPanel contentPane;
+	private Controlador_presentacion cp;
 
 	/**
 	 * Launch the application.
@@ -38,6 +43,15 @@ public class Frame_tipo5 extends JFrame {
 	 * Create the frame.
 	 */
 	public Frame_tipo5() {
+		init();
+	}
+	
+	public Frame_tipo5(Controlador_presentacion cp) {
+		this.cp = cp;
+		init();
+	}
+	
+	public void init() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -62,6 +76,17 @@ public class Frame_tipo5 extends JFrame {
 		contentPane.add(editorPane);
 		
 		JButton btnAadirPregunta = new JButton("A\u00F1adir pregunta");
+		btnAadirPregunta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String s = editorPane.getText();
+				if (s.equals(""))JOptionPane.showMessageDialog(null, "Introduzca un enunciado por favor ","Error", JOptionPane.ERROR_MESSAGE);
+				else {
+					cp.anadirTipo5(s);
+					dispose();
+				}
+				
+			}
+		});
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnAadirPregunta, 0, SpringLayout.SOUTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.EAST, btnAadirPregunta, 0, SpringLayout.EAST, editorPane);
 		contentPane.add(btnAadirPregunta);
@@ -71,6 +96,7 @@ public class Frame_tipo5 extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.WEST, btnCancelar, 0, SpringLayout.WEST, lblNewLabel);
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 			}
 		});
 		contentPane.add(btnCancelar);

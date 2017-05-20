@@ -63,6 +63,13 @@ public class Frame_admin extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnCrearEncuesta = new JButton("Crear encuesta");
+		btnCrearEncuesta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Frame_crear ven = new Frame_crear(cp);
+				ven.setVisible(true);
+				dispose();
+			}
+		});
 		btnCrearEncuesta.setBounds(14, 66, 150, 44);
 		contentPane.add(btnCrearEncuesta);
 		
