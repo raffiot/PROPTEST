@@ -12,6 +12,7 @@ import javax.swing.JTree;
 
 import dominio.clases.*;
 import dominio.controladores.Controlador_dominio;
+import dominio.controladores.Controlador_presentacion;
 
 import javax.swing.JSlider;
 import javax.swing.JLabel;
@@ -25,9 +26,7 @@ import java.awt.event.ActionEvent;
 public class Frame_analisis extends JFrame {
 
 	private JPanel contentPane;
-	private Controlador_dominio cd;
-	private Encuesta enc;
-	private List<RespuestaEncuesta> listRE;
+	private Controlador_presentacion cp;
 	private JSlider sliderk;
 	private JSlider sliderthresh;
 	private JComboBox<String> comboBoxIdioma;
@@ -54,10 +53,8 @@ public class Frame_analisis extends JFrame {
 		init();
 	}
 	
-	public Frame_analisis(Controlador_dominio cd, Encuesta enc, List<RespuestaEncuesta> listRE){
-		this.cd = cd;
-		this.enc = enc;
-		this.listRE = listRE;
+	public Frame_analisis(Controlador_presentacion cp){
+		this.cp = cp;
 		init();
 	}
 	
@@ -69,7 +66,7 @@ public class Frame_analisis extends JFrame {
 	
 		
 		int min = 1;
-		int max = listRE.size();
+		int max = cp.getMaxK();
 		int middle = (1+max)/2;
 		sliderk = new JSlider(min,max,middle);
 		sliderk.setBounds(132, 31, 280, 52);
@@ -120,8 +117,8 @@ public class Frame_analisis extends JFrame {
 				int k = sliderk.getValue();
 				double thresh = sliderthresh.getValue()/10.0;
 				int idioma = comboBoxIdioma.getSelectedIndex();
-				Resultado r = cd.analizar(k, thresh, idioma,enc,listRE);
-				Frame_MonstrarResultado ven = new Frame_MonstrarResultado(cd,enc,listRE,r);
+				cp.analizar(k, thresh, idioma);
+				Frame_MonstrarResultado ven = new Frame_MonstrarResultado(cp,"from_analizar");
 				ven.setVisible(true);
 				dispose();
 			}
@@ -132,7 +129,7 @@ public class Frame_analisis extends JFrame {
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Frame_respuestas ven = new Frame_respuestas(cd,enc);
+				Frame_respuestas ven = new Frame_respuestas(cp);
 				ven.setVisible(true);
 				dispose();
 			}

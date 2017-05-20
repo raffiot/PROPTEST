@@ -31,6 +31,15 @@ public class Cjt_resultados implements Serializable{
 	public void addResu(Resultado r){
 		resultados.add(r);
 	}
+
+	public ArrayList<Resultado> getResultados() {
+		return resultados;
+	}
+
+	public Resultado selectR(String s) {
+		//CHANGE WHEN RESULTADO WILL HAVE AN ID
+		return resultados.get(Integer.parseInt(s));
+	}
 	
 	
 }

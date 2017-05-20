@@ -165,12 +165,12 @@ public class Frame_encuestas  extends JFrame {
 					if (i >= 0){
 						String s = list.getSelectedValue();
 						s = s.substring(0,1);
-						Encuesta enc = cp.selecionnarEncuesta(s);
-						if(cp.getListResp(enc.getId()) == null){
+						if(cp.encuestaWithoutRespuesta(s)){
 							JOptionPane.showMessageDialog(null, "No hay ninguna respuesta para esta encuesta","Error", JOptionPane.ERROR_MESSAGE);
-						}
+						}	
 						else{
-							Frame_respuestas ven = new Frame_respuestas(cp,enc);
+							cp.selecionnarEncuesta(s);
+							Frame_respuestas ven = new Frame_respuestas(cp);
 							ven.setVisible(true);
 							dispose();
 						}

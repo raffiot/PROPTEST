@@ -50,5 +50,9 @@ public class Respuesta_Analisis implements Serializable{
 	public void addRespuestaEncuesta(RespuestaEncuesta re){
 		listRP.add(re);
 	}
+
+	public int getSize() {
+		return listRP.size();
+	}
 	
 }

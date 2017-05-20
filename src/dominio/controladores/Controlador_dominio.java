@@ -13,9 +13,9 @@ public class Controlador_dominio {
 		private Cjt_respuestas respuestas;
 		
 		private Encuesta currentEnc;
-		private Analisis currenAna;
-		private Resultado currenResu;
-		private Respuesta_Analisis currResp;
+		private Analisis currentAna;
+		private Resultado currentResu;
+		private Respuesta_Analisis currentResp;
 		
 		
 	public Controlador_dominio(){
@@ -65,18 +65,17 @@ public class Controlador_dominio {
 		
 	}
 	
-	public Resultado analizar(int k, double thresh, int idioma, Encuesta enc, List<RespuestaEncuesta> listRE){
+	public void analizar(int k, double thresh, int idioma){
 		//0 = espagnol
 		//1 = catalan
 		//2 = english
-		Respuesta_Analisis ra = new Respuesta_Analisis(listRE);
 		try {
-			currenAna = new Analisis(k, thresh, ra, enc, idioma);
+			currentAna = new Analisis(k, thresh, currentResp, currentEnc, idioma);
 		} catch (IOException e) {
 			System.out.println("ne se ha cargado las palabras funcionnal");
 			e.printStackTrace();
 		}
-		return currenAna.k_means();
+		currentResu = currentAna.k_means();
 	}
 	
 	
@@ -112,11 +111,11 @@ public class Controlador_dominio {
 	}
 
 	public Resultado getCurrenResu() {
-		return currenResu;
+		return currentResu;
 	}
 
 	public Analisis getCurrenAna() {
-		return currenAna;
+		return currentAna;
 	}
 
 	public ArrayList<String> getList(){
@@ -129,19 +128,14 @@ public class Controlador_dominio {
 		return list;
 	}
 	
-	public List<RespuestaEncuesta> getListResp(int encNb){
-		/**
+	public ArrayList<String> getListResp(){
+		
 		ArrayList<String> list = new ArrayList<String>();
 		//VERIFY AFTER SEEING WHAT THE INTEGER IS FOR
-		for(RespuestaEncuesta re : respuestas.getRespuestas().get(encNb).getListRP()){
+		for(RespuestaEncuesta re : respuestas.getRespuestas().get(currentEnc.getId()).getListRP()){
 			list.add("Respuesta de "+re.getNombre());
-		}*/
-		if(respuestas.getRespuestas().containsKey(encNb)){
-			return respuestas.getRespuestas().get(encNb).getListRP();
 		}
-		else{
-			return null;
-		}
+		return list;
 	}
 	
 	
@@ -149,8 +143,8 @@ public class Controlador_dominio {
 		encuestas.eliminarE(s);
 	}
 	
-	public Encuesta selecionnarEncuesta(String s){
-		return encuestas.selecE(s);
+	public void selecionnarEncuesta(String s){
+		currentEnc = encuestas.selecE(s);
 	}
 	
 	public void update(){
@@ -172,12 +166,125 @@ public class Controlador_dominio {
 	}
 
 
-	public List<RespuestaEncuesta> selectedItem(int [] selected,List<RespuestaEncuesta> rEnc) {
+	public void selectedItem(int [] selected) {
+		//HERE WE SUPPOSE LIST<RESPUESTAENCUESTA> ORDER WILL NOT CHANGE
+		//MODIFICATE THIS METHOD WHEN RESPUESTAENCUESTA WILL HAVE AN ID!!!!
 		List<RespuestaEncuesta> result = new ArrayList<>();
+		List<RespuestaEncuesta> into = respuestas.getRespuestas().get(currentEnc.getId()).getListRP();
 		for(int i = 0 ; i < selected.length; i++){
-			if(selected[i] == 1)result.add(rEnc.get(i));
+			if(selected[i] == 1)result.add(into.get(i));
+		}
+		
+		Respuesta_Analisis ra = new Respuesta_Analisis(result);
+		currentResp = ra;
+	}
+
+
+
+
+
+	public boolean encuestaWithoutRespuesta(String s) {		
+		return !respuestas.getRespuestas().containsKey(Integer.parseInt(s));
+	}
+
+
+
+
+
+	public int getMaxK() {
+		return currentResp.getSize();
+	}
+
+
+
+
+
+	public ArrayList<Integer> getClusterNumbers() {
+		ArrayList<Integer> clusterName = new ArrayList<Integer>();
+		for(Cluster c : currentResu.getClusters()){
+			clusterName.add(c.getIndex());
+		}
+		return clusterName;
+	}
+
+
+
+
+
+	public ArrayList<String> getRespuestaDeCluster(Integer i) {
+		ArrayList<String> list = new ArrayList<String>();
+		for(RespuestaEncuesta re : currentResu.getClusters().get(i).getUsuarios()){
+			list.add(re.getNombre()); //put id when it will be available
+		}
+		return list;
+	}
+
+
+
+
+
+	public void resuGuardar() {
+		resultados.addResu(currentResu);
+		//No se si hace falta guardar ahora
+		resultados.guardarResu();
+	}
+
+
+
+
+
+	public String getClusterInfo(int i) {
+		return currentResu.getClusters().get(i).getCentroid().toString();
+	}
+
+
+
+
+
+	public String getREInfo(String substring) {
+		//Change when id available
+		for(RespuestaEncuesta re : currentResp.getListRP()){
+			if(re.getNombre().equals(substring)) return re.toString();
+		}
+		return null;
+	}
+
+
+
+
+
+	public ArrayList<String> getListResu() {
+		ArrayList<String> result = new ArrayList<>();
+		int i = 0;
+		for(Resultado r : resultados.getResultados()){
+			Encuesta e = r.getClusters().get(0).getCentroid().getEncuesta();
+			result.add(i+". Resultado encuesta "+e.getId()+". - "+e.getGenero());
+			i++;
 		}
 		return result;
+	}
+
+
+
+
+
+	public void selecionnarResultado(String s) {
+		currentResu = resultados.selectR(s);
+		
+	}
+
+
+
+
+
+	public void selecionnarREdesdeResu() {
+		ArrayList<RespuestaEncuesta> listRE = new ArrayList<RespuestaEncuesta>();
+		for(Cluster c: currentResu.getClusters()){
+			listRE.addAll(c.getUsuarios());
+		}
+		Respuesta_Analisis ra = new Respuesta_Analisis(listRE);
+		currentResp = ra;
+		
 	}
 	
 	

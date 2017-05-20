@@ -36,24 +36,24 @@ public class Controlador_presentacion {
 		return cd.registrar(user, pass, usu);
 	}
 	
-	public void analizar(int k, double thresh, int idioma, Encuesta enc, List<RespuestaEncuesta> listRE){
-		cd.analizar(k, thresh, idioma, enc, listRE);
+	public void analizar(int k, double thresh, int idioma){
+		cd.analizar(k, thresh, idioma);
 	}
 	
 	public ArrayList<String> getList(){
 		return cd.getList();
 	}
 	
-	public List<RespuestaEncuesta> getListResp(int encNb){
-		return cd.getListResp(encNb);
+	public ArrayList<String> getListResp(){
+		return cd.getListResp();
 	}
 	
 	public void eliminarEncuesta(String s){
 		cd.eliminarEncuesta(s);
 	}
 	
-	public Encuesta selecionnarEncuesta(String s){
-		return cd.selecionnarEncuesta(s);
+	public void selecionnarEncuesta(String s){
+		cd.selecionnarEncuesta(s);
 	}
 	
 	public void update(){
@@ -67,8 +67,56 @@ public class Controlador_presentacion {
 		
 	}
 	
-	public List<RespuestaEncuesta> selectedItem(int [] selected,List<RespuestaEncuesta> rEnc) {
-		return cd.selectedItem(selected, rEnc);
+	public void selectedItem(int [] selected) {
+		//HERE WE SUPPOSE LIST<RESPUESTAENCUESTA> ORDER WILL NOT CHANGE
+		//MODIFICATE THIS METHOD WHEN RESPUESTAENCUESTA WILL HAVE AN ID!!!!
+		cd.selectedItem(selected);
+	}
+
+	public boolean encuestaWithoutRespuesta(String s) {
+		return cd.encuestaWithoutRespuesta(s);
+	}
+
+	public int getMaxK() {
+		return cd.getMaxK();
+	}
+
+	public ArrayList<Integer> getClusterNumbers() {
+		return cd.getClusterNumbers();
+	}
+
+	public ArrayList<String> getRespuestaDeCluster(Integer i) {
+		return cd.getRespuestaDeCluster(i);
+	}
+
+	public void resuGuardar() {
+		cd.resuGuardar();
+		
+	}
+
+	public String getREinfo(String type, String substring) {
+		if(type.equals("c")){
+			//Cluster Case
+			return cd.getClusterInfo(Integer.parseInt(substring));
+		}
+		else if(type.equals("re")){
+			return cd.getREInfo(substring);
+		}
+		return null;
+	}
+
+	public ArrayList<String> getListResu() {
+		return cd.getListResu();
+	}
+
+	public void selecionnarResultado(String s) {
+		cd.selecionnarResultado(s);
+		
+	}
+
+	public void selecionnarREdesdeResu() {
+		cd.selecionnarREdesdeResu();
+		
 	}
 	
 

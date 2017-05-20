@@ -17,12 +17,13 @@ import javax.swing.border.*;
 import dominio.clases.Encuesta;
 import dominio.clases.RespuestaEncuesta;
 import dominio.controladores.Controlador_dominio;
+import dominio.controladores.Controlador_persistencia;
+import dominio.controladores.Controlador_presentacion;
 
 public class Frame_respuestas extends JFrame {
 
 	private JPanel contentPane;
-	private Controlador_dominio cd;
-	private Encuesta enc;
+	private Controlador_presentacion cp;
 	private JList list;
 	private JButton btnAnalizar;
 	/**
@@ -45,9 +46,8 @@ public class Frame_respuestas extends JFrame {
 		init();
 	}
 	
-	public Frame_respuestas(Controlador_dominio cd, Encuesta e){
-		enc = e;
-		this.cd = cd;
+	public Frame_respuestas(Controlador_presentacion cp){
+		this.cp = cp;
 		init();
 	}
 	/**
@@ -60,13 +60,14 @@ public class Frame_respuestas extends JFrame {
 		 
 		
 		
-		List<RespuestaEncuesta> items = cd.getListResp(enc.getId());
+		//List<RespuestaEncuesta> items = cd.getListResp(enc.getId());
+		ArrayList<String> items = cp.getListResp();
 		int [] selected = new int[items.size()];
 		
 		CheckListItem[] itemList = new CheckListItem [items.size()];
 		for(int i = 0; i < items.size(); i++){
 			selected[i] = 0;
-			itemList[i] = new CheckListItem(items.get(i).getNombre()+" #"+i);
+			itemList[i] = new CheckListItem(items.get(i));
 		}
 		JList list_1 = new JList(itemList);
 		list_1.setCellRenderer(new CheckListRenderer());
@@ -98,10 +99,8 @@ public class Frame_respuestas extends JFrame {
 		JButton btnSiguiente = new JButton("Siguiente");
 		btnSiguiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				List<RespuestaEncuesta> selectedItems = cd.selectedItem(selected,items);
-				Frame_analisis ven = new Frame_analisis(cd,enc,selectedItems);
+				cp.selectedItem(selected);
+				Frame_analisis ven = new Frame_analisis(cp);
 				ven.setVisible(true);
 				dispose();
 			}
@@ -112,7 +111,7 @@ public class Frame_respuestas extends JFrame {
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Frame_encuestas ven = new Frame_encuestas(cd,"analizar");
+				Frame_encuestas ven = new Frame_encuestas(cp,"analizar");
 				ven.setVisible(true);
 				dispose();
 			}

@@ -2,21 +2,32 @@ package presentacion;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.ListSelectionModel;
 
 import dominio.clases.*;
 import dominio.controladores.Controlador_dominio;
+import dominio.controladores.Controlador_presentacion;
 
 import javax.swing.JTree;
 
 public class Frame_resultado extends JFrame {
 
 	private JPanel contentPane;
-	private Controlador_dominio cd;
+	private Controlador_presentacion cp;
+	private JList<String> list;
 
 	/**
 	 * Launch the application.
@@ -42,41 +53,59 @@ public class Frame_resultado extends JFrame {
 		initialize();
 	}
 	
-	public Frame_resultado(Controlador_dominio cd) {
-		this.cd = cd;
+	public Frame_resultado(Controlador_presentacion cp) {
+		this.cp = cp;
 		initialize();
 	}
 	
 	public void initialize() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 412);
+		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		DefaultMutableTreeNode top = new DefaultMutableTreeNode("Resultados de la Analisis");
-		createNodes(top);
-		JTree tree = new JTree(top);
-		tree.setBounds(0, 0, 79, 321);
-		contentPane.add(tree);
+		list = new JList<String>();
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		getContentPane().add(list);
+		ArrayList<String> r = new ArrayList<String>();
+		r = cp.getListResu();
+		DefaultListModel<String> aux = new DefaultListModel<String>();
+		for(int i = 0; i < r.size(); ++i){
+			aux.addElement(r.get(i));
+		}
+		list.setModel(aux);
+		list.setBounds(10, 61, 414, 165);
 		
-	}
-	
-	private void createNodes(DefaultMutableTreeNode top) {
-	    DefaultMutableTreeNode category = null;
-	    DefaultMutableTreeNode respuesta = null;
-	    
-	    category = new DefaultMutableTreeNode("Resultado general");
-	    top.add(category);
-	    
-	    for(Cluster c : cd.getCurrenResu().getClusters()){
-	    	category = new DefaultMutableTreeNode("Cluster "+c.getIndex());
-		    top.add(category);
-		    for(RespuestaEncuesta ra : c.getUsuarios()){
-		    	respuesta = new DefaultMutableTreeNode("Respuesta "+(cd.getCurrenAna().getRespEncuestas().getListRP().indexOf(ra)+1)+" de "+ra.getNombre());
-		    	category.add(respuesta);
-		    }
-	    }
+		JButton btnAtras = new JButton("Atras");
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Frame_admin ven = new Frame_admin(cp);
+				ven.setVisible(true);
+				dispose();
+			}
+		});
+		btnAtras.setBounds(20, 237, 89, 23);
+		//btnAtras.setBounds(335, 237, 89, 23);
+		getContentPane().add(btnAtras);
+		
+		JButton btnSiguiente = new JButton("Siguiente");
+		btnSiguiente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int i = list.getSelectedIndex();
+				if (i >= 0){
+					String s = list.getSelectedValue();
+					s = s.substring(0,1);
+					cp.selecionnarResultado(s);
+					cp.selecionnarREdesdeResu();
+					Frame_MonstrarResultado ven = new Frame_MonstrarResultado(cp,"from_menu");
+					ven.setVisible(true);
+					dispose();
+				}
+			}
+		});
+		btnSiguiente.setBounds(335, 237, 89, 23);
+		getContentPane().add(btnSiguiente);
 	}
 }

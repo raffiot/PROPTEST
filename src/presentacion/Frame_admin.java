@@ -94,6 +94,10 @@ public class Frame_admin extends JFrame {
 		JButton btnVisualizarAnalisis = new JButton("Visualizar analisis");
 		btnVisualizarAnalisis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Frame_resultado ven = new Frame_resultado(cp);
+				ven.setVisible(true);
+		        setVisible(false);
+		        dispose();
 			}
 		});
 		btnVisualizarAnalisis.setBounds(240, 141, 140, 55);

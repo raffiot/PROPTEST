@@ -2,6 +2,7 @@ package presentacion;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -18,6 +19,7 @@ import dominio.clases.Encuesta;
 import dominio.clases.RespuestaEncuesta;
 import dominio.clases.Resultado;
 import dominio.controladores.Controlador_dominio;
+import dominio.controladores.Controlador_presentacion;
 
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -31,10 +33,8 @@ import java.awt.event.ActionEvent;
 public class Frame_MonstrarResultado extends JFrame {
 
 	private JPanel contentPane;
-	private Controlador_dominio cd;
-	private Encuesta enc;
-	private List<RespuestaEncuesta> listRE;
-	private Resultado resu;
+	private Controlador_presentacion cp;
+	private String state;
 	/**
 	 * Launch the application.
 	 */
@@ -59,11 +59,9 @@ public class Frame_MonstrarResultado extends JFrame {
 		init();
 	}
 	
-	public Frame_MonstrarResultado(Controlador_dominio cd, Encuesta enc, List<RespuestaEncuesta> listRE, Resultado resu){
-		this.cd = cd;
-		this.enc = enc;
-		this.listRE = listRE;
-		this.resu = resu;
+	public Frame_MonstrarResultado(Controlador_presentacion cp,String state){
+		this.cp = cp;
+		this.state = state;
 		init();
 	}
 	
@@ -94,18 +92,12 @@ public class Frame_MonstrarResultado extends JFrame {
 				System.out.println(nodeInfo.substring(8));
 				System.out.println(nodeInfo.substring(13));*/
 				if(nodeInfo.substring(0, 7).equals("Cluster")){
-					Cluster c = resu.getClusters().get(Integer.parseInt(nodeInfo.substring(8)));
-					String s = "Cluster "+c.getIndex()+":\n"+c.getCentroid().toString();
+					String s = nodeInfo+":\n"+cp.getREinfo("c",nodeInfo.substring(8));
 					textArea.setText(s);
 				}
 				else if(nodeInfo.substring(0, 9).equals("Respuesta")){
-					RespuestaEncuesta re = null;
-					for(RespuestaEncuesta ree : listRE){
-						if(ree.getNombre().equals(nodeInfo.substring(13))){
-							re = ree;
-						}
-					}
-					textArea.setText(nodeInfo+"\n"+re.toString());
+					String s = cp.getREinfo("re", nodeInfo.substring(13));
+					textArea.setText(nodeInfo+"\n"+s);
 					
 				}
 			}
@@ -114,33 +106,43 @@ public class Frame_MonstrarResultado extends JFrame {
 		JScrollPane treeView = new JScrollPane(tree);
 		treeView.setBounds(10, 11, 200, 500);
 		contentPane.add(treeView);
-		
+
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Frame_analisis ven = new Frame_analisis(cd,enc,listRE);
-				ven.setVisible(true);
-				dispose();
+				if(state.equals("from_analizar")){
+					Frame_analisis ven = new Frame_analisis(cp);
+					ven.setVisible(true);
+					dispose();
+				}
+				else if(state.equals("from_menu")){
+					Frame_resultado ven = new Frame_resultado(cp);
+					ven.setVisible(true);
+					dispose();
+				}
+
 			}
 		});
 		btnAtras.setBounds(10, 533, 89, 23);
 		contentPane.add(btnAtras);
-		
-		JButton btnGuardarResultado = new JButton("Guardar Resultado");
-		btnGuardarResultado.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cd.anadirResuGuardar(resu);
-				JOptionPane.showMessageDialog(null, "Resultado guardado"
-						,"Success", JOptionPane.INFORMATION_MESSAGE);
-			}
-		});
-		btnGuardarResultado.setBounds(257, 533, 154, 23);
-		contentPane.add(btnGuardarResultado);
-		
+
+
+		if(state.equals("from_analizar")){
+			JButton btnGuardarResultado = new JButton("Guardar Resultado");
+			btnGuardarResultado.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					cp.resuGuardar();
+					JOptionPane.showMessageDialog(null, "Resultado guardado"
+							,"Success", JOptionPane.INFORMATION_MESSAGE);
+				}
+			});
+			btnGuardarResultado.setBounds(257, 533, 154, 23);
+			contentPane.add(btnGuardarResultado);
+		}
 		JButton btnVolverAlMenu = new JButton("Volver al Menu");
 		btnVolverAlMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Frame_admin ven = new Frame_admin(cd);
+				Frame_admin ven = new Frame_admin(cp);
 				ven.setVisible(true);
 				dispose();
 			}
@@ -158,13 +160,16 @@ public class Frame_MonstrarResultado extends JFrame {
 	    category = new DefaultMutableTreeNode("Resultado Overview");
 	    top.add(category);
 	    
-	    for(Cluster c : resu.getClusters()){
-	    	category = new DefaultMutableTreeNode("Cluster "+c.getIndex());
+	    ArrayList<Integer> clusters = cp.getClusterNumbers();
+	    
+	    for(Integer i : clusters){
+	    	category = new DefaultMutableTreeNode("Cluster "+i);
 	    	top.add(category);
-	    	result = new DefaultMutableTreeNode("Cluster "+c.getIndex());
+	    	result = new DefaultMutableTreeNode("Cluster "+i);
     		category.add(result);
-	    	for(RespuestaEncuesta re : c.getUsuarios()){
-	    		result = new DefaultMutableTreeNode("Respuesta de "+re.getNombre());
+    		ArrayList<String> respuestas = cp.getRespuestaDeCluster(i);
+	    	for(String s : respuestas){
+	    		result = new DefaultMutableTreeNode("Respuesta de "+s);
 	    		category.add(result);
 	    	}
 	    }
