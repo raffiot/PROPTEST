@@ -146,7 +146,9 @@ public class Controlador_presentacion {
 		
 	}
 
-
+	/*public void getNPreguntasE(String s){
+		cd.
+	}*/
 	
 
 }

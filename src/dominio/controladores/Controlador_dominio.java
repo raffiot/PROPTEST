@@ -361,5 +361,8 @@ public class Controlador_dominio {
 		
 	}
 	
+	/*public void getNpreguntasE(){
+		
+	}*/
 	
 }
