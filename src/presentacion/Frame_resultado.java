@@ -19,7 +19,6 @@ import javax.swing.ListSelectionModel;
 
 import dominio.clases.*;
 import dominio.controladores.Controlador_dominio;
-import dominio.controladores.Controlador_presentacion;
 
 import javax.swing.JTree;
 

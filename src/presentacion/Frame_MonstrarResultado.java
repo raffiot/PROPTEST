@@ -19,7 +19,6 @@ import dominio.clases.Encuesta;
 import dominio.clases.RespuestaEncuesta;
 import dominio.clases.Resultado;
 import dominio.controladores.Controlador_dominio;
-import dominio.controladores.Controlador_presentacion;
 
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;

@@ -6,9 +6,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import dominio.controladores.Controlador_presentacion;
-
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -17,6 +14,7 @@ import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
@@ -118,7 +116,7 @@ public class Frame_crear extends JFrame {
 		JButton btnGuardarYSalir = new JButton("Guardar y salir");
 		btnGuardarYSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textField_1.getText().equals("")) JOptionPane.showMessageDialog(null, "Introduzca un género para encuesta ","Error", JOptionPane.ERROR_MESSAGE);
+				if (textField_1.getText().equals("")) JOptionPane.showMessageDialog(null, "Introduzca un gï¿½nero para encuesta ","Error", JOptionPane.ERROR_MESSAGE);
 				else {
 					cp.guardarEncuesta(textField_1.getText());
 					Frame_admin ven = new Frame_admin(cp);
@@ -137,6 +135,9 @@ public class Frame_crear extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.WEST, btnCancelar, 0, SpringLayout.WEST, lblIntroduzcaUnGenero);
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Frame_admin ven = new Frame_admin(cp);
+				ven.setVisible(true);
+				dispose();
 			}
 		});
 		contentPane.add(btnCancelar);

@@ -18,7 +18,6 @@ import dominio.clases.Encuesta;
 import dominio.clases.RespuestaEncuesta;
 import dominio.controladores.Controlador_dominio;
 import dominio.controladores.Controlador_persistencia;
-import dominio.controladores.Controlador_presentacion;
 
 public class Frame_respuestas extends JFrame {
 

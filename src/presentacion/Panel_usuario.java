@@ -8,10 +8,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 
-import dominio.controladores.Controlador_presentacion;
 
 import java.awt.GridBagLayout;
+
 import javax.swing.JButton;
+
 import java.awt.GridBagConstraints;
 
 public class Panel_usuario extends JFrame {

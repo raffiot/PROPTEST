@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import dominio.controladores.Controlador_dominio;
-import dominio.controladores.Controlador_presentacion;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

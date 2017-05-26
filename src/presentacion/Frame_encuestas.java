@@ -9,7 +9,6 @@ import javax.swing.ListSelectionModel;
 
 import dominio.clases.Encuesta;
 import dominio.controladores.Controlador_dominio;
-import dominio.controladores.Controlador_presentacion;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;

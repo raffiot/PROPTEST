@@ -1,4 +1,4 @@
-package dominio.controladores;
+package presentacion;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,6 +10,7 @@ import dominio.clases.Analisis;
 import dominio.clases.Encuesta;
 import dominio.clases.RespuestaEncuesta;
 import dominio.clases.Respuesta_Analisis;
+import dominio.controladores.Controlador_dominio;
 
 public class Controlador_presentacion {
 	

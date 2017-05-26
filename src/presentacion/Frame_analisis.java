@@ -12,7 +12,6 @@ import javax.swing.JTree;
 
 import dominio.clases.*;
 import dominio.controladores.Controlador_dominio;
-import dominio.controladores.Controlador_presentacion;
 
 import javax.swing.JSlider;
 import javax.swing.JLabel;

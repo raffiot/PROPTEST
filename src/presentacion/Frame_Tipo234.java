@@ -16,8 +16,6 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.border.EmptyBorder;
 
-import dominio.controladores.Controlador_presentacion;
-
 public class Frame_Tipo234 extends JFrame {
 
 	private JPanel contentPane;
@@ -85,7 +83,7 @@ public class Frame_Tipo234 extends JFrame {
 		btnAadirPregunta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (enun.getText().equals("")) JOptionPane.showMessageDialog(null, "Introduzca un enunciado.","Error", JOptionPane.ERROR_MESSAGE);
-				else if(n != 0) JOptionPane.showMessageDialog(null, "Faltan opciones para añadir. ","Error", JOptionPane.ERROR_MESSAGE);
+				else if(n != 0) JOptionPane.showMessageDialog(null, "Faltan opciones para aï¿½adir. ","Error", JOptionPane.ERROR_MESSAGE);
 				else {
 					cp.anadirPegunta234(enun.getText(),opcs,tipo);
 					dispose();
@@ -151,11 +149,11 @@ public class Frame_Tipo234 extends JFrame {
 					opcs.add(opcion.getText());
 					--n;
 					int aux = Integer.parseInt(opciones.getText()) - n +1;
-					label.setText("Opción " + aux +":" );
+					label.setText("Opciï¿½n " + aux +":" );
 					opcion.setText("");
 					if (n == 0){
 						opcion.setEditable(false);
-						label.setText("Todas las opciones han sido introducidas, ya puede añadir la pregunta");
+						label.setText("Todas las opciones han sido introducidas, ya puede aï¿½adir la pregunta");
 					}
 				}
 				

@@ -12,8 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
-
-import dominio.controladores.Controlador_presentacion;
 import javax.swing.BoxLayout;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -61,6 +59,7 @@ public class Frame_contestar extends JFrame {
 	 * Create the frame.
 	 */
 	public void initialize() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 200, 450, 500);
 		contentPane = new JPanel();
