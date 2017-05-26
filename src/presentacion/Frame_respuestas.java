@@ -98,10 +98,19 @@ public class Frame_respuestas extends JFrame {
 		JButton btnSiguiente = new JButton("Siguiente");
 		btnSiguiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cp.selectedItem(selected);
-				Frame_analisis ven = new Frame_analisis(cp);
-				ven.setVisible(true);
-				dispose();
+				boolean someSelected = false;
+				for(int i = 0; i<selected.length; i++){
+					if(selected[i] == 1)someSelected = true;
+				}
+				if(!someSelected){
+					JOptionPane.showMessageDialog(null, "Ninguna respuesta seleccionada","Error", JOptionPane.ERROR_MESSAGE);
+				}
+				else{
+					cp.selectedItem(selected);
+					Frame_analisis ven = new Frame_analisis(cp);
+					ven.setVisible(true);
+					dispose();
+				}
 			}
 		});
 		btnSiguiente.setBounds(335, 227, 89, 23);
@@ -117,6 +126,20 @@ public class Frame_respuestas extends JFrame {
 		});
 		btnAtras.setBounds(15, 227, 89, 23);
 		getContentPane().add(btnAtras);
+		
+		JButton btnSeleccionarTodo = new JButton("Seleccionar todo");
+		btnSeleccionarTodo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				for(int i = 0; i< items.size(); i++){
+					CheckListItem item = (CheckListItem) list_1.getModel().getElementAt(i);
+					item.setSelected(true); // Toggle selected state
+					list_1.repaint(list_1.getCellBounds(i, i));// Repaint cell
+					selected[i] = 1;
+				}
+			}
+		});
+		btnSeleccionarTodo.setBounds(154, 227, 123, 23);
+		getContentPane().add(btnSeleccionarTodo);
 	}
 	
 	class CheckListItem {

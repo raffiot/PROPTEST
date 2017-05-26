@@ -122,19 +122,19 @@ public class Frame_encuestas  extends JFrame {
 		JLabel label = new JLabel("");
 		label.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		label.setBounds(10, 11, 414, 34);
-		if (state == "visualizar"){
+		if (state.equals("visualizar")){
 			label.setText("Encuestas a visualizar");
 		}
-		else if (state == "borrar"){
+		else if (state.equals("borrar")){
 			label.setText("Elija la encuesta que quiere borrar");
 		}
-		else if (state == "analizar"){
+		else if (state.equals("analizar")){
 			label.setText("Elija la encuesta que quieres analizar");
 		}
 			
 		getContentPane().add(label);
 		
-		if (state == "borrar"){
+		if (state.equals("borrar")){
 			btnBorrarAnalizar = new JButton("borrar");
 			btnBorrarAnalizar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -156,7 +156,7 @@ public class Frame_encuestas  extends JFrame {
 			getContentPane().add(btnBorrarAnalizar);
 		}
 		
-		if (state == "analizar"){
+		if (state.equals("analizar")){
 			btnBorrarAnalizar = new JButton("Siguiente");
 			btnBorrarAnalizar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
