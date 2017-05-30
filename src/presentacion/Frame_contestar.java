@@ -24,6 +24,7 @@ public class Frame_contestar extends JFrame {
 	private JButton btnSalir;
 	private Controlador_presentacion cp;
 	private JTextField textField;
+	private JTextArea textArea;
 	
 	/**
 	 * Launch the application.
@@ -66,12 +67,7 @@ public class Frame_contestar extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		txtArea = new JTextArea();      
-		txtArea.setText(encuesta);
-		
-        scroll = new JScrollPane(txtArea);    
-        scroll.setBounds(27,11,375,210);                                                    
-        contentPane.add(scroll);       
+     
         
         btnSalir = new JButton("Salir");
         btnSalir.addActionListener(new ActionListener() {
@@ -79,8 +75,15 @@ public class Frame_contestar extends JFrame {
         		dispose();
         	}
         });
-        btnSalir.setBounds(338, 449, 89, 23);
+        btnSalir.setBounds(302, 414, 89, 23);
         contentPane.add(btnSalir);
+        
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(10, 11, 414, 182);
+        contentPane.add(scrollPane);
+        
+        textArea = new JTextArea();
+        scrollPane.setViewportView(textArea);
                         
         for (int i = 0; i < npreguntas; ++i){
             JLabel lblNewLabel = new JLabel("Respesta " + (i+1) + ": ");
