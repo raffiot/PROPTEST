@@ -146,7 +146,7 @@ public class Analisis implements Serializable{
 		}
 		Date date = new Date();
 		
-		return new Resultado(centroids,mapDistance,nbIteracion,date);
+		return new Resultado(centroids,mapDistance,nbIteracion,date,encuesta,respEncuestas);
 	}
 	
 	/**

@@ -193,5 +193,9 @@ public class Controlador_presentacion {
 	public String getPregunta() {
 		return cd.getPregunta();
 	}
+
+	public String getRespuestasDistrib() {
+		return cd.getRespuestasDistrib();
+	}
 	
 }

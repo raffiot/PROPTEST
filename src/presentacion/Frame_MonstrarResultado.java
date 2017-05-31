@@ -85,19 +85,26 @@ public class Frame_MonstrarResultado extends JFrame {
 			@Override
 			public void valueChanged(TreeSelectionEvent arg0) {
 				DefaultMutableTreeNode node = (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
-				String nodeInfo = (String) node.getUserObject();
-				/**
-				System.out.println(nodeInfo.substring(0, 7));
-				System.out.println(nodeInfo.substring(8));
-				System.out.println(nodeInfo.substring(13));*/
-				if(nodeInfo.substring(0, 7).equals("Cluster")){
-					String s = nodeInfo+":\n"+cp.getREinfo("c",nodeInfo.substring(8));
-					textArea.setText(s);
-				}
-				else if(nodeInfo.substring(0, 9).equals("Respuesta")){
-					String s = cp.getREinfo("re", nodeInfo.substring(13));
-					textArea.setText(nodeInfo+"\n"+s);
-					
+				if(node != null){
+					String nodeInfo = (String) node.getUserObject();
+	
+					/**
+					System.out.println(nodeInfo.substring(0, 7));
+					System.out.println(nodeInfo.substring(8));
+					System.out.println(nodeInfo.substring(13));*/
+					if(nodeInfo.substring(0, 7).equals("Cluster")){
+						String s = nodeInfo+":\n"+cp.getREinfo("c",nodeInfo.substring(8));
+						textArea.setText(s);
+					}
+					else if(nodeInfo.substring(0, 9).equals("Respuesta")){
+						String s = cp.getREinfo("re", nodeInfo.substring(13));
+						textArea.setText(nodeInfo+"\n"+s);
+						
+					}
+					else if(nodeInfo.substring(0, 9).equals("Resultado")){
+						String s = cp.getRespuestasDistrib();
+						textArea.setText(nodeInfo+"\n"+s);
+					}
 				}
 			}
 			

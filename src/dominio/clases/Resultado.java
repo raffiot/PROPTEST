@@ -21,6 +21,9 @@ public class Resultado implements Serializable{
 	private HashMap<String,ArrayList<Double>> mapDistance;
 	private int nbIteracion;
 	private Date data;
+	private Encuesta enc;
+	private Respuesta_Analisis ra;
+	
 	//Map de <Nombre usuario <indexCluster,distance>>
 	
 	/**
@@ -29,11 +32,13 @@ public class Resultado implements Serializable{
 	 * @param clusters
 	 * 		el cluster final resultado de la analisis
 	 */
-	public Resultado(List<Cluster> clusters,HashMap<String,ArrayList<Double>> mapDistance, int nbIteracion, Date data){
+	public Resultado(List<Cluster> clusters,HashMap<String,ArrayList<Double>> mapDistance, int nbIteracion, Date data, Encuesta enc, Respuesta_Analisis ra){
 		this.clusters = clusters;
 		this.mapDistance = mapDistance;
 		this.nbIteracion = nbIteracion;
 		this.data=data;
+		this.enc = enc;
+		this.ra = ra;
 		
 	}
 	
@@ -54,6 +59,14 @@ public class Resultado implements Serializable{
 	
 	public Date getData() {
 		return data;
+	}
+	
+	public Encuesta getEnc() {
+		return enc;
+	}
+
+	public Respuesta_Analisis getRa() {
+		return ra;
 	}
 
 	/**

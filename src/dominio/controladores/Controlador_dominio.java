@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import dominio.clases.*;
@@ -271,7 +272,7 @@ public class Controlador_dominio {
 		for(Resultado r : resultados.getResultados()){
 			Encuesta e = r.getClusters().get(0).getCentroid().getEncuesta();
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-			result.add(i+". "+dateFormat.format(r.getData())+", Resultado encuesta "+e.getId()+". - "+e.getGenero());
+			result.add(i+". "+dateFormat.format(r.getData())+", resultado encuesta "+e.getId()+": '"+e.getGenero()+"'");
 			i++;
 		}
 		return result;
@@ -283,7 +284,8 @@ public class Controlador_dominio {
 
 	public void selecionnarResultado(String s) {
 		currentResu = resultados.selectR(s);
-		
+		currentEnc = currentResu.getEnc();
+		currentResp = currentResu.getRa();	
 	}
 
 
@@ -484,5 +486,34 @@ public class Controlador_dominio {
 
 	public void setPregunta(String pregunta) {
 		Pregunta = pregunta;
+	}
+
+
+
+
+
+	public String getRespuestasDistrib() {
+		String s = "";
+		double nb = currentResp.getListRP().size();
+		for(int i =0; i < currentEnc.getN_preguntas(); i++){
+			Pregunta p = currentEnc.getPreguntas().get(i);
+			HashMap<String,Integer> resPropocion = new HashMap<>();
+			for(RespuestaEncuesta re: currentResp.getListRP()){
+				String resp = re.getRespPreguntas().get(i).toString();
+				int value =resPropocion.getOrDefault(resp,0);
+				resPropocion.put(resp, value+1);
+			}
+			s+="Pregunta "+i+": "+p.getEnunciado()+"\n";
+			for(String resp : resPropocion.keySet()){
+				s+="	"+(resPropocion.get(resp)/nb)+"% -> "+resp;
+			}
+			s+="\n";
+		}
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		s+="\n";
+		s+="Parametro resultado :\n";
+		s+="El resultado se ha producido el "+dateFormat.format(currentResu.getData())+"\n";
+		s+="Se ha echo "+currentResu.getNbIteracion()+" vece(s) el pipline de analisis";
+		return s;
 	}
 }
