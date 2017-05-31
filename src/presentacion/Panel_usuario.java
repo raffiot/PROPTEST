@@ -29,8 +29,10 @@ import javax.swing.JList;
 public class Panel_usuario extends JFrame {
 
 	private JPanel contentPane;
-	private Controlador_presentacion cp;
+	private static Controlador_presentacion cp;
 	private JList<String> list;
+	private String s;
+	private JButton btnSalir;
 
 	/**
 	 * Launch the application.
@@ -39,7 +41,7 @@ public class Panel_usuario extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Panel_usuario frame = new Panel_usuario();
+					Panel_usuario frame = new Panel_usuario(cp);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,11 +49,8 @@ public class Panel_usuario extends JFrame {
 			}
 		});
 	}
+
 	
-	public Panel_usuario() {
-		init();
-		
-	}
 	public Panel_usuario(Controlador_presentacion cp) {
 		System.out.println("CREADORA");
 		System.out.println(cp);
@@ -79,11 +78,15 @@ public class Panel_usuario extends JFrame {
 		JButton contestar = new JButton("Responder encuesta");
 		list = new JList<String>();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		getContentPane().add(list);
+		GridBagConstraints gbc_list = new GridBagConstraints();
+		gbc_list.insets = new Insets(0, 0, 5, 5);
+		gbc_list.gridx = 0;
+		gbc_list.gridy = 0;
+		getContentPane().add(list, gbc_list);
 		ArrayList<String> e1 = new ArrayList<String>();
 		System.out.println("Aqui arribo be");
 		System.out.println(cp);
-		e1 = cp.getList(); //e1 es null?????
+		e1 = cp.getList(); 
 		DefaultListModel<String> aux = new DefaultListModel<String>();
 		System.out.println("Aqui ja arribo be x2");
 		for(int i = 0; i < e1.size(); ++i){
@@ -93,24 +96,30 @@ public class Panel_usuario extends JFrame {
 		System.out.println("Aqui ja arribo be x3");
 		list.setBounds(10, 61, 414, 165);
 		
-		contestar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		
 				System.out.println("Aqui ja arribo be x4");
 				list.addMouseListener(new MouseAdapter() {
 				    public void mouseClicked(MouseEvent evt) {
+				    	System.out.println("Aqui ja arribo be x5");
 				        JList list = (JList)evt.getSource();
-				        if (evt.getClickCount() == 2) {
-				            String s = (String) list.getSelectedValue();
+				        if (evt.getClickCount() == 1) {
+				        	System.out.println("Aqui ja arribo be x6");
+				            s = (String) list.getSelectedValue();
 							s = s.substring(0,1);
-							s = cp.getE(Integer.parseInt(s));
-							Frame_contestar respuesta = new Frame_contestar();
-							respuesta.setVisible(true);
+							//s = cp.getE(Integer.parseInt(s));
 							
-				            
+							contestar.addActionListener(new ActionListener() {
+								public void actionPerformed(ActionEvent e) {
+									System.out.println("Aqui ja arribo be x7");
+									cp.selecionnarEncuesta(s);
+									s = cp.getE(Integer.parseInt(s));
+									Frame_contestar respuesta = new Frame_contestar(cp,s);
+									System.out.println("Aqui ja arribo be x8");
+									respuesta.setVisible(true);
+									dispose();
+								}
+							});
 				        }
-				    }
-				});
-				
 			}
 		});
 		contestar.setBounds(20, 237, 89, 23);
@@ -120,7 +129,6 @@ public class Panel_usuario extends JFrame {
 		gbc_contestar.gridy = 2;
 		getContentPane().add(contestar, gbc_contestar);
 		
-
 		
 		
 		/*JButton btnRecuperarEncuesta = new JButton("Recuperar encuesta");
@@ -137,6 +145,22 @@ public class Panel_usuario extends JFrame {
 		gbc_btnRecuperarEncuesta.gridx = 4;
 		gbc_btnRecuperarEncuesta.gridy = 4;
 		contentPane.add(btnRecuperarEncuesta, gbc_btnRecuperarEncuesta);*/
+		
+		btnSalir = new JButton("Salir");
+		GridBagConstraints gbc_btnSalir = new GridBagConstraints();
+		gbc_btnSalir.insets = new Insets(0, 0, 5, 5);
+		gbc_btnSalir.gridx = 4;
+		gbc_btnSalir.gridy = 4;
+		contentPane.add(btnSalir, gbc_btnSalir);
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cp.update();
+				principal p = new principal();
+				p.frame.setVisible(true);
+				dispose();
+				//TODO FALTA CERRAR SESION
+			}
+		});
 	}
 
 }

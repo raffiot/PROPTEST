@@ -215,6 +215,15 @@ public class Encuesta implements Serializable {
 		return s;
 	}
 	
+	/*public int getNOpciones(Integer i){
+		int tipo = preguntas.get(i).getTipo();
+		int opc = 0;
+		if (tipo == 1){
+			opc = preguntas.get(i).getOpciones();
+		}
+		return;
+	}*/
+	
 	/**
 	 * Metodo para borrar una encuesta
 	 * al borrar la encuesta todas las respuestas de esa encuesta son borradas

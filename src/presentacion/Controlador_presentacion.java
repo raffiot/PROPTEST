@@ -147,9 +147,28 @@ public class Controlador_presentacion {
 		
 	}
 
-	/*public void getNPreguntasE(String s){
-		cd.
-	}*/
+	public int getnpreguntas(){
+		 return cd.getnpreguntas();
+	}
 	
+	public int gettipo(Integer i){
+		return cd.gettipo(i);
+	}
 
+	public int getminOpt1(Integer i){
+		return cd.getminOpt1(i);
+	}
+	
+	public int getmaxOpt1(Integer i){
+		return cd.getmaxOpt1(i);
+	}
+	
+	public ArrayList<String> getopcionest2(Integer i){
+		return cd.getopcionest2(i);
+	}
+	
+	public ArrayList<String> getopcionest3(Integer i){
+		return cd.getopcionest3(i);
+	}
+	
 }

@@ -361,8 +361,69 @@ public class Controlador_dominio {
 		
 	}
 	
-	/*public void getNpreguntasE(){
-		
-	}*/
+	public int getnpreguntas(){
+		System.out.println(currentEnc);
+		System.out.println(currentEnc.getN_preguntas());
+		return currentEnc.getN_preguntas();
+	}
 	
+	public int gettipo(Integer index){
+		int res=0;
+		ArrayList<Pregunta> llista = currentEnc.getPreguntas();
+		for (int i = 0; i < currentEnc.getN_preguntas(); ++i){
+			if ( i == index){
+				Pregunta p = llista.get(i);//la pregunta i
+				res = p.getTipo();
+			}
+		}
+		return res;
+	}
+
+	public int getminOpt1(Integer index){
+		int res=0;
+		ArrayList<Pregunta> llista = currentEnc.getPreguntas();
+		for (int i = 0; i < currentEnc.getN_preguntas(); ++i){
+			if ( i == index){
+				Pregunta p = (Tipo_1) llista.get(i);//la pregunta i
+				res = ((Tipo_1) p).getMin();
+			}
+		}
+		return res;
+	}
+	
+	public int getmaxOpt1(Integer index){
+		int res=0;
+		ArrayList<Pregunta> llista = currentEnc.getPreguntas();
+		for (int i = 0; i < currentEnc.getN_preguntas(); ++i){
+			if ( i == index){
+				Pregunta p = (Tipo_1) llista.get(i);//la pregunta i
+				res = ((Tipo_1) p).getMax();
+			}
+		}
+		return res;
+	}
+	
+	public ArrayList<String> getopcionest2(Integer index){
+		ArrayList<String> opciones = new ArrayList<String>();
+		ArrayList<Pregunta> llista = currentEnc.getPreguntas();
+		for (int i = 0; i < currentEnc.getN_preguntas(); ++i){
+			if ( i == index){
+				Pregunta p = (Tipo_2) llista.get(i);//la pregunta i
+				opciones = ((Tipo_2) p).getLista_opciones();
+			}
+		}
+		return opciones;
+	}
+	
+	public ArrayList<String> getopcionest3(Integer index){
+		ArrayList<String> opciones = new ArrayList<String>();
+		ArrayList<Pregunta> llista = currentEnc.getPreguntas();
+		for (int i = 0; i < currentEnc.getN_preguntas(); ++i){
+			if ( i == index){
+				Pregunta p = (Tipo_3) llista.get(i);//la pregunta i
+				opciones = ((Tipo_3) p).getLista_opciones();
+			}
+		}
+		return opciones;
+	}
 }
