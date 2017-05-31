@@ -195,6 +195,10 @@ public class Encuesta implements Serializable {
 		return preguntas.get(--i);
 	}
 	
+	public void setEnunPre(String s, int i){
+		preguntas.get(i).setEnunciado(s);
+	}
+	
 	
 	/**
 	 * Metodo para obtener la encuesta en formato String
@@ -281,6 +285,9 @@ public class Encuesta implements Serializable {
 	           }
 	        }
 	}
+	
+	
+	
 	
 	/**
 	 * Metodo para leer una encuesta de unt txt y cargarlo en un objeto Encuesta

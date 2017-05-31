@@ -35,6 +35,7 @@ public class Frame_encuestas  extends JFrame {
 	private Controlador_presentacion cp;
 	private String state;
 	private JButton btnBorrarAnalizar;
+	private JButton mod;
 	private JList<String> list;
 
 	/**
@@ -72,7 +73,7 @@ public class Frame_encuestas  extends JFrame {
 	 */
 	private void initialize() {
 		
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 308);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
@@ -89,20 +90,21 @@ public class Frame_encuestas  extends JFrame {
 		
 		
 		
-		list.setBounds(10, 61, 414, 165);
+		list.setBounds(10, 62, 414, 164);
 		list.addMouseListener(new MouseAdapter() {
 		    public void mouseClicked(MouseEvent evt) {
 		        JList list = (JList)evt.getSource();
 		        if (evt.getClickCount() == 2) {
 		            // Double-click detected
 		            //int index = list.getSelectedIndex();
-		            String s = (String) list.getSelectedValue();
+		          
+		        	String s = (String) list.getSelectedValue();
 					s = s.substring(0,1);
 					s = cp.getE(Integer.parseInt(s));
 					Frame_mostrar ven = new Frame_mostrar(s);
 					ven.setVisible(true);
-					
-		            
+		           
+		          
 		        }
 		    }
 		});
@@ -115,7 +117,7 @@ public class Frame_encuestas  extends JFrame {
 				dispose();
 			}
 		});
-		btnAtras.setBounds(20, 237, 89, 23);
+		btnAtras.setBounds(10, 235, 89, 23);
 		//btnAtras.setBounds(335, 237, 89, 23);
 		getContentPane().add(btnAtras);
 		
@@ -126,10 +128,14 @@ public class Frame_encuestas  extends JFrame {
 			label.setText("Encuestas a visualizar");
 		}
 		else if (state.equals("borrar")){
-			label.setText("Elija la encuesta que quiere borrar");
+			label.setText("Elija la encuesta que quiera borrar");
 		}
 		else if (state.equals("analizar")){
-			label.setText("Elija la encuesta que quieres analizar");
+			label.setText("Elija la encuesta que quiera analizar");
+		}
+		
+		else if (state.equals("modificar")){
+			label.setText("Elija la encuesta que quiera modificar");
 		}
 			
 		getContentPane().add(label);
@@ -180,6 +186,27 @@ public class Frame_encuestas  extends JFrame {
 			btnBorrarAnalizar.setBounds(335, 237, 89, 23);
 			getContentPane().add(btnBorrarAnalizar);
 		}
+		
+		if (state.equals("modificar")){
+			mod = new JButton("Modificar");
+			mod.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					int i = list.getSelectedIndex();
+					if (i >= 0){
+						String s = list.getSelectedValue();
+						s = s.substring(0,1);
+						cp.selecionnarEncuesta(s);
+						Frame_modificar ven = new Frame_modificar(cp);
+						ven.setVisible(true);
+						dispose();
+					}
+				}
+			});
+			mod.setBounds(335, 237, 89, 23);
+			getContentPane().add(mod);
+		}
+		
+		
 	}
 }
 		

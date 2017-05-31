@@ -19,6 +19,7 @@ public class Controlador_dominio {
 		private Analisis currentAna;
 		private Resultado currentResu;
 		private Respuesta_Analisis currentResp;
+		private String Pregunta;
 		
 		
 	public Controlador_dominio(){
@@ -436,5 +437,52 @@ public class Controlador_dominio {
 			}
 		}
 		return opciones;
+	}
+
+
+
+
+
+	public ArrayList<String> getPre() {
+		ArrayList<String> pre = new ArrayList<String>();
+		
+		for(int i = 0; i < currentEnc.getN_preguntas();++i){
+			pre.add(currentEnc.get_pre(i+1).getEnunciado());
+		}
+		return pre;	
+	}
+
+
+
+
+
+	public void guardarPre(String text, int i) {
+		currentEnc.setEnunPre(text, i);
+		
+	}
+
+
+
+
+
+	public void setGenero(String s) {
+		currentEnc.setGenero(s);
+		
+	}
+
+
+
+
+
+	public String getPregunta() {
+		return Pregunta;
+	}
+
+
+
+
+
+	public void setPregunta(String pregunta) {
+		Pregunta = pregunta;
 	}
 }

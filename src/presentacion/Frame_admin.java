@@ -57,7 +57,7 @@ public class Frame_admin extends JFrame {
 	
 	public void init() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 354);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -84,7 +84,7 @@ public class Frame_admin extends JFrame {
 				
 			}
 		});
-		btnBorrarEncuesta.setBounds(14, 176, 150, 44);
+		btnBorrarEncuesta.setBounds(14, 233, 150, 44);
 		contentPane.add(btnBorrarEncuesta);
 		
 		JButton btnAnalizarEncuesta = new JButton("Analizar encuesta");
@@ -144,7 +144,19 @@ public class Frame_admin extends JFrame {
 				
 			}
 		});
-		btnSalir.setBounds(335, 227, 89, 23);
+		btnSalir.setBounds(335, 281, 89, 23);
 		contentPane.add(btnSalir);
+		
+		JButton button = new JButton("Modificar encuesta");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Frame_encuestas ven = new Frame_encuestas(cp,"modificar");
+				ven.setVisible(true);
+		        setVisible(false);
+		        dispose();
+			}
+		});
+		button.setBounds(14, 176, 150, 44);
+		contentPane.add(button);
 	}
 }

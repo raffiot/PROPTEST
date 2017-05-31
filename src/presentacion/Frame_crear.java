@@ -57,53 +57,43 @@ public class Frame_crear extends JFrame {
 	
 	public void init() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 539, 418);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		SpringLayout sl_contentPane = new SpringLayout();
-		contentPane.setLayout(sl_contentPane);
 		
 		//crear encuesta nueva
 		cp.crearEncuesta();
+		contentPane.setLayout(null);
 		//
 		JLabel lblIntroduzcaUnGenero = new JLabel("Introduzca un genero : ");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblIntroduzcaUnGenero, 15, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblIntroduzcaUnGenero, 15, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, lblIntroduzcaUnGenero, 141, SpringLayout.WEST, contentPane);
+		lblIntroduzcaUnGenero.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblIntroduzcaUnGenero.setBounds(13, 19, 148, 18);
 		contentPane.add(lblIntroduzcaUnGenero);
 		
 		textField_1 = new JTextField();
-		sl_contentPane.putConstraint(SpringLayout.NORTH, textField_1, -3, SpringLayout.NORTH, lblIntroduzcaUnGenero);
-		sl_contentPane.putConstraint(SpringLayout.WEST, textField_1, 6, SpringLayout.EAST, lblIntroduzcaUnGenero);
-		sl_contentPane.putConstraint(SpringLayout.EAST, textField_1, -19, SpringLayout.EAST, contentPane);
+		textField_1.setBounds(171, 17, 342, 20);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JRadioButton tipo1 = new JRadioButton("Tipo 1");
-		sl_contentPane.putConstraint(SpringLayout.WEST, tipo1, 41, SpringLayout.WEST, contentPane);
+		JRadioButton tipo1 = new JRadioButton("Variables cuantitatives o numericas");
+		tipo1.setBounds(20, 122, 342, 23);
 		contentPane.add(tipo1);
 		
-		JRadioButton tipo2 = new JRadioButton("Tipo 2");
-		sl_contentPane.putConstraint(SpringLayout.WEST, tipo2, 185, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST,tipo1, -89, SpringLayout.WEST, tipo2);
+		JRadioButton tipo2 = new JRadioButton("Variables cualitativas ordenadas");
+		tipo2.setBounds(20, 146, 342, 23);
 		contentPane.add(tipo2);
 		
-		JRadioButton tipo3 = new JRadioButton("Tipo 3");
-		sl_contentPane.putConstraint(SpringLayout.EAST, tipo2, -89, SpringLayout.WEST, tipo3);
-		sl_contentPane.putConstraint(SpringLayout.EAST, tipo3, 384, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.NORTH, tipo3, 0, SpringLayout.NORTH, tipo1);
-		sl_contentPane.putConstraint(SpringLayout.WEST, tipo3, 329, SpringLayout.WEST, contentPane);
+		JRadioButton tipo3 = new JRadioButton("Variables cualitativas no ordenadas");
+		tipo3.setBounds(20, 170, 367, 23);
 		contentPane.add(tipo3);
 		
-		JRadioButton tipo4 = new JRadioButton("Tipo 4");
-		sl_contentPane.putConstraint(SpringLayout.WEST, tipo4, 104, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, tipo4, -265, SpringLayout.EAST, contentPane);
+		JRadioButton tipo4 = new JRadioButton("Variables cualitativas no ordenadas donde la respuesta es un conjunto");
+		tipo4.setBounds(20, 194, 482, 23);
 		contentPane.add(tipo4);
 		
-		JRadioButton tipo5 = new JRadioButton("Tipo 5");
-		sl_contentPane.putConstraint(SpringLayout.WEST, tipo5, 100, SpringLayout.EAST, tipo4);
-		sl_contentPane.putConstraint(SpringLayout.EAST, tipo5, -110, SpringLayout.EAST, contentPane);
+		JRadioButton tipo5 = new JRadioButton("Tipo libre");
+		tipo5.setBounds(20, 216, 114, 23);
 		contentPane.add(tipo5);
 		
 		ButtonGroup grupo = new ButtonGroup();
@@ -114,6 +104,7 @@ public class Frame_crear extends JFrame {
 		grupo.add(tipo5);
 		
 		JButton btnGuardarYSalir = new JButton("Guardar y salir");
+		btnGuardarYSalir.setBounds(399, 345, 103, 23);
 		btnGuardarYSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (textField_1.getText().equals("")) JOptionPane.showMessageDialog(null, "Introduzca un g�nero para encuesta ","Error", JOptionPane.ERROR_MESSAGE);
@@ -125,14 +116,10 @@ public class Frame_crear extends JFrame {
 				}
 			}
 		});
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, tipo5, -49, SpringLayout.NORTH, btnGuardarYSalir);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnGuardarYSalir, 0, SpringLayout.SOUTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, btnGuardarYSalir, -10, SpringLayout.EAST, contentPane);
 		contentPane.add(btnGuardarYSalir);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, btnCancelar, 0, SpringLayout.NORTH, btnGuardarYSalir);
-		sl_contentPane.putConstraint(SpringLayout.WEST, btnCancelar, 0, SpringLayout.WEST, lblIntroduzcaUnGenero);
+		btnCancelar.setBounds(20, 345, 75, 23);
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Frame_admin ven = new Frame_admin(cp);
@@ -143,16 +130,12 @@ public class Frame_crear extends JFrame {
 		contentPane.add(btnCancelar);
 		
 		JLabel lblNewLabel = new JLabel("Seleccione el tipo de pregunta que desea insertar, y pulse insertar");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, tipo4, 71, SpringLayout.SOUTH, lblNewLabel);
-		sl_contentPane.putConstraint(SpringLayout.NORTH, tipo2, 20, SpringLayout.SOUTH, lblNewLabel);
-		sl_contentPane.putConstraint(SpringLayout.NORTH, tipo1, 20, SpringLayout.SOUTH, lblNewLabel);
-		sl_contentPane.putConstraint(SpringLayout.EAST, lblNewLabel, -17, SpringLayout.EAST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblNewLabel, -166, SpringLayout.SOUTH, contentPane);
+		lblNewLabel.setBounds(13, 80, 397, 17);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblNewLabel, 10, SpringLayout.WEST, contentPane);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnInsertar = new JButton("Insertar");
+		btnInsertar.setBounds(170, 262, 175, 20);
 		btnInsertar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(tipo1.isSelected()){
@@ -179,9 +162,6 @@ public class Frame_crear extends JFrame {
 				
 			}
 		});
-		sl_contentPane.putConstraint(SpringLayout.NORTH, btnInsertar, 0, SpringLayout.NORTH, btnGuardarYSalir);
-		sl_contentPane.putConstraint(SpringLayout.WEST, btnInsertar, 79, SpringLayout.EAST, btnCancelar);
-		sl_contentPane.putConstraint(SpringLayout.EAST, btnInsertar, 150, SpringLayout.EAST, btnCancelar);
 		contentPane.add(btnInsertar);
 		
 		

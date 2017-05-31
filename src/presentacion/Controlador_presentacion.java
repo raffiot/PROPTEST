@@ -170,5 +170,28 @@ public class Controlador_presentacion {
 	public ArrayList<String> getopcionest3(Integer i){
 		return cd.getopcionest3(i);
 	}
+
+	public ArrayList<String> getPre() {
+		return cd.getPre();
+	}
+
+	public void guardarPre(String text, int i) {
+		cd.guardarPre(text,i);
+		
+	}
+
+	public void setGenero(String s) {
+		cd.setGenero(s);
+		
+	}
+
+	public void setPre(String text) {
+		cd.setPregunta(text);
+		
+	}
+
+	public String getPregunta() {
+		return cd.getPregunta();
+	}
 	
 }
