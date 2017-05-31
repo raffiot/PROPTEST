@@ -1,6 +1,8 @@
 package dominio.controladores;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -244,10 +246,18 @@ public class Controlador_dominio {
 
 	public String getREInfo(String substring) {
 		//Change when id available
+		String s = "";
 		for(RespuestaEncuesta re : currentResp.getListRP()){
-			if(re.getNombre().equals(substring)) return re.toString();
+			if(re.getNombre().equals(substring)){
+				s = re.toString();
+				s+="Distancia con los centroids :\n";
+				ArrayList<Double> distances = currentResu.getMapDistance().get(substring);
+				for(int i=0; i<distances.size(); i++){
+					s+="	Centroid del cluster "+i+": "+distances.get(i)+"\n";
+				}
+			}
 		}
-		return null;
+		return s;
 	}
 
 
@@ -256,10 +266,11 @@ public class Controlador_dominio {
 
 	public ArrayList<String> getListResu() {
 		ArrayList<String> result = new ArrayList<>();
-		int i = 0;
+		int i =0;
 		for(Resultado r : resultados.getResultados()){
 			Encuesta e = r.getClusters().get(0).getCentroid().getEncuesta();
-			result.add(i+". Resultado encuesta "+e.getId()+". - "+e.getGenero());
+			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			result.add(i+". "+dateFormat.format(r.getData())+", Resultado encuesta "+e.getId()+". - "+e.getGenero());
 			i++;
 		}
 		return result;

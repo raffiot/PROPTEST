@@ -1,6 +1,7 @@
 package dominio.clases;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 /**
  * Classe que representa el resultado de la analisis
@@ -17,7 +18,9 @@ public class Resultado implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private List<Cluster> clusters;
-	private HashMap<String,HashMap<Integer,Double>> mapDistance;
+	private HashMap<String,ArrayList<Double>> mapDistance;
+	private int nbIteracion;
+	private Date data;
 	//Map de <Nombre usuario <indexCluster,distance>>
 	
 	/**
@@ -26,9 +29,11 @@ public class Resultado implements Serializable{
 	 * @param clusters
 	 * 		el cluster final resultado de la analisis
 	 */
-	public Resultado(List<Cluster> clusters,HashMap<String,HashMap<Integer,Double>> mapDistance){
+	public Resultado(List<Cluster> clusters,HashMap<String,ArrayList<Double>> mapDistance, int nbIteracion, Date data){
 		this.clusters = clusters;
 		this.mapDistance = mapDistance;
+		this.nbIteracion = nbIteracion;
+		this.data=data;
 		
 	}
 	
@@ -42,6 +47,15 @@ public class Resultado implements Serializable{
 		return clusters;
 	}
 	
+	public int getNbIteracion() {
+		return nbIteracion;
+	}
+	
+	
+	public Date getData() {
+		return data;
+	}
+
 	/**
 	 * Methodo para modificar el cluster resultado
 	 * 
@@ -52,7 +66,7 @@ public class Resultado implements Serializable{
 		this.clusters = clusters;
 	}
 	
-	public HashMap<String, HashMap<Integer, Double>> getMapDistance() {
+	public HashMap<String,ArrayList<Double>> getMapDistance() {
 		return mapDistance;
 	}
 

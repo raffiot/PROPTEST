@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -67,7 +68,7 @@ public class Frame_resultado extends JFrame {
 		
 		list = new JList<String>();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		getContentPane().add(list);
+
 		ArrayList<String> r = new ArrayList<String>();
 		r = cp.getListResu();
 		DefaultListModel<String> aux = new DefaultListModel<String>();
@@ -75,7 +76,12 @@ public class Frame_resultado extends JFrame {
 			aux.addElement(r.get(i));
 		}
 		list.setModel(aux);
-		list.setBounds(10, 61, 414, 165);
+		//list.setBounds(10, 61, 414, 165);
+		//getContentPane().add(list);
+		JScrollPane jsp = new JScrollPane(list);
+		//jsp.add(list);
+		jsp.setBounds(10, 61, 414, 165);
+		getContentPane().add(jsp);
 		
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {

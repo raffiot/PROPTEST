@@ -11,8 +11,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -100,6 +103,7 @@ public class Analisis implements Serializable{
 		
 		
 		boolean underThreshold = true;
+		int nbIteracion = 0;
 		do{
 			
 			
@@ -125,23 +129,24 @@ public class Analisis implements Serializable{
 				}
 			}
 			
-			
+			nbIteracion++;
 		}while(!underThreshold);
 		
 		//HashMapDistance contruction
-		HashMap<String, HashMap<Integer, Double>> mapDistance = new HashMap<String, HashMap<Integer, Double>>();
+		HashMap<String,ArrayList<Double>> mapDistance = new HashMap<String,ArrayList<Double>>();
 		for(RespuestaEncuesta re : respEncuestas.getListRP()){
 			String nombre = re.getNombre();
-			HashMap<Integer, Double> distanceForRE = new HashMap<Integer, Double>();
+			ArrayList<Double> distanceForRE = new ArrayList<Double>();
 			for(Cluster c : centroids){
 				int index = c.getIndex();
 				double distance = distanceRespEncuesta(re,c.getCentroid(),encuesta,mapMinMax,funcWord);
-				distanceForRE.put(index, distance);
+				distanceForRE.add(index, distance);
 			}
 			mapDistance.put(nombre, distanceForRE);
 		}
+		Date date = new Date();
 		
-		return new Resultado(centroids,mapDistance);
+		return new Resultado(centroids,mapDistance,nbIteracion,date);
 	}
 	
 	/**
