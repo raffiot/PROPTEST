@@ -19,7 +19,10 @@ import org.w3c.dom.events.MouseEvent;
 
 import com.sun.javafx.geom.Rectangle;
 
+import dominio.clases.Pregunta;
 import dominio.clases.RespuestaPregunta;
+import dominio.clases.Respuesta_1;
+import dominio.clases.Tipo_1;
 
 import javax.swing.BoxLayout;
 import javax.swing.JTextField;
@@ -32,8 +35,10 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JSpinner;
 import javax.swing.JCheckBox;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
-public class Frame_contestar extends JFrame {
+public class Frame_contestar extends JFrame implements ActionListener{
 	
 	private JPanel contentPane;
 	private JButton btnSalir;
@@ -45,6 +50,8 @@ public class Frame_contestar extends JFrame {
     private int y = 249;
     private int z = 108;
     private int w = 16;
+    private int sp1 = 0;
+    private JSpinner spinner;
 	
 	/**
 	 * Launch the application.
@@ -77,15 +84,9 @@ public class Frame_contestar extends JFrame {
 		
 	}
 	
-	public int tipo1(Integer x_bis, Integer index){
-		int min = cp.getminOpt1(index);
-		int max = cp.getmaxOpt1(index);
-		
-		SpinnerModel sm = new SpinnerNumberModel(0, min, max, 1);
-		JSpinner spinner = new JSpinner(sm);
-        spinner.setBounds(x_bis, y, z, w);
-        contentPane.add(spinner);
-        return (int) sm.getValue();
+	public void tipo1(Integer x_bis, Integer index){
+
+        //return (int)spinner.getValue();
 	}
 	
 	public void tipo2(Integer x_bis, Integer index){
@@ -93,6 +94,12 @@ public class Frame_contestar extends JFrame {
 		SpinnerListModel model = new SpinnerListModel(opcions);
 		JSpinner spinner = new JSpinner(model);
         spinner.setBounds(x_bis, y, z, w);
+        spinner.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				String res = (String)spinner.getValue();
+				System.out.println("SPINNER 2 :"+ res);
+			}
+		});
         contentPane.add(spinner);
         
 	}
@@ -144,7 +151,6 @@ public class Frame_contestar extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-     
         
         btnSalir = new JButton("Salir");
         btnSalir.addActionListener(new ActionListener() {
@@ -166,15 +172,9 @@ public class Frame_contestar extends JFrame {
         textArea.setText(s);
         scrollPane.setViewportView(textArea);
         
-        JButton btnGuardar = new JButton("Guardar");
-        btnGuardar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		
-        	}
-        });
-        btnGuardar.setBounds(49, 411, 117, 29);
-        contentPane.add(btnGuardar);
-        //TODO GUARDAR INFO
+        //cada pos de los arrays es la misma pregunta-respuesta 
+        ArrayList<Integer> tiposPreg = new ArrayList<Integer>();
+        ArrayList<String> respPreg = new ArrayList<String>();
         
         int x_bis = x;
         
@@ -193,8 +193,22 @@ public class Frame_contestar extends JFrame {
             System.out.println("tipo: " + tipo);
             
         	if (tipo == 1) {
-        		int res = tipo1(x_bis+120,i);
-        		//retorno int per dp poder fer la respuesta pregunta per fer la respuestaEncuesta --> GUARDAR
+        		int min = cp.getminOpt1(i);
+        		int max = cp.getmaxOpt1(i);
+        		System.out.println("--------------------------" + min + " MAX: " + max);
+        		
+        		
+        		SpinnerModel sm = new SpinnerNumberModel(0, min, max, 1);
+        		spinner = new JSpinner(sm);
+                spinner.setBounds(x+120, y, z, w);
+                spinner.addChangeListener(new ChangeListener() {
+        			public void stateChanged(ChangeEvent e) {
+        				sp1 = (int)spinner.getValue();
+        				System.out.println("SPINNER 1 :"+ sp1);
+        			}
+        		});
+                contentPane.add(spinner);
+                
         	}
         	else if (tipo == 2) tipo2(x_bis+120,i);
         	else if (tipo == 3) tipo3(x_bis+120,i);
@@ -202,5 +216,34 @@ public class Frame_contestar extends JFrame {
         	else if (tipo == 5) tipo5(x_bis+120,i);
         	
         }
+        JButton btnGuardar = new JButton("Guardar");
+        btnGuardar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		System.out.println("SPINNER VAL " + sp1); 
+        	}
+        });
+        btnGuardar.setBounds(173, 411, 117, 29);
+        contentPane.add(btnGuardar);
+        //TODO GUARDAR INFO
+        
+        JButton btnAtras = new JButton("Atrás");
+        btnAtras.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		Panel_usuario usu = new Panel_usuario(cp);
+				usu.setVisible(true);
+				dispose();
+        	}
+        });
+        btnAtras.setBounds(49, 411, 117, 29);
+        contentPane.add(btnAtras);
+        //TODO GUARDAR INFO
+        
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -114,7 +114,6 @@ public class Panel_usuario extends JFrame {
 									cp.selecionnarEncuesta(s);
 									s = cp.getE(Integer.parseInt(s));
 									Frame_contestar respuesta = new Frame_contestar(cp,s);
-									System.out.println("Aqui ja arribo be x8");
 									respuesta.setVisible(true);
 									dispose();
 								}

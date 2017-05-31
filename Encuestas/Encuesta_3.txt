@@ -5,12 +5,12 @@ Fri Apr 21 11:30:01 CEST 2017
 3
 Que nacionalidad tiene?
 4
-Española
+Espaï¿½ola
 Italiana
 Francesa
 Otra
 2
-Como calificaria usted la situacion politica en España?
+Como calificaria usted la situacion politica en Espaï¿½a?
 5
 muy mala
 mala
@@ -18,7 +18,7 @@ regular
 buena
 muy buena
 2
-Como calificaria usted la situacion economica en España?
+Como calificaria usted la situacion economica en Espaï¿½a?
 5
 muy mala
 mala
@@ -26,15 +26,15 @@ buena
 regular
 muy buena
 2
-Usted cree que la situacion economica del pais es mejor, igual o peor que hace un año?
+Usted cree que la situacion economica del pais es mejor, igual o peor que hace un aï¿½o?
 3
 mejor
 igual
 peor
 5
-Cual es, a su jucio, el principal problema que existe en España?
+Cual es, a su jucio, el principal problema que existe en Espaï¿½a?
 1
-Quiero que me señale, el nivel de preocupacion que tiene por el avance de la ciencia y la tecnologia 
+Quiero que me senale, el nivel de preocupacion que tiene por el avance de la ciencia y la tecnologia 
 1
 5
 3

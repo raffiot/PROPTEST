@@ -362,8 +362,8 @@ public class Controlador_dominio {
 	}
 	
 	public int getnpreguntas(){
-		System.out.println(currentEnc);
-		System.out.println(currentEnc.getN_preguntas());
+		//System.out.println(currentEnc);
+		//System.out.println(currentEnc.getN_preguntas());
 		return currentEnc.getN_preguntas();
 	}
 	
