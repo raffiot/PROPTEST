@@ -128,7 +128,20 @@ public class Analisis implements Serializable{
 			
 		}while(!underThreshold);
 		
-		return new Resultado(centroids);
+		//HashMapDistance contruction
+		HashMap<String, HashMap<Integer, Double>> mapDistance = new HashMap<String, HashMap<Integer, Double>>();
+		for(RespuestaEncuesta re : respEncuestas.getListRP()){
+			String nombre = re.getNombre();
+			HashMap<Integer, Double> distanceForRE = new HashMap<Integer, Double>();
+			for(Cluster c : centroids){
+				int index = c.getIndex();
+				double distance = distanceRespEncuesta(re,c.getCentroid(),encuesta,mapMinMax,funcWord);
+				distanceForRE.put(index, distance);
+			}
+			mapDistance.put(nombre, distanceForRE);
+		}
+		
+		return new Resultado(centroids,mapDistance);
 	}
 	
 	/**

@@ -1,5 +1,7 @@
 package dominio.clases;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 /**
  * Classe que representa el resultado de la analisis
  * Para la primera entrega este resultado es simplemente un conjunto de cluster.
@@ -15,6 +17,8 @@ public class Resultado implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private List<Cluster> clusters;
+	private HashMap<String,HashMap<Integer,Double>> mapDistance;
+	//Map de <Nombre usuario <indexCluster,distance>>
 	
 	/**
 	 * El constructor de resultado que sale de una analisis
@@ -22,8 +26,10 @@ public class Resultado implements Serializable{
 	 * @param clusters
 	 * 		el cluster final resultado de la analisis
 	 */
-	public Resultado(List<Cluster> clusters){
+	public Resultado(List<Cluster> clusters,HashMap<String,HashMap<Integer,Double>> mapDistance){
 		this.clusters = clusters;
+		this.mapDistance = mapDistance;
+		
 	}
 	
 	/**
@@ -46,6 +52,10 @@ public class Resultado implements Serializable{
 		this.clusters = clusters;
 	}
 	
+	public HashMap<String, HashMap<Integer, Double>> getMapDistance() {
+		return mapDistance;
+	}
+
 	/**
 	 * Metodo que crea una string que describe el resultado
 	 * 

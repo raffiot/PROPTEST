@@ -310,10 +310,10 @@ public class driver_analisis {
 			result = analisis.k_means();
 			
 			//CREATE .DAT FILE
-			/**
+			
 			Cjt_resultados cr = new Cjt_resultados();
 			cr.addResu(result);
-			cr.guardarResu();*/
+			cr.guardarResu();
 			
 			System.out.println ("Se ha acabado la analisis");
 			System.out.println(result.toString(analisis));
