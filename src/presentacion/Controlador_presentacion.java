@@ -2,6 +2,7 @@ package presentacion;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JEditorPane;
@@ -214,5 +215,9 @@ public class Controlador_presentacion {
 	
 	public void guardarRespuestaEnc(List<RespuestaPregunta> rp){
 		cd.guardarRespuestaEnc(rp);
+	}
+
+	public HashMap<String, Double> getDistanceDistribClus(String substring) {
+		return cd.getDistanceDistribClus(substring);
 	}
 }

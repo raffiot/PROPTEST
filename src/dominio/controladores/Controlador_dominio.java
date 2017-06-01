@@ -2,6 +2,7 @@ package dominio.controladores;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -255,7 +256,9 @@ public class Controlador_dominio {
 				s+="Distancia con los centroids :\n";
 				ArrayList<Double> distances = currentResu.getMapDistance().get(substring);
 				for(int i=0; i<distances.size(); i++){
-					s+="	Centroid del cluster "+i+": "+distances.get(i)+"\n";
+					DecimalFormat df = new DecimalFormat("#.##");
+					String dx=df.format(distances.get(i));
+					s+="	Centroid del cluster "+i+": "+dx+"\n";
 				}
 			}
 		}
@@ -546,5 +549,20 @@ public class Controlador_dominio {
 	public void guardarRespuestaEnc(List<RespuestaPregunta> rp){
 		RespuestaEncuesta re =  new RespuestaEncuesta(currentEnc,Main.user,rp);
 		re.guardarRespuesta(rp,currentEnc.getId());
+	}
+
+
+
+
+
+	public HashMap<String, Double> getDistanceDistribClus(String substring) {
+		HashMap<String, Double> res = new HashMap<String, Double>();
+		int nbClus = Integer.parseInt(substring);
+		for(RespuestaEncuesta re : currentResu.getClusters().get(nbClus).getUsuarios()){
+			String name = re.getNombre();
+			double distance =  currentResu.getMapDistance().get(name).get(nbClus);
+			res.put(name, distance);			
+		}
+		return res;
 	}
 }
