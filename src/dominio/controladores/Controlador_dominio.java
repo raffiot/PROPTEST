@@ -565,4 +565,10 @@ public class Controlador_dominio {
 		}
 		return res;
 	}
+	
+	
+	public void guardarRespuestaEncNoAcabada(List<RespuestaPregunta> rp){
+		RespuestaEncuesta re =  new RespuestaEncuesta(currentEnc,Main.user,rp);
+		re.guardarRespuestaEncNoAcabada(rp,currentEnc.getId());
+	}
 }

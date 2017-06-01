@@ -217,7 +217,12 @@ public class Controlador_presentacion {
 		cd.guardarRespuestaEnc(rp);
 	}
 
+
 	public HashMap<String, Double> getDistanceDistribClus(String substring) {
 		return cd.getDistanceDistribClus(substring);
+	}
+	
+	public void guardarRespuestaEncNoAcabada(List<RespuestaPregunta> rp){
+		cd.guardarRespuestaEncNoAcabada(rp);
 	}
 }

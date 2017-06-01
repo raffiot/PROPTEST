@@ -79,11 +79,6 @@ public class Frame_mostrar extends JFrame {
         btnSalir.setBounds(335, 232, 89, 23);
         contentPane.add(btnSalir);
 		
-        
-		 
-		    
-		 
-		
 		
 	}
 }

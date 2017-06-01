@@ -25,6 +25,11 @@ import java.util.ArrayList;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.JList;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormSpecs;
+import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.SpringLayout;
 
 public class Panel_usuario extends JFrame {
 
@@ -33,6 +38,9 @@ public class Panel_usuario extends JFrame {
 	private JList<String> list;
 	private String s;
 	private JButton btnSalir;
+	private JButton btnAtras;
+	private JButton btnResponderEncuesta;
+	private JButton btnAcabarResponderEncuesta;
 
 	/**
 	 * Launch the application.
@@ -61,85 +69,23 @@ public class Panel_usuario extends JFrame {
 	 */
 	public void init() {
 		
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		contentPane.setLayout(gbl_contentPane);
-		
-		JButton contestar = new JButton("Responder encuesta");
-		list = new JList<String>();
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		GridBagConstraints gbc_list = new GridBagConstraints();
-		gbc_list.insets = new Insets(0, 0, 5, 5);
-		gbc_list.gridx = 0;
-		gbc_list.gridy = 0;
-		getContentPane().add(list, gbc_list);
-		ArrayList<String> e1 = new ArrayList<String>();
-		e1 = cp.getList(); 
-		DefaultListModel<String> aux = new DefaultListModel<String>();
-		for(int i = 0; i < e1.size(); ++i){
-			aux.addElement(e1.get(i));
-		}
-		list.setModel(aux);
-		list.setBounds(10, 61, 414, 165);
-		list.addMouseListener(new MouseAdapter() {
-				    public void mouseClicked(MouseEvent evt) {
-				    	
-				        JList list = (JList)evt.getSource();
-				        if (evt.getClickCount() == 1) {
-				        	s = (String) list.getSelectedValue();
-							s = s.substring(0,1);
-							//s = cp.getE(Integer.parseInt(s));
-							
-							contestar.addActionListener(new ActionListener() {
-								public void actionPerformed(ActionEvent e) {
-									cp.selecionnarEncuesta(s);
-									s = cp.getE(Integer.parseInt(s));
-									Frame_contestar respuesta = new Frame_contestar(cp,s);
-									respuesta.setVisible(true);
-									dispose();
-								}
-							});
-				        }
-			}
-		});
-		contestar.setBounds(20, 237, 89, 23);
-		GridBagConstraints gbc_contestar = new GridBagConstraints();
-		gbc_contestar.insets = new Insets(0, 0, 5, 5);
-		gbc_contestar.gridx = 4;
-		gbc_contestar.gridy = 2;
-		getContentPane().add(contestar, gbc_contestar);
-		
-		
-		
-		/*JButton btnRecuperarEncuesta = new JButton("Recuperar encuesta");
-		btnRecuperarEncuesta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Frame_contestar recuperar = new Frame_contestar();
-				recuperar.setVisible(true);
-				dispose();
-			}
-		});
-		btnRecuperarEncuesta.setBounds(20, 237, 89, 23);
-		GridBagConstraints gbc_btnRecuperarEncuesta = new GridBagConstraints();
-		gbc_btnRecuperarEncuesta.insets = new Insets(0, 0, 0, 5);
-		gbc_btnRecuperarEncuesta.gridx = 4;
-		gbc_btnRecuperarEncuesta.gridy = 4;
-		contentPane.add(btnRecuperarEncuesta, gbc_btnRecuperarEncuesta);*/
+		SpringLayout sl_contentPane = new SpringLayout();
+		contentPane.setLayout(sl_contentPane);
+
 		
 		btnSalir = new JButton("Salir");
 		GridBagConstraints gbc_btnSalir = new GridBagConstraints();
-		gbc_btnSalir.insets = new Insets(0, 0, 5, 5);
+		gbc_btnSalir.insets = new Insets(0, 0, 0, 5);
 		gbc_btnSalir.gridx = 4;
-		gbc_btnSalir.gridy = 4;
-		contentPane.add(btnSalir, gbc_btnSalir);
+		gbc_btnSalir.gridy = 6;
+		contentPane.add(btnSalir);
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cp.update();
@@ -149,6 +95,49 @@ public class Panel_usuario extends JFrame {
 				//TODO FALTA CERRAR SESION
 			}
 		});
+		
+		btnAtras = new JButton("Atras");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnSalir, 6, SpringLayout.SOUTH, btnAtras);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnSalir, 0, SpringLayout.EAST, btnAtras);
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnAtras, 169, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnAtras, -196, SpringLayout.EAST, contentPane);
+		GridBagConstraints gbc_btnAtras = new GridBagConstraints();
+		gbc_btnAtras.insets = new Insets(0, 0, 0, 5);
+		gbc_btnAtras.gridx = 6;
+		gbc_btnAtras.gridy = 6;
+		btnAtras.addActionListener(new ActionListener() {
+	       	public void actionPerformed(ActionEvent e) {
+        		principal p = new principal(cp);
+				p.frame.setVisible(true);
+				dispose();
+        	}
+		});
+		contentPane.add(btnAtras);
+		
+		btnResponderEncuesta = new JButton("Responder encuesta");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnResponderEncuesta, 50, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnResponderEncuesta, 78, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnResponderEncuesta, 325, SpringLayout.WEST, contentPane);
+		btnResponderEncuesta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Frame_listaEnc mostrar = new Frame_listaEnc(cp);
+				mostrar.setVisible(true);
+			}
+		});
+		contentPane.add(btnResponderEncuesta);
+		
+		btnAcabarResponderEncuesta = new JButton("Acabar responder encuesta");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnAtras, 6, SpringLayout.SOUTH, btnAcabarResponderEncuesta);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnAcabarResponderEncuesta, 6, SpringLayout.SOUTH, btnResponderEncuesta);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnAcabarResponderEncuesta, -10, SpringLayout.EAST, btnResponderEncuesta);
+		btnResponderEncuesta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Panel_usuario p = new Panel_usuario(cp);
+				p.setVisible(true);
+			}
+		});
+		contentPane.add(btnAcabarResponderEncuesta);
+		
 	}
 
 }
