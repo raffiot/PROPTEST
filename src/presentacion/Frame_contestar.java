@@ -94,6 +94,9 @@ public class Frame_contestar extends JFrame implements ActionListener{
 		
 	}
 	
+	public void init(String [] respPreg){
+		for ( int r = 0; r < respPreg.length;++r) respPreg[r]= "pop";
+	}
 	
 	/**
 	 * Create the frame.
@@ -131,11 +134,10 @@ public class Frame_contestar extends JFrame implements ActionListener{
         //cada pos de los arrays es la misma pregunta-respuesta 
         int[] tiposPreg = new int[cp.getnpreguntas()];
         String[] respPreg = new String[cp.getnpreguntas()];
+        init(respPreg);
         
         for (int i = 0; i < cp.getnpreguntas(); ++i){
         	y += 20;
-        	
-        	System.out.println("funciona");
         	
         	int tipo = cp.gettipo(i); 
         	
@@ -143,17 +145,12 @@ public class Frame_contestar extends JFrame implements ActionListener{
             lblNewLabel.setBounds(x, y, z, w);
             contentPane.add(lblNewLabel);
             
-            System.out.println("pregunta: " + (i+1));
-            System.out.println("tipo: " + tipo);
-            
         	if (tipo == 1) {
         		int index = i;
         		tiposPreg[i] = tipo;
         		
         		int min = cp.getminOpt1(i);
         		int max = cp.getmaxOpt1(i);
-        		System.out.println("--------------------------" + min + " MAX: " + max);
-        		
         		
         		SpinnerModel sm = new SpinnerNumberModel(0, min, max, 1);
         		spinner = new JSpinner(sm);
@@ -209,20 +206,18 @@ public class Frame_contestar extends JFrame implements ActionListener{
         		for (int h = 0; h < items.size(); ++h) {
         			int n = 0;
         			selected.add(h,n);
-        			System.out.println("INICIALITZACIO");
         		}
         		
         		int aux = x+120;
         		int index = i;
         		for (int m = 0; m < items.size(); ++m){
-        			System.out.println("SPINNER 4 " + m + " :"+ items.get(m).toString());
         			JCheckBox chckbxNewCheckBox = new JCheckBox(items.get(m).toString());
 	                chckbxNewCheckBox.setBounds(aux, y, z, w);
 	                int n = m;
 	       
 	                chckbxNewCheckBox.addChangeListener(new ChangeListener() {
 	        			public void stateChanged(ChangeEvent e) {
-	        			
+	        				JButton btnOK = new JButton("OK Tipo 4");
 	        				if(chckbxNewCheckBox.isBackgroundSet()){
 	        					System.out.println(selected.get(n));
 	        					if (selected.get(n)==0){
@@ -235,7 +230,7 @@ public class Frame_contestar extends JFrame implements ActionListener{
 	        					}
 	        				}
 	        				
-	        				JButton btnOK = new JButton("OK Tipo 4");
+	        				
 	        	            btnOK.addActionListener(new ActionListener() {
 	        	            	public void actionPerformed(ActionEvent e) {
 	        	            		String aux1 = "";
@@ -266,7 +261,6 @@ public class Frame_contestar extends JFrame implements ActionListener{
         		
         	}
         	else if (tipo == 5) {
-        		// System.out.println(respPreg[i]+ "------------------!!!");
         		tiposPreg[i] = tipo;
                 txt_t5 = new JTextField();
                 txt_t5.setBounds(96, 313, 284, 26);
@@ -292,35 +286,47 @@ public class Frame_contestar extends JFrame implements ActionListener{
         JButton btnGuardar = new JButton("Guardar");
         btnGuardar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		System.out.println(respPreg[4]);
+        		boolean nocomplete = false;
         		RespuestaPregunta r=null;
         		List<RespuestaPregunta> rp = new ArrayList<RespuestaPregunta>();
-        		for(int q = 0; q < tiposPreg.length;++q){
-        			Pregunta p = cp.getPreguntaiessima(q);
-        			if (tiposPreg[q] == 1){
-        				System.out.println(respPreg[q]+"----------------");
-        				r = new Respuesta_1(p,(double) Integer.parseInt(respPreg[q]));
-        			}
-        			if (tiposPreg[q] == 2){
-        				int k = cp.getPosicion(p,respPreg[q],q);
-        				System.out.println(respPreg[q]+"----------------" + k);
-    					r = new Respuesta_2(p,k);
-        			}
-        			if (tiposPreg[q] == 3){
-        				System.out.println(respPreg[q]+"----------------");
-        				r = new Respuesta_3(p,respPreg[q]);
-        			}
-        			if (tiposPreg[q] == 4){
-        				Set<String> set = new HashSet<String>(Arrays.asList(respPreg[q].split(" ")));
-        				System.out.println(respPreg[q]+"----------------");
-        				r = new Respuesta_4(p,set);
-        			}
-        			if (tiposPreg[q] == 5){
-        				r = new Respuesta_5(p,respPreg[q]);
-        			}
-        			rp.add(r);
+        		for(int q = 0; q < respPreg.length;++q){
+	        		if(respPreg[q].equals("pop") || respPreg[q].equals("")){
+	        			System.out.println("falta la " + (q+1));
+	        			nocomplete=true;
+	        		}
+	        		else{
+	        			Pregunta p = cp.getPreguntaiessima(q);
+	        			if (tiposPreg[q] == 1){
+	        				System.out.println(respPreg[q]+"----------------1");
+	        				r = new Respuesta_1(p,(double) Integer.parseInt(respPreg[q]));
+	        			}
+	        			else if (tiposPreg[q] == 2){
+	        				int k = cp.getPosicion(p,respPreg[q],q);
+	        				System.out.println(respPreg[q]+"----------------2 " + k);
+	    					r = new Respuesta_2(p,k);
+	        			}
+	        			else if (tiposPreg[q] == 3){
+	        				System.out.println(respPreg[q]+"----------------3");
+	        				r = new Respuesta_3(p,respPreg[q]);
+	        			}
+	        			else if (tiposPreg[q] == 4){
+	        				Set<String> set = new HashSet<String>(Arrays.asList(respPreg[q].split(" ")));
+	        				System.out.println(respPreg[q]+"----------------4");
+	        				r = new Respuesta_4(p,set);
+	        			}
+	        			else if (tiposPreg[q] == 5){
+	        				System.out.println(respPreg[q]+"----------------5");
+	        				r = new Respuesta_5(p,respPreg[q]);
+	        			}
+	        			rp.add(r);
+	        		}
         		}
-        		cp.guardarRespuestaEnc(rp);
+        		if (nocomplete) {
+        			cp.guardarRespuestaEncNoAcabada(rp);
+        			System.out.println("NO ACABADA");
+        			System.out.println(rp);
+        		}
+        		else if (!nocomplete) cp.guardarRespuestaEnc(rp);
         		JOptionPane.showMessageDialog(null, "¡Respuestas guardadas!","Success", JOptionPane.INFORMATION_MESSAGE);
 				Panel_usuario p = new Panel_usuario(cp);
 				p.setVisible(true);
