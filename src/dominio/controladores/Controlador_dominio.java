@@ -547,4 +547,10 @@ public class Controlador_dominio {
 		RespuestaEncuesta re =  new RespuestaEncuesta(currentEnc,Main.user,rp);
 		re.guardarRespuesta(rp,currentEnc.getId());
 	}
+	
+	
+	public void guardarRespuestaEncNoAcabada(List<RespuestaPregunta> rp){
+		RespuestaEncuesta re =  new RespuestaEncuesta(currentEnc,Main.user,rp);
+		re.guardarRespuestaEncNoAcabada(rp,currentEnc.getId());
+	}
 }

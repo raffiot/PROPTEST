@@ -281,4 +281,76 @@ public class RespuestaEncuesta implements Serializable{
 		return s;
 	}
 	
+	public void guardarRespuestaEncNoAcabada(List<RespuestaPregunta>rp, int numEnc){
+		
+		respPreguntas = rp;
+		
+		/*creem el document*/
+		int exist = 1;
+    	Integer id = 1;
+    	
+    	
+    	do{	
+    		String sFichero = "Data/RespuestasNoAcabadas/Respuesta_"+numEnc+"_"+id+".txt";
+    		File fichero = new File(sFichero);
+    		if (fichero.exists()) ++id;
+    		else exist = 0;
+    	}
+    	while(exist != 0);
+    		//if (fichero.exists()) ++id;
+       
+    	
+		
+    	/*plenem el document*/
+    	String s = "";
+    	s += this.nombre+"\r\n";
+		
+		for(int i = 0; i < respPreguntas.size();++i){
+			int tipo = respPreguntas.get(i).getPregunta().getTipo();
+			s += tipo +"\r\n";
+			if (!rp.get(i).equals("pop") && !rp.get(i).equals("") ){
+				if ( tipo == 1){
+					double valor = respPreguntas.get(i).getValueR1();
+					s += valor + "\r\n";
+				}
+				else if ( tipo == 2){
+					int valor = respPreguntas.get(i).getValueR2();
+					s += valor + "\r\n";
+				}
+				else if ( tipo == 3){
+					String valor = respPreguntas.get(i).getValueR3();
+					s += valor + "\r\n";
+				}
+				else if ( tipo == 4){
+					Set<String> valor = respPreguntas.get(i).getValueR4();
+					s += valor + "\r\n";
+				}
+				else if ( tipo == 5){
+					String valor = respPreguntas.get(i).getValueR5();
+					s += valor + "\r\n";	
+				}
+			}
+		}
+		
+		FileWriter fichero1 = null;
+	        try{
+	        	fichero1 = new FileWriter("Data/RespuestasNoAcabadas/Respuesta_"+numEnc+"_"+id+".txt");
+	            fichero1.write(s);
+	            
+
+	        } 
+
+	        catch (Exception e) {
+	            e.printStackTrace();
+	        } 
+	        finally {
+	           try {
+	           if (null != fichero1)
+	              fichero1.close();
+	           } catch (Exception e2) {
+	              e2.printStackTrace();
+	           }
+	        }
+	}
+	
 }
