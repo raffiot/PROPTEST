@@ -25,6 +25,7 @@ import dominio.clases.Respuesta_1;
 import dominio.clases.Respuesta_2;
 import dominio.clases.Respuesta_3;
 import dominio.clases.Respuesta_4;
+import dominio.clases.Respuesta_5;
 import dominio.clases.Tipo_1;
 import dominio.clases.Tipo_2;
 
@@ -268,23 +269,25 @@ public class Frame_contestar extends JFrame implements ActionListener{
         		// System.out.println(respPreg[i]+ "------------------!!!");
         		tiposPreg[i] = tipo;
                 txt_t5 = new JTextField();
-                txt_t5.setToolTipText("Escribe aquí");
                 txt_t5.setBounds(96, 313, 284, 26);
                 txt_t5.setColumns(10);
+                JButton btnTipo = new JButton("tipo5");
+                btnTipo.setBounds(81, 291, 117, 29);
+                contentPane.add(btnTipo);
                 int index = i;
-                txt_t5.addActionListener(new ActionListener() {
-                	public void actionPerformed(ActionEvent e) {
-                		System.out.println("ENTRO");
-                		respPreg[index] = txt_t5.getText();
-                		System.out.println(txt_t5.getText()+ "------------------!!!");
-	        	    }
-                	
-                });
+	            btnTipo.addActionListener(new ActionListener() {
+	            	public void actionPerformed(ActionEvent e) {
+	            		respPreg[index] = txt_t5.getText();
+                		System.out.println(txt_t5.getText()+ "-----------!!-------!!!");
+	            		
+	            	}
+	            });
+	            btnTipo.setBounds(500,y , z, w);
                 contentPane.add(txt_t5);
-                System.out.println(respPreg[i]+ "------------------!!!");
                 }
                 
         }
+        
         
         JButton btnGuardar = new JButton("Guardar");
         btnGuardar.addActionListener(new ActionListener() {
@@ -313,8 +316,7 @@ public class Frame_contestar extends JFrame implements ActionListener{
         				r = new Respuesta_4(p,set);
         			}
         			if (tiposPreg[q] == 5){
-        				System.out.println(respPreg[q]+"----------------");
-        				System.out.println(respPreg[4]);
+        				r = new Respuesta_5(p,respPreg[q]);
         			}
         			rp.add(r);
         		}
@@ -338,6 +340,10 @@ public class Frame_contestar extends JFrame implements ActionListener{
         });
         btnAtras.setBounds(49, 411, 117, 29);
         contentPane.add(btnAtras);
+        
+
+        
+        
 	}
 
 
