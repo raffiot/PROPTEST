@@ -57,7 +57,7 @@ public class Frame_tipo5 extends JFrame {
 		setContentPane(contentPane);
 		SpringLayout sl_contentPane = new SpringLayout();
 		contentPane.setLayout(sl_contentPane);
-		
+		setLocationRelativeTo(null);
 		JLabel lblNewLabel = new JLabel("Introduzaca un enunciado");
 		sl_contentPane.putConstraint(SpringLayout.NORTH, lblNewLabel, 10, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblNewLabel, -181, SpringLayout.SOUTH, contentPane);

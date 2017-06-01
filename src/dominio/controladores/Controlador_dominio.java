@@ -21,7 +21,7 @@ public class Controlador_dominio {
 		private Analisis currentAna;
 		private Resultado currentResu;
 		private Respuesta_Analisis currentResp;
-		private String Pregunta;
+		
 		
 		
 	public Controlador_dominio(){
@@ -476,14 +476,6 @@ public class Controlador_dominio {
 	}
 
 
-	public String getPregunta() {
-		return Pregunta;
-	}
-
-	
-	public void setPregunta(String pregunta) {
-		Pregunta = pregunta;
-	}
 
 	public String getRespuestasDistrib() {
 		String s = "";

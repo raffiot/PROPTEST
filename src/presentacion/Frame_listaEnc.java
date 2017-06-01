@@ -60,7 +60,7 @@ public class Frame_listaEnc extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+		setLocationRelativeTo(null);
 		list = new JList<String>();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		

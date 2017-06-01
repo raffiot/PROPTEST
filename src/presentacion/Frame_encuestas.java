@@ -103,7 +103,7 @@ public class Frame_encuestas  extends JFrame {
 					s = cp.getE(Integer.parseInt(s));
 					Frame_mostrar ven = new Frame_mostrar(s);
 					ven.setVisible(true);
-		           
+					setLocationRelativeTo(null);
 		          
 		        }
 		    }

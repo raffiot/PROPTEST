@@ -78,6 +78,7 @@ public class Panel_usuario extends JFrame {
 		setContentPane(contentPane);
 		SpringLayout sl_contentPane = new SpringLayout();
 		contentPane.setLayout(sl_contentPane);
+		setLocationRelativeTo(null);
 
 		
 		btnSalir = new JButton("Salir");

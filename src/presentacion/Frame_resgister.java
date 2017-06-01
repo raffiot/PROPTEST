@@ -63,22 +63,22 @@ public class Frame_resgister extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+		setLocationRelativeTo(null);
 		JLabel lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(77, 27, 46, 14);
+		lblNombre.setBounds(77, 27, 93, 14);
 		contentPane.add(lblNombre);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a");
-		lblContrasea.setBounds(77, 64, 62, 14);
+		lblContrasea.setBounds(77, 64, 93, 14);
 		contentPane.add(lblContrasea);
 		
 		field1 = new JTextField();
-		field1.setBounds(282, 24, 86, 20);
+		field1.setBounds(253, 24, 115, 20);
 		contentPane.add(field1);
 		field1.setColumns(10);
 		
 		field2 = new JPasswordField();
-		field2.setBounds(282, 61, 86, 20);
+		field2.setBounds(253, 61, 115, 20);
 		contentPane.add(field2);
 		field2.setColumns(10);
 		
@@ -116,25 +116,46 @@ public class Frame_resgister extends JFrame {
 				String user = field1.getText();
 				String pass = field2.getText();
 				boolean usu = rdusu.isSelected();
+				boolean admin = rdadmin.isSelected();
+				
+			if (user.equals("") || pass.equals(""))	JOptionPane.showMessageDialog(null, "Por favor rellene todos los campos","Error", JOptionPane.INFORMATION_MESSAGE);
+			else if (!(usu) && !(admin))	JOptionPane.showMessageDialog(null, "Por favor elija usuario o administrador","Error", JOptionPane.INFORMATION_MESSAGE);
+			else {
+				
 				if(!usu){
 					String passadmin = fieldSecretPass.getText();
 					if(!passadmin.equals("Borja")){
-						JOptionPane.showMessageDialog(null, "Contrase�a de administrador incorrecta","Error", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Password de administrador incorrecta","Error", JOptionPane.INFORMATION_MESSAGE);
 					}
-				}
+					else {
+						boolean hasRegister = cp.registrar(user,pass,usu);
+						if(!hasRegister){
+							JOptionPane.showMessageDialog(null, "Nombre de administrador no disponible","Error", JOptionPane.INFORMATION_MESSAGE);
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "Administrador registrado !","Success", JOptionPane.INFORMATION_MESSAGE);
+							principal p = new principal(cp);
+							p.frame.setVisible(true);
+							dispose();
+						}
+					}
 				
-				boolean hasRegister = cp.registrar(user,pass,usu);
-				
-				if(!hasRegister){
-					JOptionPane.showMessageDialog(null, "Nombre de usuario o administrador no disponible","Error", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else{
-					JOptionPane.showMessageDialog(null, "Usuario o administrador registrado !","Success", JOptionPane.INFORMATION_MESSAGE);
-					principal p = new principal(cp);
-					p.frame.setVisible(true);
-					dispose();
+					
+					boolean hasRegister = cp.registrar(user,pass,usu);
+					if(!hasRegister){
+						JOptionPane.showMessageDialog(null, "Nombre de usuario no disponible","Error", JOptionPane.INFORMATION_MESSAGE);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Usuario registrado !","Success", JOptionPane.INFORMATION_MESSAGE);
+						principal p = new principal(cp);
+						p.frame.setVisible(true);
+						dispose();
+					}
 				}
-				
+					
+			}
 			}
 		});
 		btnRegistrarse.setBounds(303, 228, 121, 23);

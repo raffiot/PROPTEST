@@ -56,7 +56,7 @@ public class Frame_pregunta extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+		setLocationRelativeTo(null);
 		JLabel lblModifiqueLaPregunta = new JLabel("Modifique la pregunta");
 		lblModifiqueLaPregunta.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblModifiqueLaPregunta.setBounds(10, 11, 183, 19);
@@ -82,7 +82,9 @@ public class Frame_pregunta extends JFrame {
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!editorPane.getText().equals("")){
-					cp.setPre(editorPane.getText());
+					cp.guardarPre(editorPane.getText(), i);
+					Frame_modificar ven = new Frame_modificar(cp);
+					ven.setVisible(true);
 					dispose();
 				}
 			}

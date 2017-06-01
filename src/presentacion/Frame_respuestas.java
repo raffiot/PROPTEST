@@ -56,7 +56,7 @@ public class Frame_respuestas extends JFrame {
 		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
-		 
+		setLocationRelativeTo(null);
 		
 		
 		//List<RespuestaEncuesta> items = cd.getListResp(enc.getId());

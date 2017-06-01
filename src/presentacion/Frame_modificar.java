@@ -22,6 +22,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
+import java.awt.Color;
 
 public class Frame_modificar extends JFrame {
 
@@ -51,6 +52,8 @@ public class Frame_modificar extends JFrame {
 	 * Create the frame.
 	 */
 	Frame_modificar(){
+		setForeground(new Color(204, 255, 204));
+		setTitle("Modificar Encuesta");
 		init();
 		
 	}
@@ -63,10 +66,10 @@ public class Frame_modificar extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 464, 469);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(null);
 		getContentPane().setLayout(null);
 		setContentPane(contentPane);
-		
+		setLocationRelativeTo(null);
 		JButton btnNewButton = new JButton("Salir");
 		btnNewButton.setBounds(15, 400, 93, 23);
 		btnNewButton.addActionListener(new ActionListener() {
@@ -80,7 +83,7 @@ public class Frame_modificar extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Guardar y salir");
-		btnNewButton_1.setBounds(330, 400, 103, 23);
+		btnNewButton_1.setBounds(280, 400, 153, 23);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!textField.equals("")){
@@ -132,8 +135,8 @@ public class Frame_modificar extends JFrame {
 					s = s.substring(0,1);
 					Frame_pregunta ven = new Frame_pregunta(cp,Integer.parseInt(s)-1);
 					ven.setVisible(true);
+					dispose();
 					
-					aux.add(Integer.parseInt(s)-1,Integer.parseInt(s)-1+". " + cp.getPregunta());
 					
 				
 		            

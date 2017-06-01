@@ -109,7 +109,7 @@ public class Frame_contestar extends JFrame implements ActionListener{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-        
+		setLocationRelativeTo(null);
         btnSalir = new JButton("Salir");
         btnSalir.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {

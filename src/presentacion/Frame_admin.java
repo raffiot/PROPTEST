@@ -21,6 +21,8 @@ import java.awt.Insets;
 import java.awt.Window;
 
 import javax.swing.JDesktopPane;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 public class Frame_admin extends JFrame {
 
@@ -57,11 +59,12 @@ public class Frame_admin extends JFrame {
 	
 	public void init() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 354);
+		setBounds(100, 100, 589, 455);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setLocationRelativeTo(null);
 		
 		JButton btnCrearEncuesta = new JButton("Crear encuesta");
 		btnCrearEncuesta.addActionListener(new ActionListener() {
@@ -71,20 +74,21 @@ public class Frame_admin extends JFrame {
 				dispose();
 			}
 		});
-		btnCrearEncuesta.setBounds(14, 66, 150, 44);
+		btnCrearEncuesta.setBounds(220, 83, 150, 44);
 		contentPane.add(btnCrearEncuesta);
 		
 		JButton btnBorrarEncuesta = new JButton("Borrar encuesta");
 		btnBorrarEncuesta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Frame_encuestas ven = new Frame_encuestas(cp,"borrar");
+				
 				ven.setVisible(true);
 		        setVisible(false);
 		        dispose();
 				
 			}
 		});
-		btnBorrarEncuesta.setBounds(14, 233, 150, 44);
+		btnBorrarEncuesta.setBounds(301, 164, 150, 44);
 		contentPane.add(btnBorrarEncuesta);
 		
 		JButton btnAnalizarEncuesta = new JButton("Analizar encuesta");
@@ -96,7 +100,7 @@ public class Frame_admin extends JFrame {
 		        dispose();
 			}
 		});
-		btnAnalizarEncuesta.setBounds(240, 44, 140, 55);
+		btnAnalizarEncuesta.setBounds(327, 300, 140, 55);
 		contentPane.add(btnAnalizarEncuesta);
 		
 		JButton btnVisualizarAnalisis = new JButton("Visualizar analisis");
@@ -108,7 +112,7 @@ public class Frame_admin extends JFrame {
 		        dispose();
 			}
 		});
-		btnVisualizarAnalisis.setBounds(240, 141, 140, 55);
+		btnVisualizarAnalisis.setBounds(98, 300, 140, 55);
 		contentPane.add(btnVisualizarAnalisis);
 		
 		JButton btnVisualizarEncuestas = new JButton("Visualizar encuestas");
@@ -120,7 +124,7 @@ public class Frame_admin extends JFrame {
 		        dispose();
 			}
 		});
-		btnVisualizarEncuestas.setBounds(14, 11, 150, 44);
+		btnVisualizarEncuestas.setBounds(22, 83, 163, 44);
 		contentPane.add(btnVisualizarEncuestas);
 		
 		JButton btnImportarEncuesta = new JButton("Importar encuesta");
@@ -131,7 +135,7 @@ public class Frame_admin extends JFrame {
 				dispose();
 			}
 		});
-		btnImportarEncuesta.setBounds(14, 121, 150, 44);
+		btnImportarEncuesta.setBounds(407, 83, 150, 44);
 		contentPane.add(btnImportarEncuesta);
 		
 		JButton btnSalir = new JButton("Salir");
@@ -144,7 +148,7 @@ public class Frame_admin extends JFrame {
 				
 			}
 		});
-		btnSalir.setBounds(335, 281, 89, 23);
+		btnSalir.setBounds(468, 387, 89, 23);
 		contentPane.add(btnSalir);
 		
 		JButton button = new JButton("Modificar encuesta");
@@ -156,7 +160,17 @@ public class Frame_admin extends JFrame {
 		        dispose();
 			}
 		});
-		button.setBounds(14, 176, 150, 44);
+		button.setBounds(99, 164, 150, 44);
 		contentPane.add(button);
+		
+		JLabel lblGestionDeEncuestas = new JLabel("Gestion de Encuestas");
+		lblGestionDeEncuestas.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblGestionDeEncuestas.setBounds(170, 25, 218, 29);
+		contentPane.add(lblGestionDeEncuestas);
+		
+		JLabel lblAnalisisDeEncuestas = new JLabel("Analisis de Encuestas");
+		lblAnalisisDeEncuestas.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblAnalisisDeEncuestas.setBounds(170, 248, 218, 29);
+		contentPane.add(lblAnalisisDeEncuestas);
 	}
 }

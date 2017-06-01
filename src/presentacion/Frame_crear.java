@@ -61,7 +61,7 @@ public class Frame_crear extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
+		setLocationRelativeTo(null);
 		//crear encuesta nueva
 		cp.crearEncuesta();
 		contentPane.setLayout(null);
@@ -104,7 +104,7 @@ public class Frame_crear extends JFrame {
 		grupo.add(tipo5);
 		
 		JButton btnGuardarYSalir = new JButton("Guardar y salir");
-		btnGuardarYSalir.setBounds(399, 345, 103, 23);
+		btnGuardarYSalir.setBounds(354, 345, 148, 23);
 		btnGuardarYSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (textField_1.getText().equals("")) JOptionPane.showMessageDialog(null, "Introduzca un g�nero para encuesta ","Error", JOptionPane.ERROR_MESSAGE);
@@ -119,7 +119,7 @@ public class Frame_crear extends JFrame {
 		contentPane.add(btnGuardarYSalir);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(20, 345, 75, 23);
+		btnCancelar.setBounds(20, 345, 103, 23);
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Frame_admin ven = new Frame_admin(cp);
@@ -135,7 +135,7 @@ public class Frame_crear extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JButton btnInsertar = new JButton("Insertar");
-		btnInsertar.setBounds(170, 262, 175, 20);
+		btnInsertar.setBounds(170, 262, 175, 28);
 		btnInsertar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(tipo1.isSelected()){

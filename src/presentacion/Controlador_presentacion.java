@@ -192,14 +192,7 @@ public class Controlador_presentacion {
 		
 	}
 
-	public void setPre(String text) {
-		cd.setPregunta(text);
-		
-	}
-
-	public String getPregunta() {
-		return cd.getPregunta();
-	}
+	
 
 	public String getRespuestasDistrib() {
 		return cd.getRespuestasDistrib();

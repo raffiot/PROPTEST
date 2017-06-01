@@ -76,7 +76,7 @@ public class Frame_MonstrarResultado extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+		setLocationRelativeTo(null);
 		JTextArea textArea = new JTextArea();
 		JScrollPane jsp = new JScrollPane(textArea);
 		jsp.setBounds(220, 11, 440, 495);

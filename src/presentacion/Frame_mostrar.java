@@ -19,6 +19,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Component;
+import javax.swing.Box;
+import javax.swing.SpringLayout;
 
 public class Frame_mostrar extends JFrame {
 
@@ -58,25 +61,32 @@ public class Frame_mostrar extends JFrame {
 	
 	public void init() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 483, 471);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		txtArea = new JTextArea();      
-		txtArea.setText(encuesta);
-		
-        scroll = new JScrollPane(txtArea);    
-        scroll.setBounds(27,11,375,210);                                                    
+        SpringLayout sl_contentPane = new SpringLayout();
+        contentPane.setLayout(sl_contentPane);
+        scroll = new JScrollPane();
+        sl_contentPane.putConstraint(SpringLayout.NORTH, scroll, 11, SpringLayout.NORTH, contentPane);
+        sl_contentPane.putConstraint(SpringLayout.WEST, scroll, 37, SpringLayout.WEST, contentPane);
+        sl_contentPane.putConstraint(SpringLayout.SOUTH, scroll, 375, SpringLayout.NORTH, contentPane);
+        sl_contentPane.putConstraint(SpringLayout.EAST, scroll, 427, SpringLayout.WEST, contentPane);
         contentPane.add(scroll);       
-        
+        txtArea = new JTextArea();
+        scroll.setViewportView(txtArea);
+        txtArea.setText(encuesta);
+        txtArea.setEditable(false);
+        setLocationRelativeTo(null);
         btnSalir = new JButton("Salir");
+        sl_contentPane.putConstraint(SpringLayout.WEST, btnSalir, -99, SpringLayout.EAST, contentPane);
+        sl_contentPane.putConstraint(SpringLayout.SOUTH, btnSalir, -10, SpringLayout.SOUTH, contentPane);
+        sl_contentPane.putConstraint(SpringLayout.EAST, btnSalir, -10, SpringLayout.EAST, contentPane);
         btnSalir.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
         	}
         });
-        btnSalir.setBounds(335, 232, 89, 23);
         contentPane.add(btnSalir);
 		
 		

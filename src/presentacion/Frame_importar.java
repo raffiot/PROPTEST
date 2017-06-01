@@ -70,6 +70,7 @@ public class Frame_importar extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setLocationRelativeTo(null);
 		 textField = new JTextField();
 	        textField.setToolTipText("Inserta la ruta del fichero encuesta");
 	        textField.setBounds(36, 12, 209, 20);

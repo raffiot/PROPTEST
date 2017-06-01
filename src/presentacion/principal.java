@@ -61,7 +61,7 @@ public class principal {
 		frame.setBounds(100, 100, 497, 320);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+		frame.setLocationRelativeTo(null);
 		JButton btnEntrar = new JButton("Registrarse");
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -107,7 +107,7 @@ public class principal {
 		frame.getContentPane().add(button);
 		
 		userField = new JTextField();
-		userField.setBounds(207, 82, 86, 20);
+		userField.setBounds(207, 82, 123, 20);
 		frame.getContentPane().add(userField);
 		userField.setColumns(10);
 		
@@ -120,7 +120,7 @@ public class principal {
 		frame.getContentPane().add(lblPassword);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(207, 113, 86, 20);
+		passwordField.setBounds(207, 113, 123, 20);
 		frame.getContentPane().add(passwordField);
 	}
 }
