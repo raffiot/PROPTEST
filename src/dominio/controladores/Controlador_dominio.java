@@ -440,10 +440,18 @@ public class Controlador_dominio {
 		}
 		return opciones;
 	}
-
-
-
-
+	
+	public ArrayList<String> getopcionest4(Integer index){
+		ArrayList<String> opciones = new ArrayList<String>();
+		ArrayList<Pregunta> llista = currentEnc.getPreguntas();
+		for (int i = 0; i < currentEnc.getN_preguntas(); ++i){
+			if ( i == index){
+				Pregunta p = (Tipo_4) llista.get(i);//la pregunta i
+				opciones = ((Tipo_4) p).getLista_opciones();
+			}
+		}
+		return opciones;
+	}
 
 	public ArrayList<String> getPre() {
 		ArrayList<String> pre = new ArrayList<String>();
@@ -454,18 +462,10 @@ public class Controlador_dominio {
 		return pre;	
 	}
 
-
-
-
-
 	public void guardarPre(String text, int i) {
 		currentEnc.setEnunPre(text, i);
 		
 	}
-
-
-
-
 
 	public void setGenero(String s) {
 		currentEnc.setGenero(s);
@@ -473,24 +473,14 @@ public class Controlador_dominio {
 	}
 
 
-
-
-
 	public String getPregunta() {
 		return Pregunta;
 	}
 
-
-
-
-
+	
 	public void setPregunta(String pregunta) {
 		Pregunta = pregunta;
 	}
-
-
-
-
 
 	public String getRespuestasDistrib() {
 		String s = "";
@@ -515,5 +505,46 @@ public class Controlador_dominio {
 		s+="El resultado se ha producido el "+dateFormat.format(currentResu.getData())+"\n";
 		s+="Se ha echo "+currentResu.getNbIteracion()+" vece(s) el pipline de analisis";
 		return s;
+	}
+	
+	public Pregunta getPreguntaiessima(Integer i){
+		ArrayList<Pregunta> llista = currentEnc.getPreguntas();
+			if(llista.get(i).getTipo() ==1 ){
+				Pregunta p = (Tipo_1) llista.get(i);
+				return p;
+			}
+			if(llista.get(i).getTipo() ==2 ){
+				Pregunta p = (Tipo_2) llista.get(i);
+				return p;
+			}
+			if(llista.get(i).getTipo() ==3 ){
+				Pregunta p = (Tipo_3) llista.get(i);
+				return p;
+			}
+			if(llista.get(i).getTipo() ==4 ){
+				Pregunta p = (Tipo_4) llista.get(i);
+				return p;
+			}
+			if(llista.get(i).getTipo() ==5 ){
+				Pregunta p = (Tipo_5) llista.get(i);
+				return p;
+			}
+		
+		return new Tipo_1();
+	}
+	
+	public int getPosicion(Pregunta p, String q,Integer i){
+		ArrayList<Pregunta> llista = currentEnc.getPreguntas();
+		int k = 0;
+		Pregunta aux = (Tipo_2) llista.get(i);
+		if (aux == p){
+				k =((Tipo_2) p).getPosicion(q);
+		}
+		return k;
+	}
+	
+	public void guardarRespuestaEnc(List<RespuestaPregunta> rp){
+		RespuestaEncuesta re =  new RespuestaEncuesta(currentEnc,Main.user,rp);
+		re.guardarRespuesta(rp,currentEnc.getId());
 	}
 }

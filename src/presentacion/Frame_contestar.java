@@ -4,6 +4,11 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -12,13 +17,23 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import dominio.clases.Main;
 import dominio.clases.Pregunta;
+import dominio.clases.RespuestaEncuesta;
+import dominio.clases.RespuestaPregunta;
+import dominio.clases.Respuesta_1;
+import dominio.clases.Respuesta_2;
+import dominio.clases.Respuesta_3;
+import dominio.clases.Respuesta_4;
 import dominio.clases.Tipo_1;
+import dominio.clases.Tipo_2;
+
 import javax.swing.JTextField;
 import javax.swing.SpinnerListModel;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JCheckBox;
 import javax.swing.event.ChangeListener;
@@ -33,7 +48,6 @@ public class Frame_contestar extends JFrame implements ActionListener{
 	private JPanel contentPane;
 	private JButton btnSalir;
 	private Controlador_presentacion cp;
-	private JTextField textField;
 	private JTextArea textArea;
 	private String s;
 	private int x = 27;
@@ -46,6 +60,7 @@ public class Frame_contestar extends JFrame implements ActionListener{
     ArrayList<Integer> selected = new ArrayList<Integer>();
     ArrayList<String> items = new ArrayList<String>();
     private JSpinner spinner;
+    private JTextField txt_t5;
 	
 	/**
 	 * Launch the application.
@@ -108,6 +123,7 @@ public class Frame_contestar extends JFrame implements ActionListener{
         contentPane.add(scrollPane);
         
         textArea = new JTextArea();
+        textArea.setEditable(false);
         textArea.setText(s);
         scrollPane.setViewportView(textArea);
         
@@ -249,44 +265,64 @@ public class Frame_contestar extends JFrame implements ActionListener{
         		
         	}
         	else if (tipo == 5) {
+        		// System.out.println(respPreg[i]+ "------------------!!!");
         		tiposPreg[i] = tipo;
-        		textField = new JTextField();
-                textField.setBounds(x+120, y, 200, w);
-                contentPane.add(textField);
-                textField.setColumns(10);
-                respPreg[i] = textField.toString();
-                System.out.println(respPreg[i]);
-        	}
-        	
+                txt_t5 = new JTextField();
+                txt_t5.setToolTipText("Escribe aquí");
+                txt_t5.setBounds(96, 313, 284, 26);
+                txt_t5.setColumns(10);
+                int index = i;
+                txt_t5.addActionListener(new ActionListener() {
+                	public void actionPerformed(ActionEvent e) {
+                		System.out.println("ENTRO");
+                		respPreg[index] = txt_t5.getText();
+                		System.out.println(txt_t5.getText()+ "------------------!!!");
+	        	    }
+                	
+                });
+                contentPane.add(txt_t5);
+                System.out.println(respPreg[i]+ "------------------!!!");
+                }
+                
         }
         
         JButton btnGuardar = new JButton("Guardar");
         btnGuardar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		
+        		System.out.println(respPreg[4]);
+        		RespuestaPregunta r=null;
+        		List<RespuestaPregunta> rp = new ArrayList<RespuestaPregunta>();
         		for(int q = 0; q < tiposPreg.length;++q){
         			Pregunta p = cp.getPreguntaiessima(q);
         			if (tiposPreg[q] == 1){
-        				
-        				
+        				System.out.println(respPreg[q]+"----------------");
+        				r = new Respuesta_1(p,(double) Integer.parseInt(respPreg[q]));
         			}
         			if (tiposPreg[q] == 2){
-        				
+        				int k = cp.getPosicion(p,respPreg[q],q);
+        				System.out.println(respPreg[q]+"----------------" + k);
+    					r = new Respuesta_2(p,k);
         			}
         			if (tiposPreg[q] == 3){
-        				
+        				System.out.println(respPreg[q]+"----------------");
+        				r = new Respuesta_3(p,respPreg[q]);
         			}
         			if (tiposPreg[q] == 4){
-        				
+        				Set<String> set = new HashSet<String>(Arrays.asList(respPreg[q].split(" ")));
+        				System.out.println(respPreg[q]+"----------------");
+        				r = new Respuesta_4(p,set);
         			}
         			if (tiposPreg[q] == 5){
-        				
+        				System.out.println(respPreg[q]+"----------------");
+        				System.out.println(respPreg[4]);
         			}
-        			
-        			
+        			rp.add(r);
         		}
-
-        		
+        		cp.guardarRespuestaEnc(rp);
+        		JOptionPane.showMessageDialog(null, "¡Respuestas guardadas!","Success", JOptionPane.INFORMATION_MESSAGE);
+				Panel_usuario p = new Panel_usuario(cp);
+				p.setVisible(true);
+				dispose();
         	}
         });
         btnGuardar.setBounds(173, 411, 117, 29);
@@ -302,13 +338,11 @@ public class Frame_contestar extends JFrame implements ActionListener{
         });
         btnAtras.setBounds(49, 411, 117, 29);
         contentPane.add(btnAtras);
-        
 	}
 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 }

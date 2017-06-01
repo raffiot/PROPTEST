@@ -8,7 +8,9 @@ import javax.swing.JEditorPane;
 
 import dominio.clases.Analisis;
 import dominio.clases.Encuesta;
+import dominio.clases.Pregunta;
 import dominio.clases.RespuestaEncuesta;
+import dominio.clases.RespuestaPregunta;
 import dominio.clases.Respuesta_Analisis;
 import dominio.controladores.Controlador_dominio;
 
@@ -170,6 +172,10 @@ public class Controlador_presentacion {
 	public ArrayList<String> getopcionest3(Integer i){
 		return cd.getopcionest3(i);
 	}
+	
+	public ArrayList<String> getopcionest4(Integer i){
+		return cd.getopcionest4(i);
+	}
 
 	public ArrayList<String> getPre() {
 		return cd.getPre();
@@ -198,4 +204,15 @@ public class Controlador_presentacion {
 		return cd.getRespuestasDistrib();
 	}
 	
+	public Pregunta getPreguntaiessima(Integer i){
+		return cd.getPreguntaiessima(i);
+	}
+	
+	public int getPosicion(Pregunta p,String q,Integer i){
+		return cd.getPosicion(p,q,i);
+	}
+	
+	public void guardarRespuestaEnc(List<RespuestaPregunta> rp){
+		cd.guardarRespuestaEnc(rp);
+	}
 }

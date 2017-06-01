@@ -52,8 +52,6 @@ public class Panel_usuario extends JFrame {
 
 	
 	public Panel_usuario(Controlador_presentacion cp) {
-		System.out.println("CREADORA");
-		System.out.println(cp);
 		this.cp = cp;
 		init();
 	}
@@ -84,33 +82,24 @@ public class Panel_usuario extends JFrame {
 		gbc_list.gridy = 0;
 		getContentPane().add(list, gbc_list);
 		ArrayList<String> e1 = new ArrayList<String>();
-		System.out.println("Aqui arribo be");
-		System.out.println(cp);
 		e1 = cp.getList(); 
 		DefaultListModel<String> aux = new DefaultListModel<String>();
-		System.out.println("Aqui ja arribo be x2");
 		for(int i = 0; i < e1.size(); ++i){
 			aux.addElement(e1.get(i));
 		}
 		list.setModel(aux);
-		System.out.println("Aqui ja arribo be x3");
 		list.setBounds(10, 61, 414, 165);
-		
-		
-				System.out.println("Aqui ja arribo be x4");
-				list.addMouseListener(new MouseAdapter() {
+		list.addMouseListener(new MouseAdapter() {
 				    public void mouseClicked(MouseEvent evt) {
-				    	System.out.println("Aqui ja arribo be x5");
+				    	
 				        JList list = (JList)evt.getSource();
 				        if (evt.getClickCount() == 1) {
-				        	System.out.println("Aqui ja arribo be x6");
-				            s = (String) list.getSelectedValue();
+				        	s = (String) list.getSelectedValue();
 							s = s.substring(0,1);
 							//s = cp.getE(Integer.parseInt(s));
 							
 							contestar.addActionListener(new ActionListener() {
 								public void actionPerformed(ActionEvent e) {
-									System.out.println("Aqui ja arribo be x7");
 									cp.selecionnarEncuesta(s);
 									s = cp.getE(Integer.parseInt(s));
 									Frame_contestar respuesta = new Frame_contestar(cp,s);
