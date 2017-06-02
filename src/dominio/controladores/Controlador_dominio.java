@@ -563,4 +563,8 @@ public class Controlador_dominio {
 		RespuestaEncuesta re =  new RespuestaEncuesta(currentEnc,Main.user,rp);
 		re.guardarRespuestaEncNoAcabada(rp,currentEnc.getId());
 	}
+	
+	public ArrayList<String> getListNoAcabadas(){
+		return new ArrayList<String>();
+	}
 }

@@ -219,7 +219,7 @@ public class Controlador_presentacion {
 		cd.guardarRespuestaEncNoAcabada(rp);
 	}
 	
-	public void getListNoAcabadas(){
-		cd.getListNoAcabadas();
+	public ArrayList<String> getListNoAcabadas(){
+		return cd.getListNoAcabadas();
 	}
 }

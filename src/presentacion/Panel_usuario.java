@@ -133,8 +133,8 @@ public class Panel_usuario extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.EAST, btnAcabarResponderEncuesta, -10, SpringLayout.EAST, btnResponderEncuesta);
 		btnResponderEncuesta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Frame_listaEncNoAcabadas p = new Frame_listaEncNoAcabadas(cp,1);
-				p.setVisible(true);
+				//Frame_listaEncNoAcabadas p = new Frame_listaEncNoAcabadas(cp,1);
+				//p.setVisible(true);
 			}
 		});
 		contentPane.add(btnAcabarResponderEncuesta);
