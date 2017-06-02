@@ -39,6 +39,10 @@ import javax.swing.JSpinner;
 import javax.swing.JCheckBox;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import javax.swing.JPopupMenu;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Frame_contestar extends JFrame implements ActionListener{
 	
@@ -231,27 +235,27 @@ public class Frame_contestar extends JFrame implements ActionListener{
 	        				}
 	        				
 	        				
-	        	            btnOK.addActionListener(new ActionListener() {
-	        	            	public void actionPerformed(ActionEvent e) {
-	        	            		String aux1 = "";
-	        	            		for (int l = 0; l < selected.size();++l){
-	        	            			if(selected.get(l)==1){
-	        	            				System.out.println(items.get(l));
-	        	            				if(aux1.isEmpty()) aux1 = items.get(l)+',';
-	        	            				else aux1+=items.get(l)+',';
-	        	            			}
-	        	            		}
-	        	            		System.out.println(aux1 + " " + index);
-	        	            		respPreg[index] = aux1;
-	        	            		 System.out.println(respPreg[index]);
-	        	            		
-	        	            	}
-	        	            });
-	        	            
-	        	            btnOK.setBounds(400,y , z, w);
-	        	            contentPane.add(btnOK);
-	        	            
-	        				System.out.println(selected);
+    	            btnOK.addActionListener(new ActionListener() {
+    	            	public void actionPerformed(ActionEvent e) {
+    	            		String aux1 = "";
+    	            		for (int l = 0; l < selected.size();++l){
+    	            			if(selected.get(l)==1){
+    	            				System.out.println(items.get(l));
+    	            				if(aux1.isEmpty()) aux1 = items.get(l)+',';
+    	            				else aux1+=items.get(l)+',';
+    	            			}
+    	            		}
+    	            		System.out.println(aux1 + " " + index);
+    	            		respPreg[index] = aux1;
+    	            		 System.out.println(respPreg[index]);
+    	            		
+    	            	}
+    	            });
+    	            
+    	            btnOK.setBounds(400,y , z, w);
+    	            contentPane.add(btnOK);
+    	            
+    				System.out.println(selected);
 	        			}
 	        		});
 	                contentPane.add(chckbxNewCheckBox);
@@ -266,6 +270,7 @@ public class Frame_contestar extends JFrame implements ActionListener{
                 txt_t5.setBounds(96, 313, 284, 26);
                 txt_t5.setColumns(10);
                 int index = i;
+                System.out.println(txt_t5.getText());
                 txt_t5.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent e) {
 						respPreg[index] = txt_t5.getText();
@@ -303,15 +308,17 @@ public class Frame_contestar extends JFrame implements ActionListener{
 	        			nocomplete=true;
 	        		}
 	        		else{
-	        			Pregunta p = cp.getPreguntaiessima(q);
+	        			//Pregunta p = cp.getPreguntaiessima(q);
 	        			if (tiposPreg[q] == 1){
 	        				System.out.println(respPreg[q]+"----------------1");
-	        				r = new Respuesta_1(p,(double) Integer.parseInt(respPreg[q]));
+	        				//r = new Respuesta_1(p,(double) Integer.parseInt(respPreg[q]));
+	        				cp.crearresp1(q,(double) Integer.parseInt(respPreg[q]));
 	        			}
 	        			else if (tiposPreg[q] == 2){
 	        				int k = cp.getPosicion(p,respPreg[q],q);
 	        				System.out.println(respPreg[q]+"----------------2 " + k);
 	    					r = new Respuesta_2(p,k);
+	    					cp.crearresp2(q,(double) Integer.parseInt(respPreg[q]));
 	        			}
 	        			else if (tiposPreg[q] == 3){
 	        				System.out.println(respPreg[q]+"----------------3");
@@ -326,7 +333,7 @@ public class Frame_contestar extends JFrame implements ActionListener{
 	        				System.out.println(respPreg[q]+"----------------5");
 	        				r = new Respuesta_5(p,respPreg[q]);
 	        			}
-	        			rp.add(r);
+	        			//rp.add(r);
 	        		}
         		}
         		if (nocomplete) {
@@ -361,5 +368,22 @@ public class Frame_contestar extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+	}
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
 	}
 }

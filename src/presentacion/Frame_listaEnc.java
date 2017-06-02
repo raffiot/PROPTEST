@@ -90,7 +90,7 @@ public class Frame_listaEnc extends JFrame {
 					public void actionPerformed(ActionEvent e) {
 						cp.selecionnarEncuesta(s);
 						s = cp.getE(Integer.parseInt(s));
-						Frame_contestar respuesta = new Frame_contestar(cp,s);
+						Frame_ListaPreguntas respuesta = new Frame_ListaPreguntas(cp,s);
 						respuesta.setVisible(true);
 						dispose();
 					}
