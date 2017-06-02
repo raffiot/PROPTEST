@@ -218,4 +218,8 @@ public class Controlador_presentacion {
 	public void guardarRespuestaEncNoAcabada(List<RespuestaPregunta> rp){
 		cd.guardarRespuestaEncNoAcabada(rp);
 	}
+	
+	public void getListNoAcabadas(){
+		cd.getListNoAcabadas();
+	}
 }
