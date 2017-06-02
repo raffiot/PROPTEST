@@ -355,9 +355,6 @@ public class Frame_contestar extends JFrame implements ActionListener{
         btnAtras.setBounds(49, 411, 117, 29);
         contentPane.add(btnAtras);
         
-
-        
-        
 	}
 
 

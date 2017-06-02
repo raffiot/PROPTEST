@@ -584,13 +584,17 @@ public class Controlador_dominio {
 		HashMap<Integer, RespuestaEncuesta> r = new HashMap<Integer, RespuestaEncuesta>();
 		r = res_inac.getRespuestas();
 		ArrayList <String> info = new ArrayList<String>();
-		for (int i = 0; i < r.size(); ++i){
-			if (r.containsKey(i)){
-				info.add(i+". " + encuestas.get(i).getGenero());
+		if(!info.isEmpty()){
+			for (int i = 0; i < r.size(); ++i){
+				if (r.containsKey(i)){
+					info.add(i+". " + encuestas.get(i).getGenero());
+				}
 			}
+			
+			return info;
 		}
-		
-		return info;
+		return null;
+
 	}
 
 

@@ -130,7 +130,6 @@ public class Panel_usuario extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.EAST, CACA, -10, SpringLayout.EAST, btnResponderEncuesta);
 		CACA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.print("ME VOY DE AQUI");
 				Frame_listaEncNoAcabadas p = new Frame_listaEncNoAcabadas(cp);
 				p.setVisible(true);
 				dispose();

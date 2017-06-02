@@ -67,7 +67,7 @@ public class Frame_listaEncNoAcabadas extends JFrame {
 		ArrayList<String> r = new ArrayList<String>();
 		r = cp.getListNoAcabadas();
 		DefaultListModel<String> aux = new DefaultListModel<String>();
-		if(! r.isEmpty()){
+		if( r!= null){
 			for(int i = 0; i < r.size(); ++i){
 				aux.addElement(r.get(i));
 			}
