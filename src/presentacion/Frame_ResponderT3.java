@@ -42,11 +42,18 @@ public class Frame_ResponderT3 extends JFrame {
 		getContentPane().setLayout(null);
 		setSize(500, 400);
 		setLocationRelativeTo(null);
+		
+		ArrayList<String> opcions = cp.getopcionest3(numPreg);
+		SpinnerListModel model = new SpinnerListModel(opcions);
+		JSpinner spinner_1 = new JSpinner(model);
+		spinner_1.setBounds(129, 180, 117, 20);
+		getContentPane().add(spinner_1);
+		
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.setBounds(292, 227, 117, 29);
 		btnGuardar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		cp.guardarResT3(sp3,numPreg); 
+        		cp.guardarResT3((String)spinner_1.getValue(),numPreg); 
         		JOptionPane.showMessageDialog(null, "¡Respuestas guardadas!","Success", JOptionPane.INFORMATION_MESSAGE);
 				Frame_ListaPreguntas p = new Frame_ListaPreguntas(cp);
 				p.setVisible(true);
@@ -72,16 +79,7 @@ public class Frame_ResponderT3 extends JFrame {
 		getContentPane().add(textArea);
 		textArea.setText((numPreg+1)+". " +cp.getPre().get(numPreg));
 		
-		ArrayList<String> opcions = cp.getopcionest3(numPreg);
-		SpinnerListModel model = new SpinnerListModel(opcions);
-		JSpinner spinner_1 = new JSpinner(model);
-		spinner_1.setBounds(129, 180, 117, 20);
-		spinner_1.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
-				sp3 = (String)spinner_1.getValue();
-			}
-		});
-		getContentPane().add(spinner_1);
+		
 		       
 	
 	}

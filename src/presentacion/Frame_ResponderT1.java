@@ -41,11 +41,21 @@ public class Frame_ResponderT1 extends JFrame {
 	public void init(){
 		getContentPane().setLayout(null);
 		setBounds(100, 100, 450, 300);
+		
+		int min = cp.getminOpt1(numPreg);
+		int max = cp.getmaxOpt1(numPreg);
+	
+		SpinnerModel sm = new SpinnerNumberModel(min, min, max, 1);
+		JSpinner spinner_1 = new JSpinner(sm);
+		spinner_1.setBounds(192, 173, 33, 26);
+		getContentPane().add(spinner_1);
+		
+		
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.setBounds(292, 227, 117, 29);
 		btnGuardar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		cp.guardarResT1(sp1,numPreg); //no esta hecho
+        		cp.guardarResT1((Integer)spinner_1.getValue(),numPreg); //no esta hecho
         		JOptionPane.showMessageDialog(null, "¡Respuestas guardadas!","Success", JOptionPane.INFORMATION_MESSAGE);
 				Frame_ListaPreguntas p = new Frame_ListaPreguntas(cp);
 				p.setVisible(true);
@@ -67,25 +77,7 @@ public class Frame_ResponderT1 extends JFrame {
 		getContentPane().add(btnCancelar);
 		
         setLocationRelativeTo(null);
-        
-      
-     
-	  
-		
-		
-		int min = cp.getminOpt1(numPreg);
-		int max = cp.getmaxOpt1(numPreg);
-		
-		SpinnerModel sm = new SpinnerNumberModel(0, min, max, 1);
-		JSpinner spinner_1 = new JSpinner(sm);
-		spinner_1.setBounds(192, 173, 33, 26);
-        spinner_1.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
-				sp1 = (int)spinner_1.getValue();
-			}
-		});
-		getContentPane().add(spinner_1);
-		
+       
 		JTextArea textArea = new JTextArea();
 		textArea.setBounds(30, 11, 380, 141);
 		getContentPane().add(textArea);
