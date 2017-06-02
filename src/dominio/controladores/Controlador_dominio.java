@@ -1,13 +1,17 @@
 package dominio.controladores;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import dominio.clases.*;
 
@@ -24,6 +28,7 @@ public class Controlador_dominio {
 		private Analisis currentAna;
 		private Resultado currentResu;
 		private Respuesta_Analisis currentResp;
+		private RespuestaEncuesta currentRespin;
 		
 		
 		
@@ -55,7 +60,9 @@ public class Controlador_dominio {
 			currentUsu = username;
 			if (users.getType(username) == 1){
 				res_inac = new Cjt_respuestas_in(username);
+				currentRespin = new RespuestaEncuesta();
 				cargar_respuestas_in();
+				
 			}
 			return users.getType(username);
 		}
@@ -580,22 +587,62 @@ public class Controlador_dominio {
 	}
 	
 	public ArrayList<String> getListNoAcabadas(){
-		return new ArrayList<String>();
+		HashMap<Integer, RespuestaEncuesta> r = new HashMap<Integer, RespuestaEncuesta>();
+		r = res_inac.getRespuestas();
+		ArrayList <String> info = new ArrayList<String>();
+		if(!info.isEmpty()){
+			for (int i = 0; i < r.size(); ++i){
+				if (r.containsKey(i)){
+					info.add(i+". " + encuestas.get(i).getGenero());
+				}
+			}
+			
+			return info;
+		}
+		return null;
+
 	}
-
-
-
 
 
 	public String getCurrentUsu() {
 		return currentUsu;
 	}
 
-
-
-
-
 	public void setCurrentUsu(String currentUsu) {
 		this.currentUsu = currentUsu;
+	}
+	
+	public void guardarResT1(Integer value, Integer numPreg){
+		Pregunta p = currentEnc.get_pre(numPreg+1);
+		RespuestaPregunta r = new Respuesta_1(p,(double)value);
+		currentRespin.anadir_respuesta(numPreg, r);
+	}
+	
+	public void guardarResT2(String value, Integer numPreg){
+		Pregunta p = currentEnc.get_pre(numPreg+1);
+		int k = getPosicion(p, value, numPreg);
+		RespuestaPregunta r = new Respuesta_2(p,k);
+		currentRespin.anadir_respuesta(numPreg, r);
+		
+	}
+	
+	public void guardarResT3(String value, Integer numPreg){
+		Pregunta p = currentEnc.get_pre(numPreg+1);
+		RespuestaPregunta r = new Respuesta_3(p,value);
+		currentRespin.anadir_respuesta(numPreg, r);
+		
+	}
+	
+	public void guardarResT4(ArrayList<String> value, Integer numPreg){
+		Pregunta p = currentEnc.get_pre(numPreg+1);
+		Set<String> set = new HashSet<String>(value);
+		RespuestaPregunta r = new Respuesta_4(p,set);
+		currentRespin.anadir_respuesta(numPreg, r);
+	}
+	
+	public void guardarResT5(String value, Integer numPreg){
+		Pregunta p = currentEnc.get_pre(numPreg+1);
+		RespuestaPregunta r = new Respuesta_5(p,value);
+		currentRespin.anadir_respuesta(numPreg, r);
 	}
 }

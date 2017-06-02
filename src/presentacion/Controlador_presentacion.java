@@ -222,4 +222,24 @@ public class Controlador_presentacion {
 	public ArrayList<String> getListNoAcabadas(){
 		return cd.getListNoAcabadas();
 	}
+	
+	public void guardarResT1(Integer value,Integer numPreg){
+		cd.guardarResT1(value,numPreg);
+	}
+	
+	public void guardarResT2(String value,Integer numPreg){
+		cd.guardarResT2(value,numPreg);
+	}
+	
+	public void guardarResT3(String value,Integer numPreg){
+		cd.guardarResT2(value,numPreg);
+	}
+	
+	public void guardarResT4(ArrayList<String> value,Integer numPreg){
+		cd.guardarResT4(value,numPreg);
+	}
+	
+	public void guardarResT5(String value,Integer numPreg){
+		cd.guardarResT5(value,numPreg);
+	}
 }
