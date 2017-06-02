@@ -60,7 +60,9 @@ public class Controlador_dominio {
 			currentUsu = username;
 			if (users.getType(username) == 1){
 				res_inac = new Cjt_respuestas_in(username);
+				currentRespin = new RespuestaEncuesta();
 				cargar_respuestas_in();
+				
 			}
 			return users.getType(username);
 		}
@@ -611,13 +613,13 @@ public class Controlador_dominio {
 	}
 	
 	public void guardarResT1(Integer value, Integer numPreg){
-		Pregunta p = currentEnc.get_pre(numPreg);
+		Pregunta p = currentEnc.get_pre(numPreg+1);
 		RespuestaPregunta r = new Respuesta_1(p,(double)value);
 		currentRespin.anadir_respuesta(numPreg, r);
 	}
 	
 	public void guardarResT2(String value, Integer numPreg){
-		Pregunta p = currentEnc.get_pre(numPreg);
+		Pregunta p = currentEnc.get_pre(numPreg+1);
 		int k = getPosicion(p, value, numPreg);
 		RespuestaPregunta r = new Respuesta_2(p,k);
 		currentRespin.anadir_respuesta(numPreg, r);
@@ -625,21 +627,21 @@ public class Controlador_dominio {
 	}
 	
 	public void guardarResT3(String value, Integer numPreg){
-		Pregunta p = currentEnc.get_pre(numPreg);
+		Pregunta p = currentEnc.get_pre(numPreg+1);
 		RespuestaPregunta r = new Respuesta_3(p,value);
 		currentRespin.anadir_respuesta(numPreg, r);
 		
 	}
 	
 	public void guardarResT4(ArrayList<String> value, Integer numPreg){
-		Pregunta p = currentEnc.get_pre(numPreg);
+		Pregunta p = currentEnc.get_pre(numPreg+1);
 		Set<String> set = new HashSet<String>(value);
 		RespuestaPregunta r = new Respuesta_4(p,set);
 		currentRespin.anadir_respuesta(numPreg, r);
 	}
 	
 	public void guardarResT5(String value, Integer numPreg){
-		Pregunta p = currentEnc.get_pre(numPreg);
+		Pregunta p = currentEnc.get_pre(numPreg+1);
 		RespuestaPregunta r = new Respuesta_5(p,value);
 		currentRespin.anadir_respuesta(numPreg, r);
 	}
