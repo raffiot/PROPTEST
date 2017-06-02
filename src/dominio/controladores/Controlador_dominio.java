@@ -1,5 +1,6 @@
 package dominio.controladores;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -580,11 +581,17 @@ public class Controlador_dominio {
 	}
 	
 	public ArrayList<String> getListNoAcabadas(){
-		return new ArrayList<String>();
+		HashMap<Integer, RespuestaEncuesta> r = new HashMap<Integer, RespuestaEncuesta>();
+		r = res_inac.getRespuestas();
+		ArrayList <String> info = new ArrayList<String>();
+		for (int i = 0; i < r.size(); ++i){
+			if (r.containsKey(i)){
+				info.add(i+". " + encuestas.get(i).getGenero());
+			}
+		}
+		
+		return info;
 	}
-
-
-
 
 
 	public String getCurrentUsu() {

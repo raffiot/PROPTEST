@@ -1,5 +1,6 @@
 package persistencia;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.HashMap;
@@ -12,14 +13,18 @@ public class Persistencia_Respuesta_in extends Persistencia<HashMap<Integer, Res
 	public HashMap<Integer, RespuestaEncuesta> leer(String path) {
 		HashMap<Integer, RespuestaEncuesta> hm =null;
 		try {
+			
+			File aux = new File(path);
+			System.out.println("EXISTO");
 			//Stream para leer archivo
-	        ObjectInputStream file = new ObjectInputStream(new FileInputStream( path));
+			ObjectInputStream file = new ObjectInputStream(new FileInputStream(path));
 	            
 	        //Se lee el objeto de archivo y este debe convertirse al tipo de clase que corresponde
+	         
 	        hm = (HashMap<Integer, RespuestaEncuesta>) file.readObject();
 	        //se cierra archivo
+	        file.close();
 	            
-			file.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

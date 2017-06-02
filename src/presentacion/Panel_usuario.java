@@ -36,7 +36,7 @@ public class Panel_usuario extends JFrame {
 	private JButton btnSalir;
 	private JButton btnAtras;
 	private JButton btnResponderEncuesta;
-	private JButton btnAcabarResponderEncuesta;
+	private JButton CACA;
 
 	/**
 	 * Launch the application.
@@ -124,17 +124,19 @@ public class Panel_usuario extends JFrame {
 		});
 		contentPane.add(btnResponderEncuesta);
 		
-		btnAcabarResponderEncuesta = new JButton("Acabar responder encuesta");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, btnAtras, 6, SpringLayout.SOUTH, btnAcabarResponderEncuesta);
-		sl_contentPane.putConstraint(SpringLayout.NORTH, btnAcabarResponderEncuesta, 6, SpringLayout.SOUTH, btnResponderEncuesta);
-		sl_contentPane.putConstraint(SpringLayout.EAST, btnAcabarResponderEncuesta, -10, SpringLayout.EAST, btnResponderEncuesta);
-		btnResponderEncuesta.addActionListener(new ActionListener() {
+		CACA = new JButton("Acabar de responder encuesta");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnAtras, 6, SpringLayout.SOUTH, CACA);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, CACA, 6, SpringLayout.SOUTH, btnResponderEncuesta);
+		sl_contentPane.putConstraint(SpringLayout.EAST, CACA, -10, SpringLayout.EAST, btnResponderEncuesta);
+		CACA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Frame_listaEncNoAcabadas p = new Frame_listaEncNoAcabadas(cp,1);
-				//p.setVisible(true);
+				System.out.print("ME VOY DE AQUI");
+				Frame_listaEncNoAcabadas p = new Frame_listaEncNoAcabadas(cp);
+				p.setVisible(true);
+				dispose();
 			}
 		});
-		contentPane.add(btnAcabarResponderEncuesta);
+		contentPane.add(CACA);
 		
 	}
 

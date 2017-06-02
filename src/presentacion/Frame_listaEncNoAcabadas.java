@@ -28,7 +28,6 @@ public class Frame_listaEncNoAcabadas extends JFrame {
 	private String s;
 	private JButton btnResponder;
 	private JButton btnAtras;
-	private boolean na;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -48,9 +47,8 @@ public class Frame_listaEncNoAcabadas extends JFrame {
 	 * Create the application.
 	 */
 	
-	public Frame_listaEncNoAcabadas(Controlador_presentacion cp, boolean na) {
+	public Frame_listaEncNoAcabadas(Controlador_presentacion cp) {
 		this.cp = cp;
-		this.na= na;
 		initialize();
 		
 	}
@@ -62,55 +60,59 @@ public class Frame_listaEncNoAcabadas extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+		setLocationRelativeTo(null);
 		list = new JList<String>();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		ArrayList<String> r = new ArrayList<String>();
 		r = cp.getListNoAcabadas();
 		DefaultListModel<String> aux = new DefaultListModel<String>();
-		for(int i = 0; i < r.size(); ++i){
-			aux.addElement(r.get(i));
+		if(! r.isEmpty()){
+			for(int i = 0; i < r.size(); ++i){
+				aux.addElement(r.get(i));
+			}
 		}
-		list.setModel(aux);
-		JScrollPane jsp = new JScrollPane(list);
-		jsp.setBounds(10, 61, 414, 165);
-		
-		
-		getContentPane().add(jsp);
-		
-		btnResponder = new JButton("Responder");
-		btnResponder.setBounds(65, 238, 117, 29);
-		list.addMouseListener(new MouseAdapter() {
-		    public void mouseClicked(MouseEvent evt) {
-				JList list = (JList)evt.getSource();
-				if (evt.getClickCount() == 1) {
-		            s = (String) list.getSelectedValue();
-					s = s.substring(0,1);
+		else {
+			aux.addElement("No tienes ninguna encuesta sin acabar");
+		}
+			list.setModel(aux);
+			JScrollPane jsp = new JScrollPane(list);
+			jsp.setBounds(10, 61, 414, 165);
+			getContentPane().add(jsp);
+			
+			btnResponder = new JButton("Responder");
+			btnResponder.setBounds(65, 238, 117, 29);
+			list.addMouseListener(new MouseAdapter() {
+			    public void mouseClicked(MouseEvent evt) {
+					JList list = (JList)evt.getSource();
+					if (evt.getClickCount() == 1) {
+			            s = (String) list.getSelectedValue();
+						s = s.substring(0,1);
+				    }
+					btnResponder.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							cp.selecionnarEncuesta(s);
+							s = cp.getE(Integer.parseInt(s));
+							Frame_contestar respuesta = new Frame_contestar(cp,s);
+							respuesta.setVisible(true);
+							dispose();
+						}
+					});
 			    }
-				btnResponder.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						cp.selecionnarEncuesta(s);
-						s = cp.getE(Integer.parseInt(s));
-						Frame_contestar respuesta = new Frame_contestar(cp,s);
-						respuesta.setVisible(true);
-						dispose();
-					}
-				});
-		    }
-		});
-		contentPane.add(btnResponder);
+			});
+			contentPane.add(btnResponder);
+			
+			btnAtras = new JButton("Atras");
+			btnAtras.setBounds(287, 238, 117, 29);
+			btnAtras.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		Panel_usuario usu = new Panel_usuario(cp);
+					usu.setVisible(true);
+					dispose();
+	        	}
+	        });
+			contentPane.add(btnAtras);
 		
-		btnAtras = new JButton("Atrás");
-		btnAtras.setBounds(287, 238, 117, 29);
-		btnAtras.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		Panel_usuario usu = new Panel_usuario(cp);
-				usu.setVisible(true);
-				dispose();
-        	}
-        });
-		contentPane.add(btnAtras);
 		
 	}
 }
