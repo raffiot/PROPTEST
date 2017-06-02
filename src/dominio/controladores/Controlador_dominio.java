@@ -173,6 +173,7 @@ public class Controlador_dominio {
 	
 	public void selecionnarEncuesta(String s){
 		currentEnc = encuestas.selecE(s);
+		currentRespin = new RespuestaEncuesta();
 	}
 	
 	public void update(){
@@ -657,5 +658,9 @@ public class Controlador_dominio {
 		respuestas.addResp(currentRespin);
 		respuestas.guardarResp();
 		
+	}
+	
+	public boolean comprovar(){
+		return currentRespin.getRespPreguntas().size() == currentEnc.getN_preguntas();
 	}
 }

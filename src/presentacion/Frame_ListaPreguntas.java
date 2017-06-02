@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -65,10 +66,16 @@ public class Frame_ListaPreguntas extends JFrame {
 		JButton btnNewButton_1 = new JButton("Guardar y salir");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				cp.guardarRespUsuario();
-				Panel_usuario ven = new Panel_usuario(cp);
-				ven.setVisible(true);
-				dispose();
+				if(!cp.comprovar()){
+					JOptionPane.showMessageDialog(null, "Inacabada ","Error", JOptionPane.ERROR_MESSAGE);
+				}
+				else{
+					cp.guardarRespUsuario();
+					Panel_usuario ven = new Panel_usuario(cp);
+					ven.setVisible(true);
+					dispose();
+				}
+				
 			}
 		});
 		btnNewButton_1.setBounds(285, 400, 153, 23);

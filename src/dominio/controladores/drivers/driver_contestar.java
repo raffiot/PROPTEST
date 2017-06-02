@@ -147,11 +147,11 @@ public class driver_contestar {
 		//COMAND USED TO CREATE FIRST RESPUESTAS.DAT
 		/**
 		Cjt_respuestas cr = new Cjt_respuestas();
-		cr.leerResp();
+		//cr.leerResp();
 		RespuestaEncuesta re = new RespuestaEncuesta(e, "Marina", rp);
-		cr.addResp(e.getId(), re);
-		cr.guardarResp();
-		*/
+		cr.addResp(re);
+		cr.guardarResp();*/
+		
 		System.out.println("Encuesta finalizada. Gracias por particpar!");
 
     }

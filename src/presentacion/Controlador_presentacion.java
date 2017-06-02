@@ -247,4 +247,8 @@ public class Controlador_presentacion {
 		cd.guardarRespUsuario();
 		
 	}
+
+	public boolean comprovar() {
+		return cd.comprovar();
+	}
 }
