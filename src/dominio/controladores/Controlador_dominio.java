@@ -512,7 +512,7 @@ public class Controlador_dominio {
 			}
 			s+="Pregunta "+i+": "+p.getEnunciado()+"\n";
 			for(String resp : resPropocion.keySet()){
-				s+="	"+(resPropocion.get(resp)/nb)+"% -> "+resp;
+				s+="	"+(resPropocion.get(resp)/nb)*100+"% -> "+resp;
 			}
 			s+="\n";
 		}
