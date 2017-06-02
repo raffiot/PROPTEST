@@ -602,11 +602,11 @@ public class Controlador_dominio {
 		return currentUsu;
 	}
 
-
-
-
-
 	public void setCurrentUsu(String currentUsu) {
 		this.currentUsu = currentUsu;
+	}
+	
+	public void guardarResT1(Integer value, Integer numPreg){
+		
 	}
 }
