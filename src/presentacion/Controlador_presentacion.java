@@ -226,4 +226,12 @@ public class Controlador_presentacion {
 	public void guardarResT1(Integer value,Integer numPreg){
 		cd.guardarResT1(value,numPreg);
 	}
+	
+	public void guardarResT2(String value,Integer numPreg){
+		cd.guardarResT2(value,numPreg);
+	}
+	
+	public void guardarResT3(String value,Integer numPreg){
+		cd.guardarResT2(value,numPreg);
+	}
 }
