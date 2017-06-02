@@ -353,4 +353,8 @@ public class RespuestaEncuesta implements Serializable{
 	        }
 	}
 	
+	public void anadir_respuesta(Integer i, RespuestaPregunta r){
+		respPreguntas.add(i, r);
+	}
+	
 }

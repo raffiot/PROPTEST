@@ -99,7 +99,7 @@ public class Frame_listaEnc extends JFrame {
 		});
 		contentPane.add(btnResponder);
 		
-		btnAtras = new JButton("Atrás");
+		btnAtras = new JButton("Atras");
 		btnAtras.setBounds(287, 238, 117, 29);
 		btnAtras.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
