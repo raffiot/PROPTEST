@@ -2,6 +2,7 @@ package presentacion;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -50,8 +51,10 @@ public class Frame_ResponderT4 extends JFrame {
 	}
 	
 	public void init(){
-		setSize(400, 600);
+		setSize(600, 500);
+		setLocationRelativeTo(null);
 		ArrayList<String> items = cp.getopcionest4(numPreg);
+		sp4 = new ArrayList<String>();
 		int [] selected = new int[items.size()];
 		
 		JButton btnGuardar = new JButton("Guardar");
@@ -64,6 +67,10 @@ public class Frame_ResponderT4 extends JFrame {
         			}
         		}
         		cp.guardarResT4(sp4,numPreg); //no esta hecho
+        		JOptionPane.showMessageDialog(null, "¡Respuestas guardadas!","Success", JOptionPane.INFORMATION_MESSAGE);
+				Frame_ListaPreguntas p = new Frame_ListaPreguntas(cp);
+				p.setVisible(true);
+				dispose();
         	}
         });
 		getContentPane().setLayout(null);

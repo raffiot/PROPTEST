@@ -29,20 +29,6 @@ public class Frame_listaEnc extends JFrame {
 	private JButton btnResponder;
 	private JButton btnAtras;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Frame_contestar frame = new Frame_contestar();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	
 	/**
 	 * Create the application.
 	 */
@@ -54,6 +40,7 @@ public class Frame_listaEnc extends JFrame {
 	}
 	
 	public void initialize(){
+		setSize(600, 500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -78,29 +65,27 @@ public class Frame_listaEnc extends JFrame {
 		getContentPane().add(jsp);
 		
 		btnResponder = new JButton("Responder");
-		btnResponder.setBounds(65, 238, 117, 29);
+		btnResponder.setBounds(287, 238, 117, 29);
+		btnResponder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cp.selecionnarEncuesta(s);
+				s = cp.getE(Integer.parseInt(s));
+				Frame_ListaPreguntas respuesta = new Frame_ListaPreguntas(cp);
+				respuesta.setVisible(true);
+				dispose();
+			}
+		});
 		list.addMouseListener(new MouseAdapter() {
 		    public void mouseClicked(MouseEvent evt) {
 				JList list = (JList)evt.getSource();
-				if (evt.getClickCount() == 1) {
 		            s = (String) list.getSelectedValue();
 					s = s.substring(0,1);
-			    }
-				btnResponder.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						cp.selecionnarEncuesta(s);
-						s = cp.getE(Integer.parseInt(s));
-						Frame_ListaPreguntas respuesta = new Frame_ListaPreguntas(cp);
-						respuesta.setVisible(true);
-						dispose();
-					}
-				});
 		    }
 		});
 		contentPane.add(btnResponder);
 		
 		btnAtras = new JButton("Atras");
-		btnAtras.setBounds(287, 238, 117, 29);
+		btnAtras.setBounds(65, 238, 117, 29);
 		btnAtras.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		Panel_usuario usu = new Panel_usuario(cp);

@@ -629,6 +629,7 @@ public class Controlador_dominio {
 	public void guardarResT3(String value, Integer numPreg){
 		Pregunta p = currentEnc.get_pre(numPreg+1);
 		RespuestaPregunta r = new Respuesta_3(p,value);
+		//System.out.println();
 		currentRespin.anadir_respuesta(numPreg, r);
 		
 	}
@@ -644,5 +645,17 @@ public class Controlador_dominio {
 		Pregunta p = currentEnc.get_pre(numPreg+1);
 		RespuestaPregunta r = new Respuesta_5(p,value);
 		currentRespin.anadir_respuesta(numPreg, r);
+	}
+
+
+
+
+
+	public void guardarRespUsuario() {
+		currentRespin.setNombre(currentUsu);
+		currentRespin.setEncuesta(currentEnc);
+		respuestas.addResp(currentRespin);
+		respuestas.guardarResp();
+		
 	}
 }

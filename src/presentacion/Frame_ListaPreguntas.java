@@ -54,7 +54,7 @@ public class Frame_ListaPreguntas extends JFrame {
 		btnNewButton.setBounds(15, 400, 93, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Frame_admin ven = new Frame_admin(cp);
+				Panel_usuario ven = new Panel_usuario(cp);
 				ven.setVisible(true);
 				dispose();
 			}
@@ -63,6 +63,14 @@ public class Frame_ListaPreguntas extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Guardar y salir");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cp.guardarRespUsuario();
+				Panel_usuario ven = new Panel_usuario(cp);
+				ven.setVisible(true);
+				dispose();
+			}
+		});
 		btnNewButton_1.setBounds(285, 400, 153, 23);
 	
 		contentPane.add(btnNewButton_1);
@@ -98,23 +106,28 @@ public class Frame_ListaPreguntas extends JFrame {
 					if (tipo == 1){
 					Frame_ResponderT1 ven = new Frame_ResponderT1 (cp,Integer.parseInt(s)-1);
 					ven.setVisible(true);
+					dispose();
 					}
 					
 					else if (tipo == 2){
 						Frame_ResponderT2 ven = new Frame_ResponderT2 (cp,Integer.parseInt(s)-1);
 						ven.setVisible(true);
+						dispose();
 						}
 					if (tipo == 3){
 						Frame_ResponderT3 ven = new Frame_ResponderT3 (cp,Integer.parseInt(s)-1);
 						ven.setVisible(true);
+						dispose();
 						}
 					if (tipo == 4){
 						Frame_ResponderT4 ven = new Frame_ResponderT4 (cp,Integer.parseInt(s)-1);
 						ven.setVisible(true);
+						dispose();
 						}
 					if (tipo == 5){
 						Frame_ResponderT5 ven = new Frame_ResponderT5 (cp,Integer.parseInt(s)-1);
 						ven.setVisible(true);
+						dispose();
 						}
 				
 		            

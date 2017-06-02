@@ -1,6 +1,7 @@
 package presentacion;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
@@ -45,6 +46,10 @@ public class Frame_ResponderT1 extends JFrame {
 		btnGuardar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		cp.guardarResT1(sp1,numPreg); //no esta hecho
+        		JOptionPane.showMessageDialog(null, "¡Respuestas guardadas!","Success", JOptionPane.INFORMATION_MESSAGE);
+				Frame_ListaPreguntas p = new Frame_ListaPreguntas(cp);
+				p.setVisible(true);
+				dispose();
         	}
         });
 		getContentPane().add(btnGuardar);
@@ -84,6 +89,7 @@ public class Frame_ResponderT1 extends JFrame {
 		JTextArea textArea = new JTextArea();
 		textArea.setBounds(30, 11, 380, 141);
 		getContentPane().add(textArea);
+		textArea.setEditable(false);
 		textArea.setText((numPreg+1)+". " +cp.getPre().get(numPreg));
 		
 		

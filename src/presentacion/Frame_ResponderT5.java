@@ -2,6 +2,7 @@ package presentacion;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -46,13 +47,18 @@ public class Frame_ResponderT5 extends JFrame {
 	}
 	
 	public void init(){
-		setSize(400, 600);
+		setSize(500, 400);
+		setLocationRelativeTo(null);
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.setBounds(292, 227, 117, 29);
 		btnGuardar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		sp5 = textField.getText();
         		cp.guardarResT5(sp5,numPreg); //no esta hecho
+        		JOptionPane.showMessageDialog(null, "¡Respuestas guardadas!","Success", JOptionPane.INFORMATION_MESSAGE);
+				Frame_ListaPreguntas p = new Frame_ListaPreguntas(cp);
+				p.setVisible(true);
+				dispose();
         	}
         });
 		getContentPane().setLayout(null);
@@ -75,6 +81,7 @@ public class Frame_ResponderT5 extends JFrame {
 		textField.setColumns(10);
 		
 		JTextArea textArea = new JTextArea();
+		textArea.setEditable(false);
 		textArea.setBounds(30, 11, 380, 119);
 		getContentPane().add(textArea);
 		textArea.setText((numPreg+1)+". " +cp.getPre().get(numPreg));

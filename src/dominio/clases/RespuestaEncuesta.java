@@ -356,5 +356,15 @@ public class RespuestaEncuesta implements Serializable{
 	public void anadir_respuesta(Integer i, RespuestaPregunta r){
 		respPreguntas.add(i, r);
 	}
+
+	public void setEncuesta(Encuesta encuesta) {
+		this.encuesta = encuesta;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	
 	
 }

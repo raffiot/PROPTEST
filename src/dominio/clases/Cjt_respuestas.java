@@ -30,7 +30,7 @@ public class Cjt_respuestas implements Serializable {
 		p.escribir(pathRespuestas,respuestas);
 	}
 	
-	public void addResp(Integer i, RespuestaEncuesta re){
+	public void addResp(RespuestaEncuesta re){
 		int index = re.getEncuesta().getId();
 		if(!respuestas.containsKey(index)){
 			ArrayList<RespuestaEncuesta> listRE = new ArrayList<>();
@@ -39,6 +39,7 @@ public class Cjt_respuestas implements Serializable {
 			respuestas.put(index, ra);
 		}
 		else{
+			respuestas.get(index).getListRP().removeIf(respEnc -> respEnc.getNombre().equals(re.getNombre()));
 			respuestas.get(index).addRespuestaEncuesta(re);
 		}
 	}

@@ -65,8 +65,7 @@ public class Panel_usuario extends JFrame {
 	 */
 	public void init() {
 		
-		
-		
+		setSize(500, 500);		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -78,6 +77,7 @@ public class Panel_usuario extends JFrame {
 
 		
 		btnSalir = new JButton("Salir");
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnSalir, -196, SpringLayout.EAST, contentPane);
 		GridBagConstraints gbc_btnSalir = new GridBagConstraints();
 		gbc_btnSalir.insets = new Insets(0, 0, 0, 5);
 		gbc_btnSalir.gridx = 4;
@@ -94,9 +94,9 @@ public class Panel_usuario extends JFrame {
 		});
 		
 		btnAtras = new JButton("Atras");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, btnSalir, 6, SpringLayout.SOUTH, btnAtras);
-		sl_contentPane.putConstraint(SpringLayout.EAST, btnSalir, 0, SpringLayout.EAST, btnAtras);
-		sl_contentPane.putConstraint(SpringLayout.WEST, btnAtras, 169, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnSalir, 5, SpringLayout.SOUTH, btnAtras);
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnSalir, 10, SpringLayout.WEST, btnAtras);
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnAtras, 153, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.EAST, btnAtras, -196, SpringLayout.EAST, contentPane);
 		GridBagConstraints gbc_btnAtras = new GridBagConstraints();
 		gbc_btnAtras.insets = new Insets(0, 0, 0, 5);

@@ -29,20 +29,6 @@ public class Frame_listaEncNoAcabadas extends JFrame {
 	private JButton btnResponder;
 	private JButton btnAtras;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Frame_contestar frame = new Frame_contestar();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	
 	/**
 	 * Create the application.
 	 */
@@ -54,6 +40,7 @@ public class Frame_listaEncNoAcabadas extends JFrame {
 	}
 	
 	public void initialize(){
+		setSize(600, 500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
