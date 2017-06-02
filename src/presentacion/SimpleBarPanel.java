@@ -1,5 +1,6 @@
 package presentacion;
 import java.awt.*;
+
 import javax.swing.*;
 
 public class SimpleBarPanel extends JPanel {
@@ -28,8 +29,13 @@ public class SimpleBarPanel extends JPanel {
     
     @Override
 	public Dimension getPreferredSize(){
-		return new Dimension(437,290);
-    	
+		
+		if(inputData != null){
+    		return new Dimension(130 + 80 * inputData.length +10,250);
+    	}
+		else{
+			return new Dimension(400,250);
+		}
     }
 
     private void drawBars(final Graphics g) {
@@ -65,7 +71,7 @@ public class SimpleBarPanel extends JPanel {
         
         g.setFont(new Font("test",Font.BOLD,15));
         g.setColor(TEXT_COLOR);
-        g.drawString("Distancia entre el centroid y sus respuestas", 10, 10);
+        g.drawString("Distancia entre el centroid y sus respuestas:", 10, 15);
         g.setFont(new Font("test",Font.PLAIN,15));
         g.drawString("0.0", OUTER_MARGIN-20, BOTTOM_GRAF+13);//FIRST INDICATION
         for(int i =1;i<11;i++){

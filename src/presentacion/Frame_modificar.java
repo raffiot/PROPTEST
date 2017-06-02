@@ -53,6 +53,7 @@ public class Frame_modificar extends JFrame {
 	 */
 	Frame_modificar(){
 		setForeground(new Color(204, 255, 204));
+		setLocationRelativeTo(null);
 		setTitle("Modificar Encuesta");
 		init();
 		
@@ -86,7 +87,8 @@ public class Frame_modificar extends JFrame {
 		btnNewButton_1.setBounds(280, 400, 153, 23);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (!textField.equals("")){
+				if (!textField.getText().equals("")){
+					
 					String s = textField.getText();
 					cp.setGenero(s);
 					Frame_admin ven = new Frame_admin(cp);

@@ -76,7 +76,7 @@ public class Frame_encuestas  extends JFrame {
 		setBounds(100, 100, 450, 308);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
-		
+		setLocationRelativeTo(null);
 		list = new JList<String>();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		getContentPane().add(list);

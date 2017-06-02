@@ -18,12 +18,6 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreeSelectionModel;
 
-import dominio.clases.Cluster;
-import dominio.clases.Encuesta;
-import dominio.clases.RespuestaEncuesta;
-import dominio.clases.Resultado;
-import dominio.controladores.Controlador_dominio;
-
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
@@ -83,7 +77,14 @@ public class Frame_MonstrarResultado extends JFrame {
 		contentPane.add(jsp);
 		
 		sbp = new SimpleBarPanel();
-		sbp.setBounds(220, 220, 437, 290);
+		//sbp.setBounds(220, 220, 437, 290);
+		//getContentPane().add(sbp);
+		//sbp.setVisible(false);
+		JScrollPane jspGraf = new JScrollPane(sbp);
+		jspGraf.setBounds(220, 220, 437, 280);
+		getContentPane().add(jspGraf);
+		jspGraf.setVisible(false);
+		
 		
 		DefaultMutableTreeNode top = new DefaultMutableTreeNode("Resultado");
 		createNodes(top);
@@ -118,7 +119,8 @@ public class Frame_MonstrarResultado extends JFrame {
 						}
 						double[] datat ={0.09};
 						sbp.setSimpleBarPanel(dataD, dataS);
-						getContentPane().add(sbp);
+						//sbp.setVisible(true);
+						jspGraf.setVisible(true);
 						sbp.repaint();
 						/**
 						JScrollPane jspGraf = new JScrollPane(sbp);
@@ -153,12 +155,16 @@ public class Frame_MonstrarResultado extends JFrame {
 						String s = cp.getREinfo("re", nodeInfo.substring(13));
 						textArea.setText(nodeInfo+"\n"+s);
 						jsp.setBounds(220, 11, 440, 495);
+						//sbp.setVisible(false);
+						jspGraf.setVisible(false);
 						
 					}
 					else if(nodeInfo.substring(0, 9).equals("Resultado")){
 						String s = cp.getRespuestasDistrib();
 						textArea.setText(nodeInfo+"\n"+s);
 						jsp.setBounds(220, 11, 440, 495);
+						//sbp.setVisible(false);
+						jspGraf.setVisible(false);
 					}
 				}
 			}
