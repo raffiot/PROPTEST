@@ -16,7 +16,10 @@ public class Controlador_dominio {
 		private Cjt_users users;
 		private Cjt_resultados resultados;
 		private Cjt_respuestas respuestas;
+		private Cjt_respuestas_in res_inac;
 		
+		
+		private String currentUsu;
 		private Encuesta currentEnc;
 		private Analisis currentAna;
 		private Resultado currentResu;
@@ -33,6 +36,8 @@ public class Controlador_dominio {
 		cargar_resultados();
 		respuestas = new Cjt_respuestas();
 		cargar_respuestas();
+		
+		
 	}
 		
 		
@@ -47,6 +52,11 @@ public class Controlador_dominio {
 		//Salvaguardar que usuario somos
 		boolean find = users.identification(username, password);
 		if(find){
+			currentUsu = username;
+			if (users.getType(username) == 1){
+				res_inac = new Cjt_respuestas_in(username);
+				cargar_respuestas_in();
+			}
 			return users.getType(username);
 		}
 		return -1;
@@ -100,6 +110,11 @@ public class Controlador_dominio {
 	
 	private void cargar_respuestas() {
 		respuestas.leerResp();
+		
+	}
+	
+	private void cargar_respuestas_in() {
+		res_inac.leerResp();
 		
 	}
 	
@@ -566,5 +581,21 @@ public class Controlador_dominio {
 	
 	public ArrayList<String> getListNoAcabadas(){
 		return new ArrayList<String>();
+	}
+
+
+
+
+
+	public String getCurrentUsu() {
+		return currentUsu;
+	}
+
+
+
+
+
+	public void setCurrentUsu(String currentUsu) {
+		this.currentUsu = currentUsu;
 	}
 }

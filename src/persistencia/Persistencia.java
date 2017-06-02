@@ -13,6 +13,7 @@ import dominio.clases.Persona;
 public abstract class Persistencia<T> {
 	
 	public abstract T leer(String path);
+	
 	public void escribir(String path,T obj){
 		try {
             //Se crea un Stream para guardar archivo

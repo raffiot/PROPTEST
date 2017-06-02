@@ -265,7 +265,14 @@ public class Frame_contestar extends JFrame implements ActionListener{
                 txt_t5 = new JTextField();
                 txt_t5.setBounds(96, 313, 284, 26);
                 txt_t5.setColumns(10);
-                JButton btnTipo = new JButton("tipo5");
+                int index = i;
+                txt_t5.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent e) {
+						respPreg[index] = txt_t5.getText();
+						
+					}
+                });
+                /*JButton btnTipo = new JButton("tipo5");
                 btnTipo.setBounds(81, 291, 117, 29);
                 contentPane.add(btnTipo);
                 int index = i;
@@ -276,7 +283,8 @@ public class Frame_contestar extends JFrame implements ActionListener{
 	            		
 	            	}
 	            });
-	            btnTipo.setBounds(500,y , z, w);
+	            btnTipo.setBounds(500,y , z, w);*/
+                
                 contentPane.add(txt_t5);
                 }
                 
@@ -336,7 +344,7 @@ public class Frame_contestar extends JFrame implements ActionListener{
         btnGuardar.setBounds(173, 411, 117, 29);
         contentPane.add(btnGuardar);
         
-        JButton btnAtras = new JButton("Atrás");
+        JButton btnAtras = new JButton("Atras");
         btnAtras.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		Panel_usuario usu = new Panel_usuario(cp);

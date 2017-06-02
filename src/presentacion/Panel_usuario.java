@@ -119,6 +119,7 @@ public class Panel_usuario extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Frame_listaEnc mostrar = new Frame_listaEnc(cp);
 				mostrar.setVisible(true);
+				dispose();
 			}
 		});
 		contentPane.add(btnResponderEncuesta);
