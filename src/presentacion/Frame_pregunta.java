@@ -1,8 +1,5 @@
 package presentacion;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -13,27 +10,18 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Frame que muestra el enunciado de la pregunta que puedes modificar
+ * 
+ * @author Miguel
+ *
+ */
 public class Frame_pregunta extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Controlador_presentacion cp;
 	private int i;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Frame_pregunta frame = new Frame_pregunta();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -43,12 +31,24 @@ public class Frame_pregunta extends JFrame {
 		
 	}
 	
+	/**
+	 * Creadora con el Controlador_presentacion para utilizar sus funcionnes
+	 * y el numero de la pregunta que se esta modificando.
+	 * 
+	 * @param cp
+	 * 		el controlador presentacion para la applicacion
+	 * @param i
+	 * 		el index de la pregunta que se modifica
+	 */
 	Frame_pregunta(Controlador_presentacion cp, int i){
 		this.cp = cp;
 		this.i = i;
 		init();
 	}
 	
+	/**
+	 * Metodo que dibuja la frame con sus buttones y sus ActionListener
+	 */
 	public void init(){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 592, 186);

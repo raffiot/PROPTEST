@@ -1,49 +1,34 @@
 package presentacion;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.util.Hashtable;
-import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTree;
-
-import dominio.clases.*;
-import dominio.controladores.Controlador_dominio;
 
 import javax.swing.JSlider;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Frame para definir los parametros de la analisis : el threshold, la k y la idioma.
+ * @author Raphael
+ *
+ */
 public class Frame_analisis extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Controlador_presentacion cp;
 	private JSlider sliderk;
 	private JSlider sliderthresh;
 	private JComboBox<String> comboBoxIdioma;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Frame_analisis frame = new Frame_analisis();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -52,11 +37,20 @@ public class Frame_analisis extends JFrame {
 		init();
 	}
 	
+	/**
+	 * Creadora con el Controlador_presentacion para utilizar sus funcionnes
+	 * 
+	 * @param cp
+	 * 		el controlador presentacion para la applicacion
+	 */
 	public Frame_analisis(Controlador_presentacion cp){
 		this.cp = cp;
 		init();
 	}
 	
+	/**
+	 * Metodo que dibuja la frame con sus buttones y sus ActionListener
+	 */
 	public void init() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

@@ -1,13 +1,8 @@
 package presentacion;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.EventQueue;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
-import javafx.embed.swing.JFXPanel;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,7 +10,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreeSelectionModel;
 
 import javax.swing.JOptionPane;
@@ -27,27 +21,23 @@ import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Frame que muestra el resultado de la analisis con sus clusters, 
+ * distancia dentro de cada cluster, distribucion de las respuestas etc...
+ * 
+ * @author Raphael
+ *
+ */
 public class Frame_MonstrarResultado extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Controlador_presentacion cp;
 	private String state;
 	private SimpleBarPanel sbp;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Frame_MonstrarResultado frame = new Frame_MonstrarResultado();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -57,12 +47,25 @@ public class Frame_MonstrarResultado extends JFrame {
 		init();
 	}
 	
+	/**
+	 * Creadora con el Controlador_presentacion para utilizar sus funcionnes 
+	 * y con la varible state qui indique de donde viene el usuario para saber si puede guardar el resultado, volver etc..
+	 * 
+	 * @param cp
+	 * 		el controlador presentacion para la applicacion
+	 * @param state
+	 * 		Varible que inidice de que frame precedente viene el usuario
+	 * 		puede tener dos values from_analizar o from_menu
+	 */
 	public Frame_MonstrarResultado(Controlador_presentacion cp,String state){
 		this.cp = cp;
 		this.state = state;
 		init();
 	}
 	
+	/**
+	 * Metodo que dibuja la frame con sus buttones y sus ActionListener
+	 */
 	public void init() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 702, 606);
@@ -77,9 +80,6 @@ public class Frame_MonstrarResultado extends JFrame {
 		contentPane.add(jsp);
 		
 		sbp = new SimpleBarPanel();
-		//sbp.setBounds(220, 220, 437, 290);
-		//getContentPane().add(sbp);
-		//sbp.setVisible(false);
 		JScrollPane jspGraf = new JScrollPane(sbp);
 		jspGraf.setBounds(220, 220, 437, 280);
 		getContentPane().add(jspGraf);
@@ -97,11 +97,6 @@ public class Frame_MonstrarResultado extends JFrame {
 				DefaultMutableTreeNode node = (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
 				if(node != null){
 					String nodeInfo = (String) node.getUserObject();
-	
-					/**
-					System.out.println(nodeInfo.substring(0, 7));
-					System.out.println(nodeInfo.substring(8));
-					System.out.println(nodeInfo.substring(13));*/
 					if(nodeInfo.substring(0, 7).equals("Cluster")){
 						String s = nodeInfo+":\n"+cp.getREinfo("c",nodeInfo.substring(8));
 						textArea.setText(s);
@@ -117,37 +112,9 @@ public class Frame_MonstrarResultado extends JFrame {
 							dataS[index] = name;
 							index++;
 						}
-						double[] datat ={0.09};
 						sbp.setSimpleBarPanel(dataD, dataS);
-						//sbp.setVisible(true);
 						jspGraf.setVisible(true);
 						sbp.repaint();
-						/**
-						JScrollPane jspGraf = new JScrollPane(sbp);
-						jspGraf.setBounds(220, 220, 437, 280);
-						
-						getContentPane().add(jspGraf);
-						getContentPane().revalidate();
-						getContentPane().repaint();*/
-						/**
-						JScrollPane jspGraf = new JScrollPane(sbp, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-						jspGraf.add(sbp);
-						jspGraf.setBounds(220, 220, 437, 280);
-						getContentPane().add(jspGraf);*/
-						//sbp.setMinimumSize(new Dimension(437, 280));
-						//sbp.setVisible(true);
-						//sbp.setPreferredSize(new Dimension(600, 600));
-						//JScrollPane jspGraf = new JScrollPane(sbp);
-						//jspGraf.setBounds(220, 220, 437, 280);
-						//getContentPane().add(jspGraf);
-						//sbp.setBounds(220, 220, 437, 280);
-						//getContentPane().add(sbp);*/
-						
-						/**
-						sbp.setVisible(true);
-						JScrollPane jspGraf = new JScrollPane(sbp);
-						jspGraf.setBounds(220, 220, 437, 280);
-						getContentPane().add(jspGraf);*/
 						
 						
 					}
@@ -155,7 +122,6 @@ public class Frame_MonstrarResultado extends JFrame {
 						String s = cp.getREinfo("re", nodeInfo.substring(13));
 						textArea.setText(nodeInfo+"\n"+s);
 						jsp.setBounds(220, 11, 440, 495);
-						//sbp.setVisible(false);
 						jspGraf.setVisible(false);
 						
 					}
@@ -163,7 +129,6 @@ public class Frame_MonstrarResultado extends JFrame {
 						String s = cp.getRespuestasDistrib();
 						textArea.setText(nodeInfo+"\n"+s);
 						jsp.setBounds(220, 11, 440, 495);
-						//sbp.setVisible(false);
 						jspGraf.setVisible(false);
 					}
 				}
@@ -220,6 +185,12 @@ public class Frame_MonstrarResultado extends JFrame {
 		
 	}
 	
+	/**
+	 * Metodo para crear la hierarcia de cluster y respuestas a la encuesta.
+	 * 
+	 * @param top
+	 * 		La raiz del JTree
+	 */
 	private void createNodes(DefaultMutableTreeNode top) {
 		DefaultMutableTreeNode category = null;
 	    DefaultMutableTreeNode result = null;

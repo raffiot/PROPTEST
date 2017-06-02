@@ -1,30 +1,27 @@
 package presentacion;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.awt.TextArea;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.TitledBorder;
-
-import com.sun.javafx.geom.Rectangle;
-
 import javax.swing.JTextArea;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Component;
-import javax.swing.Box;
 import javax.swing.SpringLayout;
 
+/**
+ * Frame que muestra el contenido de una encuesta
+ * @author Miguel
+ *
+ */
 public class Frame_mostrar extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextArea txtArea;
 	private JScrollPane scroll;
@@ -32,33 +29,27 @@ public class Frame_mostrar extends JFrame {
 	private String encuesta;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Frame_mostrar frame = new Frame_mostrar();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
+	 * Creadora de la frame con sus contenido en formato string
+	 * 
+	 * 
+	 * @param s
+	 * 		la encuesta en formato string
 	 */
 	public Frame_mostrar(String s){
 		this.encuesta = s;
 		init();
 	}
+	/**
+	 * Create the frame.
+	 */
 	public Frame_mostrar(){
 		
 		init();
 	}
 	
+	/**
+	 * Metodo que dibuja la frame con sus buttones y sus ActionListener
+	 */
 	public void init() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 483, 471);

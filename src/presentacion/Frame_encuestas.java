@@ -1,18 +1,13 @@
 package presentacion;
 
-import java.awt.EventQueue;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
-import dominio.clases.Encuesta;
-import dominio.controladores.Controlador_dominio;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollBar;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -21,38 +16,31 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 
 import java.awt.Font;
-import java.awt.Component;
 
-import javax.swing.Box;
 import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Frame que muestra todas las encuestas y permite seleccionar una para borrar la, modificar la o analizar la.
+ * 
+ * @author Miguel
+ * @author Raphael
+ *
+ */
 public class Frame_encuestas  extends JFrame {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Controlador_presentacion cp;
 	private String state;
 	private JButton btnBorrarAnalizar;
 	private JButton mod;
 	private JList<String> list;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Frame_encuestas frame = new Frame_encuestas();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
@@ -61,6 +49,16 @@ public class Frame_encuestas  extends JFrame {
 		initialize();
 	}
 	
+	/**
+	 * Creadora con el Controlador_presentacion para utilizar sus funcionnes
+	 * y con la varible state qui indique de donde viene el usuario para saber donde va el usuario con el button siguiente etc...
+	 * 
+	 * @param cp
+	 * 		el controlador presentacion para la applicacion
+	 * @param state
+	 * 		Varible que inidice de que frame precedente viene el usuario
+	 * 		puede tener dos values borrar o analizar o modificar
+	 */
 	public Frame_encuestas(Controlador_presentacion cp, String state) {
 		this.cp = cp;
 		this.state = state;
