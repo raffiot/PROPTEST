@@ -55,6 +55,7 @@ public class Frame_ListaPreguntas extends JFrame {
 		btnNewButton.setBounds(15, 400, 93, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				cp.reiniciar();
 				Panel_usuario ven = new Panel_usuario(cp);
 				ven.setVisible(true);
 				dispose();

@@ -40,5 +40,9 @@ public class Cjt_respuestas_in {
 	public HashMap<Integer, RespuestaEncuesta> getRespuestas() {
 		return respuestas_in;
 	}	
+	
+	public void addRespEnc(Integer n, RespuestaEncuesta re){
+		respuestas_in.put(n, re);
+	}
 
 }

@@ -251,4 +251,9 @@ public class Controlador_presentacion {
 	public boolean comprovar() {
 		return cd.comprovar();
 	}
+
+	public void reiniciar() {
+		cd.reiniciar();
+		
+	}
 }

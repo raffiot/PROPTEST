@@ -663,4 +663,13 @@ public class Controlador_dominio {
 	public boolean comprovar(){
 		return currentRespin.getRespPreguntas().size() == currentEnc.getN_preguntas();
 	}
+
+
+
+
+
+	public void reiniciar() {
+		currentRespin = new RespuestaEncuesta();
+		
+	}
 }
