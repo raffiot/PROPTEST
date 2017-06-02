@@ -39,6 +39,7 @@ public class SimpleBarPanel extends JPanel {
     }
 
     private void drawBars(final Graphics g) {
+		super.paintComponent(g);
         int /*i,*/ OUTER_MARGIN = 50,
                 WIDTH = 400 + 2 * OUTER_MARGIN,
                 HEIGHT = 300 + 2 * OUTER_MARGIN,
@@ -58,10 +59,13 @@ public class SimpleBarPanel extends JPanel {
         g.drawLine(OUTER_MARGIN-10, BOTTOM_GRAF,OUTER_MARGIN + 80 * inputData.length +10 , BOTTOM_GRAF); //x axis
         g.setColor(BAR_COLOR);
         for (int itemIndex = 0; itemIndex < inputData.length; itemIndex++) {
-            final int x = OUTER_MARGIN+30 + 80 * itemIndex +10;
-            final int barHeight = -2 * inputData[itemIndex];
-            final int y = BOTTOM_GRAF;
+            int x = OUTER_MARGIN+30 + 80 * itemIndex +10;
+            int barHeight = 2 * inputData[itemIndex];
+            int y = BOTTOM_GRAF - 2 * inputData[itemIndex];
+            //int barHeight = -2 * inputData[itemIndex];
+            //int y = BOTTOM_GRAF;
             //final int y = [...y is calculated using barHeight; the higher the bar, the lower y should be...];
+            
             g.fillRect(x, y, barWidth, barHeight);
             
             g.setColor(TEXT_COLOR);

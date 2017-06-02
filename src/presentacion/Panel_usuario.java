@@ -25,10 +25,6 @@ import java.util.ArrayList;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.JList;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormSpecs;
-import com.jgoodies.forms.layout.RowSpec;
 import javax.swing.SpringLayout;
 
 public class Panel_usuario extends JFrame {

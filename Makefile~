@@ -7,9 +7,9 @@ all:
 
 clean:
 	rm src/dominio/clases/*.class src/dominio/controladores/drivers/*.class src/dominio/controladores/junit/*.class src/dominio/controladores/*.class src/presentacion/*.class
-run_orig:
-	java $(JFLAGS) dominio.clases.Main
 run:
+	java $(JFLAGS) dominio.clases.Main
+run_inteficie:
 	java $(JFLAGS) presentacion.principal
 run_AnalisisTest:
 	java $(JFLAGS) org.junit.runner.JUnitCore dominio.controladores.junit.AnalisisTest
