@@ -1,7 +1,5 @@
 package presentacion;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -9,48 +7,40 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.*;
-import javax.swing.border.*;
 
-import dominio.clases.Encuesta;
-import dominio.clases.RespuestaEncuesta;
-import dominio.controladores.Controlador_dominio;
-import dominio.controladores.Controlador_persistencia;
 
+/**
+ * Frame para monstrar las respuestas de una encuesta y seleccionar las para la analisis.
+ * 
+ * @author Raphael
+ *
+ */
 public class Frame_respuestas extends JFrame {
 
-	private JPanel contentPane;
+	private static final long serialVersionUID = 1L;
 	private Controlador_presentacion cp;
-	private JList list;
-	private JButton btnAnalizar;
+	
 	/**
-	 * Launch the application.
+	 * Creadora frame respuestas
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Frame_respuestas frame = new Frame_respuestas();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	public Frame_respuestas() {
 		init();
 	}
 	
+	/**
+	 * Creadora con el Controlador_presentacion para utilizar sus funcionnes
+	 * 
+	 * @param cp
+	 * 		el controlador presentacion para la applicacion
+	 */
 	public Frame_respuestas(Controlador_presentacion cp){
 		this.cp = cp;
 		init();
 	}
 	/**
-	 * Create the frame.
+	 * Metodo que dibuja la frame con sus buttones y sus ActionListener
 	 */
 	public void init() {
 		setBounds(100, 100, 450, 300);
@@ -142,19 +132,43 @@ public class Frame_respuestas extends JFrame {
 		getContentPane().add(btnSeleccionarTodo);
 	}
 	
+	/**
+	 * Inner class to implement a checkbox of the list
+	 * 
+	 * @author Raphael
+	 *
+	 */
 	class CheckListItem {
 
 		  private String label;
 		  private boolean isSelected = false;
-
+		  
+		  /**
+		   * Creadora de la check box con su titulo
+		   * 
+		   * @param label
+		   * 	el titulo
+		   */
 		  public CheckListItem(String label) {
 		    this.label = label;
 		  }
-
+		  
+		  /**
+		   * Metodo para saber si la checkbox esta seleccionada
+		   * 
+		   * @return
+		   * 	boolean true si la box esta seleccionada, false sino
+		   */
 		  public boolean isSelected() {
 		    return isSelected;
 		  }
 
+		  /**
+		   * Metodo para cambiar la seleccion de la check box
+		   * 
+		   * @param isSelected
+		   * 	la nueva valor de seleccion de la checkbox
+		   */
 		  public void setSelected(boolean isSelected) {
 		    this.isSelected = isSelected;
 		  }
@@ -165,8 +179,22 @@ public class Frame_respuestas extends JFrame {
 		  }
 	}
 	
+	/**
+	 * Inner class that set the grafics of the list of checkboxes
+	 * 
+	 * @author Raphael
+	 *
+	 */
 	class CheckListRenderer extends JCheckBox implements ListCellRenderer {
-		  public Component getListCellRendererComponent(JList list, Object value,
+		  /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		
+		/**
+		 * Metodo que se crida cuando se dibuja la list de checkboxes.
+		 */
+		public Component getListCellRendererComponent(JList list, Object value,
 		      int index, boolean isSelected, boolean hasFocus) {
 		    setEnabled(list.isEnabled());
 		    setSelected(((CheckListItem) value).isSelected());

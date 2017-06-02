@@ -10,9 +10,22 @@ import java.util.ArrayList;
 import dominio.clases.Cjt_users;
 import dominio.clases.Persona;
 
+/**
+ * Clase para leer o escribir en binario una lista de usuarios y administradores.
+ * 
+ * @author Miguel
+ * @author Raphael
+ *
+ */
 public class Persistencia_User extends Persistencia<ArrayList<Persona>>{
 
-	
+	/**
+	 * Metodo para leer la lista de persona por el camino definido per path
+	 * 
+	 * @param path
+	 * 		el lugar donde se lea el objeto
+	 */
+	@Override
 	public ArrayList<Persona> leer(String path){
 		ArrayList<Persona> ap =null;
 		try {

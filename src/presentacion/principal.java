@@ -15,6 +15,13 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+/**
+ * La classe Principal es la main para empezar con la applicacion
+ * Se muestra la primera frame de identificacion.
+ * 
+ * @author Miguel
+ * @author Raphael							
+ */
 public class principal {
 
 	public JFrame frame;
@@ -39,11 +46,18 @@ public class principal {
 	}
 
 	/**
-	 * Create the application.
+	 * Creadora frame pricipal
 	 */
 	public principal() {
 		initialize();
 	}
+	
+	/**
+	 * Creadora que se utiliza para volver de la frame_register con el Controlador_presentacion
+	 * 
+	 * @param cd
+	 * 		el controlador presentacion para la applicacion
+	 */
 	public principal(Controlador_presentacion cd){
 		initialize();
 		this.cp = cd;

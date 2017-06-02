@@ -1,48 +1,30 @@
 package presentacion;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-
-
-import java.awt.GridBagLayout;
-
 import javax.swing.JButton;
-
-import java.awt.GridBagConstraints;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Insets;
-import java.awt.Window;
 
-import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 import java.awt.Font;
 
+/**
+ * Frame menu de operacion del administrador, puede eligir entre analizar y gestionnar las encuestas.
+ * 
+ * @author Miguel
+ * @author Raphael
+ *
+ */
 public class Frame_admin extends JFrame {
 
+
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Controlador_presentacion cp;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Frame_admin frame = new Frame_admin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -51,12 +33,21 @@ public class Frame_admin extends JFrame {
 		init();
 	}
 	
+	/**
+	 * Creadora con el Controlador_presentacion para utilizar sus funcionnes
+	 * 
+	 * @param cp
+	 * 		el controlador presentacion para la applicacion
+	 */
 	public Frame_admin(Controlador_presentacion cd) {
 		init();
 		this.cp  = cd;
 		
 	}
 	
+	/**
+	 * Metodo que dibuja la frame con sus buttones y sus ActionListener
+	 */
 	public void init() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 589, 455);

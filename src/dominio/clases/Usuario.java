@@ -12,13 +12,25 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
+/**
+ * Clase que representa un usuario, el usuario solamente puede responder a encuestas.
+ * 
+ * @author Miguel
+ * @author Marina
+ * @author Raphael
+ *
+ */
 public class Usuario extends Persona implements Serializable{
+
 	private HashMap<Integer,ArrayList<RespuestaPregunta>> EncuestaNoAcabada;
 	
 	/**
-	 * Constructor vacio de un participante
+	 * Constructor de un participante
 	 *
+	 * @param username
+	 * 		el nombre del usuario
+	 * @param password
+	 * 		la contrasena del usuario
 	 */
 	public Usuario(String username, String password){
 		super(username,password,1);

@@ -1,19 +1,29 @@
 package persistencia;
 
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 
-import dominio.clases.Persona;
-import dominio.clases.RespuestaEncuesta;
 import dominio.clases.Respuesta_Analisis;
 
+/**
+ * Clase para leer o escribir en binario una lista de respuestas a encuestas organizadas per encuestas
+ * 
+ * HashMap<Integer, Respuesta_Analisis> -> el Integer corresponde al index de la encuesta,
+ * la Respuesta_Analisis es un conjunto de respuestas a la encuesta
+ * 
+ * @author Miguel
+ * @author Raphael
+ *
+ */
 public class Persistencia_Respuesta extends Persistencia<HashMap<Integer, Respuesta_Analisis>>{
 
+	/**
+	 * Metodo para leer la lista de respuestas a encuesta ordenadas por el camino definido per path
+	 * 
+	 * @param path
+	 * 		el lugar donde se lea el objeto
+	 */
 	@Override
 	public HashMap<Integer, Respuesta_Analisis> leer(String path) {
 		HashMap<Integer, Respuesta_Analisis> hm =null;

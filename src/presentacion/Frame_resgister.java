@@ -1,15 +1,11 @@
 package presentacion;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import dominio.controladores.Controlador_dominio;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -18,8 +14,20 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 
+/**
+ * Frame para registarse al sistema como usuario o administrador
+ * la contrasena de administrador es Borja
+ * 
+ * @author Miguel
+ * @author Raphael
+ *
+ */
 public class Frame_resgister extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Controlador_presentacion cp;
 	private JPanel contentPane;
 	private JTextField field1;
@@ -29,21 +37,7 @@ public class Frame_resgister extends JFrame {
 	private JRadioButton rdusu;
 	private JPasswordField fieldSecretPass;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Frame_resgister frame = new Frame_resgister();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
@@ -52,10 +46,20 @@ public class Frame_resgister extends JFrame {
 		init();
 	}
 	
+	/**
+	 * Creadora con el Controlador_presentacion para utilizar sus funcionnes
+	 * 
+	 * @param cp
+	 * 		el controlador presentacion para la applicacion
+	 */
 	public Frame_resgister(Controlador_presentacion cd){
 		this.cp = cd;
 		init();
 	}
+	
+	/**
+	 * Metodo que dibuja la frame con sus buttones y sus ActionListener
+	 */
 	public void init() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -68,7 +72,7 @@ public class Frame_resgister extends JFrame {
 		lblNombre.setBounds(77, 27, 93, 14);
 		contentPane.add(lblNombre);
 		
-		JLabel lblContrasea = new JLabel("Contrase\u00F1a");
+		JLabel lblContrasea = new JLabel("Contrasena");
 		lblContrasea.setBounds(77, 64, 93, 14);
 		contentPane.add(lblContrasea);
 		

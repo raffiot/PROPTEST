@@ -1,6 +1,5 @@
 package presentacion;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JButton;
@@ -14,9 +13,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import dominio.controladores.Controlador_dominio;
-
-import javax.swing.JTree;
 
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -24,8 +20,18 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 
+/**
+ * Frame para importar una encuesta, la encuesta a importar debe estar en el formato especifico para que pueda leerse.
+ * 
+ * @author Miguel
+ *
+ */
 public class Frame_importar extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
     private JTextArea textArea;
@@ -34,35 +40,27 @@ public class Frame_importar extends JFrame {
     private Controlador_presentacion cp;
     private JButton btnNewButton;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Frame_importar frame = new Frame_importar();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
+    /**
+	 * Creadora con el Controlador_presentacion para utilizar sus funcionnes
+	 * 
+	 * @param cp
+	 * 		el controlador presentacion para la applicacion
 	 */
 	public Frame_importar(Controlador_presentacion cp){
 		this.cp = cp;
 		init();
 	}
 	
+	/**
+	 * Create the frame.
+	 */
 	public Frame_importar(){
 		init();
 	}
 	
-	
+	/**
+	 * Metodo que dibuja la frame con sus buttones y sus ActionListener
+	 */
 	public void init() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

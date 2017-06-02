@@ -11,6 +11,7 @@ import java.io.Serializable;
 
 public class Persona implements Serializable {
 	
+
 	String nombre;
 	String password;
 	int tipo;

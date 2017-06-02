@@ -1,9 +1,7 @@
 package dominio.clases;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
-import persistencia.Persistencia_Respuesta;
 import persistencia.Persistencia_Respuesta_in;
 
 public class Cjt_respuestas_in {
