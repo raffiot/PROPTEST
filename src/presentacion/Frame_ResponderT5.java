@@ -46,7 +46,7 @@ public class Frame_ResponderT5 extends JFrame {
 	}
 	
 	public void init(){
-		
+		setSize(400, 600);
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.setBounds(292, 227, 117, 29);
 		btnGuardar.addActionListener(new ActionListener() {
@@ -74,11 +74,10 @@ public class Frame_ResponderT5 extends JFrame {
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JEditorPane editorPane = new JEditorPane();
-		editorPane.setBounds(10, 41, 556, 59);
-		contentPane.add(editorPane);
-		editorPane.setEditable(false);
-		editorPane.setText(cp.getPre().get(numPreg));
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(30, 11, 380, 119);
+		getContentPane().add(textArea);
+		textArea.setText((numPreg+1)+". " +cp.getPre().get(numPreg));
 		
 
 	}

@@ -6,9 +6,12 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import dominio.clases.*;
 
@@ -25,6 +28,7 @@ public class Controlador_dominio {
 		private Analisis currentAna;
 		private Resultado currentResu;
 		private Respuesta_Analisis currentResp;
+		private RespuestaEncuesta currentRespin;
 		
 		
 		
@@ -607,22 +611,36 @@ public class Controlador_dominio {
 	}
 	
 	public void guardarResT1(Integer value, Integer numPreg){
-		//TODO!!!!
+		Pregunta p = currentEnc.get_pre(numPreg);
+		RespuestaPregunta r = new Respuesta_1(p,(double)value);
+		currentRespin.anadir_respuesta(numPreg, r);
 	}
 	
 	public void guardarResT2(String value, Integer numPreg){
-		//TODO!!!!
+		Pregunta p = currentEnc.get_pre(numPreg);
+		int k = getPosicion(p, value, numPreg);
+		RespuestaPregunta r = new Respuesta_2(p,k);
+		currentRespin.anadir_respuesta(numPreg, r);
+		
 	}
 	
 	public void guardarResT3(String value, Integer numPreg){
-		//TODO!!!!
+		Pregunta p = currentEnc.get_pre(numPreg);
+		RespuestaPregunta r = new Respuesta_3(p,value);
+		currentRespin.anadir_respuesta(numPreg, r);
+		
 	}
 	
 	public void guardarResT4(ArrayList<String> value, Integer numPreg){
-		//TODO!!!!
+		Pregunta p = currentEnc.get_pre(numPreg);
+		Set<String> set = new HashSet<String>(value);
+		RespuestaPregunta r = new Respuesta_4(p,set);
+		currentRespin.anadir_respuesta(numPreg, r);
 	}
 	
 	public void guardarResT5(String value, Integer numPreg){
-		//TODO!!!!
+		Pregunta p = currentEnc.get_pre(numPreg);
+		RespuestaPregunta r = new Respuesta_5(p,value);
+		currentRespin.anadir_respuesta(numPreg, r);
 	}
 }

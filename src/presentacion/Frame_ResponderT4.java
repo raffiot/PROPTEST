@@ -9,6 +9,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JEditorPane;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -17,12 +18,17 @@ import java.util.ArrayList;
 
 import javax.swing.JScrollBar;
 import javax.swing.JTextArea;
+import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerListModel;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import presentacion.Frame_respuestas.CheckListItem;
+import presentacion.Frame_respuestas.CheckListRenderer;
+
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 
@@ -44,11 +50,19 @@ public class Frame_ResponderT4 extends JFrame {
 	}
 	
 	public void init(){
+		setSize(400, 600);
+		ArrayList<String> items = cp.getopcionest4(numPreg);
+		int [] selected = new int[items.size()];
 		
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.setBounds(292, 227, 117, 29);
 		btnGuardar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		for(int i =0; i<items.size(); i++){
+        			if(selected[i] ==1){
+        				sp4.add(items.get(i));
+        			}
+        		}
         		cp.guardarResT4(sp4,numPreg); //no esta hecho
         	}
         });
@@ -66,40 +80,76 @@ public class Frame_ResponderT4 extends JFrame {
         });
 		getContentPane().add(btnCancelar);
 		
-		JEditorPane editorPane = new JEditorPane();
-		editorPane.setBounds(10, 41, 556, 59);
-		contentPane.add(editorPane);
-		editorPane.setEditable(false);
-		editorPane.setText(cp.getPre().get(numPreg));
 		
-		JList list = new JList<String>();
-		list.setBounds(18, 106, 414, 87);
-		list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		getContentPane().add(list);
-		ArrayList<String> e = new ArrayList<String>();
-		e = cp.getList();
-		DefaultListModel<String> aux = new DefaultListModel<String>();
-		for(int i = 0; i < e.size(); ++i){
-			aux.addElement(e.get(i));
+		
+		
+		CheckListItem[] itemList = new CheckListItem [items.size()];
+		for(int i = 0; i < items.size(); i++){
+			selected[i] = 0;
+			itemList[i] = new CheckListItem(items.get(i));
 		}
-		list.setModel(aux);
-		list.addMouseListener(new MouseAdapter() {
-		    public void mouseClicked(MouseEvent evt) {
-		        JList list = (JList)evt.getSource();
-		        if (evt.getClickCount() == 2) {
-		            // Double-click detected
-		            //int index = list.getSelectedIndex();
-		          
-		        	String s = (String) list.getSelectedValue();
-					s = s.substring(0,1);
-					s = cp.getE(Integer.parseInt(s));
-					Frame_mostrar ven = new Frame_mostrar(s);
-					ven.setVisible(true);
-					setLocationRelativeTo(null);
-		          
-		        }
-		    }
+		JList list_1 = new JList(itemList);
+		list_1.setCellRenderer(new CheckListRenderer());
+		list_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		list_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent event) {
+				JList list = (JList) event.getSource();
+				int index = list.locationToIndex(event.getPoint());// Get index of item
+				// clicked
+				CheckListItem item = (CheckListItem) list.getModel()
+						.getElementAt(index);
+				item.setSelected(!item.isSelected()); // Toggle selected state
+				list.repaint(list.getCellBounds(index, index));// Repaint cell
+				if(item.isSelected()){
+					selected[index] = 1;
+				}
+				else{
+					selected[index] = 0;
+				}
+			}
 		});
+		
+		JScrollPane jsp = new JScrollPane(list_1);
+		jsp.setBounds(0, 0, 434, 211);
+		
+		getContentPane().add(jsp);
+	}
+	
+	class CheckListItem {
+
+		  private String label;
+		  private boolean isSelected = false;
+
+		  public CheckListItem(String label) {
+		    this.label = label;
+		  }
+
+		  public boolean isSelected() {
+		    return isSelected;
+		  }
+
+		  public void setSelected(boolean isSelected) {
+		    this.isSelected = isSelected;
+		  }
+
+		  @Override
+		  public String toString() {
+		    return label;
+		  }
+	}
+	
+	class CheckListRenderer extends JCheckBox implements ListCellRenderer {
+		  public Component getListCellRendererComponent(JList list, Object value,
+		      int index, boolean isSelected, boolean hasFocus) {
+		    setEnabled(list.isEnabled());
+		    setSelected(((CheckListItem) value).isSelected());
+		    setFont(list.getFont());
+		    setBackground(list.getBackground());
+		    setForeground(list.getForeground());
+		    setText(value.toString());
+		    return this;
+		  }
 	}
 }	
 

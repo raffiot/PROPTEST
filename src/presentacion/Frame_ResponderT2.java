@@ -39,7 +39,7 @@ public class Frame_ResponderT2 extends JFrame {
 	
 	public void init(){
 		getContentPane().setLayout(null);
-		
+		setSize(400, 400);
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.setBounds(292, 227, 117, 29);
 		btnGuardar.addActionListener(new ActionListener() {
@@ -60,23 +60,21 @@ public class Frame_ResponderT2 extends JFrame {
         });
 		getContentPane().add(btnCancelar);
 		
-		JEditorPane editorPane = new JEditorPane();
-		editorPane.setBounds(10, 41, 556, 59);
-		contentPane.add(editorPane);
-		
-		editorPane.setEditable(false);
-		editorPane.setText(cp.getPre().get(numPreg));
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(30, 11, 380, 141);
+		getContentPane().add(textArea);
+		textArea.setText((numPreg+1)+". " +cp.getPre().get(numPreg));
 		
 		ArrayList<String> opcions = cp.getopcionest2(numPreg);
 		SpinnerListModel model = new SpinnerListModel(opcions);
-		JSpinner spinner = new JSpinner(model);
-        spinner.setBounds(192, 173, 33, 26);
-        spinner.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
-				sp2 = (String)spinner.getValue();
-			}
-		});
-        contentPane.add(spinner);
-	
+		JSpinner spinner_1 = new JSpinner(model);
+		spinner_1.setBounds(141, 180, 123, 20);
+		 spinner_1.addChangeListener(new ChangeListener() {
+				public void stateChanged(ChangeEvent e) {
+					sp2 = (String)spinner_1.getValue();
+				}
+			});
+		getContentPane().add(spinner_1);  
+        
 	}
 }
