@@ -617,4 +617,12 @@ public class Controlador_dominio {
 	public void guardarResT3(String value, Integer numPreg){
 		//TODO!!!!
 	}
+	
+	public void guardarResT4(ArrayList<String> value, Integer numPreg){
+		//TODO!!!!
+	}
+	
+	public void guardarResT5(String value, Integer numPreg){
+		//TODO!!!!
+	}
 }
